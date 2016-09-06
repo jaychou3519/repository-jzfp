@@ -37,7 +37,6 @@ public class LoginActivity extends BaseActivity implements OnClickListener{
 
 	@Override
 	protected void initData() {
-		System.out.println("aaaa");
 		sp = getSharedPreferences("user", Context.MODE_PRIVATE);
 		et_username.setText(sp.getString("username", ""));
 		et_password.setText(sp.getString("password", ""));
