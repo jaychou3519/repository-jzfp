@@ -22,6 +22,7 @@ public class LoginActivity extends BaseActivity implements OnClickListener{
 	protected void setView() {
 		System.out.println("aa");
 		System.out.println("aa");
+		System.out.println("aa");
 		setContentView(R.layout.activity_login);
 	}
 
