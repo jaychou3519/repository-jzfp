@@ -4,7 +4,12 @@ import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 
 import com.demo.jzfp.R;
+import com.demo.jzfp.activity.VillagesActivity;
 import com.demo.jzfp.apdater.ImageAdapter;
+import com.demo.jzfp.utils.Tools;
+import com.demo.jzfp.utils.Asynce_NetWork;
+import com.demo.jzfp.utils.Asynce_NetWork.AsynceHttpInterface;
+import com.demo.jzfp.utils.Constant;
 
 import android.os.Bundle;
 import android.os.Handler;
@@ -13,15 +18,22 @@ import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.ImageView;
 
-public class FragmentHome extends BaseFragment {
+public class FragmentHome extends BaseFragment implements AsynceHttpInterface{
 	private static final String TAG = "FragmentHome";
 	private ViewPager viewPager;
 	private ImageHandler handler = new ImageHandler(new WeakReference<FragmentHome>(this));
+	private boolean isboolean = false;
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
 
+		GetWeather();
+	}
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		View v = inflater.inflate(R.layout.fragment_home, null);
@@ -35,19 +47,23 @@ public class FragmentHome extends BaseFragment {
 		ImageView view1 = new ImageView(getActivity());
 		view1.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
 		ImageView view2 = new ImageView(getActivity());
-		view1.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
+		view2.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
 		//ImageView view2 = (ImageView) inflater.inflate(R.layout.imageview_item, null);
-		view1.setImageResource(R.drawable.lunbo1);
-		view2.setImageResource(R.drawable.lunbo2);
+		view1.setBackgroundResource(R.drawable.lunbo1);
+		view2.setBackgroundResource(R.drawable.lunbo2);
 		ArrayList<ImageView> views = new ArrayList<ImageView>();
 		views.add(view1);
 		views.add(view2);
 		viewPager.setAdapter(new ImageAdapter(views));
-		viewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+		viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
 			// 配合Adapter的currentItem字段进行设置。
 			@Override
 			public void onPageSelected(int arg0) {
 				handler.sendMessage(Message.obtain(handler, ImageHandler.MSG_PAGE_CHANGED, arg0, 0));
+				if(!isboolean){
+					isboolean = true;
+					Tools.setOpenActivity(getActivity(), VillagesActivity.class);
+				}
 			}
 
 			@Override
@@ -66,6 +82,12 @@ public class FragmentHome extends BaseFragment {
 				default:
 					break;
 				}
+			}
+		});
+		viewPager.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				Tools.setOpenActivity(getActivity(), VillagesActivity.class);
 			}
 		});
 		viewPager.setCurrentItem(0);// 默认在中间，使用户看不到边界
@@ -139,5 +161,31 @@ public class FragmentHome extends BaseFragment {
 				break;
 			}
 		}
+	}
+	
+	@Override
+	public void onStop() {
+		super.onStop();
+		isboolean = false;
+	}
+
+	private void GetWeather(){
+		Asynce_NetWork.asyncHttpGet(getActivity(), Constant.weather, FragmentHome.this, 101);
+	}
+	@Override
+	public void getNetData(int requestCode, String data) {
+		switch (requestCode) {
+		case 101:
+			Tools.i(TAG, "data="+data.toString());
+			break;
+
+		default:
+			break;
+		}
+	}
+
+	@Override
+	public void requestDefeated(int requestCode, String data) {
+		
 	}
 }
