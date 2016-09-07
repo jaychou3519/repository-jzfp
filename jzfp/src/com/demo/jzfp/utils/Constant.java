@@ -15,5 +15,5 @@ public class Constant {
 	
 
 
-	public static String weather="http://api.map.baidu.com/telematics/v3/weather?location=炎陵县&output=json&ak=NqKsiqWINA3Mvknew2WXMXhp9GgI0bp4";
+	public static String weather="http://api.map.baidu.com/telematics/v3/weather?location=炎陵县&output=json&ak=9GC5VwC4G9UkbyVi9HDFjgyynxiTfnxG&mcode=79:C3:04:C7:71:1E:A4:BA:BB:24:43:94:61:2A:78:B9:68:68:6E:22;com.demo.jzfp";
 }

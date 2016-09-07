@@ -7,6 +7,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import com.google.gson.Gson;
+
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Point;
@@ -45,6 +47,22 @@ public class Tools {
 			}
 		}
 		oneTime = twoTime;
+	}
+	
+	
+	/**
+	 *Gson 单例 
+	 */
+	private static Gson gson=null;
+	
+	private static Gson getGson(){
+		if(gson==null){
+			gson=new Gson();
+		}
+		return gson;
+	}
+	public static Gson GG(){
+		return getGson();
 	}
 	
 	/*
