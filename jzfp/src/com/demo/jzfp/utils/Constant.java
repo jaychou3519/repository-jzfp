@@ -1,8 +1,5 @@
 package com.demo.jzfp.utils;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 
 public class Constant {
 	
@@ -12,6 +9,10 @@ public class Constant {
 	public static String baseUrl = "http://mmj.zksr.cn/gold/app/salesman_app!";
 	public static String baseUrl_use = "http://mmj.zksr.cn/gold/app/app!";
 	public static String imageUrl="http://mmj.zksr.cn/gold";
+	
+	//webservice 
+	public static String SERVICE_NS = "http://webService.service.sl.xidian/";
+	public static String SERVICE_URL = "http://192.168.1.103:8090/WebExam/services/test";
 	
 
 
