@@ -3,9 +3,15 @@ package com.demo.jzfp.fragment;
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import com.demo.jzfp.R;
 import com.demo.jzfp.activity.VillagesActivity;
 import com.demo.jzfp.apdater.ImageAdapter;
+import com.demo.jzfp.entity.Results;
+import com.demo.jzfp.entity.Root;
 import com.demo.jzfp.utils.Tools;
 import com.demo.jzfp.utils.Asynce_NetWork;
 import com.demo.jzfp.utils.Asynce_NetWork.AsynceHttpInterface;
@@ -22,12 +28,15 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 public class FragmentHome extends BaseFragment implements AsynceHttpInterface{
 	private static final String TAG = "FragmentHome";
 	private ViewPager viewPager;
 	private ImageHandler handler = new ImageHandler(new WeakReference<FragmentHome>(this));
 	private boolean isboolean = false;
+	private TextView tv_year_mday,tv_week,tv_time,tv_county,tv_temperature;
+	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -43,7 +52,12 @@ public class FragmentHome extends BaseFragment implements AsynceHttpInterface{
 
 	private void initView(View v, LayoutInflater inflater) {
 		viewPager = (ViewPager) v.findViewById(R.id.vp_lunbo_tp);
-
+		tv_year_mday = (TextView) v.findViewById(R.id.tv_year_mday);
+		tv_week = (TextView) v.findViewById(R.id.tv_week);
+		tv_time = (TextView) v.findViewById(R.id.tv_time);
+		tv_county = (TextView) v.findViewById(R.id.tv_county);
+		tv_temperature = (TextView) v.findViewById(R.id.tv_temperature);
+		
 		ImageView view1 = new ImageView(getActivity());
 		view1.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
 		ImageView view2 = new ImageView(getActivity());
@@ -54,16 +68,12 @@ public class FragmentHome extends BaseFragment implements AsynceHttpInterface{
 		ArrayList<ImageView> views = new ArrayList<ImageView>();
 		views.add(view1);
 		views.add(view2);
-		viewPager.setAdapter(new ImageAdapter(views));
+		viewPager.setAdapter(new ImageAdapter(views,getActivity()));
 		viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
 			// 配合Adapter的currentItem字段进行设置。
 			@Override
 			public void onPageSelected(int arg0) {
 				handler.sendMessage(Message.obtain(handler, ImageHandler.MSG_PAGE_CHANGED, arg0, 0));
-				if(!isboolean){
-					isboolean = true;
-					Tools.setOpenActivity(getActivity(), VillagesActivity.class);
-				}
 			}
 
 			@Override
@@ -83,12 +93,7 @@ public class FragmentHome extends BaseFragment implements AsynceHttpInterface{
 					break;
 				}
 			}
-		});
-		viewPager.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				Tools.setOpenActivity(getActivity(), VillagesActivity.class);
-			}
+			
 		});
 		viewPager.setCurrentItem(0);// 默认在中间，使用户看不到边界
 		// 开始轮播效果
@@ -163,6 +168,7 @@ public class FragmentHome extends BaseFragment implements AsynceHttpInterface{
 		}
 	}
 	
+	 
 	@Override
 	public void onStop() {
 		super.onStop();
@@ -174,9 +180,34 @@ public class FragmentHome extends BaseFragment implements AsynceHttpInterface{
 	}
 	@Override
 	public void getNetData(int requestCode, String data) {
+		JSONObject json;
 		switch (requestCode) {
 		case 101:
 			Tools.i(TAG, "data="+data.toString());
+			try {
+				json = new JSONObject(data);
+				JSONArray jsonArrays = json.getJSONArray("results");
+				Root results = new Root();
+				results = Tools.GG().fromJson(json.toString(), Root.class);
+				if(results==null){
+					Tools.showNewToast(getActivity(), "获取天气失败！");
+					return;
+				}
+				tv_year_mday.setText(results.getDate());
+				//"周三 09月07日 (实时：30℃)"
+				String  date = results.getResults().get(0).getWeather_data().get(0).getDate();
+				if(date.contains("周")){
+					int weeklocation = date.indexOf("周");
+					tv_week.setText(date.substring(weeklocation, weeklocation+2));
+				}
+				if(date.contains("实时：")){
+					int weeklocation = date.indexOf("实时：");
+					tv_temperature.setText(date.substring(weeklocation+3, weeklocation+5)+"°");
+				}
+			} catch (JSONException e) {
+				e.printStackTrace();
+			}
+			
 			break;
 
 		default:

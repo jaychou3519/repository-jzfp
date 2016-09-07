@@ -1,8 +1,14 @@
 package com.demo.jzfp.apdater;
 
 import java.util.ArrayList;
+
+import com.demo.jzfp.activity.VillagesActivity;
+import com.demo.jzfp.utils.Tools;
+
+import android.content.Context;
 import android.support.v4.view.PagerAdapter;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.view.ViewParent;
 import android.widget.ImageView;
@@ -10,9 +16,10 @@ import android.widget.ImageView;
 public class ImageAdapter extends PagerAdapter{  
     
     private ArrayList<ImageView> viewlist;  
-
-    public ImageAdapter(ArrayList<ImageView> viewlist) {  
+    private Context context;
+    public ImageAdapter(ArrayList<ImageView> viewlist,Context context) {  
         this.viewlist = viewlist;  
+        this.context =context;
     }  
 
     @Override  
@@ -44,6 +51,13 @@ public class ImageAdapter extends PagerAdapter{
              ViewGroup parent = (ViewGroup)vp;  
              parent.removeView(view);  
          }  
+         view.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				Tools.setOpenActivity(context, VillagesActivity.class);
+			}
+		});
          container.addView(view);    
          //add listeners here if necessary  
          return view;    

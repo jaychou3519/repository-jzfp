@@ -6,6 +6,7 @@ import com.demo.jzfp.R;
 
 import android.content.Context;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.LinearLayout;
@@ -17,20 +18,21 @@ public class VillagesAdapter extends BaseAdapter{
 	private List<String> datas;
 	public VillagesAdapter(Context context,List<String> datas) {
 		this.context = context;
+		this.datas = datas;
 	}
 	@Override
 	public int getCount() {
-		return 0;
+		return datas.size();
 	}
 
 	@Override
 	public Object getItem(int position) {
-		return null;
+		return datas.get(position);
 	}
 
 	@Override
 	public long getItemId(int position) {
-		return 0;
+		return position;
 	}
 
 	@Override
@@ -45,6 +47,14 @@ public class VillagesAdapter extends BaseAdapter{
 		}else{
 			holder = (ViewHolder) convertView.getTag(); 
 		}
+		holder.tv_villages_name.setText(datas.get(position));
+		holder.ll_villages.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				
+			}
+		});
 		return convertView;
 	}
 
