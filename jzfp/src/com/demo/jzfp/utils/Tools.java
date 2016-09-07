@@ -12,6 +12,7 @@ import android.content.Intent;
 import android.graphics.Point;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
@@ -53,6 +54,18 @@ public class Tools {
 		Intent intent = new Intent(context, pclass);
 		context.startActivity(intent);
 	}
+	
+	
+	/**
+	 * info日志
+	 * 
+	 * @param tag
+	 * @param message
+	 */
+	public static void i(String tag, String message) {
+		Log.i(tag, message);
+	}
+
 	
 	/**
 	 * 将时间戳转换成日期 和时间 "yyyy-MM-dd HH:mm:ss.SSS"
