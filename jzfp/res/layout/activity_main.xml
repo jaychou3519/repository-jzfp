@@ -4,6 +4,13 @@
     android:layout_height="match_parent"
     tools:context="com.demo.jzfp.activity.MainActivity" >
 
+    <FrameLayout
+        android:id="@+id/frameLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/lin" >
+    </FrameLayout>
+    
     <LinearLayout
         android:id="@+id/lin"
         android:layout_width="match_parent"
@@ -115,13 +122,5 @@
             android:textColor="#fff"
             android:textSize="@dimen/x12" />
     </LinearLayout>
-
-    <FrameLayout
-        android:id="@+id/frameLayout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true" >
-    </FrameLayout>
 
 </RelativeLayout>
