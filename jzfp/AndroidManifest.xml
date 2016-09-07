@@ -29,7 +29,7 @@
         <activity android:name="com.demo.jzfp.activity.RegisterActivity"></activity>
         <activity android:name="com.demo.jzfp.activity.VillagesActivity"></activity>
         <activity android:name="com.demo.jzfp.activity.EditPwdActivity"></activity>
-        
+        <activity android:name="com.demo.jzfp.activity.ChooseAreaActivity"></activity>
     </application>
 
   

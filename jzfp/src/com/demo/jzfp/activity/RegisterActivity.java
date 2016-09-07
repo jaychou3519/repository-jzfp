@@ -47,7 +47,7 @@ public class RegisterActivity extends BaseActivity {
 	public void mClick(View view){
 		switch (view.getId()) {
 		case R.id.ll_institution:
-			
+			openActivity(ChooseAreaActivity.class, null);
 			break;
 		case R.id.ll_groud:
 			

@@ -1,5 +1,8 @@
 package com.demo.jzfp.utils;
 
+import java.util.Map;
+import java.util.Set;
+
 import org.ksoap2.SoapEnvelope;
 import org.ksoap2.serialization.SoapObject;
 import org.ksoap2.serialization.SoapSerializationEnvelope;
@@ -9,8 +12,7 @@ import android.util.Log;
 
 public class WebServiceClient {
 	
-    //http://www.cnblogs.com/shenliang123/archive/2012/07/05/2578586.html
-    public static void getConnByMethodName(String methodName){
+    public static void getConnByMethodName(String methodName,Map<String,Object> params){
     	 //创建httpTransportSE传输对象
     	 HttpTransportSE ht = new HttpTransportSE(Constant.SERVICE_URL);
     	 ht.debug = true;
@@ -21,7 +23,10 @@ public class WebServiceClient {
          /**
           * 设置参数，参数名不一定需要跟调用的服务器端的参数名相同，只需要对应的顺序相同即可
           * */
-         request.addProperty("name", "1006010054");
+         Set<String> keySet = params.keySet();
+         for(String key:keySet){
+        	 request.addProperty(key, params.get(key));
+         }
          //将SoapObject对象设置为SoapSerializationEnvelope对象的传出SOAP消息
          envelope.bodyOut = request;
          try{
