@@ -9,7 +9,7 @@ import android.util.Log;
 
 public class WebServiceClient {
 	
-    
+    //http://www.cnblogs.com/shenliang123/archive/2012/07/05/2578586.html
     public static void getConnByMethodName(String methodName){
     	 //创建httpTransportSE传输对象
     	 HttpTransportSE ht = new HttpTransportSE(Constant.SERVICE_URL);
