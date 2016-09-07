@@ -2,16 +2,806 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center"
+    android:background="#fff"
     android:orientation="vertical" >
-    
-     <TextView 
-        android:layout_width="wrap_content"
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:background="#ff4d4d" >
+
+        <TextView
+            android:id="@+id/tv_commit"
+            android:layout_width="50dp"
+            android:layout_height="44dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp"
+            android:gravity="center"
+            android:text="提交"
+            android:textColor="#fff"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:text="扶贫信息上报"
+            android:textColor="#fff"
+            android:textSize="20sp" />
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="上报"
-        android:textSize="40sp"
-        android:textColor="#f00"/>
-    
+        android:fillViewport="true"
+        android:scrollbars="none" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <RelativeLayout
+                android:id="@+id/rl_photo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/x30"
+                    android:text="照片"
+                    android:textColor="#000"
+                    android:textSize="@dimen/x15" />
+
+                <ImageView
+                    android:id="@+id/iv_into_photo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/x10"
+                    android:src="@drawable/into" />
+
+                <ImageView
+                    android:id="@+id/iv_headpicture"
+                    android:layout_width="@dimen/x40"
+                    android:layout_height="@dimen/x40"
+                    android:layout_centerVertical="true"
+                    android:layout_marginBottom="@dimen/x10"
+                    android:layout_marginRight="@dimen/x10"
+                    android:layout_marginTop="@dimen/x10"
+                    android:layout_toLeftOf="@id/iv_into_photo"
+                    android:src="@drawable/headpicture" />
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/x1"
+                android:background="#c9c9c9" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/y25"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:id="@+id/tv_name_xin"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/x10"
+                    android:text="*"
+                    android:textColor="#f00"
+                    android:textSize="@dimen/x20" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/x5"
+                    android:layout_toRightOf="@id/tv_name_xin"
+                    android:text="户主姓名"
+                    android:textColor="#000"
+                    android:textSize="@dimen/x15" />
+
+                <ImageView
+                    android:id="@+id/iv_into_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_margin="@dimen/x10"
+                    android:src="@drawable/into"
+                    android:visibility="invisible" />
+
+                <EditText
+                    android:id="@+id/et_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toLeftOf="@id/iv_into_name"
+                    android:background="@null"
+                    android:hint="请输入帮扶户户主姓名"
+                    android:maxLength="18"
+                    android:singleLine="true"
+                    android:textColor="#000"
+                    android:textColorHint="#d6d6d6"
+                    android:textSize="@dimen/x15" />
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/x1"
+                android:background="#c9c9c9" />
+
+            <RelativeLayout
+                android:id="@+id/rl_state"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/y25"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:id="@+id/tv_xin_state"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/x10"
+                    android:text="*"
+                    android:textColor="#f00"
+                    android:textSize="@dimen/x20" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/x5"
+                    android:layout_toRightOf="@id/tv_xin_state"
+                    android:text="贫困户状态"
+                    android:textColor="#000"
+                    android:textSize="@dimen/x15" />
+
+                <ImageView
+                    android:id="@+id/iv_into_state"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_margin="@dimen/x10"
+                    android:src="@drawable/into" />
+
+                <TextView
+                    android:id="@+id/tv_state"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toLeftOf="@id/iv_into_state"
+                    android:singleLine="true"
+                    android:text="请选择帮扶户贫困状态"
+                    android:textColor="#d6d6d6"
+                    android:textSize="@dimen/x15" />
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/x1"
+                android:background="#c9c9c9" />
+
+            <RelativeLayout
+                android:id="@+id/rl_sex"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/y25"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:id="@+id/tv_xin_sex"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/x10"
+                    android:text="*"
+                    android:textColor="#f00"
+                    android:textSize="@dimen/x20" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/x5"
+                    android:layout_toRightOf="@id/tv_xin_sex"
+                    android:text="性       别"
+                    android:textColor="#000"
+                    android:textSize="@dimen/x15" />
+
+                <ImageView
+                    android:id="@+id/iv_into_sex"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_margin="@dimen/x10"
+                    android:src="@drawable/into"
+                    android:visibility="invisible" />
+
+                <LinearLayout
+                    android:id="@+id/ll_women"
+                    android:layout_width="@dimen/x70"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toLeftOf="@id/iv_into_sex"
+                    android:gravity="center"
+                    android:orientation="horizontal" >
+
+                    <ImageView
+                        android:id="@+id/iv_sex_women"
+                        android:layout_width="@dimen/y13"
+                        android:layout_height="@dimen/y13"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/woman_no" />
+
+                    <TextView
+                        android:id="@+id/tv_sex_women"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:singleLine="true"
+                        android:text=" 女"
+                        android:textColor="#d6d6d6"
+                        android:textSize="@dimen/x15" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_man"
+                    android:layout_width="@dimen/x70"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toLeftOf="@id/ll_women"
+                    android:gravity="center"
+                    android:orientation="horizontal" >
+
+                    <ImageView
+                        android:id="@+id/iv_sex_man"
+                        android:layout_width="@dimen/y13"
+                        android:layout_height="@dimen/y13"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/man_no" />
+
+                    <TextView
+                        android:id="@+id/tv_sex_man"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:singleLine="true"
+                        android:text=" 男"
+                        android:textColor="#d6d6d6"
+                        android:textSize="@dimen/x15" />
+                </LinearLayout>
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/x1"
+                android:background="#c9c9c9" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/y25"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:id="@+id/tv_xin_age"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/x10"
+                    android:text="*"
+                    android:textColor="#f00"
+                    android:textSize="@dimen/x20" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/x5"
+                    android:layout_toRightOf="@id/tv_xin_age"
+                    android:text="年       龄"
+                    android:textColor="#000"
+                    android:textSize="@dimen/x15" />
+
+                <ImageView
+                    android:id="@+id/iv_into_age"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_margin="@dimen/x10"
+                    android:src="@drawable/into"
+                    android:visibility="invisible" />
+
+                <EditText
+                    android:id="@+id/et_age"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toLeftOf="@id/iv_into_age"
+                    android:background="@null"
+                    android:hint="请填写帮扶户户主年龄"
+                    android:maxLength="3"
+                     android:digits="0123456789"
+                    android:singleLine="true"
+                    android:textColor="#000"
+                    android:textColorHint="#d6d6d6"
+                    android:textSize="@dimen/x15" />
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/x1"
+                android:background="#c9c9c9" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/y25"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:id="@+id/tv_xin_identity"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/x10"
+                    android:text="*"
+                    android:textColor="#f00"
+                    android:textSize="@dimen/x20" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/x5"
+                    android:layout_toRightOf="@id/tv_xin_identity"
+                    android:text="身份证号"
+                    android:textColor="#000"
+                    android:textSize="@dimen/x15" />
+
+                <ImageView
+                    android:id="@+id/iv_into_identity"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_margin="@dimen/x10"
+                    android:src="@drawable/into"
+                    android:visibility="invisible" />
+
+                <EditText
+                    android:id="@+id/et_identity"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toLeftOf="@id/iv_into_identity"
+                    android:background="@null"
+                    android:hint="请填写帮扶户身份证号"
+                    android:digits="0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+                    android:maxLength="18"
+                    android:singleLine="true"
+                    android:textColor="#000"
+                    android:textColorHint="#d6d6d6"
+                    android:textSize="@dimen/x15" />
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/x1"
+                android:background="#c9c9c9" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/y25"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:id="@+id/tv_xin_tel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/x10"
+                    android:text="*"
+                    android:textColor="#f00"
+                    android:textSize="@dimen/x20" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/x5"
+                    android:layout_toRightOf="@id/tv_xin_tel"
+                    android:text="联系电话"
+                    android:textColor="#000"
+                    android:textSize="@dimen/x15" />
+
+                <ImageView
+                    android:id="@+id/iv_into_tel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_margin="@dimen/x10"
+                    android:src="@drawable/into"
+                    android:visibility="invisible" />
+
+                <EditText
+                    android:id="@+id/et_tel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toLeftOf="@id/iv_into_tel"
+                    android:background="@null"
+                    android:hint="请填写帮扶户联系电话"
+                    android:digits="0123456789-"
+                    android:maxLength="15"
+                    android:singleLine="true"
+                    android:textColor="#000"
+                    android:textColorHint="#d6d6d6"
+                    android:textSize="@dimen/x15" />
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/x1"
+                android:background="#c9c9c9" />
+
+            <RelativeLayout
+                android:id="@+id/rl_education"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/y25"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:id="@+id/tv_xin_education"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/x10"
+                    android:text="*"
+                    android:textColor="#f00"
+                    android:textSize="@dimen/x20" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/x5"
+                    android:layout_toRightOf="@id/tv_xin_education"
+                    android:text="文化程度"
+                    android:textColor="#000"
+                    android:textSize="@dimen/x15" />
+
+                <ImageView
+                    android:id="@+id/iv_into_education"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_margin="@dimen/x10"
+                    android:src="@drawable/into" />
+
+                <TextView
+                    android:id="@+id/tv_education"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toLeftOf="@id/iv_into_education"
+                    android:singleLine="true"
+                    android:text="请选择帮扶户文化程度"
+                    android:textColor="#d6d6d6"
+                    android:textSize="@dimen/x15" />
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/x1"
+                android:background="#c9c9c9" />
+
+            <RelativeLayout
+                android:id="@+id/rl_health"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/y25"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:id="@+id/tv_xin_health"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/x10"
+                    android:text="*"
+                    android:textColor="#f00"
+                    android:textSize="@dimen/x20" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/x5"
+                    android:layout_toRightOf="@id/tv_xin_health"
+                    android:text="健康状态"
+                    android:textColor="#000"
+                    android:textSize="@dimen/x15" />
+
+                <ImageView
+                    android:id="@+id/iv_into_health"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_margin="@dimen/x10"
+                    android:src="@drawable/into" />
+
+                <TextView
+                    android:id="@+id/tv_health"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toLeftOf="@id/iv_into_health"
+                    android:singleLine="true"
+                    android:text="请选择帮扶户健康状态"
+                    android:textColor="#d6d6d6"
+                    android:textSize="@dimen/x15" />
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/x1"
+                android:background="#c9c9c9" />
+
+            <RelativeLayout
+                android:id="@+id/rl_economy"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/y25"
+                android:orientation="horizontal" >
+
+                <ImageView
+                    android:id="@+id/iv_economy"
+                    android:layout_width="@dimen/x18"
+                    android:layout_height="@dimen/x18"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/x5"
+                    android:src="@drawable/economy" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/x2"
+                    android:layout_toRightOf="@id/iv_economy"
+                    android:text="家庭经济"
+                    android:textColor="#000"
+                    android:textSize="@dimen/x15" />
+
+                <ImageView
+                    android:id="@+id/iv_into_economy"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_margin="@dimen/x10"
+                    android:src="@drawable/into" />
+
+                <TextView
+                    android:id="@+id/tv_economy"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toLeftOf="@id/iv_into_economy"
+                    android:singleLine="true"
+                    android:text="请填写帮扶户家庭经济"
+                    android:textColor="#d6d6d6"
+                    android:textSize="@dimen/x15" />
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/x1"
+                android:background="#c9c9c9" />
+
+            <RelativeLayout
+                android:id="@+id/rl_member"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/y25"
+                android:orientation="horizontal" >
+
+                <ImageView
+                    android:id="@+id/iv_member"
+                    android:layout_width="@dimen/x18"
+                    android:layout_height="@dimen/x18"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/x5"
+                    android:src="@drawable/member" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/x2"
+                    android:layout_toRightOf="@id/iv_member"
+                    android:text="家庭成员"
+                    android:textColor="#000"
+                    android:textSize="@dimen/x15" />
+
+                <ImageView
+                    android:id="@+id/iv_into_member"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_margin="@dimen/x10"
+                    android:src="@drawable/into" />
+
+                <TextView
+                    android:id="@+id/tv_member"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toLeftOf="@id/iv_into_member"
+                    android:singleLine="true"
+                    android:text="请填写帮扶户家庭成员"
+                    android:textColor="#d6d6d6"
+                    android:textSize="@dimen/x15" />
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/x1"
+                android:background="#c9c9c9" />
+
+            <RelativeLayout
+                android:id="@+id/rl_reason"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/y25"
+                android:orientation="horizontal" >
+
+                <ImageView
+                    android:id="@+id/iv_reason"
+                    android:layout_width="@dimen/x18"
+                    android:layout_height="@dimen/x18"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/x5"
+                    android:src="@drawable/reason" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/x2"
+                    android:layout_toRightOf="@id/iv_reason"
+                    android:text="致贫原因"
+                    android:textColor="#000"
+                    android:textSize="@dimen/x15" />
+
+                <ImageView
+                    android:id="@+id/iv_into_reason"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_margin="@dimen/x10"
+                    android:src="@drawable/into" />
+
+                <TextView
+                    android:id="@+id/tv_reason"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toLeftOf="@id/iv_into_reason"
+                    android:singleLine="true"
+                    android:text="请填写帮扶户致贫原因"
+                    android:textColor="#d6d6d6"
+                    android:textSize="@dimen/x15" />
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/x1"
+                android:background="#c9c9c9" />
+
+            <RelativeLayout
+                android:id="@+id/rl_measures"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/y25"
+                android:orientation="horizontal" >
+
+                <ImageView
+                    android:id="@+id/iv_measures"
+                    android:layout_width="@dimen/x18"
+                    android:layout_height="@dimen/x18"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/x5"
+                    android:src="@drawable/measures" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/x2"
+                    android:layout_toRightOf="@id/iv_measures"
+                    android:text="帮扶措施"
+                    android:textColor="#000"
+                    android:textSize="@dimen/x15" />
+
+                <ImageView
+                    android:id="@+id/iv_into_measures"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_margin="@dimen/x10"
+                    android:src="@drawable/into" />
+
+                <TextView
+                    android:id="@+id/tv_measures"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toLeftOf="@id/iv_into_measures"
+                    android:singleLine="true"
+                    android:text="请填写帮扶措施"
+                    android:textColor="#d6d6d6"
+                    android:textSize="@dimen/x15" />
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/x1"
+                android:background="#c9c9c9" />
+
+            <RelativeLayout
+                android:id="@+id/rl_effect"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/y25"
+                android:orientation="horizontal" >
+
+                <ImageView
+                    android:id="@+id/iv_effect"
+                    android:layout_width="@dimen/x18"
+                    android:layout_height="@dimen/x18"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/x5"
+                    android:src="@drawable/effect" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/x2"
+                    android:layout_toRightOf="@id/iv_effect"
+                    android:text="帮扶成效"
+                    android:textColor="#000"
+                    android:textSize="@dimen/x15" />
+
+                <ImageView
+                    android:id="@+id/iv_into_effect"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_margin="@dimen/x10"
+                    android:src="@drawable/into" />
+
+                <TextView
+                    android:id="@+id/tv_effect"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toLeftOf="@id/iv_into_effect"
+                    android:singleLine="true"
+                    android:text="请填写帮扶成效"
+                    android:textColor="#d6d6d6"
+                    android:textSize="@dimen/x15" />
+            </RelativeLayout>
+        </LinearLayout>
+    </ScrollView>
 
 </LinearLayout>
