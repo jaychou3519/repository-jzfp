@@ -11,16 +11,20 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.demo.jzfp.R;
+import com.demo.jzfp.utils.MyApplication;
 
 
 public class LoginActivity extends BaseActivity implements OnClickListener{
 	private EditText et_username,et_password;
 	private CheckBox cb_keep;
 	private SharedPreferences sp;
+	private MyApplication activityList;
 	
 	@Override
 	protected void setView() {
 		setContentView(R.layout.activity_login);
+		activityList = (MyApplication) getApplicationContext();
+		activityList.addActivity(this);
 	}
 
 	@Override

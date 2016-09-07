@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.demo.jzfp.R;
 import com.demo.jzfp.activity.EditPwdActivity;
+import com.demo.jzfp.utils.MyApplication;
 import com.demo.jzfp.utils.Tools;
 
 public class FragmentOptions extends Fragment implements OnClickListener{
@@ -32,7 +33,7 @@ public class FragmentOptions extends Fragment implements OnClickListener{
 
 	private void initView(View v) {
 		ImageView imageView = (ImageView) v.findViewById(R.id.iv_back);
-		imageView.setVisibility(View.GONE);
+		imageView.setVisibility(View.INVISIBLE);
 		TextView textView = (TextView) v.findViewById(R.id.tv_title);
 		textView.setText("设置");
 		TextView editPwd = (TextView) v.findViewById(R.id.editPwd);
@@ -48,7 +49,8 @@ public class FragmentOptions extends Fragment implements OnClickListener{
 				Tools.setOpenActivity(getActivity(), EditPwdActivity.class);
 				break;
 			case R.id.btn_loginout:
-				
+				MyApplication activityList = (MyApplication) getActivity().getApplicationContext();
+				activityList.finishAll();
 				break;
 		}
 	}

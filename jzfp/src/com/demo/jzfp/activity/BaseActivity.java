@@ -1,7 +1,5 @@
 package com.demo.jzfp.activity;
 
-import com.demo.jzfp.R;
-
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -17,7 +15,10 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.demo.jzfp.R;
+
 public abstract class BaseActivity extends FragmentActivity {
+	
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -130,5 +131,4 @@ public abstract class BaseActivity extends FragmentActivity {
 			inputmanger.hideSoftInputFromWindow(view.getWindowToken(), 0);
 		}
 	}
-
 }

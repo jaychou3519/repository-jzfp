@@ -13,6 +13,7 @@ import com.demo.jzfp.R;
 import com.demo.jzfp.fragment.FragmentHome;
 import com.demo.jzfp.fragment.FragmentOptions;
 import com.demo.jzfp.fragment.FragmentReport;
+import com.demo.jzfp.utils.MyApplication;
 import com.demo.jzfp.utils.Tools;
 
 public class MainActivity extends BaseActivity implements OnClickListener {
@@ -23,10 +24,13 @@ public class MainActivity extends BaseActivity implements OnClickListener {
 	private FragmentHome fr_home;
 	private FragmentReport fr_report;
 	private int count;
+	private MyApplication activityList;
 
 	@Override
 	protected void setView() {
 		setContentView(R.layout.activity_main);
+		activityList = (MyApplication) getApplicationContext();
+		activityList.addActivity(this);
 	}
 
 	@Override

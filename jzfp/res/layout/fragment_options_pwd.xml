@@ -10,13 +10,20 @@
         android:layout_height="wrap_content"
         layout="@layout/top_title" />
     
+   <LinearLayout
+       android:id="@+id/line_p"
+       android:layout_below="@id/optionsTile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@color/white"
+        android:paddingBottom="5dp">
+    
     <LinearLayout
-        android:id="@+id/oldpwd_line"
          android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
         android:orientation="horizontal"
-        android:layout_below="@id/optionsTile" >
+        android:layout_margin="10dp">
         
      <TextView
          android:layout_width="wrap_content"
@@ -40,21 +47,17 @@
     </LinearLayout>
     
     <View
-        android:id="@+id/line_1"
-        android:layout_below="@id/oldpwd_line" 
         android:layout_width="match_parent"
         android:layout_height="1dip"
         android:background="#EDEDED"
-        android:layout_marginTop="10dp"
-        android:layout_margin="5dp" />
+        />
     
     <LinearLayout
         android:id="@+id/newpwd_line"
          android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
         android:orientation="horizontal"
-        android:layout_below="@id/line_1" >
+        android:layout_margin="10dp">
         
      <TextView
          android:layout_width="wrap_content"
@@ -78,21 +81,17 @@
     </LinearLayout>
     
     <View
-        android:id="@+id/line_2"
-        android:layout_below="@id/newpwd_line" 
         android:layout_width="match_parent"
         android:layout_height="1dip"
-        android:background="#EDEDED"
-        android:layout_marginTop="10dp"
-        android:layout_margin="5dp" />
+        android:background="#EDEDED"/>
     
     <LinearLayout
         android:id="@+id/confirm_line"
          android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/white"
-        android:orientation="horizontal"
-        android:layout_below="@id/line_2" >
+        android:orientation="horizontal" 
+        android:layout_margin="10dp">
         
     <TextView
          android:layout_width="wrap_content"
@@ -116,21 +115,15 @@
     </LinearLayout>
     
     <View
-        android:id="@+id/line_3"
-        android:layout_below="@id/confirm_line" 
         android:layout_width="match_parent"
         android:layout_height="1dip"
         android:background="#EDEDED"
-        android:layout_marginTop="10dp"
-        android:layout_margin="5dp" />
-    
-   <LinearLayout
-        android:layout_below="@id/line_3" 
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-          
+       />
+    </LinearLayout>
+	          
     <Button
          android:id="@+id/btn_loginout"
+         android:layout_below="@id/line_p"
          android:layout_width="match_parent"
          android:layout_height="40dp"
          android:layout_marginLeft="60dp"
@@ -139,7 +132,6 @@
          android:layout_marginTop="20dp"
          android:text="提交"
          android:textColor="#fff" />
-    </LinearLayout>
 
 </RelativeLayout>
 

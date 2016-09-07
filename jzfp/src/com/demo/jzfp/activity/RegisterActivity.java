@@ -1,6 +1,7 @@
 package com.demo.jzfp.activity;
 
 import com.demo.jzfp.R;
+import com.demo.jzfp.utils.MyApplication;
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
@@ -20,10 +21,13 @@ public class RegisterActivity extends BaseActivity {
 	private TextView tv_institution;
 	@ViewInject(R.id.tv_groud)
 	private TextView tv_groud;
+	private MyApplication activityList;
 	
 	@Override
 	protected void setView() {
 		View view = View.inflate(this, R.layout.activity_register, null);
+		activityList = (MyApplication) getApplicationContext();
+		activityList.addActivity(this);
 		setContentView(view);
 		ViewUtils.inject(this,view);
 		setTitleText("用户注册");

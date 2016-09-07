@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.demo.jzfp.R;
 import com.demo.jzfp.apdater.VillagesAdapter;
+import com.demo.jzfp.utils.MyApplication;
 
 import android.view.View;
 import android.widget.ListView;
@@ -13,10 +14,13 @@ public class VillagesActivity extends BaseActivity{
 
 	private ListView lv_listview;
 	private List<String> datas = new ArrayList<String>();
+	private MyApplication activityList;
 	@Override
 	protected void setView() {
 		View view = View.inflate(this, R.layout.activity_villages, null);
 		setContentView(view);
+		activityList = (MyApplication) getApplicationContext();
+		activityList.addActivity(this);
 		lv_listview = (ListView) findViewById(R.id.lv_listview);
 		setTitleText("乡镇介绍");
 		setOnback(this);
