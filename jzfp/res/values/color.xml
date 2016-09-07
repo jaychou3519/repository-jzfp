@@ -63,4 +63,6 @@
     <color name="yellow_e7c252">#e7c252</color>
     <color name="green_3fd07a">#3fd07a</color>
     <color name="red_e1548a">#e1548a</color>
+    <color name="background_color">#F2F2F2</color>
+  
 </resources>
