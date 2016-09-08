@@ -1,13 +1,11 @@
 package com.demo.jzfp.apdater;
 
-import java.util.List;
-
-import com.demo.jzfp.R;
-
 import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+
+import com.demo.jzfp.R;
 
 public class ArchivesAdapter extends BaseAdapter{
 
