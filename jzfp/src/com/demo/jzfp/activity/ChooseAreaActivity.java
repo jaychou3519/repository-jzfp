@@ -66,9 +66,9 @@ public class ChooseAreaActivity extends BaseActivity implements OnClickListener{
                 myHandler.sendEmptyMessage(1);
             }
         }).start();
-    }
+     }
 	
-		class MyHandler extends Handler{
+	class MyHandler extends Handler{
 	        WeakReference<ChooseAreaActivity> mActivity;
 	
 	        MyHandler(ChooseAreaActivity theActivity) {
@@ -148,7 +148,7 @@ public class ChooseAreaActivity extends BaseActivity implements OnClickListener{
 	public void onClick(View v) {
 		switch(v.getId()){
 			case R.id.tv_commit:
-			   Bundle bundle=new Bundle();
+			   Bundle bundle = this.getIntent().getExtras();
 		       bundle.putString("name", (String) mm.get("name"));
 		       bundle.putString("areacode", (String) mm.get("areacode"));
 		       Intent intent = new Intent(this, RegisterActivity.class);

@@ -1,10 +1,12 @@
 package com.demo.jzfp.entity;
 
-import java.io.Serializable;
+import java.util.Hashtable;
+import org.ksoap2.serialization.KvmSerializable;
+import org.ksoap2.serialization.PropertyInfo;
 
-public class TsysUserinfo implements Serializable {
-	private static final long serialVersionUID = 5454155825314635342L;
+public class TsysUserinfo implements KvmSerializable {
 	
+
 	private java.lang.String userpost;
 
 	/**
@@ -328,5 +330,25 @@ public class TsysUserinfo implements Serializable {
 
 	public void setPostId(String postId) {
 		this.postId = postId;
+	}
+
+	@Override
+	public Object getProperty(int arg0) {
+		return null;
+	}
+
+	@Override
+	public int getPropertyCount() {
+		return 0;
+	}
+
+	@Override
+	public void getPropertyInfo(int arg0, Hashtable arg1, PropertyInfo arg2) {
+		
+	}
+
+	@Override
+	public void setProperty(int arg0, Object arg1) {
+		
 	}
 }

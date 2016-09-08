@@ -25,7 +25,7 @@ public class WebServiceClient {
 	 * @param params
 	 * @return
 	 */
-	public static String callWeb(String methodName,Map<String, Object> params) {
+	public static String callWeb(String methodName,Map<String, String> params) {
 		// 每一次网络请求都会重新调用
 		String resultString = null;
 		// 实例化SoapObject对象

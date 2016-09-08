@@ -7,9 +7,15 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import com.demo.jzfp.activity.LoginActivity;
 import com.google.gson.Gson;
 
+import android.annotation.SuppressLint;
+import android.app.AlertDialog;
+import android.app.AlertDialog.Builder;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
 import android.graphics.Point;
 import android.net.ConnectivityManager;
@@ -214,6 +220,7 @@ public class Tools {
 	 * @param context
 	 * @return Point
 	 */
+	@SuppressLint("NewApi")
 	public static Point getPoint(Context context) {
 		Point point = new Point();
 		WindowManager wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
@@ -296,6 +303,4 @@ public class Tools {
 		}
 		return versionName;
 	}
-
-
 }
