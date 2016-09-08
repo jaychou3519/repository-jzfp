@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fff"
+    android:orientation="vertical" >
+
+    <include
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        layout="@layout/top_title" />
+
+    <RelativeLayout
+        android:id="@+id/rl_yjs"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y30"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/x10"
+            android:text="研究生教育"
+            android:textColor="#000"
+            android:textSize="@dimen/x15" />
+
+        <ImageView
+            android:id="@+id/iv_checked_yjs"
+            android:layout_width="@dimen/y15"
+            android:layout_height="@dimen/y15"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/x20"
+            android:src="@drawable/checked"
+            android:visibility="invisible" />
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x1"
+        android:background="#c9c9c9" />
+
+    <RelativeLayout
+        android:id="@+id/rl_bkzk"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y30"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/x10"
+            android:text="大学本科/专科教育"
+            android:textColor="#000"
+            android:textSize="@dimen/x15" />
+
+        <ImageView
+            android:id="@+id/iv_checked_bkzk"
+            android:layout_width="@dimen/y15"
+            android:layout_height="@dimen/y15"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/x20"
+            android:src="@drawable/checked"
+            android:visibility="invisible" />
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x1"
+        android:background="#c9c9c9" />
+
+    <RelativeLayout
+        android:id="@+id/rl_zy"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y30"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/x10"
+            android:text="中等职业教育"
+            android:textColor="#000"
+            android:textSize="@dimen/x15" />
+
+        <ImageView
+            android:id="@+id/iv_checked_zy"
+            android:layout_width="@dimen/y15"
+            android:layout_height="@dimen/y15"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/x20"
+            android:src="@drawable/checked"
+            android:visibility="invisible" />
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x1"
+        android:background="#c9c9c9" />
+
+    <RelativeLayout
+        android:id="@+id/rl_gz"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y30"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/x10"
+            android:text="普通高级中学教育"
+            android:textColor="#000"
+            android:textSize="@dimen/x15" />
+
+        <ImageView
+            android:id="@+id/iv_checked_gz"
+            android:layout_width="@dimen/y15"
+            android:layout_height="@dimen/y15"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/x20"
+            android:src="@drawable/checked"
+            android:visibility="invisible" />
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x1"
+        android:background="#c9c9c9" />
+
+    <RelativeLayout
+        android:id="@+id/rl_cz"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y30"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/x10"
+            android:text="初级中学教育"
+            android:textColor="#000"
+            android:textSize="@dimen/x15" />
+
+        <ImageView
+            android:id="@+id/iv_checked_cz"
+            android:layout_width="@dimen/y15"
+            android:layout_height="@dimen/y15"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/x20"
+            android:src="@drawable/checked"
+            android:visibility="invisible" />
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x1"
+        android:background="#c9c9c9" />
+
+    <RelativeLayout
+        android:id="@+id/rl_xx"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y30"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/x10"
+            android:text="小学教育"
+            android:textColor="#000"
+            android:textSize="@dimen/x15" />
+
+        <ImageView
+            android:id="@+id/iv_checked_xx"
+            android:layout_width="@dimen/y15"
+            android:layout_height="@dimen/y15"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/x20"
+            android:src="@drawable/checked"
+            android:visibility="invisible" />
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x1"
+        android:background="#c9c9c9" />
+
+    <RelativeLayout
+        android:id="@+id/rl_other"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y30"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/x10"
+            android:text="其它"
+            android:textColor="#000"
+            android:textSize="@dimen/x15" />
+
+        <ImageView
+            android:id="@+id/iv_checked_other"
+            android:layout_width="@dimen/y15"
+            android:layout_height="@dimen/y15"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/x20"
+            android:src="@drawable/checked"
+            android:visibility="invisible" />
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x1"
+        android:background="#c9c9c9" />
+
+</LinearLayout>

@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fff"
+    android:orientation="vertical" >
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <include
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            layout="@layout/top_title" />
+
+        <TextView
+            android:id="@+id/tv_save"
+            android:layout_width="@dimen/y40"
+            android:layout_height="match_parent"
+            android:layout_gravity="right"
+            android:gravity="center"
+            android:text="保存"
+            android:textColor="#fff"
+            android:textSize="@dimen/y10" />
+    </FrameLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_construction"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y30"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/x10"
+            android:text="住房结构"
+            android:textColor="#000"
+            android:textSize="@dimen/x15" />
+
+        <ImageView
+            android:id="@+id/iv_into_construction"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_margin="@dimen/x10"
+            android:src="@drawable/into" />
+
+        <TextView
+            android:id="@+id/tv_construction"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@id/iv_into_construction"
+            android:hint="请选择帮扶户住房结构"
+            android:singleLine="true"
+            android:textColor="#000"
+            android:textColorHint="#d6d6d6"
+            android:textSize="@dimen/x15" />
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x1"
+        android:background="#c9c9c9" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y30"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/x10"
+            android:text="住房面积"
+            android:textColor="#000"
+            android:textSize="@dimen/x15" />
+
+        <ImageView
+            android:id="@+id/iv_into_area"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_margin="@dimen/x10"
+            android:src="@drawable/into"
+            android:visibility="invisible" />
+
+        <EditText
+            android:id="@+id/et_area"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@id/iv_into_area"
+            android:background="@null"
+            android:digits="0123456789"
+            android:hint="请输入帮扶户住房面积"
+            android:maxLength="10"
+            android:singleLine="true"
+            android:textColor="#000"
+            android:textColorHint="#d6d6d6"
+            android:textSize="@dimen/x15" />
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x1"
+        android:background="#c9c9c9" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y30"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/x10"
+            android:text="耕地面积"
+            android:textColor="#000"
+            android:textSize="@dimen/x15" />
+
+        <ImageView
+            android:id="@+id/iv_into_land"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_margin="@dimen/x10"
+            android:src="@drawable/into"
+            android:visibility="invisible" />
+
+        <EditText
+            android:id="@+id/et_land"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@id/iv_into_land"
+            android:background="@null"
+            android:digits="0123456789"
+            android:hint="请输入帮扶户耕地面积"
+            android:maxLength="10"
+            android:singleLine="true"
+            android:textColor="#000"
+            android:textColorHint="#d6d6d6"
+            android:textSize="@dimen/x15" />
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x1"
+        android:background="#c9c9c9" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y30"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/x10"
+            android:text="山林面积"
+            android:textColor="#000"
+            android:textSize="@dimen/x15" />
+
+        <ImageView
+            android:id="@+id/iv_into_hill"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_margin="@dimen/x10"
+            android:src="@drawable/into"
+            android:visibility="invisible" />
+
+        <EditText
+            android:id="@+id/et_hill"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@id/iv_into_hill"
+            android:background="@null"
+            android:digits="0123456789"
+            android:hint="请输入帮扶户山林面积"
+            android:maxLength="10"
+            android:singleLine="true"
+            android:textColor="#000"
+            android:textColorHint="#d6d6d6"
+            android:textSize="@dimen/x15" />
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x1"
+        android:background="#c9c9c9" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y30"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/x10"
+            android:text="家庭年人均可支配收入"
+            android:textColor="#000"
+            android:textSize="@dimen/x15" />
+
+        <ImageView
+            android:id="@+id/iv_into_dominate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_margin="@dimen/x10"
+            android:src="@drawable/into"
+            android:visibility="invisible" />
+
+        <EditText
+            android:id="@+id/et_dominate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@id/iv_into_dominate"
+            android:background="@null"
+            android:digits="0123456789"
+            android:hint="请输入可支配收入"
+            android:maxLength="10"
+            android:singleLine="true"
+            android:textColor="#000"
+            android:textColorHint="#d6d6d6"
+            android:textSize="@dimen/x15" />
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x1"
+        android:background="#c9c9c9" />
+
+</LinearLayout>

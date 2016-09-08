@@ -7,19 +7,18 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="44dp"
+        android:layout_height="@dimen/y30"
         android:background="#ff4d4d" >
 
         <TextView
             android:id="@+id/tv_commit"
-            android:layout_width="50dp"
-            android:layout_height="44dp"
+            android:layout_width="@dimen/y40"
+            android:layout_height="@dimen/y30"
             android:layout_alignParentRight="true"
-            android:layout_marginRight="10dp"
             android:gravity="center"
             android:text="提交"
             android:textColor="#fff"
-            android:textSize="18sp" />
+            android:textSize="@dimen/y10" />
 
         <TextView
             android:id="@+id/tv_title"
@@ -29,13 +28,14 @@
             android:gravity="center"
             android:text="扶贫信息上报"
             android:textColor="#fff"
-            android:textSize="20sp" />
+            android:textSize="@dimen/y13" />
     </RelativeLayout>
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fillViewport="true"
+        android:layout_marginBottom="@dimen/x10"
         android:scrollbars="none" >
 
         <LinearLayout
@@ -181,8 +181,9 @@
                     android:layout_centerVertical="true"
                     android:layout_toLeftOf="@id/iv_into_state"
                     android:singleLine="true"
-                    android:text="请选择帮扶户贫困状态"
-                    android:textColor="#d6d6d6"
+                    android:hint="请选择帮扶户贫困状态"
+                    android:textColorHint="#d6d6d6"
+                    android:textColor="#000"
                     android:textSize="@dimen/x15" />
             </RelativeLayout>
 
@@ -495,8 +496,9 @@
                     android:layout_centerVertical="true"
                     android:layout_toLeftOf="@id/iv_into_education"
                     android:singleLine="true"
-                    android:text="请选择帮扶户文化程度"
-                    android:textColor="#d6d6d6"
+                    android:hint="请选择帮扶户文化程度"
+                    android:textColorHint="#d6d6d6"
+                    android:textColor="#000"
                     android:textSize="@dimen/x15" />
             </RelativeLayout>
 
@@ -547,8 +549,9 @@
                     android:layout_centerVertical="true"
                     android:layout_toLeftOf="@id/iv_into_health"
                     android:singleLine="true"
-                    android:text="请选择帮扶户健康状态"
-                    android:textColor="#d6d6d6"
+                    android:hint="请选择帮扶户健康状态"
+                    android:textColorHint="#d6d6d6"
+                    android:textColor="#000"
                     android:textSize="@dimen/x15" />
             </RelativeLayout>
 
@@ -597,8 +600,9 @@
                     android:layout_centerVertical="true"
                     android:layout_toLeftOf="@id/iv_into_economy"
                     android:singleLine="true"
-                    android:text="请填写帮扶户家庭经济"
-                    android:textColor="#d6d6d6"
+                    android:hint="请填写帮扶户家庭经济"
+                    android:textColorHint="#d6d6d6"
+                    android:textColor="#000"
                     android:textSize="@dimen/x15" />
             </RelativeLayout>
 
@@ -647,8 +651,9 @@
                     android:layout_centerVertical="true"
                     android:layout_toLeftOf="@id/iv_into_member"
                     android:singleLine="true"
-                    android:text="请填写帮扶户家庭成员"
-                    android:textColor="#d6d6d6"
+                    android:hint="请填写帮扶户家庭成员"
+                    android:textColorHint="#d6d6d6"
+                    android:textColor="#000"
                     android:textSize="@dimen/x15" />
             </RelativeLayout>
 
@@ -697,8 +702,9 @@
                     android:layout_centerVertical="true"
                     android:layout_toLeftOf="@id/iv_into_reason"
                     android:singleLine="true"
-                    android:text="请填写帮扶户致贫原因"
-                    android:textColor="#d6d6d6"
+                    android:hint="请填写帮扶户致贫原因"
+                    android:textColorHint="#d6d6d6"
+                    android:textColor="#000"
                     android:textSize="@dimen/x15" />
             </RelativeLayout>
 
@@ -747,8 +753,9 @@
                     android:layout_centerVertical="true"
                     android:layout_toLeftOf="@id/iv_into_measures"
                     android:singleLine="true"
-                    android:text="请填写帮扶措施"
-                    android:textColor="#d6d6d6"
+                    android:hint="请填写帮扶措施"
+                    android:textColorHint="#d6d6d6"
+                    android:textColor="#000"
                     android:textSize="@dimen/x15" />
             </RelativeLayout>
 
@@ -797,10 +804,15 @@
                     android:layout_centerVertical="true"
                     android:layout_toLeftOf="@id/iv_into_effect"
                     android:singleLine="true"
-                    android:text="请填写帮扶成效"
-                    android:textColor="#d6d6d6"
+                    android:hint="请填写帮扶成效"
+                    android:textColorHint="#d6d6d6"
+                    android:textColor="#000"
                     android:textSize="@dimen/x15" />
             </RelativeLayout>
+             <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/x1"
+                android:background="#c9c9c9" />
         </LinearLayout>
     </ScrollView>
 
