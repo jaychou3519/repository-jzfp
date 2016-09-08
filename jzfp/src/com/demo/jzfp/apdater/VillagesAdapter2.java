@@ -19,7 +19,16 @@ public class VillagesAdapter2  extends BaseAdapter{
 	private Context context;
 	private List<String> datas;
 	private int state;
+	public int selectid = -1;
 	
+	public int getSelectid() {
+		return selectid;
+	}
+
+	public void setSelectid(int selectid) {
+		this.selectid = selectid;
+	}
+
 	public VillagesAdapter2(Context context,List<String> datas,int state) {
 		this.context = context;
 		this.datas = datas;
@@ -46,8 +55,14 @@ public class VillagesAdapter2  extends BaseAdapter{
 		View view = View.inflate(context, R.layout.choose_villages,null);
 		TextView textView = (TextView) view.findViewById(R.id.villageText);
 		textView.setText(datas.get(position));
-		
+		ImageView imageView = (ImageView) view.findViewById(R.id.selectImg);
+		if(selectid != -1&&position==selectid){
+			imageView.setVisibility(View.VISIBLE);
+		}else{
+			imageView.setVisibility(View.GONE);
+		}
 		return view;
 	}
 
+	
 }

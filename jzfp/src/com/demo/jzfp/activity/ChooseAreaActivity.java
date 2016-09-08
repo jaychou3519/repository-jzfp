@@ -31,7 +31,7 @@ public class ChooseAreaActivity extends BaseActivity implements OnClickListener{
 	private static String result;
     private static String METHOD_NAME = "selectToRegister";
     private static Map mm = null;
-	
+	private VillagesAdapter2 villagesAdapter;
 
 	@Override
 	protected void setView() {
@@ -62,7 +62,7 @@ public class ChooseAreaActivity extends BaseActivity implements OnClickListener{
         }).start();
     }
 	
-	static class MyHandler extends Handler{
+		class MyHandler extends Handler{
 	        WeakReference<ChooseAreaActivity> mActivity;
 	
 	        MyHandler(ChooseAreaActivity theActivity) {
@@ -115,7 +115,7 @@ public class ChooseAreaActivity extends BaseActivity implements OnClickListener{
 								break;
 							}
 						}
-	                	VillagesAdapter2 villagesAdapter = new VillagesAdapter2(context,villages,arg2);
+	                	villagesAdapter = new VillagesAdapter2(context,villages,arg2);
 	    	    		villagesListView.setAdapter(villagesAdapter);
 	                }
 	            });
@@ -124,7 +124,7 @@ public class ChooseAreaActivity extends BaseActivity implements OnClickListener{
 	                @Override
 	                public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
 	                        long arg3) {
-	                	ImageView imageView = (ImageView) arg1.findViewById(R.id.selectImg);
+	                	villagesAdapter.setSelectid(arg2);
 	                	String village = villages.get(arg2);
 	                	for (Map m : map) {
 	                		if(village.equals(m.get("name"))){
@@ -132,6 +132,7 @@ public class ChooseAreaActivity extends BaseActivity implements OnClickListener{
 	                			break;
 	                		}
 						}
+	                	villagesAdapter.notifyDataSetChanged();
 	                }
 	            });
 	        }
