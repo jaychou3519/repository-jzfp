@@ -1,18 +1,15 @@
 package com.demo.jzfp.apdater;
 
-import java.util.List;
-
 import com.demo.jzfp.R;
-
 import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
-public class ArchivesAdapter extends BaseAdapter{
+public class ArchivesPoorAdapter extends BaseAdapter{
 
 	private Context context;
-	public ArchivesAdapter(Context context) {
+	public ArchivesPoorAdapter(Context context) {
 		this.context = context;
 	}
 	@Override
@@ -33,7 +30,7 @@ public class ArchivesAdapter extends BaseAdapter{
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
 		if(convertView==null){
-			convertView = View.inflate(context, R.layout.archives_item, null);
+			convertView = View.inflate(context, R.layout.archives_poor_item, null);
 		}else{
 			
 		}

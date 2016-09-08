@@ -32,6 +32,7 @@
         <activity android:name="com.demo.jzfp.activity.ChooseAreaActivity"></activity>
         <activity android:name="com.demo.jzfp.activity.VillagesTextActivity"></activity>
         <activity android:name="com.demo.jzfp.activity.SupportActivity"></activity>
+        <activity android:name="com.demo.jzfp.activity.ArchivesActivity"></activity>
     </application>
 
   

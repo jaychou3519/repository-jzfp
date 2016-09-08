@@ -8,6 +8,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.demo.jzfp.R;
+import com.demo.jzfp.activity.ArchivesActivity;
 import com.demo.jzfp.activity.SupportActivity;
 import com.demo.jzfp.activity.VillagesActivity;
 import com.demo.jzfp.apdater.ImageAdapter;
@@ -151,7 +152,7 @@ public class FragmentHome extends BaseFragment implements AsynceHttpInterface{
 	public void mClick(View view){
 		switch (view.getId()) {
 		case R.id.rl_archives:
-			
+			Tools.setOpenActivity(getActivity(), ArchivesActivity.class);
 			break;
 		case R.id.rl_policy:
 			Tools.setOpenActivity(getActivity(), SupportActivity.class);

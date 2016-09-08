@@ -1,6 +1,7 @@
 package com.demo.jzfp.activity;
 
 import com.demo.jzfp.R;
+import com.demo.jzfp.apdater.ArchivesAdapter;
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.view.annotation.event.OnClick;
 
@@ -14,11 +15,15 @@ public class ArchivesActivity extends BaseActivity{
 		View view = View.inflate(ArchivesActivity.this, R.layout.activity_archives, null);
 		setContentView(view);
 		ViewUtils.inject(this,view);
+		setTitleText("扶贫档案");
+		setOnback(this);
 	}
 
 	@Override
 	protected void initView() {
 		ListView listView  = (ListView) findViewById(R.id.lv_listview);
+		ArchivesAdapter adapter = new ArchivesAdapter(ArchivesActivity.this);
+		listView.setAdapter(adapter);
 	}
 
 	@Override

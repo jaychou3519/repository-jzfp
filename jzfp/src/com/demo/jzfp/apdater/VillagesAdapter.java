@@ -7,6 +7,7 @@ import com.demo.jzfp.activity.VillagesTextActivity;
 import com.demo.jzfp.utils.Tools;
 
 import android.content.Context;
+import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
@@ -58,12 +59,15 @@ public class VillagesAdapter extends BaseAdapter{
 			
 			@Override
 			public void onClick(View v) {
+				Bundle bundle = new Bundle();
 				switch (state) {
 				case SUPPORT:
-					Tools.setOpenActivity(context, VillagesTextActivity.class);
+					bundle.putInt("villages", SUPPORT);
+					Tools.setOpenActivityBundle(context, VillagesTextActivity.class,bundle);
 					break;
 				case VILLAGES:
-					Tools.setOpenActivity(context, VillagesTextActivity.class);
+					bundle.putInt("villages", VILLAGES);
+					Tools.setOpenActivityBundle(context, VillagesTextActivity.class,bundle);
 					break;
 
 				default:
