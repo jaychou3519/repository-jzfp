@@ -19,6 +19,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.demo.jzfp.R;
 import com.demo.jzfp.entity.TsysUserinfo;
 import com.demo.jzfp.utils.MyApplication;
@@ -124,9 +125,10 @@ public class RegisterActivity extends BaseActivity {
 		}else{
 			showDialog(this, "提示", "真实姓名不能为空!",0);
 		}
+		tsysUserinfo.setState("1");
 		Map map = new HashMap();
-		String tsysUserinfojson = JSON.toJSONString(tsysUserinfo);
-		map.put("jsonuserinfo",tsysUserinfojson);
+		String jsonuserinfo = JSON.toJSONString(tsysUserinfo);
+		map.put("arg0",jsonuserinfo);
 		callWeb(map);
 	}
 	
@@ -154,7 +156,11 @@ public class RegisterActivity extends BaseActivity {
         	RegisterActivity myActivity = mActivity.get();
             switch (msg.what) {
                 case 1:
-                	showDialog(myActivity, "提示", "注册成功",1);
+                	if(null == result){
+                		showDialog(myActivity, "提示", "系统异常：注册失败",1);
+                	}else{
+                		showDialog(myActivity, "提示", "注册成功",1);
+                	}
                     break;
             }
             super.handleMessage(msg);
@@ -163,25 +169,18 @@ public class RegisterActivity extends BaseActivity {
 	
 	public void showDialog(Context context,String title,String message,final Integer code){
 		AlertDialog.Builder builder = new Builder(context);
-		//设置对话框图标，可以使用自己的图片，Android本身也提供了一些图标供我们使用
 		builder.setIcon(android.R.drawable.ic_dialog_alert);
-		//设置对话框标题
 		builder.setTitle(title);
-		//设置对话框内的文本
 		builder.setMessage(message);
-		//设置确定按钮，并给按钮设置一个点击侦听，注意这个OnClickListener使用的是DialogInterface类里的一个内部接口
 		builder.setPositiveButton("确定", new OnClickListener() {
 		        @Override
 		        public void onClick(DialogInterface dialog, int which) {
-		            // 执行点击确定按钮的业务逻辑
 		        	if(code == 1){
 		        		openActivity(LoginActivity.class, null);
 		        	}
 		        }
 		});
-		//使用builder创建出对话框对象
 		AlertDialog dialog = builder.create();
-		//显示对话框
 		dialog.show();
 	}
 }
