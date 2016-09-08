@@ -8,6 +8,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.demo.jzfp.R;
+import com.demo.jzfp.activity.SupportActivity;
 import com.demo.jzfp.activity.VillagesActivity;
 import com.demo.jzfp.apdater.ImageAdapter;
 import com.demo.jzfp.entity.Results;
@@ -15,6 +16,8 @@ import com.demo.jzfp.entity.Root;
 import com.demo.jzfp.utils.Tools;
 import com.demo.jzfp.utils.Asynce_NetWork;
 import com.demo.jzfp.utils.Asynce_NetWork.AsynceHttpInterface;
+import com.lidroid.xutils.ViewUtils;
+import com.lidroid.xutils.view.annotation.event.OnClick;
 import com.demo.jzfp.utils.Constant;
 
 import android.os.Bundle;
@@ -28,15 +31,14 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 public class FragmentHome extends BaseFragment implements AsynceHttpInterface{
 	private static final String TAG = "FragmentHome";
 	private ViewPager viewPager;
 	private ImageHandler handler = new ImageHandler(new WeakReference<FragmentHome>(this));
-	private boolean isboolean = false;
 	private TextView tv_year_mday,tv_week,tv_time,tv_county,tv_temperature;
-	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -47,6 +49,7 @@ public class FragmentHome extends BaseFragment implements AsynceHttpInterface{
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		View v = inflater.inflate(R.layout.fragment_home, null);
 		initView(v, inflater);
+		ViewUtils.inject(this,v);
 		return v;
 	}
 
@@ -62,7 +65,6 @@ public class FragmentHome extends BaseFragment implements AsynceHttpInterface{
 		view1.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
 		ImageView view2 = new ImageView(getActivity());
 		view2.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
-		//ImageView view2 = (ImageView) inflater.inflate(R.layout.imageview_item, null);
 		view1.setBackgroundResource(R.drawable.lunbo1);
 		view2.setBackgroundResource(R.drawable.lunbo2);
 		ArrayList<ImageView> views = new ArrayList<ImageView>();
@@ -100,8 +102,67 @@ public class FragmentHome extends BaseFragment implements AsynceHttpInterface{
 		handler.sendEmptyMessageDelayed(ImageHandler.MSG_UPDATE_IMAGE, ImageHandler.MSG_DELAY);
 	}
 
-	private static class ImageHandler extends Handler {
 
+	private void GetWeather(){
+		Asynce_NetWork.asyncHttpGet(getActivity(), Constant.weather, FragmentHome.this, 101);
+	}
+	@Override
+	public void getNetData(int requestCode, String data) {
+		JSONObject json;
+		switch (requestCode) {
+		case 101:
+			Tools.i(TAG, "data="+data.toString());
+			try {
+				json = new JSONObject(data);
+				JSONArray jsonArrays = json.getJSONArray("results");
+				Root results = new Root();
+				results = Tools.GG().fromJson(json.toString(), Root.class);
+				if(results==null){
+					Tools.showNewToast(getActivity(), "获取天气失败！");
+					return;
+				}
+				tv_year_mday.setText(results.getDate());
+				//"周三 09月07日 (实时：30℃)"
+				String  date = results.getResults().get(0).getWeather_data().get(0).getDate();
+				if(date.contains("周")){
+					int weeklocation = date.indexOf("周");
+					tv_week.setText("星期"+date.substring(weeklocation+1, weeklocation+2));
+				}
+				if(date.contains("实时：")){
+					int weeklocation = date.indexOf("实时：");
+					tv_temperature.setText(date.substring(weeklocation+3, weeklocation+5)+"°");
+				}
+			} catch (JSONException e) {
+				e.printStackTrace();
+			}
+			
+			break;
+
+		default:
+			break;
+		}
+	}
+	@Override
+	public void requestDefeated(int requestCode, String data) {
+		
+	}
+
+	@OnClick({R.id.rl_archives,R.id.rl_policy,R.id.rl_info})
+	public void mClick(View view){
+		switch (view.getId()) {
+		case R.id.rl_archives:
+			
+			break;
+		case R.id.rl_policy:
+			Tools.setOpenActivity(getActivity(), SupportActivity.class);
+			break;
+		case R.id.rl_info:
+			
+			break;
+		}
+	}
+	
+	private static class ImageHandler extends Handler {
 		/**
 		 * 请求更新显示的View。
 		 */
@@ -167,56 +228,5 @@ public class FragmentHome extends BaseFragment implements AsynceHttpInterface{
 			}
 		}
 	}
-	
-	 
-	@Override
-	public void onStop() {
-		super.onStop();
-		isboolean = false;
-	}
 
-	private void GetWeather(){
-		Asynce_NetWork.asyncHttpGet(getActivity(), Constant.weather, FragmentHome.this, 101);
-	}
-	@Override
-	public void getNetData(int requestCode, String data) {
-		JSONObject json;
-		switch (requestCode) {
-		case 101:
-			Tools.i(TAG, "data="+data.toString());
-			try {
-				json = new JSONObject(data);
-				JSONArray jsonArrays = json.getJSONArray("results");
-				Root results = new Root();
-				results = Tools.GG().fromJson(json.toString(), Root.class);
-				if(results==null){
-					Tools.showNewToast(getActivity(), "获取天气失败！");
-					return;
-				}
-				tv_year_mday.setText(results.getDate());
-				//"周三 09月07日 (实时：30℃)"
-				String  date = results.getResults().get(0).getWeather_data().get(0).getDate();
-				if(date.contains("周")){
-					int weeklocation = date.indexOf("周");
-					tv_week.setText(date.substring(weeklocation, weeklocation+2));
-				}
-				if(date.contains("实时：")){
-					int weeklocation = date.indexOf("实时：");
-					tv_temperature.setText(date.substring(weeklocation+3, weeklocation+5)+"°");
-				}
-			} catch (JSONException e) {
-				e.printStackTrace();
-			}
-			
-			break;
-
-		default:
-			break;
-		}
-	}
-
-	@Override
-	public void requestDefeated(int requestCode, String data) {
-		
-	}
 }

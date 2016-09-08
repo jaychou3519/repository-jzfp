@@ -3,6 +3,8 @@ package com.demo.jzfp.apdater;
 import java.util.List;
 
 import com.demo.jzfp.R;
+import com.demo.jzfp.activity.VillagesTextActivity;
+import com.demo.jzfp.utils.Tools;
 
 import android.content.Context;
 import android.view.View;
@@ -16,9 +18,13 @@ public class VillagesAdapter extends BaseAdapter{
 
 	private Context context;
 	private List<String> datas;
-	public VillagesAdapter(Context context,List<String> datas) {
+	public static final int SUPPORT = 12;
+	public static final int VILLAGES = 19;
+	private int state;
+	public VillagesAdapter(Context context,List<String> datas,int state) {
 		this.context = context;
 		this.datas = datas;
+		this.state = state;
 	}
 	@Override
 	public int getCount() {
@@ -52,7 +58,17 @@ public class VillagesAdapter extends BaseAdapter{
 			
 			@Override
 			public void onClick(View v) {
-				
+				switch (state) {
+				case SUPPORT:
+					Tools.setOpenActivity(context, VillagesTextActivity.class);
+					break;
+				case VILLAGES:
+					Tools.setOpenActivity(context, VillagesTextActivity.class);
+					break;
+
+				default:
+					break;
+				}
 			}
 		});
 		return convertView;

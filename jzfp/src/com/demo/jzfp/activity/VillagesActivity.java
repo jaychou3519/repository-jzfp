@@ -37,7 +37,7 @@ public class VillagesActivity extends BaseActivity{
 		datas.add("沔渡镇");
 		datas.add("十都镇");
 		datas.add("水口镇");
-		VillagesAdapter adapter = new VillagesAdapter(VillagesActivity.this, datas);
+		VillagesAdapter adapter = new VillagesAdapter(VillagesActivity.this, datas,VillagesAdapter.VILLAGES);
 		lv_listview.setAdapter(adapter);
 	}
 

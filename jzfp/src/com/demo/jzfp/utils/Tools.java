@@ -14,6 +14,7 @@ import android.content.Intent;
 import android.graphics.Point;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
@@ -73,7 +74,16 @@ public class Tools {
 		context.startActivity(intent);
 	}
 	
-	
+	/**
+	 * fragment 跳转
+	 */
+	public static void setOpenActivityBundle(Context context, Class<?> pclass,Bundle bundle) {
+		Intent intent = new Intent(context, pclass);
+		if(bundle!=null){
+			intent.putExtras(bundle);
+		}
+		context.startActivity(intent);
+	}
 	/**
 	 * info日志
 	 * 
