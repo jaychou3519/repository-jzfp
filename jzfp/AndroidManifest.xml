@@ -30,6 +30,8 @@
         <activity android:name="com.demo.jzfp.activity.VillagesActivity"></activity>
         <activity android:name="com.demo.jzfp.activity.EditPwdActivity"></activity>
         <activity android:name="com.demo.jzfp.activity.ChooseAreaActivity"></activity>
+        <activity android:name="com.demo.jzfp.activity.VillagesTextActivity"></activity>
+        <activity android:name="com.demo.jzfp.activity.SupportActivity"></activity>
     </application>
 
   

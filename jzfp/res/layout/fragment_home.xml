@@ -74,16 +74,17 @@
     <LinearLayout
         android:id="@+id/ll_weather_info"
         android:layout_width="fill_parent"
-        android:layout_height="@dimen/x70"
+        android:layout_height="wrap_content"
         android:layout_below="@id/fl_lunbo_tp"
         android:baselineAligned="false"
         android:orientation="horizontal" >
 
         <RelativeLayout
             android:layout_width="0dp"
-            android:layout_height="fill_parent"
+            android:layout_height="@dimen/x90"
             android:layout_weight="1"
-            android:background="@color/blue_30b7b9" >
+            android:gravity="center"
+            android:background="@drawable/blue_bg_x" >
 
             <LinearLayout
                 android:id="@+id/ll_year_mday"
@@ -125,9 +126,10 @@
 
         <RelativeLayout
             android:layout_width="0dp"
-            android:layout_height="fill_parent"
+            android:layout_height="@dimen/x90"
             android:layout_weight="1"
-            android:background="@color/yellow_e7c252" >
+            android:gravity="center"
+            android:background="@drawable/yellow_bg_x" >
 
             <TextView
                 android:id="@+id/tv_county"
@@ -151,36 +153,37 @@
 
             <LinearLayout
                 android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
+                android:layout_height="wrap_content"
                 android:layout_toRightOf="@id/tv_temperature"
-                android:gravity="center"
                 android:orientation="vertical" >
 
                 <ImageView
+                    android:layout_marginTop="@dimen/x5"
                     android:layout_width="@dimen/x42"
                     android:layout_height="@dimen/x30"
                     android:layout_gravity="center_horizontal"
                     android:src="@drawable/weather_default" />
-                <LinearLayout 
+
+                <LinearLayout
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/x5"
                     android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/x5"
                     android:gravity="center"
-                    android:orientation="horizontal"
-                    >
-                    <TextView 
+                    android:orientation="horizontal" >
+
+                    <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/bai"
-                        android:text="小雨"/>
-                    <TextView 
+                        android:text="小雨"
+                        android:textColor="@color/bai" />
+
+                    <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="25°/29°"
                         android:layout_marginLeft="@dimen/x10"
-                        android:textColor="@color/bai"
-                        />
+                        android:text="25°/29°"
+                        android:textColor="@color/bai" />
                 </LinearLayout>
             </LinearLayout>
         </RelativeLayout>
@@ -197,6 +200,7 @@
         android:orientation="horizontal" >
 
         <RelativeLayout
+            android:id="@+id/rl_archives"
             android:layout_width="0dp"
             android:layout_height="fill_parent"
             android:layout_weight="1"
@@ -222,6 +226,7 @@
         </RelativeLayout>
 
         <RelativeLayout
+            android:id="@+id/rl_policy"
             android:layout_width="0dp"
             android:layout_height="fill_parent"
             android:layout_marginLeft="@dimen/x10"
@@ -248,6 +253,7 @@
         </RelativeLayout>
 
         <RelativeLayout
+            android:id="@+id/rl_info"
             android:layout_width="0dp"
             android:layout_height="fill_parent"
             android:layout_marginLeft="@dimen/x10"
