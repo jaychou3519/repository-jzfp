@@ -11,8 +11,8 @@ public class Constant {
 	public static String imageUrl="http://mmj.zksr.cn/gold";
 	
 	//webservice 
-	public static String SERVICE_NS = "http://webservice.item.hihsoft.com";
-	public static String SERVICE_URL = "http://115.28.14.1:9145/ylppbd/services/ylppbdWS";
+	public static String NAME_SPACE = "http://webservice.item.hihsoft.com/";
+	public static String SERVER_URL = "http://115.28.14.1:9145/ylppbd/services/ylppbdWS/";
 	
 
 
