@@ -1,8 +1,14 @@
 package com.demo.jzfp.fragment;
 
 import com.demo.jzfp.R;
+import com.demo.jzfp.activity.AducationActivity;
+import com.demo.jzfp.activity.EconomyActivity;
+import com.demo.jzfp.activity.MemberActivity;
+import com.demo.jzfp.activity.ReasonActivity;
+import com.demo.jzfp.utils.PermissionsUtils;
 
 import android.app.Fragment;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -22,12 +28,15 @@ public class FragmentReport extends Fragment implements OnClickListener{
 	private TextView tv_sex_women;
 	private ImageView iv_sex_man;
 	private TextView tv_sex_man;
+	private TextView tv_education;
+	private PermissionsUtils pu;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		v = inflater.inflate(R.layout.fragment_report, null);
 		initView();
+		initData();
 		return v;
 	}
 	
@@ -55,7 +64,7 @@ public class FragmentReport extends Fragment implements OnClickListener{
 		EditText et_tel = (EditText) v.findViewById(R.id.et_tel);
 		
 		RelativeLayout rl_education = (RelativeLayout) v.findViewById(R.id.rl_education);
-		TextView tv_education = (TextView) v.findViewById(R.id.tv_education);
+		tv_education = (TextView) v.findViewById(R.id.tv_education);
 		
 		RelativeLayout rl_health = (RelativeLayout) v.findViewById(R.id.rl_health);
 		TextView tv_health = (TextView) v.findViewById(R.id.tv_health);
@@ -83,15 +92,26 @@ public class FragmentReport extends Fragment implements OnClickListener{
 		rl_education.setOnClickListener(this);
 		rl_health.setOnClickListener(this);
 		rl_economy.setOnClickListener(this);
+		rl_member.setOnClickListener(this);
 		rl_reason.setOnClickListener(this);
 		rl_measures.setOnClickListener(this);
 		rl_effect.setOnClickListener(this);
 	}
 
+	/**
+	 * 初始化数据
+	 */
+	private void initData(){
+		pu = new PermissionsUtils(getActivity());
+	}
+	
 	@Override
 	public void onClick(View v) {
 		switch(v.getId()){
 		case R.id.rl_photo:
+			if(pu.camera()){
+				
+			}
 			break;
 		case R.id.rl_state:
 			break;
@@ -110,16 +130,38 @@ public class FragmentReport extends Fragment implements OnClickListener{
 			tv_sex_man.setTextColor(Color.rgb(52, 152, 219));
 			break;
 		case R.id.rl_education:
+			Intent intent = new Intent(getActivity(), AducationActivity.class);
+			startActivityForResult(intent, 300);
 			break;
 		case R.id.rl_health:
 			break;
 		case R.id.rl_economy:
+			Intent intent1 = new Intent(getActivity(), EconomyActivity.class);
+			startActivity(intent1);
+			break;
+		case R.id.rl_member:
+			Intent intent2 = new Intent(getActivity(), MemberActivity.class);
+			startActivity(intent2);
 			break;
 		case R.id.rl_reason:
+			Intent intent3 = new Intent(getActivity(), ReasonActivity.class);
+			startActivity(intent3);
 			break;
 		case R.id.rl_measures:
 			break;
 		case R.id.rl_effect:
+			break;
+		}
+		
+	}
+	
+	@Override
+	public void onActivityResult(int requestCode, int resultCode, Intent data) {
+		// TODO Auto-generated method stub
+		super.onActivityResult(requestCode, resultCode, data);
+		switch(resultCode){
+		case 300:
+			tv_education.setText(data.getStringExtra("aducation"));
 			break;
 		}
 		
