@@ -9,6 +9,13 @@
         android:layout_height="wrap_content"
         layout="@layout/top_title" />
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x1"
+        android:background="@color/gray_hint"
+        android:paddingLeft="@dimen/x5"
+        android:paddingRight="@dimen/x5" />
+
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="@dimen/x50"
