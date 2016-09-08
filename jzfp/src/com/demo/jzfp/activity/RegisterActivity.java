@@ -6,6 +6,8 @@ import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
 
+import android.content.Intent;
+import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -22,6 +24,9 @@ public class RegisterActivity extends BaseActivity {
 	@ViewInject(R.id.tv_groud)
 	private TextView tv_groud;
 	private MyApplication activityList;
+	private String name;
+	private String areacode;
+	
 	
 	@Override
 	protected void setView() {
@@ -41,6 +46,13 @@ public class RegisterActivity extends BaseActivity {
 
 	@Override
 	protected void initData() {
+		Intent intent = getIntent();
+		Bundle bundle = intent.getExtras();        
+        if(null  != bundle){
+        	 name = bundle.getString("name");
+             areacode = bundle.getString("areacode");
+     		 tv_institution.setText(name);
+        }
 	}
 
 	@OnClick({R.id.ll_institution,R.id.ll_groud,R.id.btn_register})
@@ -50,14 +62,17 @@ public class RegisterActivity extends BaseActivity {
 			openActivity(ChooseAreaActivity.class, null);
 			break;
 		case R.id.ll_groud:
-			
 			break;
 		case R.id.btn_register:
-			
+			registeUser();
 			break;
-
 		default:
 			break;
 		}
+	}
+	
+	
+	public void registeUser(){
+		
 	}
 }

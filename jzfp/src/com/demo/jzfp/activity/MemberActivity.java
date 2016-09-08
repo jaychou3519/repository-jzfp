@@ -10,6 +10,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.demo.jzfp.R;
+import com.demo.jzfp.utils.MyApplication;
 
 public class MemberActivity extends BaseActivity implements OnClickListener {
 	private int sex = 0; // 姓别 0：未选 1：男 2：女
@@ -18,10 +19,13 @@ public class MemberActivity extends BaseActivity implements OnClickListener {
 	private ImageView iv_sex_man;
 	private TextView tv_sex_man;
 	private TextView tv_education;
+	private MyApplication activityList;
 
 	@Override
 	protected void setView() {
 		setContentView(R.layout.activity_member);
+		activityList = (MyApplication) getApplicationContext();
+		activityList.addActivity(this);
 		setTitleText("家庭成员");
 		setOnback(this);
 	}

@@ -7,12 +7,17 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.demo.jzfp.R;
+import com.demo.jzfp.utils.MyApplication;
 
 public class EconomyActivity extends BaseActivity implements OnClickListener {
 
+	private MyApplication activityList;
+	
 	@Override
 	protected void setView() {
 		setContentView(R.layout.activity_ecomomy);
+		activityList = (MyApplication) getApplicationContext();
+		activityList.addActivity(this);
 		setTitleText("家庭经济");
 		setOnback(this);
 

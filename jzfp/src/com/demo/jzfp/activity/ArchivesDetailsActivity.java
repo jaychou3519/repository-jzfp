@@ -7,9 +7,11 @@ import com.demo.jzfp.fragment.FragmentOptions;
 import com.demo.jzfp.fragment.FragmentReport;
 import com.demo.jzfp.fragment.MeasureFragment;
 import com.demo.jzfp.fragment.RecordFragment;
+import com.demo.jzfp.utils.MyApplication;
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
+
 import android.app.FragmentTransaction;
 import android.content.res.Resources;
 import android.view.View;
@@ -17,7 +19,7 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 
 public class ArchivesDetailsActivity extends BaseActivity{
-
+	private MyApplication activityList;
 	
 	@ViewInject(R.id.fl_framelayout)
 	private FrameLayout fl_framelayout;
@@ -37,6 +39,8 @@ public class ArchivesDetailsActivity extends BaseActivity{
 	protected void setView() {
 		View view = View.inflate(ArchivesDetailsActivity.this, R.layout.activity_archives_details, null);
 		setContentView(view);
+		activityList = (MyApplication) getApplicationContext();
+		activityList.addActivity(this);
 		ViewUtils.inject(this,view);
 	}
 

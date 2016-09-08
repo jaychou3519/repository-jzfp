@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
 import com.demo.jzfp.R;
+import com.demo.jzfp.utils.MyApplication;
 
 public class AducationActivity extends BaseActivity implements OnClickListener{
 	private List<RelativeLayout> rls = new ArrayList<RelativeLayout>();
@@ -17,10 +18,13 @@ public class AducationActivity extends BaseActivity implements OnClickListener{
 	private String[] aducations = {"研究生教育", "大学本科/专科教育", "中等职业教育", "普通高级中学教育", "初级中学教育", "小学教育", "其它"};
 	private String aducation = "";
 	private Intent intent;
+	private MyApplication activityList;
  	
 	@Override
 	protected void setView() {
 		setContentView(R.layout.activity_aducation);
+		activityList = (MyApplication) getApplicationContext();
+		activityList.addActivity(this);
 		setTitleText("文化程度");
 		setOnback(this);
 	}

@@ -1,6 +1,7 @@
 package com.demo.jzfp.activity;
 
 import com.demo.jzfp.R;
+import com.demo.jzfp.utils.MyApplication;
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
 
@@ -13,9 +14,12 @@ public class VillagesTextActivity extends BaseActivity{
 	private TextView tv_context;
 	@ViewInject(R.id.tv_title)
 	private TextView tv_title;
+	private MyApplication activityList;
 	@Override
 	protected void setView() {
 		View view = View.inflate(this, R.layout.activity_villages_text, null);
+		activityList = (MyApplication) getApplicationContext();
+		activityList.addActivity(this);
 		setContentView(view);
 		ViewUtils.inject(this,view);
 		setTitleText("乡镇介绍");

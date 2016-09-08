@@ -7,12 +7,15 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.demo.jzfp.R;
+import com.demo.jzfp.utils.MyApplication;
 
 public class ReasonActivity extends BaseActivity implements OnClickListener {
-
+	private MyApplication activityList;
 	@Override
 	protected void setView() {
 		setContentView(R.layout.activity_reason);
+		activityList = (MyApplication) getApplicationContext();
+		activityList.addActivity(this);
 		setTitleText("致贫说明");
 		setOnback(this);
 	}

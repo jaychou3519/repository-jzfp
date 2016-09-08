@@ -32,16 +32,22 @@ public class ChooseAreaActivity extends BaseActivity implements OnClickListener{
     private static String METHOD_NAME = "selectToRegister";
     private static Map mm = null;
 	private VillagesAdapter2 villagesAdapter;
+	private MyApplication activityList;
 
 	@Override
 	protected void setView() {
 		setContentView(R.layout.choose_area);
+		activityList = (MyApplication) getApplicationContext();
+		activityList.addActivity(this);
 	}
 
 	@Override
 	protected void initView() {
 		TextView tv_title = (TextView) findViewById(R.id.tv_title);
+		TextView tv_commit = (TextView) findViewById(R.id.tv_commit);
+		tv_commit.setVisibility(View.VISIBLE);
 		tv_title.setText("区域选择");
+		tv_commit.setOnClickListener(this);
 		setOnback(this);
 	}
 
@@ -136,10 +142,6 @@ public class ChooseAreaActivity extends BaseActivity implements OnClickListener{
 	                }
 	            });
 	        }
-	}
-	
-	public void cc(){
-	  
 	}
 
 	@Override
