@@ -11,8 +11,27 @@
         layout="@layout/top_title" />
     
    <!-- 定义一个水平排列的LinearLayout，并指定使用中等分隔条 -->
-	<TextView android:id="@+id/area"
+	<LinearLayout
 	    android:layout_width="match_parent"
-	    android:layout_height="wrap_content"/>
+	    android:layout_height="wrap_content"
+	    android:layout_below="@id/optionsTile"
+	    android:orientation="horizontal">
+	    
+	  <ListView android:id="@+id/towns"
+	      android:layout_width="match_parent"
+	      android:layout_height="wrap_content"
+	      android:layout_weight="2"
+	      android:divider="@color/background_color"  
+   	 	android:dividerHeight="1px" >
+	  </ListView>
+	    
+	  <ListView android:id="@+id/villages"
+	       android:layout_width="match_parent"
+	      android:layout_height="wrap_content"
+	      android:background="@color/white"
+	      android:layout_weight="1">
+	  </ListView>  
+	</LinearLayout>
+	
 
 </RelativeLayout>

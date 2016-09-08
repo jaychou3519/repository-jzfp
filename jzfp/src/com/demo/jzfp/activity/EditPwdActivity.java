@@ -20,10 +20,9 @@ public class EditPwdActivity  extends BaseActivity implements OnClickListener{
 
 	@Override
 	protected void initView() {
-		ImageView imageView = (ImageView) findViewById(R.id.iv_back);
 		TextView textView = (TextView) findViewById(R.id.tv_title);
 		textView.setText("密码修改");
-		imageView.setOnClickListener(this);
+		setOnback(this);
 	}
 
 	@Override
