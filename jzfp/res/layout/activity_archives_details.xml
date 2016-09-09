@@ -33,6 +33,7 @@
                 android:layout_marginLeft="@dimen/x2"
                 android:layout_marginTop="@dimen/x2"
                 android:background="@color/bai"
+                android:textColor="@color/red_ff4242"
                 android:padding="@dimen/x5"
                 android:text="帮扶档案"
                 android:textSize="@dimen/x14" />

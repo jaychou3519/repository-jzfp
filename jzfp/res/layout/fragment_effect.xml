@@ -68,9 +68,13 @@
     <ListView
         android:id="@+id/lv_listview"
         android:layout_width="match_parent"
-        android:layout_height="10dp"
+        android:layout_height="wrap_content"
+        android:dividerHeight="0dp"
+        android:scrollbars="@null"
+        android:divider="@null"
         android:layout_marginLeft="@dimen/x10"
-        android:layout_marginTop="@dimen/x20" />
+        android:layout_marginTop="@dimen/x10"
+        android:layout_marginBottom="@dimen/x20" />
 
     <View
         android:layout_width="match_parent"
@@ -92,8 +96,10 @@
     <ListView
         android:id="@+id/lv_listview1"
         android:layout_width="match_parent"
-        android:layout_height="10dp"
-        android:layout_marginLeft="@dimen/x10"
-        android:layout_marginTop="@dimen/x10" />
+        android:layout_height="wrap_content"
+        android:dividerHeight="0dp"
+        android:scrollbars="@null"
+        android:divider="@null"
+        android:layout_marginLeft="@dimen/x10" />
 
 </LinearLayout>
