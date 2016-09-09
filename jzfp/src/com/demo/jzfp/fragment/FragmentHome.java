@@ -44,7 +44,6 @@ public class FragmentHome extends BaseFragment implements AsynceHttpInterface{
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-
 		GetWeather();
 	}
 	@Override
