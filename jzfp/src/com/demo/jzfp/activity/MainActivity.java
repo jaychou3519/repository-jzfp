@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.app.FragmentTransaction;
+import android.content.Intent;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -13,6 +15,7 @@ import com.demo.jzfp.R;
 import com.demo.jzfp.fragment.FragmentHome;
 import com.demo.jzfp.fragment.FragmentOptions;
 import com.demo.jzfp.fragment.FragmentReport;
+import com.demo.jzfp.service.IAppService;
 import com.demo.jzfp.utils.MyApplication;
 import com.demo.jzfp.utils.Tools;
 
@@ -141,4 +144,19 @@ public class MainActivity extends BaseActivity implements OnClickListener {
 		offKeyboard();
 	}
 	
+	@Override
+	protected void onResume() {
+		super.onResume();
+		startService();
+	}
+	
+	// 启动服务
+	public void startService() {
+		Log.i("mylog", "startService");
+		boolean isRun = Tools.isServiceRunning(MainActivity.this,
+				"com.chinacreator.service.IAppService");
+		if (!isRun) {
+			startService(new Intent(this, IAppService.class));
+		}
+	}
 }
