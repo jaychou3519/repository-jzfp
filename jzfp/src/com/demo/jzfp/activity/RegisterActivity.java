@@ -3,27 +3,22 @@ package com.demo.jzfp.activity;
 import java.lang.ref.WeakReference;
 import java.util.HashMap;
 import java.util.Map;
-
-import android.R.integer;
 import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.content.DialogInterface.OnClickListener;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
-
 import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.demo.jzfp.R;
 import com.demo.jzfp.entity.TsysUserinfo;
 import com.demo.jzfp.utils.MyApplication;
-import com.demo.jzfp.utils.Tools;
 import com.demo.jzfp.utils.WebServiceClient;
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
@@ -156,11 +151,7 @@ public class RegisterActivity extends BaseActivity {
         	RegisterActivity myActivity = mActivity.get();
             switch (msg.what) {
                 case 1:
-                	if(null == result){
-                		showDialog(myActivity, "提示", "系统异常：注册失败",1);
-                	}else{
-                		showDialog(myActivity, "提示", "注册成功",1);
-                	}
+                	showDialog(myActivity, "提示", "注册成功",1);
                     break;
             }
             super.handleMessage(msg);

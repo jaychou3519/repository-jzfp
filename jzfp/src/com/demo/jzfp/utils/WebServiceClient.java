@@ -39,6 +39,7 @@ public class WebServiceClient {
 				request.addProperty(key, params.get(key));
 			}
 		}
+		//request.addProperty("josnUserinfo", ""{"loginName":"admin","password":"123456"}");
 		// 使用soap1.1协议创建Envelop对象
 		SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(
 				SoapEnvelope.VER11);

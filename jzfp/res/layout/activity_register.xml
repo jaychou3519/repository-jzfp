@@ -28,7 +28,7 @@
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="@dimen/x20"
             android:background="@null"
-            android:digits="0123456789abcdefghigklmnopqrstuvwxyzABCDEFGHIGKLMNOPQRSTUVWXYZ"
+            android:digits="0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
             android:hint="6-15数字或者字母"
             android:textSize="14sp" />
     </LinearLayout>
@@ -60,7 +60,7 @@
             android:layout_marginLeft="@dimen/x20"
             android:background="@null"
             android:inputType="textPassword"
-            android:digits="0123456789abcdefghigklmnopqrstuvwxyzABCDEFGHIGKLMNOPQRSTUVWXYZ"
+            android:digits="0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
             android:hint="6-15数字或者字母密码"
             android:textSize="14sp" />
     </LinearLayout>
