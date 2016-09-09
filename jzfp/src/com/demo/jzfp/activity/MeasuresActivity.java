@@ -3,6 +3,10 @@ package com.demo.jzfp.activity;
 import java.util.ArrayList;
 import java.util.List;
 
+import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 
 import com.demo.jzfp.R;
@@ -31,9 +35,9 @@ public class MeasuresActivity extends BaseActivity {
 
 	@Override
 	protected void initData() {
-		List<String> measureses = new ArrayList<String>();
-		measureses.add("发展生产脱贫贫因农户小额贷款");
-		measureses.add("异地扶贫搬迁脱贫或危旧房改造");
+		final List<String> measureses = new ArrayList<String>();
+		measureses.add("发展生产脱贫");
+		measureses.add("易地扶贫搬迁脱贫");
 		measureses.add("发展教育脱贫");
 		measureses.add("社会保障兜底");
 		measureses.add("生态补偿脱贫");
@@ -44,6 +48,20 @@ public class MeasuresActivity extends BaseActivity {
 		
 		MeasuresAdapter adapter = new MeasuresAdapter(this, measureses);
 		lv_measures.setAdapter(adapter);
+		
+		lv_measures.setOnItemClickListener(new OnItemClickListener() {
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+				Bundle bundle = new Bundle();
+				if(position == measureses.size() - 1){
+					bundle.putString("title", "帮扶工程收益");
+				} else {
+					bundle.putString("title", measureses.get(position));
+				}
+				bundle.putInt("position",position);
+				openActivity(MeasureDetailActivity.class, bundle);
+			}
+		});
 	}
 
 }

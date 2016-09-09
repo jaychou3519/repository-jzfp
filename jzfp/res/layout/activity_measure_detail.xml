@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fff"
+    android:orientation="vertical" >
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <include
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            layout="@layout/top_title" />
+
+        <TextView
+            android:id="@+id/tv_save"
+            android:layout_width="@dimen/y40"
+            android:layout_height="match_parent"
+            android:layout_gravity="right"
+            android:gravity="center"
+            android:text="保存"
+            android:textColor="#fff"
+            android:textSize="@dimen/y10" />
+    </FrameLayout>
+
+    <GridView
+        android:id="@+id/gv_checkbox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/x20"
+        android:numColumns="2" >
+    </GridView>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x1"
+        android:background="#dcdcdc" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y30"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/x20"
+            android:text="增收获益（元）"
+            android:textColor="#000"
+            android:textSize="@dimen/x15" />
+
+        <ImageView
+            android:id="@+id/iv_into_income"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_margin="@dimen/x10"
+            android:src="@drawable/into"
+            android:visibility="invisible" />
+
+        <EditText
+            android:id="@+id/et_income"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@id/iv_into_income"
+            android:background="@null"
+            android:hint="请输入增收获益金额"
+            android:maxLength="18"
+            android:singleLine="true"
+            android:textColor="#000"
+            android:textColorHint="#d6d6d6"
+            android:textSize="@dimen/x15" />
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x1"
+        android:background="#dcdcdc" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y25"
+        android:layout_marginLeft="@dimen/x20"
+        android:gravity="center_vertical"
+        android:textSize="@dimen/x13"
+        android:text="实际情况" />
+
+    <EditText
+        android:id="@+id/et_illustrate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/x20"
+        android:layout_marginRight="@dimen/x20"
+        android:background="@drawable/square"
+        android:gravity="top"
+        android:hint="限500个中文字"
+        android:lines="10"
+        android:maxLength="500"
+        android:padding="@dimen/x5"
+        android:textColor="#000"
+        android:textColorHint="#d6d6d6"
+        android:textSize="@dimen/x13" />
+
+</LinearLayout>
