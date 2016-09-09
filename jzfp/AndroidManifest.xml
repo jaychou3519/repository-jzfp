@@ -39,6 +39,7 @@
         <activity android:name="com.demo.jzfp.activity.MemberActivity"></activity>
         <activity android:name="com.demo.jzfp.activity.ArchivesDetailsActivity"></activity>
         <activity android:name="com.demo.jzfp.activity.ArchivesPoorActivity"></activity>
+        <activity android:name="com.demo.jzfp.activity.MeasuresActivity"></activity>
     </application>
 
   

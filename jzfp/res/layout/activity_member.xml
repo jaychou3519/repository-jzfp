@@ -337,7 +337,7 @@
             android:layout_centerVertical="true"
             android:layout_toLeftOf="@id/iv_into_work"
             android:background="@null"
-            android:hint="请工作内容"
+            android:hint="请填写工作内容"
             android:maxLength="18"
             android:singleLine="true"
             android:textColor="#000"
