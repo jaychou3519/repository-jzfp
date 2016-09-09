@@ -3,6 +3,7 @@ package com.demo.jzfp.fragment;
 import com.demo.jzfp.R;
 import com.demo.jzfp.activity.AducationActivity;
 import com.demo.jzfp.activity.EconomyActivity;
+import com.demo.jzfp.activity.EffectActivity;
 import com.demo.jzfp.activity.MeasuresActivity;
 import com.demo.jzfp.activity.MemberActivity;
 import com.demo.jzfp.activity.ReasonActivity;
@@ -153,6 +154,8 @@ public class FragmentReport extends Fragment implements OnClickListener{
 			startActivity(intent4);
 			break;
 		case R.id.rl_effect:
+			Intent intent5 = new Intent(getActivity(), EffectActivity.class);
+			startActivity(intent5);
 			break;
 		}
 		
