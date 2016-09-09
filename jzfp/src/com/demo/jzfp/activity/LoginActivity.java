@@ -32,7 +32,7 @@ public class LoginActivity extends BaseActivity implements OnClickListener{
 	private SharedPreferences sp;
 	private MyApplication activityList;
 	private static String METHOD_NAME = "selectLogin";
-	private static String result;
+	private String result;
 	
 	@Override
 	protected void setView() {

@@ -3,6 +3,7 @@ package com.demo.jzfp.activity;
 import java.lang.ref.WeakReference;
 import java.util.HashMap;
 import java.util.Map;
+
 import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
 import android.content.Context;
@@ -15,6 +16,7 @@ import android.os.Message;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+
 import com.alibaba.fastjson.JSON;
 import com.demo.jzfp.R;
 import com.demo.jzfp.entity.TsysUserinfo;
@@ -151,7 +153,13 @@ public class RegisterActivity extends BaseActivity {
         	RegisterActivity myActivity = mActivity.get();
             switch (msg.what) {
                 case 1:
-                	showDialog(myActivity, "提示", "注册成功",1);
+                	if(null != result && ("0").equals(result)){
+                		showDialog(myActivity, "提示", "服务端异常，注册失败",0);
+                	}else if(null != result && ("1").equals(result)){
+                		showDialog(myActivity, "提示", "注册成功",1);
+                	}else if(null != result && ("2").equals(result)){
+                		showDialog(myActivity, "提示", "用户已存在",0);
+                	}
                     break;
             }
             super.handleMessage(msg);

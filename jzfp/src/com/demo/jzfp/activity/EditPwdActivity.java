@@ -9,6 +9,7 @@ import android.app.AlertDialog.Builder;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
+import android.content.SharedPreferences.Editor;
 import android.content.SharedPreferences;
 import android.os.Handler;
 import android.os.Message;
@@ -25,32 +26,34 @@ import com.demo.jzfp.utils.WebServiceClient;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
 
-public class EditPwdActivity  extends BaseActivity {
+public class EditPwdActivity  extends BaseActivity implements android.view.View.OnClickListener{
 	
 	private MyApplication activityList;
-	@ViewInject(R.id.btn_submit)
 	private Button btn_submit;
-	@ViewInject(R.id.btn_submit)
 	private EditText oldPwd;
-	@ViewInject(R.id.newPwd)
 	private EditText newPwd;
-	@ViewInject(R.id.confirmPwd)
 	private EditText confirmPwd;
 	private SharedPreferences sp;
 	private static String METHOD_NAME = "updateTsysUserinfo";
-	private static String result;
+	private String result;
 
 	@Override
 	protected void setView() {
 		setContentView(R.layout.fragment_options_pwd);
+		View view = View.inflate(this, R.layout.activity_register, null);
 		activityList = (MyApplication) getApplicationContext();
 		activityList.addActivity(this);
 	}
 
 	@Override
 	protected void initView() {
+		btn_submit = (Button) findViewById(R.id.btn_submit);
+		oldPwd = (EditText) findViewById(R.id.oldPwd);
+		newPwd = (EditText) findViewById(R.id.newPwd);
+		confirmPwd = (EditText) findViewById(R.id.confirmPwd);
 		TextView textView = (TextView) findViewById(R.id.tv_title);
 		textView.setText("密码修改");
+		btn_submit.setOnClickListener(this);
 		setOnback(this);
 	}
 
@@ -59,26 +62,16 @@ public class EditPwdActivity  extends BaseActivity {
 		sp = getSharedPreferences("user", Context.MODE_PRIVATE);
 	}
 
-	@OnClick({R.id.btn_submit})
-	public void mClick(View view){
-		switch (view.getId()) {
-			case R.id.btn_submit:
-				updatePwd();
-				break;
-		}
-	}
-	
 	public void updatePwd(){
-		
-		if(null != oldPwd.getText() && !oldPwd.getText().toString().isEmpty()){
-			showDialog(this, "提示", "请输入原密码",0);
+		if(null == oldPwd.getText() || oldPwd.getText().toString().isEmpty()){
+			showDialog(this, "提示", "请输入旧密码",0);
 			return;
 		}
-		if(null != newPwd.getText() && !newPwd.getText().toString().isEmpty()){
+		if(null == newPwd.getText() || newPwd.getText().toString().isEmpty()){
 			showDialog(this, "提示", "请输入新密码",0);
 			return;
 		}
-		if(null != confirmPwd.getText() && !confirmPwd.getText().toString().isEmpty()){
+		if(null == confirmPwd.getText() || confirmPwd.getText().toString().isEmpty()){
 			showDialog(this, "提示", "请再次输入新密码",0);
 			return;
 		}
@@ -87,7 +80,7 @@ public class EditPwdActivity  extends BaseActivity {
 		String oldPwdStr2 = sp.getString("password", "");
 		
 		if(!oldPwdStr2.equals(oldPwdStr)){
-			showDialog(this, "提示", "原密码错误,请重新输入",0);
+			showDialog(this, "提示", "旧密码错误,请重新输入",0);
 			oldPwd.setFocusable(true);
 			oldPwd.setFocusableInTouchMode(true);
 			oldPwd.requestFocus();
@@ -135,7 +128,7 @@ public class EditPwdActivity  extends BaseActivity {
 	            switch (msg.what) {
 	                case 1:
 	                	if(null != result && ("1").equals(result)){
-	                		showDialog(myActivity, "提示", "密码修改成功!",0);
+	                		showDialog(myActivity, "提示", "密码修改成功!",1);
 	                	}else{
 	                		showDialog(myActivity, "提示", "密码修改失败!",0);
 	                	}
@@ -154,11 +147,26 @@ public class EditPwdActivity  extends BaseActivity {
 		        @Override
 		        public void onClick(DialogInterface dialog, int which) {
 		        	if(code == 1){
+		        		Editor ed = sp.edit();
+                		ed.putString("username", "");
+        				ed.putString("password", "");
+        				ed.putBoolean("keep", false);
+        				ed.apply();
+	            		finish();
 		        		openActivity(LoginActivity.class, null);
 		        	}
 		        }
 		});
 		AlertDialog dialog = builder.create();
 		dialog.show();
+	}
+
+	@Override
+	public void onClick(View v) {
+		switch (v.getId()) {
+			case R.id.btn_submit:
+				updatePwd();
+				break;
+		}
 	}
 }
