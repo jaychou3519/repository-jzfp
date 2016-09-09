@@ -90,7 +90,7 @@
         android:textSize="@dimen/x14" />
 
     <ListView
-        android:id="@+id/lv_listview2"
+        android:id="@+id/lv_listview1"
         android:layout_width="match_parent"
         android:layout_height="10dp"
         android:layout_marginLeft="@dimen/x10"

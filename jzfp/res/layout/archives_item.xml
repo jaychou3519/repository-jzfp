@@ -4,7 +4,8 @@
     android:layout_height="match_parent" 
     android:paddingTop="@dimen/x10"
     android:paddingBottom="@dimen/x10"
-    android:gravity="center">
+    android:gravity="center"
+    android:id="@+id/rl_archives">
 
     <TextView
         android:id="@+id/tv_address"
