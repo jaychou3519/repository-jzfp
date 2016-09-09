@@ -9,6 +9,7 @@ import org.json.JSONObject;
 
 import com.demo.jzfp.R;
 import com.demo.jzfp.activity.ArchivesActivity;
+import com.demo.jzfp.activity.BasicActivity;
 import com.demo.jzfp.activity.SupportActivity;
 import com.demo.jzfp.activity.VillagesActivity;
 import com.demo.jzfp.apdater.ImageAdapter;
@@ -158,7 +159,7 @@ public class FragmentHome extends BaseFragment implements AsynceHttpInterface{
 			Tools.setOpenActivity(getActivity(), SupportActivity.class);
 			break;
 		case R.id.rl_info:
-			
+			Tools.setOpenActivity(getActivity(), BasicActivity.class);
 			break;
 		}
 	}

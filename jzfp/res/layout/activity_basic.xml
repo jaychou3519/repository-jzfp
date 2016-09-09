@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    
+
+    <include
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        layout="@layout/top_title" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/x10"
+        android:layout_marginTop="@dimen/x10"
+        android:drawableLeft="@drawable/user"
+        android:drawablePadding="@dimen/x10"
+        android:gravity="center"
+        android:text="帮扶户所在地"
+        android:textColor="@color/gray"
+        android:textSize="@dimen/x14" />
+    <ListView 
+        android:id="@+id/lv_listview"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:divider="@null"
+        android:scrollbars="@null"
+        ></ListView>
+</LinearLayout>

@@ -6,16 +6,9 @@ import java.security.NoSuchAlgorithmException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
-import com.demo.jzfp.activity.LoginActivity;
 import com.google.gson.Gson;
-
 import android.annotation.SuppressLint;
-import android.app.AlertDialog;
-import android.app.AlertDialog.Builder;
 import android.content.Context;
-import android.content.DialogInterface;
-import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
 import android.graphics.Point;
 import android.net.ConnectivityManager;
@@ -25,6 +18,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.view.View.MeasureSpec;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -302,5 +296,27 @@ public class Tools {
 			versionName = "版本号未知";
 		}
 		return versionName;
+	}
+	
+	/**
+	 * 设定listview布局宽高
+	 */
+	public static void setListViewHeight(ListView listview) {
+		ListAdapter listAdapter = listview.getAdapter();
+		if (listAdapter == null) {
+			return;
+		}
+		int totalHeight = 0;
+		Tools.i("Tools", " listAdapter.getCount()=" + listAdapter.getCount());
+		for (int i = 0; i < listAdapter.getCount(); i++) {
+			View listItem = listAdapter.getView(i, null, listview);
+			listItem.measure(MeasureSpec.makeMeasureSpec(0, MeasureSpec.UNSPECIFIED), MeasureSpec.makeMeasureSpec(0, MeasureSpec.UNSPECIFIED));
+			totalHeight += listItem.getMeasuredHeight();
+		}
+		ViewGroup.LayoutParams params = listview.getLayoutParams();
+		params.height = totalHeight;
+		params.height = totalHeight + (listview.getDividerHeight() * (listAdapter.getCount() - 1));
+		params.height += 5;
+		listview.setLayoutParams(params);
 	}
 }

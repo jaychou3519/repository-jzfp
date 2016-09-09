@@ -84,16 +84,25 @@ public class ArchivesDetailsActivity extends BaseActivity {
 			tv_record.setBackgroundColor(resources.getColor(R.color.bai));
 			tv_measure.setBackgroundColor(resources.getColor(R.color.red_ff4242));
 			tv_effect.setBackgroundColor(resources.getColor(R.color.red_ff4242));
+			tv_record.setTextColor(resources.getColor(R.color.red_ff4242));
+			tv_measure.setTextColor(resources.getColor(R.color.bai));
+			tv_effect.setTextColor(resources.getColor(R.color.bai));
 			break;
 		case 1:
 			tv_record.setBackgroundColor(resources.getColor(R.color.red_ff4242));
 			tv_measure.setBackgroundColor(resources.getColor(R.color.bai));
 			tv_effect.setBackgroundColor(resources.getColor(R.color.red_ff4242));
+			tv_record.setTextColor(resources.getColor(R.color.bai));
+			tv_measure.setTextColor(resources.getColor(R.color.red_ff4242));
+			tv_effect.setTextColor(resources.getColor(R.color.bai));
 			break;
 		case 2:
 			tv_record.setBackgroundColor(resources.getColor(R.color.red_ff4242));
 			tv_measure.setBackgroundColor(resources.getColor(R.color.red_ff4242));
 			tv_effect.setBackgroundColor(resources.getColor(R.color.bai));
+			tv_record.setTextColor(resources.getColor(R.color.bai));
+			tv_measure.setTextColor(resources.getColor(R.color.bai));
+			tv_effect.setTextColor(resources.getColor(R.color.red_ff4242));
 			break;
 
 		default:
