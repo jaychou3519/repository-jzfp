@@ -1,9 +1,7 @@
 package com.demo.jzfp.activity;
 
 import java.lang.ref.WeakReference;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import android.app.AlertDialog;
@@ -16,19 +14,13 @@ import android.os.Handler;
 import android.os.Message;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.AdapterView.OnItemClickListener;
 
 import com.alibaba.fastjson.JSON;
 import com.demo.jzfp.R;
-import com.demo.jzfp.activity.ChooseAreaActivity.MyHandler;
-import com.demo.jzfp.apdater.VillagesAdapter2;
 import com.demo.jzfp.entity.TsysUserinfo;
 import com.demo.jzfp.utils.MyApplication;
 import com.demo.jzfp.utils.WebServiceClient;
