@@ -43,6 +43,7 @@
         <activity android:name="com.demo.jzfp.activity.MeasuresActivity"></activity>
         <activity android:name="com.demo.jzfp.activity.EffectActivity"></activity>
         <activity android:name="com.demo.jzfp.activity.MeasureDetailActivity"></activity>
+        <activity android:name="com.demo.jzfp.activity.BasicActivity"></activity>
     </application>
 
   
