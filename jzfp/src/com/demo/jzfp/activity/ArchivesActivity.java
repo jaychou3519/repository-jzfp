@@ -1,6 +1,7 @@
 package com.demo.jzfp.activity;
 
 import com.demo.jzfp.R;
+import com.demo.jzfp.apdater.ArchivesAdapter;
 import com.demo.jzfp.utils.MyApplication;
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.view.annotation.event.OnClick;
@@ -11,7 +12,7 @@ import android.widget.ListView;
 public class ArchivesActivity extends BaseActivity{
 	
 	private MyApplication activityList;
-
+	private ArchivesAdapter adapter;
 	@Override
 	protected void setView() {
 		View view = View.inflate(ArchivesActivity.this, R.layout.activity_archives, null);
@@ -19,11 +20,15 @@ public class ArchivesActivity extends BaseActivity{
 		activityList = (MyApplication) getApplicationContext();
 		activityList.addActivity(this);
 		ViewUtils.inject(this,view);
+		setTitleText("扶贫档案");
+		setOnback(this);
 	}
 
 	@Override
 	protected void initView() {
 		ListView listView  = (ListView) findViewById(R.id.lv_listview);
+		adapter = new ArchivesAdapter(this);
+		listView.setAdapter(adapter);
 	}
 
 	@Override

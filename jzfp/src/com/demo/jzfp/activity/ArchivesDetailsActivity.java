@@ -2,25 +2,21 @@ package com.demo.jzfp.activity;
 
 import com.demo.jzfp.R;
 import com.demo.jzfp.fragment.EffectFragment;
-import com.demo.jzfp.fragment.FragmentHome;
-import com.demo.jzfp.fragment.FragmentOptions;
-import com.demo.jzfp.fragment.FragmentReport;
 import com.demo.jzfp.fragment.MeasureFragment;
 import com.demo.jzfp.fragment.RecordFragment;
 import com.demo.jzfp.utils.MyApplication;
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
-
 import android.app.FragmentTransaction;
 import android.content.res.Resources;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
-public class ArchivesDetailsActivity extends BaseActivity{
+public class ArchivesDetailsActivity extends BaseActivity {
 	private MyApplication activityList;
-	
+
 	@ViewInject(R.id.fl_framelayout)
 	private FrameLayout fl_framelayout;
 	@ViewInject(R.id.tv_record)
@@ -29,24 +25,24 @@ public class ArchivesDetailsActivity extends BaseActivity{
 	private TextView tv_measure;
 	@ViewInject(R.id.tv_effect)
 	private TextView tv_effect;
-	
+
 	private RecordFragment rdfragment;
 	private EffectFragment etfragment;
 	private MeasureFragment msfragment;
 	private FragmentTransaction transaction;
-	
+
 	@Override
 	protected void setView() {
-		View view = View.inflate(ArchivesDetailsActivity.this, R.layout.activity_archives_details, null);
+		View view = View.inflate(this, R.layout.activity_archives_details, null);
 		setContentView(view);
 		activityList = (MyApplication) getApplicationContext();
 		activityList.addActivity(this);
-		ViewUtils.inject(this,view);
+		ViewUtils.inject(this, view);
 	}
 
 	@Override
 	protected void initView() {
-		
+
 	}
 
 	@Override
@@ -54,8 +50,8 @@ public class ArchivesDetailsActivity extends BaseActivity{
 		setTabSelection(0);
 	}
 
-	@OnClick({R.id.iv_back,R.id.tv_record,R.id.tv_measure,R.id.tv_effect,R.id.iv_edit})
-	public void mClick(View view){
+	@OnClick({ R.id.iv_back, R.id.tv_record, R.id.tv_measure, R.id.tv_effect, R.id.iv_edit })
+	public void mClick(View view) {
 		switch (view.getId()) {
 		case R.id.iv_back:
 			finish();
@@ -73,16 +69,16 @@ public class ArchivesDetailsActivity extends BaseActivity{
 			setTabSelection(2);
 			break;
 		case R.id.iv_edit:
-			
+
 			break;
 
 		default:
 			break;
 		}
 	}
-	
-	private void selectId(int state){
-		Resources resources  = getResources();
+
+	private void selectId(int state) {
+		Resources resources = getResources();
 		switch (state) {
 		case 0:
 			tv_record.setBackgroundColor(resources.getColor(R.color.bai));
@@ -104,7 +100,6 @@ public class ArchivesDetailsActivity extends BaseActivity{
 			break;
 		}
 	}
-	
 
 	/***
 	 * 根据传入的index参数来设置选中的tab页。
@@ -146,13 +141,12 @@ public class ArchivesDetailsActivity extends BaseActivity{
 		}
 		transaction.commit();
 	}
-	
 
 	private void hideFragments(FragmentTransaction transaction) {
 		if (rdfragment != null) {
 			transaction.hide(rdfragment);
 		}
-		if (fl_framelayout != null) {
+		if (msfragment != null) {
 			transaction.hide(msfragment);
 		}
 		if (etfragment != null) {
