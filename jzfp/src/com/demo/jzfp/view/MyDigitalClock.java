@@ -16,7 +16,7 @@ public class MyDigitalClock extends DigitalClock {
 
 	Calendar mCalendar;
 	private final static String m12 = "hh:mm:ss";//"h:mm";// 修改部分，原来为 h:mm:ss aa
-	private final static String m24 = "hh:mm:ss";// "k:mm";// 修改部分，原来为 k:mm:ss
+	private final static String m24 = "HH:mm:ss";// "k:mm";// 修改部分，原来为 k:mm:ss
 	private FormatChangeObserver mFormatChangeObserver;
 
 	private Runnable mTicker;
