@@ -11,11 +11,7 @@ import org.ksoap2.transport.HttpTransportSE;
 import android.os.AsyncTask;
 import android.util.Log;
 
-import com.google.gson.Gson;
-
 public class RequestWebService {
-	private static Gson gson = new Gson();
-
 	public static String NAME_SPACE = "http://webservice.item.hihsoft.com/";
 	public static String SERVER_URL = "http://115.28.14.1:9145/ylppbd/services/ylppbdWS/";
 
@@ -32,9 +28,9 @@ public class RequestWebService {
 	/**
 	 * 发送WebService请求
 	 * 
-	 * @param urls
-	 *            请求地址集
-	 * @param property
+	 * @param methodName
+	 *            方法名
+	 * @param map
 	 *            参数集合 需要创建LinkedHashMap 因为webservice需要参数顺序对应
 	 * @param ws
 	 *            回调接口
@@ -64,7 +60,6 @@ public class RequestWebService {
 		@Override
 		protected String doInBackground(String... params) {
 			return register(methodName, property);
-			//return WebServiceClient.callWeb(methodName, property);
 		}
 
 		@Override
@@ -82,8 +77,8 @@ public class RequestWebService {
 		// 根据版本号创建SoapSerializationEnvelope
 		SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(SoapEnvelope.VER11);
 		envelope.bodyOut = object;
-		//envelope.dotNet = true;
-		//envelope.setOutputSoapObject(object);
+		// envelope.dotNet = true;
+		// envelope.setOutputSoapObject(object);
 		HttpTransportSE httpTransportSE = new HttpTransportSE(SERVER_URL + methodName, 10 * 1000);
 		try {
 			httpTransportSE.debug = true;

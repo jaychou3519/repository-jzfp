@@ -8,7 +8,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
-import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -18,11 +17,12 @@ import android.widget.TextView;
 
 import com.alibaba.fastjson.JSON;
 import com.demo.jzfp.R;
+import com.demo.jzfp.entity.Login;
 import com.demo.jzfp.entity.TsysUserinfo;
 import com.demo.jzfp.utils.MyApplication;
 import com.demo.jzfp.utils.RequestWebService;
+import com.demo.jzfp.utils.Tools;
 import com.demo.jzfp.utils.RequestWebService.WebServiceCallback;
-
 
 public class LoginActivity extends BaseActivity implements OnClickListener, WebServiceCallback {
 	private EditText et_username,et_password;
@@ -120,14 +120,20 @@ public class LoginActivity extends BaseActivity implements OnClickListener, WebS
 
 	@Override
 	public void reulst(String reulst, int requestCode) {
-		Log.i("haha", "I am coming");
-		if(null != result && ("1").equals(result)){
+		if(reulst == null){
+			Tools.showNewToast(getApplication(), "链接服务器失败");
+		}else if("1".equals(result)){
     		showDialog(getApplication(), "提示", "账号不存在，请重新输入!",0);
-    	}else if(null != result && ("2").equals(result)){
+    	}else if("2".equals(result)){
     		showDialog(getApplication(), "提示", "密码错误，请重新输入!",0);
-    	}else if(null != result && ("3").equals(result)){
+    	}else if("3".equals(result)){
     		showDialog(getApplication(), "提示", "用户已停用,请与系统管理员联系!",0);
     	}else{
+    		try {
+				MyApplication.login = JSON.parseObject(reulst, Login.class);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
     		openActivity(MainActivity.class, null);
     		finish();
     	}
