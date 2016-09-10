@@ -36,7 +36,12 @@ public class MeasureAdapter extends BaseAdapter{
 			holder = new ViewHolder();
 			convertView = View.inflate(context, R.layout.measure_item, null);
 			holder.tv_measure = (TextView) convertView.findViewById(R.id.tv_measure);
+		}else{
+			holder = (ViewHolder) convertView.getTag();
 		}
+		if(holder.tv_measure.getText().toString().length()>5)
+			holder.tv_measure.setText(holder.tv_measure.getText().toString().substring(0, 5)+"\n"+holder.tv_measure.getText().toString().substring(5, holder.tv_measure.getText().toString().length()));
+		
 		return convertView;
 	}
 

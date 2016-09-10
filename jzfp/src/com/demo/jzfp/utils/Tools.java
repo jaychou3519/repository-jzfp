@@ -12,23 +12,34 @@ import com.google.gson.Gson;
 
 import android.annotation.SuppressLint;
 import android.app.ActivityManager;
+import android.app.Fragment;
+import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.graphics.Point;
+import android.graphics.drawable.ColorDrawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
+import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewParent;
 import android.view.WindowManager;
 import android.view.View.MeasureSpec;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.PopupWindow;
 import android.widget.Toast;
 
 public class Tools {
-	
+
 	protected static Toast toast = null;
 	private static long oneTime = 0;
 	private static long twoTime = 0;
@@ -53,23 +64,51 @@ public class Tools {
 		}
 		oneTime = twoTime;
 	}
-	
-	
+
 	/**
-	 *Gson 单例 
+	 * Gson 单例
 	 */
-	private static Gson gson=null;
-	
-	private static Gson getGson(){
-		if(gson==null){
-			gson=new Gson();
+	private static Gson gson = null;
+
+	private static Gson getGson() {
+		if (gson == null) {
+			gson = new Gson();
 		}
 		return gson;
 	}
-	public static Gson GG(){
+
+	public static Gson GG() {
 		return getGson();
 	}
-	
+
+	/**
+	 * 获得屏幕宽度
+	 * 
+	 * @param context
+	 * @return
+	 */
+	public static int getScreenWidth(Context context) {
+		WindowManager wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
+		DisplayMetrics outMetrics = new DisplayMetrics();
+		wm.getDefaultDisplay().getMetrics(outMetrics);
+		return outMetrics.widthPixels;
+	}
+
+	/**
+	 * 弹出popupwindow
+	 */
+	public static PopupWindow showPopWindow2(Context context, View targetView, View contentView, Integer width) {
+		PopupWindow popupWindow = null;
+		popupWindow = new PopupWindow(contentView, -2, -2);
+		popupWindow.setBackgroundDrawable(new ColorDrawable(Color.WHITE));
+		if (width != null) {
+			popupWindow.setWidth(width);
+		}
+		popupWindow.setOutsideTouchable(true);
+		popupWindow.showAtLocation(targetView, Gravity.BOTTOM, 0, 0);
+		return popupWindow;
+	}
+
 	/*
 	 * fragment 跳转
 	 */
@@ -77,17 +116,18 @@ public class Tools {
 		Intent intent = new Intent(context, pclass);
 		context.startActivity(intent);
 	}
-	
+
 	/**
 	 * fragment 跳转
 	 */
-	public static void setOpenActivityBundle(Context context, Class<?> pclass,Bundle bundle) {
+	public static void setOpenActivityBundle(Context context, Class<?> pclass, Bundle bundle) {
 		Intent intent = new Intent(context, pclass);
-		if(bundle!=null){
+		if (bundle != null) {
 			intent.putExtras(bundle);
 		}
 		context.startActivity(intent);
 	}
+
 	/**
 	 * info日志
 	 * 
@@ -98,7 +138,95 @@ public class Tools {
 		Log.i(tag, message);
 	}
 
-	
+	/**
+	 * debug日志
+	 * 
+	 * @param clazz
+	 * @param message
+	 */
+	public static void d(Class<?> clazz, String message) {
+		String tag = clazz.getSimpleName();
+		Log.d(tag, message);
+	}
+
+	/**
+	 * error日志
+	 * 
+	 * @param clazz
+	 * @param message
+	 */
+	public static void e(Class<?> clazz, String message) {
+		String tag = clazz.getSimpleName();
+		Log.e(tag, message);
+	}
+
+	/**
+	 * 获取包信息.
+	 * 
+	 * @param context
+	 *            the context
+	 */
+	public static PackageInfo getPackageInfo(Context context) {
+		PackageInfo info = null;
+		try {
+			String packageName = context.getPackageName();
+			info = context.getPackageManager().getPackageInfo(packageName, PackageManager.GET_ACTIVITIES);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return info;
+	}
+
+	/**
+	 * 描述：移除Fragment和View
+	 * 
+	 * @param view
+	 */
+	public static void removeDialog(View view) {
+		removeDialog(view.getContext());
+		removeSelfFromParent(view);
+	}
+
+	/**
+	 * 描述：移除Fragment.
+	 * 
+	 * @param context
+	 *            the context
+	 */
+	public static void removeDialog(Context context) {
+		try {
+			FragmentActivity activity = (FragmentActivity) context;
+			FragmentTransaction ft = activity.getFragmentManager().beginTransaction();
+			// 指定一个系统转场动画
+			ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_CLOSE);
+			Fragment prev = activity.getFragmentManager().findFragmentByTag("dialog");
+			if (prev != null) {
+				ft.remove(prev);
+			}
+			ft.addToBackStack(null);
+			if (context != null) {
+				ft.commit();
+			}
+		} catch (Exception e) {
+			// 可能有Activity已经被销毁的异常
+			e.printStackTrace();
+		}
+	}
+
+	/**
+	 * 从父亲布局中移除自己
+	 * 
+	 * @param v
+	 */
+	public static void removeSelfFromParent(View v) {
+		ViewParent parent = v.getParent();
+		if (parent != null) {
+			if (parent instanceof ViewGroup) {
+				((ViewGroup) parent).removeView(v);
+			}
+		}
+	}
+
 	/**
 	 * 将时间戳转换成日期 和时间 "yyyy-MM-dd HH:mm:ss.SSS"
 	 * 
@@ -211,7 +339,6 @@ public class Tools {
 		return hex.toString();
 	}
 
-
 	/**
 	 * 获取设备屏幕宽高
 	 * 
@@ -225,7 +352,6 @@ public class Tools {
 		wm.getDefaultDisplay().getSize(point);
 		return point;
 	}
-
 
 	/**
 	 * 判断网络链接是否可用
@@ -250,7 +376,6 @@ public class Tools {
 		}
 		return false;
 	}
-
 
 	/**
 	 * 设定listview布局宽高
@@ -279,8 +404,6 @@ public class Tools {
 		listview.setLayoutParams(params);
 	}
 
-
-
 	/**
 	 * 获取系统版本
 	 * 
@@ -301,7 +424,7 @@ public class Tools {
 		}
 		return versionName;
 	}
-	
+
 	/**
 	 * 设定listview布局宽高
 	 */
@@ -314,7 +437,8 @@ public class Tools {
 		Tools.i("Tools", " listAdapter.getCount()=" + listAdapter.getCount());
 		for (int i = 0; i < listAdapter.getCount(); i++) {
 			View listItem = listAdapter.getView(i, null, listview);
-			listItem.measure(MeasureSpec.makeMeasureSpec(0, MeasureSpec.UNSPECIFIED), MeasureSpec.makeMeasureSpec(0, MeasureSpec.UNSPECIFIED));
+			listItem.measure(MeasureSpec.makeMeasureSpec(0, MeasureSpec.UNSPECIFIED),
+					MeasureSpec.makeMeasureSpec(0, MeasureSpec.UNSPECIFIED));
 			totalHeight += listItem.getMeasuredHeight();
 		}
 		ViewGroup.LayoutParams params = listview.getLayoutParams();
@@ -323,31 +447,32 @@ public class Tools {
 		params.height += 5;
 		listview.setLayoutParams(params);
 	}
-	
+
 	/**
 	 * 
-	 * Description: 
-	 * 用来判断服务是否运行.
-     * @param context
-     * @param className 判断的服务名字：包名+类名
-     * @return true 在运行, false 不在运行
-	 * <br><br>
+	 * Description: 用来判断服务是否运行.
 	 * 
-	 * ******************************************** <br>
-	 */ 
-    public static boolean isServiceRunning(Context context,String className) {        
-        boolean isRunning = false;
-        ActivityManager activityManager = (ActivityManager)context.getSystemService(Context.ACTIVITY_SERVICE); 
-        List<ActivityManager.RunningServiceInfo> serviceList = activityManager.getRunningServices(Integer.MAX_VALUE);
-        if (!(serviceList.size()>0)) {
-            return false;
-        }
-        for (int i=0; i<serviceList.size(); i++) {
-            if (serviceList.get(i).service.getClassName().equals(className) == true) {
-                isRunning = true;
-                break;
-            }
-        }
-        return isRunning;
-    }
+	 * @param context
+	 * @param className
+	 *            判断的服务名字：包名+类名
+	 * @return true 在运行, false 不在运行 <br>
+	 *         <br>
+	 * 
+	 *         ******************************************** <br>
+	 */
+	public static boolean isServiceRunning(Context context, String className) {
+		boolean isRunning = false;
+		ActivityManager activityManager = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
+		List<ActivityManager.RunningServiceInfo> serviceList = activityManager.getRunningServices(Integer.MAX_VALUE);
+		if (!(serviceList.size() > 0)) {
+			return false;
+		}
+		for (int i = 0; i < serviceList.size(); i++) {
+			if (serviceList.get(i).service.getClassName().equals(className) == true) {
+				isRunning = true;
+				break;
+			}
+		}
+		return isRunning;
+	}
 }

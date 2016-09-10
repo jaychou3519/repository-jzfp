@@ -18,7 +18,6 @@ public class MeasureFragment extends Fragment{
 
 	private ListView lv_listview;
 	private MeasureAdapter adapter;
-	private ImageAdapter imageadapter;
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
