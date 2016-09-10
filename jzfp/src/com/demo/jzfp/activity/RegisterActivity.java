@@ -62,16 +62,6 @@ public class RegisterActivity extends BaseActivity {
 
 	@Override
 	protected void initData() {
-		Intent intent = getIntent();
-		Bundle bundle = intent.getExtras();        
-        if(null  != bundle){
-        	 name = bundle.getString("name");
-             areacode = bundle.getString("areacode");
-     		 tv_institution.setText(name);
-     		 ed_username.setText(bundle.getString("ed_username"));
-     		 ed_password.setText(bundle.getString("ed_password"));
-     		 ed_realname.setText(bundle.getString("ed_realname"));
-        }
 	}
 
 	@OnClick({R.id.ll_institution,R.id.btn_register})
@@ -88,7 +78,7 @@ public class RegisterActivity extends BaseActivity {
 		    if(null != ed_realname.getText()){
 		    	 bundle.putString("ed_realname", ed_realname.getText().toString());
 		    }
-			openActivity(ChooseAreaActivity.class, bundle);
+		    openResultActivity(ChooseAreaActivity.class, bundle);
 			break;
 		case R.id.btn_register:
 			registeUser();
@@ -181,5 +171,38 @@ public class RegisterActivity extends BaseActivity {
 		});
 		AlertDialog dialog = builder.create();
 		dialog.show();
+	}
+	
+	/**
+	 * 跳转到其它Activity
+	 * 
+	 * @param pClass
+	 * @param pBundle
+	 */
+	public void openResultActivity(Class<?> pClass, Bundle pBundle) {
+		Intent intent = new Intent(this, pClass);
+		if (pBundle != null) {
+			intent.putExtras(pBundle);
+		}
+		startActivityForResult(intent, 101);
+	}
+
+	@Override
+	public void onActivityResult(int requestCode, int resultCode, Intent data){
+		switch (requestCode) {
+		case 101:
+			Bundle bundle = data.getExtras();        
+	        if(null  != bundle){
+	        	 name = bundle.getString("name");
+	             areacode = bundle.getString("areacode");
+	     		 tv_institution.setText(name);
+	     		 ed_username.setText(bundle.getString("ed_username"));
+	     		 ed_password.setText(bundle.getString("ed_password"));
+	     		 ed_realname.setText(bundle.getString("ed_realname"));
+	        }
+			break;
+		default:
+			break;
+		}
 	}
 }

@@ -151,9 +151,10 @@ public class ChooseAreaActivity extends BaseActivity implements OnClickListener{
 			   Bundle bundle = this.getIntent().getExtras();
 		       bundle.putString("name", (String) mm.get("name"));
 		       bundle.putString("areacode", (String) mm.get("areacode"));
-		       Intent intent = new Intent(this, RegisterActivity.class);
+		       Intent intent = this.getIntent();
 		       intent.putExtras(bundle);
-		   	   startActivity(intent);
+		   	   this.setResult(102, intent);
+		   	   finish();
 			   break;
 		}
 	}

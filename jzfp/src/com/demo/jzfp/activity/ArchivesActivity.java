@@ -11,6 +11,8 @@ import com.demo.jzfp.utils.Tools;
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.view.annotation.event.OnClick;
 
+import android.content.Intent;
+import android.os.Bundle;
 import android.view.View;
 import android.widget.ListView;
 
@@ -56,14 +58,41 @@ public class ArchivesActivity extends BaseActivity implements WebServiceCallback
 			
 			break;
 		case R.id.ll_location:
-			
+			openResultActivity(ChooseAreaActivity.class,null);
 			break;
 
 		default:
 			break;
 		}
 	}
-
+	
+	/**
+	 * 跳转到其它Activity
+	 * 
+	 * @param pClass
+	 * @param pBundle
+	 */
+	public void openResultActivity(Class<?> pClass, Bundle pBundle) {
+		Intent intent = new Intent(this, pClass);
+		if (pBundle != null) {
+			intent.putExtras(pBundle);
+		}
+		startActivityForResult(intent, 101);
+	}
+	
+	@Override
+	public void onActivityResult(int requestCode, int resultCode, Intent data){
+		switch (requestCode) {
+		case 101:
+			Bundle bundle = data.getExtras();        
+	        if(null  != bundle){
+	        	 String name = bundle.getString("name");
+	        }
+			break;
+		default:
+			break;
+		}
+	}
 
 	@Override
 	public void result(String reulst, int requestCode) {
