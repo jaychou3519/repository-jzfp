@@ -1,7 +1,11 @@
 package com.demo.jzfp.utils;
 
+import com.demo.jzfp.entity.TdataCountryman;
+
 
 public class Constant {
+	
+	public static TdataCountryman tdataCountryman = new TdataCountryman();
 	
 	/**
 	 * 基础url
