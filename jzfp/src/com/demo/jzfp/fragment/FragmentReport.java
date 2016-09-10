@@ -10,6 +10,7 @@ import com.demo.jzfp.activity.MeasuresActivity;
 import com.demo.jzfp.activity.MemberActivity;
 import com.demo.jzfp.activity.ReasonActivity;
 import com.demo.jzfp.utils.AbImageUtil;
+import com.demo.jzfp.utils.Constant;
 import com.demo.jzfp.utils.PermissionsUtils;
 import com.demo.jzfp.utils.PhotoUtils;
 import com.demo.jzfp.utils.Tools;
@@ -35,7 +36,7 @@ import android.widget.TextView;
 
 public class FragmentReport extends Fragment implements OnClickListener {
 	private View v;
-	private int sex = 0; // 姓别 0：未选 1：男 2：女
+	private String sex = ""; // 姓别 0：未选 1：男 2：女
 	private ImageView iv_sex_women,iv_headpicture;
 	private TextView tv_sex_women;
 	private ImageView iv_sex_man;
@@ -123,7 +124,7 @@ public class FragmentReport extends Fragment implements OnClickListener {
 	 */
 	private void initData() {
 		pu = new PermissionsUtils(getActivity());
-		states = new String[] { "精准识别户", "一般贫困户", "五保户", "低保户" };
+		states = new String[] { "返贫", "未脱贫", "已脱贫", "预脱贫" };
 		healths = new String[] { "患有大病", "残疾", "长期慢性病", "健康" };
 	}
 
@@ -143,14 +144,14 @@ public class FragmentReport extends Fragment implements OnClickListener {
 			showWheelView(title, states, table);
 			break;
 		case R.id.ll_women:
-			sex = 2;
+			sex = "女";
 			iv_sex_women.setImageResource(R.drawable.woman_yes);
 			tv_sex_women.setTextColor(Color.rgb(155, 89, 182));
 			iv_sex_man.setImageResource(R.drawable.man_no);
 			tv_sex_man.setTextColor(Color.rgb(220, 220, 200));
 			break;
 		case R.id.ll_man:
-			sex = 1;
+			sex = "男";
 			iv_sex_women.setImageResource(R.drawable.woman_no);
 			tv_sex_women.setTextColor(Color.rgb(220, 220, 220));
 			iv_sex_man.setImageResource(R.drawable.man_yes);
@@ -203,7 +204,7 @@ public class FragmentReport extends Fragment implements OnClickListener {
 			}else if(TextUtils.isEmpty(tv_state.getText().toString())){
 				Tools.showNewToast(getActivity(), "请选择贫困户状态");
 				return;
-			}else if(sex == 0){
+			}else if(TextUtils.isEmpty(sex)){
 				Tools.showNewToast(getActivity(), "请选择性别");
 				return;
 			}else if(TextUtils.isEmpty(et_age.getText().toString())){
@@ -222,7 +223,7 @@ public class FragmentReport extends Fragment implements OnClickListener {
 				Tools.showNewToast(getActivity(), "请选择健康状态");
 				return;
 			}
-			
+			setData();
 			break;
 		}
 
@@ -292,5 +293,59 @@ public class FragmentReport extends Fragment implements OnClickListener {
 		TextView txtCancle = (TextView) outerView.findViewById(R.id.txt_cancel);
 		txtSure.setOnClickListener(this);
 		txtCancle.setOnClickListener(this);
+	}
+	
+	@Override
+	public void onStart() {
+		super.onStart();
+		if(!TextUtils.isEmpty(Constant.tdataCountryman.getCountryman()))
+			et_name.setText(Constant.tdataCountryman.getCountryman());
+		if(!TextUtils.isEmpty(Constant.tdataCountryman.getPoorState()))
+			tv_state.setText(Constant.tdataCountryman.getPoorState());
+		if(!TextUtils.isEmpty(Constant.tdataCountryman.getSex())){
+			if("女".equals(Constant.tdataCountryman.getSex())){
+				sex = "女";
+				iv_sex_women.setImageResource(R.drawable.woman_yes);
+				tv_sex_women.setTextColor(Color.rgb(155, 89, 182));
+				iv_sex_man.setImageResource(R.drawable.man_no);
+				tv_sex_man.setTextColor(Color.rgb(220, 220, 200));
+			}else if("男".equals(Constant.tdataCountryman.getSex())){
+				sex = "男";
+				iv_sex_women.setImageResource(R.drawable.woman_no);
+				tv_sex_women.setTextColor(Color.rgb(220, 220, 220));
+				iv_sex_man.setImageResource(R.drawable.man_yes);
+				tv_sex_man.setTextColor(Color.rgb(52, 152, 219));
+			}
+		}
+		
+		if(!TextUtils.isEmpty(Constant.tdataCountryman.getAge()+""))
+			et_age.setText(Constant.tdataCountryman.getAge()+"");
+		
+		if(!TextUtils.isEmpty(Constant.tdataCountryman.getCard()))
+			et_identity.setText(Constant.tdataCountryman.getCard());
+		if(!TextUtils.isEmpty(Constant.tdataCountryman.getTelphone()))
+			et_tel.setText(Constant.tdataCountryman.getTelphone());
+		if(!TextUtils.isEmpty(Constant.tdataCountryman.getWhcd()))
+			tv_education.setText(Constant.tdataCountryman.getWhcd());
+	}
+	
+	@Override
+	public void onStop() {
+		super.onStop();
+		setData();
+	}
+	
+	/**
+	 * 设置贫困户信息
+	 */
+	private void setData(){
+		Constant.tdataCountryman.setCountryman(et_name.getText().toString()+"");
+		Constant.tdataCountryman.setPoorState(tv_state.getText().toString()+"");
+		Constant.tdataCountryman.setSex(sex);
+		if(!TextUtils.isEmpty(et_age.getText().toString().trim()))
+			Constant.tdataCountryman.setAge(Integer.valueOf(et_age.getText().toString().trim()));
+		Constant.tdataCountryman.setCard(et_identity.getText().toString()+"");
+		Constant.tdataCountryman.setTelphone(et_tel.getText().toString()+"");
+		Constant.tdataCountryman.setWhcd(tv_education.getText().toString()+"");
 	}
 }

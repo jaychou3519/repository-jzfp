@@ -51,15 +51,15 @@ public class EconomyActivity extends BaseActivity implements OnClickListener {
 	@Override
 	protected void initData() {
 		constructions = new String[] { "土/木结构", "砖木结构", "砖混结构", "钢筋混凝土", "钢结构" };
-		if (null != Constant.tdataCountryman.getZfjg())
+		if (!TextUtils.isEmpty(Constant.tdataCountryman.getZfjg()))
 			tv_construction.setText(Constant.tdataCountryman.getZfjg());
-		if (null != Constant.tdataCountryman.getZzArea())
+		if (!TextUtils.isEmpty(Constant.tdataCountryman.getZzArea()))
 			et_area.setText(Constant.tdataCountryman.getZzArea());
-		if (null != Constant.tdataCountryman.getGdArea())
+		if (!TextUtils.isEmpty(Constant.tdataCountryman.getGdArea()))
 			et_land.setText(Constant.tdataCountryman.getGdArea());
-		if (null != Constant.tdataCountryman.getSlArea())
+		if (!TextUtils.isEmpty(Constant.tdataCountryman.getSlArea()))
 			et_hill.setText(Constant.tdataCountryman.getSlArea());
-		if (null != Constant.tdataCountryman.getRjsrqk())
+		if (!TextUtils.isEmpty(Constant.tdataCountryman.getRjsrqk()))
 			et_dominate.setText(Constant.tdataCountryman.getRjsrqk());
 
 	}
@@ -84,11 +84,11 @@ public class EconomyActivity extends BaseActivity implements OnClickListener {
 				Tools.showNewToast(this, "请填写可支配收入");
 				return;
 			}
-			Constant.tdataCountryman.setZfjg(tv_construction.getText().toString());
-			Constant.tdataCountryman.setZzArea(et_area.getText().toString());
-			Constant.tdataCountryman.setGdArea(et_land.getText().toString());
-			Constant.tdataCountryman.setSlArea(et_hill.getText().toString());
-			Constant.tdataCountryman.setRjsrqk(et_dominate.getText().toString());
+			Constant.tdataCountryman.setZfjg(tv_construction.getText().toString()+"");
+			Constant.tdataCountryman.setZzArea(et_area.getText().toString()+"");
+			Constant.tdataCountryman.setGdArea(et_land.getText().toString()+"");
+			Constant.tdataCountryman.setSlArea(et_hill.getText().toString()+"");
+			Constant.tdataCountryman.setRjsrqk(et_dominate.getText().toString()+"");
 			finish();
 			break;
 		case R.id.rl_construction:
