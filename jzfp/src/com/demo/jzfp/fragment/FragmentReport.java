@@ -37,7 +37,7 @@ import android.widget.TextView;
 public class FragmentReport extends Fragment implements OnClickListener {
 	private View v;
 	private String sex = ""; // 姓别 0：未选 1：男 2：女
-	private ImageView iv_sex_women,iv_headpicture;
+	private ImageView iv_sex_women, iv_headpicture;
 	private TextView tv_sex_women;
 	private ImageView iv_sex_man;
 	private TextView tv_sex_man;
@@ -45,11 +45,12 @@ public class FragmentReport extends Fragment implements OnClickListener {
 	private PermissionsUtils pu;
 	private AlertDialog dialog;
 	private String[] states, healths;
-	private String state, health,filePath;
+	private String state, health, filePath;
 	private int table;// 1:贫因状态 2:健康状态
 	private TextView tv_state, tv_health;
 	private EditText et_name, et_age, et_identity, et_tel;
 	private PhotoUtils photoUtils;
+
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		v = inflater.inflate(R.layout.fragment_report, null);
@@ -63,7 +64,7 @@ public class FragmentReport extends Fragment implements OnClickListener {
 	 */
 	private void initView() {
 		TextView tv_commit = (TextView) v.findViewById(R.id.tv_commit);
-		
+
 		RelativeLayout rl_photo = (RelativeLayout) v.findViewById(R.id.rl_photo);
 		iv_headpicture = (ImageView) v.findViewById(R.id.iv_headpicture);
 
@@ -132,11 +133,11 @@ public class FragmentReport extends Fragment implements OnClickListener {
 	public void onClick(View v) {
 		switch (v.getId()) {
 		case R.id.rl_photo:
-			//if (pu.camera()) {
-				Tools.showNewToast(getActivity(), "进入....相机");
-				photoUtils = new PhotoUtils(getActivity(), v,this);
-				photoUtils.selectImage();
-			//}
+			// if (pu.camera()) {
+			Tools.showNewToast(getActivity(), "进入....相机");
+			photoUtils = new PhotoUtils(getActivity(), v, this);
+			photoUtils.selectImage();
+			// }
 			break;
 		case R.id.rl_state:
 			String title = "请选择贫因户状态";
@@ -198,28 +199,28 @@ public class FragmentReport extends Fragment implements OnClickListener {
 			dialog.dismiss();
 			break;
 		case R.id.tv_commit:
-			if(TextUtils.isEmpty(et_name.getText().toString())){
+			if (TextUtils.isEmpty(et_name.getText().toString())) {
 				Tools.showNewToast(getActivity(), "请填写姓名");
 				return;
-			}else if(TextUtils.isEmpty(tv_state.getText().toString())){
+			} else if (TextUtils.isEmpty(tv_state.getText().toString())) {
 				Tools.showNewToast(getActivity(), "请选择贫困户状态");
 				return;
-			}else if(TextUtils.isEmpty(sex)){
+			} else if (TextUtils.isEmpty(sex)) {
 				Tools.showNewToast(getActivity(), "请选择性别");
 				return;
-			}else if(TextUtils.isEmpty(et_age.getText().toString())){
+			} else if (TextUtils.isEmpty(et_age.getText().toString())) {
 				Tools.showNewToast(getActivity(), "请填写年龄");
 				return;
-			}else if(TextUtils.isEmpty(et_identity.getText().toString())){
+			} else if (TextUtils.isEmpty(et_identity.getText().toString())) {
 				Tools.showNewToast(getActivity(), "请填写身份证号码");
 				return;
-			}else if(TextUtils.isEmpty(et_tel.getText().toString())){
+			} else if (TextUtils.isEmpty(et_tel.getText().toString())) {
 				Tools.showNewToast(getActivity(), "请填写联系电话");
 				return;
-			}else if(TextUtils.isEmpty(tv_education.getText().toString())){
+			} else if (TextUtils.isEmpty(tv_education.getText().toString())) {
 				Tools.showNewToast(getActivity(), "请选择文化程度");
 				return;
-			}else if(TextUtils.isEmpty(tv_health.getText().toString())){
+			} else if (TextUtils.isEmpty(tv_health.getText().toString())) {
 				Tools.showNewToast(getActivity(), "请选择健康状态");
 				return;
 			}
@@ -232,31 +233,31 @@ public class FragmentReport extends Fragment implements OnClickListener {
 	@Override
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
-			switch (requestCode) {
-			case 300:
-				tv_education.setText(data.getStringExtra("education"));
-				break;
-			case PhotoUtils.REQUEST_TAKE_PICTURE:// 相机返回结果
-				filePath = photoUtils.getFilePath();
-				Tools.showNewToast(getActivity(), "filePath="+filePath);
-				Bitmap bitmap = Tools.Readimg(filePath);
-				if(bitmap!=null){
-					iv_headpicture.setImageBitmap(bitmap);
-				}
-				break;
-			case PhotoUtils.REQUEST_PICK_PICTURE:// 相册返回结果
-				if (data == null) {
-					Tools.showNewToast(getActivity(), "获取照片失败！");
-					return;
-				}
-				Uri uri = data.getData();
-				filePath = AbImageUtil.getPath(uri,getActivity());
-				Tools.showNewToast(getActivity(), "filePath="+filePath);
-				Bitmap bitmaps = Tools.Readimg(filePath);
-				if(bitmaps!=null){
-					iv_headpicture.setImageBitmap(bitmaps);
-				}
-				break;
+		switch (requestCode) {
+		case 300:
+			tv_education.setText(data.getStringExtra("education"));
+			break;
+		case PhotoUtils.REQUEST_TAKE_PICTURE:// 相机返回结果
+			filePath = photoUtils.getFilePath();
+			Tools.showNewToast(getActivity(), "filePath=" + filePath);
+			Bitmap bitmap = Tools.Readimg(filePath);
+			if (bitmap != null) {
+				iv_headpicture.setImageBitmap(bitmap);
+			}
+			break;
+		case PhotoUtils.REQUEST_PICK_PICTURE:// 相册返回结果
+			if (data == null) {
+				Tools.showNewToast(getActivity(), "获取照片失败！");
+				return;
+			}
+			Uri uri = data.getData();
+			filePath = AbImageUtil.getPath(uri, getActivity());
+			Tools.showNewToast(getActivity(), "filePath=" + filePath);
+			Bitmap bitmaps = Tools.Readimg(filePath);
+			if (bitmaps != null) {
+				iv_headpicture.setImageBitmap(bitmaps);
+			}
+			break;
 		}
 
 	}
@@ -294,22 +295,22 @@ public class FragmentReport extends Fragment implements OnClickListener {
 		txtSure.setOnClickListener(this);
 		txtCancle.setOnClickListener(this);
 	}
-	
+
 	@Override
 	public void onStart() {
 		super.onStart();
-		if(!TextUtils.isEmpty(Constant.tdataCountryman.getCountryman()))
-			et_name.setText(Constant.tdataCountryman.getCountryman());
-		if(!TextUtils.isEmpty(Constant.tdataCountryman.getPoorState()))
-			tv_state.setText(Constant.tdataCountryman.getPoorState());
-		if(!TextUtils.isEmpty(Constant.tdataCountryman.getSex())){
-			if("女".equals(Constant.tdataCountryman.getSex())){
+		if (!TextUtils.isEmpty(Constant.poor.getName()))
+			et_name.setText(Constant.poor.getName());
+		if (!TextUtils.isEmpty(Constant.poor.getPoorState()))
+			tv_state.setText(Constant.poor.getPoorState());
+		if (!TextUtils.isEmpty(Constant.poor.getSex())) {
+			if ("女".equals(Constant.poor.getSex())) {
 				sex = "女";
 				iv_sex_women.setImageResource(R.drawable.woman_yes);
 				tv_sex_women.setTextColor(Color.rgb(155, 89, 182));
 				iv_sex_man.setImageResource(R.drawable.man_no);
 				tv_sex_man.setTextColor(Color.rgb(220, 220, 200));
-			}else if("男".equals(Constant.tdataCountryman.getSex())){
+			} else if ("男".equals(Constant.poor.getSex())) {
 				sex = "男";
 				iv_sex_women.setImageResource(R.drawable.woman_no);
 				tv_sex_women.setTextColor(Color.rgb(220, 220, 220));
@@ -317,35 +318,35 @@ public class FragmentReport extends Fragment implements OnClickListener {
 				tv_sex_man.setTextColor(Color.rgb(52, 152, 219));
 			}
 		}
-		
-		if(!TextUtils.isEmpty(Constant.tdataCountryman.getAge()+""))
-			et_age.setText(Constant.tdataCountryman.getAge()+"");
-		
-		if(!TextUtils.isEmpty(Constant.tdataCountryman.getCard()))
-			et_identity.setText(Constant.tdataCountryman.getCard());
-		if(!TextUtils.isEmpty(Constant.tdataCountryman.getTelphone()))
-			et_tel.setText(Constant.tdataCountryman.getTelphone());
-		if(!TextUtils.isEmpty(Constant.tdataCountryman.getWhcd()))
-			tv_education.setText(Constant.tdataCountryman.getWhcd());
+		if (!TextUtils.isEmpty(Constant.poor.getAge()))
+			et_age.setText(Constant.poor.getAge());
+		if (!TextUtils.isEmpty(Constant.poor.getIdentity()))
+			et_identity.setText(Constant.poor.getIdentity());
+		if (!TextUtils.isEmpty(Constant.poor.getTel()))
+			et_tel.setText(Constant.poor.getTel());
+		if (!TextUtils.isEmpty(Constant.poor.getEducation()))
+			tv_education.setText(Constant.poor.getEducation());
+		if (!TextUtils.isEmpty(Constant.poor.getHealth()))
+			tv_health.setText(Constant.poor.getHealth());
 	}
-	
+
 	@Override
 	public void onStop() {
 		super.onStop();
 		setData();
 	}
-	
+
 	/**
 	 * 设置贫困户信息
 	 */
-	private void setData(){
-		Constant.tdataCountryman.setCountryman(et_name.getText().toString()+"");
-		Constant.tdataCountryman.setPoorState(tv_state.getText().toString()+"");
-		Constant.tdataCountryman.setSex(sex);
-		if(!TextUtils.isEmpty(et_age.getText().toString().trim()))
-			Constant.tdataCountryman.setAge(Integer.valueOf(et_age.getText().toString().trim()));
-		Constant.tdataCountryman.setCard(et_identity.getText().toString()+"");
-		Constant.tdataCountryman.setTelphone(et_tel.getText().toString()+"");
-		Constant.tdataCountryman.setWhcd(tv_education.getText().toString()+"");
+	private void setData() {
+		Constant.poor.setName(et_name.getText().toString().trim() + "");
+		Constant.poor.setPoorState(tv_state.getText().toString().trim() + "");
+		Constant.poor.setSex(sex);
+		Constant.poor.setAge(et_age.getText().toString().trim()+"");
+		Constant.poor.setIdentity(et_identity.getText().toString().trim() + "");
+		Constant.poor.setTel(et_tel.getText().toString().trim() + "");
+		Constant.poor.setEducation(tv_education.getText().toString().trim() + "");
+		Constant.poor.setHealth(tv_health.getText().toString().trim() + "");
 	}
 }

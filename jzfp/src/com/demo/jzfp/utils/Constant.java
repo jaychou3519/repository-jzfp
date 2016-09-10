@@ -1,11 +1,11 @@
 package com.demo.jzfp.utils;
 
-import com.demo.jzfp.entity.TdataCountryman;
+import com.demo.jzfp.entity.PoorMessage;
 
 
 public class Constant {
 	
-	public static TdataCountryman tdataCountryman = new TdataCountryman();
+	public static PoorMessage poor = new PoorMessage();
 	
 	/**
 	 * 基础url

@@ -51,16 +51,16 @@ public class EconomyActivity extends BaseActivity implements OnClickListener {
 	@Override
 	protected void initData() {
 		constructions = new String[] { "土/木结构", "砖木结构", "砖混结构", "钢筋混凝土", "钢结构" };
-		if (!TextUtils.isEmpty(Constant.tdataCountryman.getZfjg()))
-			tv_construction.setText(Constant.tdataCountryman.getZfjg());
-		if (!TextUtils.isEmpty(Constant.tdataCountryman.getZzArea()))
-			et_area.setText(Constant.tdataCountryman.getZzArea());
-		if (!TextUtils.isEmpty(Constant.tdataCountryman.getGdArea()))
-			et_land.setText(Constant.tdataCountryman.getGdArea());
-		if (!TextUtils.isEmpty(Constant.tdataCountryman.getSlArea()))
-			et_hill.setText(Constant.tdataCountryman.getSlArea());
-		if (!TextUtils.isEmpty(Constant.tdataCountryman.getRjsrqk()))
-			et_dominate.setText(Constant.tdataCountryman.getRjsrqk());
+		if (!TextUtils.isEmpty(Constant.poor.getConstruction()))
+			tv_construction.setText(Constant.poor.getConstruction());
+		if (!TextUtils.isEmpty(Constant.poor.getHouseArea()))
+			et_area.setText(Constant.poor.getHouseArea());
+		if (!TextUtils.isEmpty(Constant.poor.getLandArea()))
+			et_land.setText(Constant.poor.getLandArea());
+		if (!TextUtils.isEmpty(Constant.poor.getHillArea()))
+			et_hill.setText(Constant.poor.getHillArea());
+		if (!TextUtils.isEmpty(Constant.poor.getDominate()))
+			et_dominate.setText(Constant.poor.getDominate());
 
 	}
 
@@ -84,11 +84,11 @@ public class EconomyActivity extends BaseActivity implements OnClickListener {
 				Tools.showNewToast(this, "请填写可支配收入");
 				return;
 			}
-			Constant.tdataCountryman.setZfjg(tv_construction.getText().toString()+"");
-			Constant.tdataCountryman.setZzArea(et_area.getText().toString()+"");
-			Constant.tdataCountryman.setGdArea(et_land.getText().toString()+"");
-			Constant.tdataCountryman.setSlArea(et_hill.getText().toString()+"");
-			Constant.tdataCountryman.setRjsrqk(et_dominate.getText().toString()+"");
+			Constant.poor.setConstruction(tv_construction.getText().toString().trim()+"");
+			Constant.poor.setHouseArea(et_area.getText().toString().trim()+"");
+			Constant.poor.setLandArea(et_land.getText().toString().trim()+"");
+			Constant.poor.setHillArea(et_hill.getText().toString().trim()+"");
+			Constant.poor.setDominate(et_dominate.getText().toString().trim()+"");
 			finish();
 			break;
 		case R.id.rl_construction:
