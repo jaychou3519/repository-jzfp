@@ -47,7 +47,6 @@ public class LoginActivity extends BaseActivity implements OnClickListener, WebS
 		cb_keep = (CheckBox) findViewById(R.id.cb_keeps);
 		TextView tv_register = (TextView) findViewById(R.id.tv_register);
 		tv_register.setOnClickListener(this);
-		
 	}
 
 	@Override
