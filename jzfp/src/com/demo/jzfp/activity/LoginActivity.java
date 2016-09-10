@@ -1,8 +1,6 @@
 package com.demo.jzfp.activity;
 
-import java.lang.ref.WeakReference;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.LinkedHashMap;
 
 import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
@@ -10,8 +8,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
-import android.os.Handler;
-import android.os.Message;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -23,10 +20,11 @@ import com.alibaba.fastjson.JSON;
 import com.demo.jzfp.R;
 import com.demo.jzfp.entity.TsysUserinfo;
 import com.demo.jzfp.utils.MyApplication;
-import com.demo.jzfp.utils.WebServiceClient;
+import com.demo.jzfp.utils.RequestWebService;
+import com.demo.jzfp.utils.RequestWebService.WebServiceCallback;
 
 
-public class LoginActivity extends BaseActivity implements OnClickListener{
+public class LoginActivity extends BaseActivity implements OnClickListener, WebServiceCallback {
 	private EditText et_username,et_password;
 	private CheckBox cb_keep;
 	private SharedPreferences sp;
@@ -98,51 +96,12 @@ public class LoginActivity extends BaseActivity implements OnClickListener{
 		TsysUserinfo tsysUserinfo = new TsysUserinfo();
 		tsysUserinfo.setLoginName(username);
 		tsysUserinfo.setPassword(password);
-		Map map = new HashMap();
+		LinkedHashMap<String, String> map = new LinkedHashMap<String, String>();
 		map.put("arg0", JSON.toJSONString(tsysUserinfo));
-		callWeb(map);
+		RequestWebService.send(METHOD_NAME, map, this, 100);
 	}
 
 	
-	MyHandler myHandler = new MyHandler(this);
-	
-	public void callWeb(final Map map){
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                result = WebServiceClient.callWeb(METHOD_NAME,map);
-                myHandler.sendEmptyMessage(1);
-            }
-        }).start();
-     }
-	
-	class MyHandler extends Handler{
-	        WeakReference<LoginActivity> mActivity;
-	
-	        MyHandler(LoginActivity theActivity) {
-	            mActivity = new WeakReference<LoginActivity>(theActivity);
-	        }
-	
-	        @Override
-	        public void handleMessage(Message msg) {
-	        	LoginActivity myActivity = mActivity.get();
-	            switch (msg.what) {
-	                case 1:
-	                	if(null != result && ("1").equals(result)){
-	                		showDialog(myActivity, "提示", "账号不存在，请重新输入!",0);
-	                	}else if(null != result && ("2").equals(result)){
-	                		showDialog(myActivity, "提示", "密码错误，请重新输入!",0);
-	                	}else if(null != result && ("3").equals(result)){
-	                		showDialog(myActivity, "提示", "用户已停用,请与系统管理员联系!",0);
-	                	}else{
-	                		openActivity(MainActivity.class, null);
-		            		finish();
-	                	}
-	                    break;
-	            }
-	            super.handleMessage(msg);
-	        }
-	}
 	
 	public void showDialog(Context context,String title,String message,final Integer code){
 		AlertDialog.Builder builder = new Builder(context);
@@ -157,6 +116,21 @@ public class LoginActivity extends BaseActivity implements OnClickListener{
 		});
 		AlertDialog dialog = builder.create();
 		dialog.show();
+	}
+
+	@Override
+	public void reulst(String reulst, int requestCode) {
+		Log.i("haha", "I am coming");
+		if(null != result && ("1").equals(result)){
+    		showDialog(getApplication(), "提示", "账号不存在，请重新输入!",0);
+    	}else if(null != result && ("2").equals(result)){
+    		showDialog(getApplication(), "提示", "密码错误，请重新输入!",0);
+    	}else if(null != result && ("3").equals(result)){
+    		showDialog(getApplication(), "提示", "用户已停用,请与系统管理员联系!",0);
+    	}else{
+    		openActivity(MainActivity.class, null);
+    		finish();
+    	}
 	}
 
 

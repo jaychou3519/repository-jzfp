@@ -58,10 +58,9 @@ public class WebServiceClient {
 			} else {
 				Log.i("调用返回信息", "调用失败，返回数据为null");
 			}
-		} catch (OutOfMemoryError e) {
-			e.printStackTrace();
 		} catch (Exception e) {
 			e.printStackTrace();
+			resultString = "-1";
 		}
 		return resultString;
 	}
