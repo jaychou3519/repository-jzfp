@@ -9,6 +9,7 @@ import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.TextView;
 
 public class BasicAdapter extends BaseAdapter{
 
@@ -35,12 +36,20 @@ public class BasicAdapter extends BaseAdapter{
 
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
+		ViewHolder holder = null;
 		if(convertView == null){
+			holder = new ViewHolder();
 			convertView = View.inflate(context, R.layout.basic_item, null);
+			holder.tv_name = (TextView) convertView.findViewById(R.id.tv_name);
+			holder.tv_phone = (TextView) convertView.findViewById(R.id.tv_phone);
+		}else{
+			holder = (ViewHolder) convertView.getTag();
 		}
 		return convertView;
 	}
 
 	class ViewHolder{
+		TextView tv_name;
+		TextView tv_phone;
 	}
 }

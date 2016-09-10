@@ -26,6 +26,7 @@
                 android:textSize="@dimen/x14" />
 
             <TextView
+                android:id="@+id/tv_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/x20"
@@ -48,6 +49,7 @@
                 android:textSize="@dimen/x14" />
 
             <TextView
+                android:id="@+id/tv_relation"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/x5"
@@ -78,6 +80,7 @@
                 android:textSize="@dimen/x14" />
 
             <TextView
+                android:id="@+id/tv_gender"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/x20"
@@ -100,6 +103,7 @@
                 android:textSize="@dimen/x14" />
 
             <TextView
+                android:id="@+id/tv_YearM"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/x5"
@@ -130,6 +134,7 @@
                 android:textSize="@dimen/x14" />
 
             <TextView
+                android:id="@+id/tv_health"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/x20"
@@ -152,6 +157,7 @@
                 android:textSize="@dimen/x14" />
 
             <TextView
+                android:id="@+id/tv_other"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/x5"

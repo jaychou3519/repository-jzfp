@@ -1,5 +1,8 @@
 package com.demo.jzfp.utils;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -18,6 +21,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.Point;
 import android.graphics.drawable.ColorDrawable;
@@ -474,5 +479,35 @@ public class Tools {
 			}
 		}
 		return isRunning;
+	}
+	
+	/**
+	 * 读取相册照片
+	 * 
+	 * @param path
+	 *            照片路径
+	 * @return 返回照片
+	 */
+	public static Bitmap Readimg(String path) {
+		FileInputStream fis = null;
+		Bitmap bitmap = null;
+		if (path != null) {
+			try {
+				fis = new FileInputStream(path);
+				bitmap = BitmapFactory.decodeStream(fis);
+				if (bitmap != null)
+					return bitmap;
+			} catch (FileNotFoundException e) {
+				e.printStackTrace();
+			} finally {
+				try {
+					if (fis != null)
+						fis.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		return null;
 	}
 }

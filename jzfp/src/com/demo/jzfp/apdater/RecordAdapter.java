@@ -9,6 +9,7 @@ import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.TextView;
 
 public class RecordAdapter extends BaseAdapter{
 
@@ -33,11 +34,30 @@ public class RecordAdapter extends BaseAdapter{
 
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
+		ViewHolder holder = null;
 		if(convertView == null){
+			holder = new ViewHolder();
 			convertView = View.inflate(context, R.layout.record_item, null);
+			holder.tv_name = (TextView) convertView.findViewById(R.id.tv_name);
+			holder.tv_relation = (TextView) convertView.findViewById(R.id.tv_relation);
+			holder.tv_gender = (TextView) convertView.findViewById(R.id.tv_gender);
+			holder.tv_YearM = (TextView) convertView.findViewById(R.id.tv_YearM);
+			holder.tv_health = (TextView) convertView.findViewById(R.id.tv_health);
+			holder.tv_other = (TextView) convertView.findViewById(R.id.tv_other);
+			convertView.setTag(holder);
+		}else{
+			holder = (ViewHolder) convertView.getTag();
 		}
 		return convertView;
 	}
 
 
+	class ViewHolder{
+		TextView tv_name;
+		TextView tv_relation;
+		TextView tv_gender;
+		TextView tv_YearM;
+		TextView tv_health;
+		TextView tv_other;
+	}
 }

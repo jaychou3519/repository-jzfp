@@ -9,17 +9,20 @@ import com.demo.jzfp.activity.EffectActivity;
 import com.demo.jzfp.activity.MeasuresActivity;
 import com.demo.jzfp.activity.MemberActivity;
 import com.demo.jzfp.activity.ReasonActivity;
+import com.demo.jzfp.utils.AbImageUtil;
 import com.demo.jzfp.utils.PermissionsUtils;
+import com.demo.jzfp.utils.PhotoUtils;
 import com.demo.jzfp.utils.Tools;
 import com.demo.jzfp.view.WheelView;
 
 import android.app.AlertDialog;
 import android.app.Fragment;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -33,7 +36,7 @@ import android.widget.TextView;
 public class FragmentReport extends Fragment implements OnClickListener {
 	private View v;
 	private int sex = 0; // 姓别 0：未选 1：男 2：女
-	private ImageView iv_sex_women;
+	private ImageView iv_sex_women,iv_headpicture;
 	private TextView tv_sex_women;
 	private ImageView iv_sex_man;
 	private TextView tv_sex_man;
@@ -41,11 +44,11 @@ public class FragmentReport extends Fragment implements OnClickListener {
 	private PermissionsUtils pu;
 	private AlertDialog dialog;
 	private String[] states, healths;
-	private String state, health;
+	private String state, health,filePath;
 	private int table;// 1:贫因状态 2:健康状态
 	private TextView tv_state, tv_health;
 	private EditText et_name, et_age, et_identity, et_tel;
-
+	private PhotoUtils photoUtils;
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		v = inflater.inflate(R.layout.fragment_report, null);
@@ -61,7 +64,7 @@ public class FragmentReport extends Fragment implements OnClickListener {
 		TextView tv_commit = (TextView) v.findViewById(R.id.tv_commit);
 		
 		RelativeLayout rl_photo = (RelativeLayout) v.findViewById(R.id.rl_photo);
-		ImageView iv_headpicture = (ImageView) v.findViewById(R.id.iv_headpicture);
+		iv_headpicture = (ImageView) v.findViewById(R.id.iv_headpicture);
 
 		et_name = (EditText) v.findViewById(R.id.et_name);
 
@@ -128,9 +131,11 @@ public class FragmentReport extends Fragment implements OnClickListener {
 	public void onClick(View v) {
 		switch (v.getId()) {
 		case R.id.rl_photo:
-			if (pu.camera()) {
-				
-			}
+			//if (pu.camera()) {
+				Tools.showNewToast(getActivity(), "进入....相机");
+				photoUtils = new PhotoUtils(getActivity(), v,this);
+				photoUtils.selectImage();
+			//}
 			break;
 		case R.id.rl_state:
 			String title = "请选择贫因户状态";
@@ -225,12 +230,32 @@ public class FragmentReport extends Fragment implements OnClickListener {
 
 	@Override
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
-		// TODO Auto-generated method stub
 		super.onActivityResult(requestCode, resultCode, data);
-		switch (resultCode) {
-		case 300:
-			tv_education.setText(data.getStringExtra("aducation"));
-			break;
+			switch (requestCode) {
+			case 300:
+				tv_education.setText(data.getStringExtra("education"));
+				break;
+			case PhotoUtils.REQUEST_TAKE_PICTURE:// 相机返回结果
+				filePath = photoUtils.getFilePath();
+				Tools.showNewToast(getActivity(), "filePath="+filePath);
+				Bitmap bitmap = Tools.Readimg(filePath);
+				if(bitmap!=null){
+					iv_headpicture.setImageBitmap(bitmap);
+				}
+				break;
+			case PhotoUtils.REQUEST_PICK_PICTURE:// 相册返回结果
+				if (data == null) {
+					Tools.showNewToast(getActivity(), "获取照片失败！");
+					return;
+				}
+				Uri uri = data.getData();
+				filePath = AbImageUtil.getPath(uri,getActivity());
+				Tools.showNewToast(getActivity(), "filePath="+filePath);
+				Bitmap bitmaps = Tools.Readimg(filePath);
+				if(bitmaps!=null){
+					iv_headpicture.setImageBitmap(bitmaps);
+				}
+				break;
 		}
 
 	}

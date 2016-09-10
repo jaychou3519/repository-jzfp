@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    android:layout_height="match_parent"
+    android:scrollbars="none"
+    android:id="@+id/sv_scroll" >
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -27,6 +29,7 @@
                 android:id="@+id/tv_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/x10"
                 android:layout_toRightOf="@id/tv_name1"
                 android:text="张三"
                 android:textSize="@dimen/x16" />
@@ -36,12 +39,24 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/tv_name1"
-                android:layout_marginTop="@dimen/x5"
+                android:layout_marginTop="@dimen/x10"
                 android:text="贫困户状态"
                 android:textColor="@color/gray"
                 android:textSize="@dimen/x14" />
 
+            <TextView
+                android:id="@+id/tv_state"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_name1"
+                android:layout_marginLeft="@dimen/x10"
+                 android:layout_marginTop="@dimen/x10"
+                android:layout_toRightOf="@id/tv_state1"
+                android:text="贫穷"
+                android:textSize="@dimen/x16" />
+
             <ImageView
+                android:id="@+id/iv_photo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
@@ -82,6 +97,7 @@
                 android:textSize="@dimen/x14" />
 
             <TextView
+                android:id="@+id/tv_gender"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/x20"
@@ -98,6 +114,7 @@
                 android:textSize="@dimen/x14" />
 
             <TextView
+                android:id="@+id/tv_idcard"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/x5"
@@ -127,6 +144,7 @@
                     android:textSize="@dimen/x14" />
 
                 <TextView
+                    android:id="@+id/tv_age"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/x20"
@@ -149,6 +167,7 @@
                     android:textSize="@dimen/x14" />
 
                 <TextView
+                    android:id="@+id/tv_phone"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/x5"
@@ -179,6 +198,7 @@
                     android:textSize="@dimen/x14" />
 
                 <TextView
+                    android:id="@+id/tv_educational"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/x20"
@@ -201,6 +221,7 @@
                     android:textSize="@dimen/x14" />
 
                 <TextView
+                    android:id="@+id/tv_health"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/x5"
@@ -255,6 +276,7 @@
                     android:textSize="@dimen/x14" />
 
                 <TextView
+                    android:id="@+id/tv_home_flat"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/x20"
@@ -277,6 +299,7 @@
                     android:textSize="@dimen/x14" />
 
                 <TextView
+                    android:id="@+id/tv_home_area"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/x5"
@@ -307,6 +330,7 @@
                     android:textSize="@dimen/x14" />
 
                 <TextView
+                    android:id="@+id/tv_plough_area"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/x20"
@@ -329,6 +353,7 @@
                     android:textSize="@dimen/x14" />
 
                 <TextView
+                    android:id="@+id/tv_mountains_area"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/x5"
@@ -353,10 +378,12 @@
                 android:textSize="@dimen/x14" />
 
             <TextView
+                android:id="@+id/tv_year_money"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/x20"
-                android:text="800" />
+                android:text="800" 
+                android:textSize="@dimen/x14"/>
         </LinearLayout>
 
         <View
@@ -431,6 +458,7 @@
                 android:textSize="@dimen/x14" />
 
             <TextView
+                android:id="@+id/tv_reason"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/x20"
@@ -454,6 +482,7 @@
                 android:textSize="@dimen/x14" />
 
             <TextView
+                android:id="@+id/tv_explain"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/x20"

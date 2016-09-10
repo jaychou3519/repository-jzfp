@@ -36,6 +36,7 @@ public class MeasureAdapter extends BaseAdapter{
 			holder = new ViewHolder();
 			convertView = View.inflate(context, R.layout.measure_item, null);
 			holder.tv_measure = (TextView) convertView.findViewById(R.id.tv_measure);
+			holder.tv_monery = (TextView) convertView.findViewById(R.id.tv_monery);
 		}else{
 			holder = (ViewHolder) convertView.getTag();
 		}
@@ -47,5 +48,6 @@ public class MeasureAdapter extends BaseAdapter{
 
 	class ViewHolder{
 		TextView tv_measure;
+		TextView tv_monery;
 	}
 }
