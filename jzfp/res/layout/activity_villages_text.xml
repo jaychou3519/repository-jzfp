@@ -14,7 +14,7 @@
         android:layout_height="@dimen/x50"
         android:gravity="center"
         android:text="霞阳镇"
-        android:textSize="20sp"
+        android:textSize="@dimen/fontx20"
         />
     <TextView 
         android:layout_marginLeft="@dimen/x20"
@@ -22,5 +22,6 @@
         android:id="@+id/tv_context"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
+        android:textSize="@dimen/fontx13"
         />
 </LinearLayout>

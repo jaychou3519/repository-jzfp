@@ -14,7 +14,8 @@
         android:layout_alignParentLeft="true"
         android:layout_marginLeft="@dimen/x50"
         android:layout_marginBottom="@dimen/x5"
-        android:text="霞阳镇石子坝村一组" />
+        android:text="霞阳镇石子坝村一组" 
+        android:textSize="@dimen/fontx14"/>
 
     <TextView
         android:id="@+id/tv_number_name"
@@ -23,7 +24,8 @@
         android:layout_alignParentLeft="true"
         android:layout_below="@id/tv_address"
         android:layout_marginLeft="@dimen/x50"
-        android:text="建档人数" />
+        android:text="建档人数"
+        android:textSize="@dimen/fontx14" />
 
     <TextView
         android:id="@+id/tv_number"
@@ -32,7 +34,8 @@
         android:layout_below="@id/tv_address"
         android:layout_marginLeft="@dimen/x50"
         android:layout_toRightOf="@id/tv_number_name"
-        android:text="9人" />
+        android:text="9人" 
+        android:textSize="@dimen/fontx14"/>
 
     <ImageView
         android:layout_width="wrap_content"
