@@ -21,7 +21,7 @@ public class RequestWebService {
 		 * 
 		 * @param reulst
 		 */
-		public void reulst(String reulst, int requestCode);
+		public void result(String reulst, int requestCode);
 
 	}
 
@@ -64,7 +64,7 @@ public class RequestWebService {
 
 		@Override
 		protected void onPostExecute(String result) {
-			ws.reulst(result, requestCode);
+			ws.result(result, requestCode);
 		}
 	}
 

@@ -30,7 +30,6 @@ public class LoginActivity extends BaseActivity implements OnClickListener, WebS
 	private SharedPreferences sp;
 	private MyApplication activityList;
 	private static String METHOD_NAME = "selectLogin";
-	private String result;
 	
 	@Override
 	protected void setView() {
@@ -119,18 +118,18 @@ public class LoginActivity extends BaseActivity implements OnClickListener, WebS
 	}
 
 	@Override
-	public void reulst(String reulst, int requestCode) {
-		if(reulst == null){
+	public void result(String result, int requestCode) {
+		if(result == null){
 			Tools.showNewToast(getApplication(), "链接服务器失败");
 		}else if("1".equals(result)){
-    		showDialog(getApplication(), "提示", "账号不存在，请重新输入!",0);
+    		showDialog(this, "提示", "账号不存在，请重新输入!",0);
     	}else if("2".equals(result)){
-    		showDialog(getApplication(), "提示", "密码错误，请重新输入!",0);
+    		showDialog(this, "提示", "密码错误，请重新输入!",0);
     	}else if("3".equals(result)){
-    		showDialog(getApplication(), "提示", "用户已停用,请与系统管理员联系!",0);
+    		showDialog(this, "提示", "用户已停用,请与系统管理员联系!",0);
     	}else{
     		try {
-				MyApplication.login = JSON.parseObject(reulst, Login.class);
+				MyApplication.login = JSON.parseObject(result, Login.class);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
