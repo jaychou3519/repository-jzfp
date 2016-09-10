@@ -13,6 +13,8 @@ public class ArchivesActivity extends BaseActivity{
 	
 	private MyApplication activityList;
 	private ArchivesAdapter adapter;
+	private String orgid = "412500005003";
+	
 	@Override
 	protected void setView() {
 		View view = View.inflate(ArchivesActivity.this, R.layout.activity_archives, null);

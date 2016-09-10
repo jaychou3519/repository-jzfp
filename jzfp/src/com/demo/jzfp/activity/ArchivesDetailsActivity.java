@@ -57,15 +57,12 @@ public class ArchivesDetailsActivity extends BaseActivity {
 			finish();
 			break;
 		case R.id.tv_record:
-			selectId(0);
 			setTabSelection(0);
 			break;
 		case R.id.tv_measure:
-			selectId(1);
 			setTabSelection(1);
 			break;
 		case R.id.tv_effect:
-			selectId(2);
 			setTabSelection(2);
 			break;
 		case R.id.iv_edit:
@@ -119,6 +116,7 @@ public class ArchivesDetailsActivity extends BaseActivity {
 		// 每次选中之前先清楚掉上次的选中状态
 		transaction = getFragmentManager().beginTransaction();
 		// 先隐藏掉所有的Fragment，以防止有多个Fragment显示在界面上的情况
+		selectId(index);
 		hideFragments(transaction);
 		switch (index) {
 		case 0:

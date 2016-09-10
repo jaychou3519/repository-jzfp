@@ -40,7 +40,7 @@ public class FragmentHome extends BaseFragment implements AsynceHttpInterface{
 	private static final String TAG = "FragmentHome";
 	private ViewPager viewPager;
 	private ImageHandler handler = new ImageHandler(new WeakReference<FragmentHome>(this));
-	private TextView tv_year_mday,tv_week,tv_time,tv_county,tv_temperature;
+	private TextView tv_year_mday,tv_week,tv_time,tv_county,tv_temperature,tv_temperature_range;
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -61,6 +61,7 @@ public class FragmentHome extends BaseFragment implements AsynceHttpInterface{
 		tv_time = (TextView) v.findViewById(R.id.tv_time);
 		tv_county = (TextView) v.findViewById(R.id.tv_county);
 		tv_temperature = (TextView) v.findViewById(R.id.tv_temperature);
+		tv_temperature_range = (TextView) v.findViewById(R.id.tv_temperature_range);
 		
 		ImageView view1 = new ImageView(getActivity());
 		view1.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
@@ -133,6 +134,12 @@ public class FragmentHome extends BaseFragment implements AsynceHttpInterface{
 					int weeklocation = date.indexOf("实时：");
 					tv_temperature.setText(date.substring(weeklocation+3, weeklocation+5)+"°");
 				}
+				String temperature = results.getResults().get(0).getWeather_data().get(0).getTemperature();
+				if(temperature.contains(" ~ ")){
+					int tpt = temperature.indexOf(" ~ ");
+					tv_temperature_range.setText(temperature.substring(tpt+3, temperature.length())+"°/"+temperature.substring(0, 2)+"°");
+				}
+				
 			} catch (JSONException e) {
 				e.printStackTrace();
 			}
