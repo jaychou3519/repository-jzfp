@@ -3,8 +3,11 @@ package com.demo.jzfp.apdater;
 import java.util.List;
 
 import com.demo.jzfp.R;
+import com.demo.jzfp.utils.Constant;
 
 import android.content.Context;
+import android.graphics.Color;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -50,6 +53,11 @@ public class MeasuresAdapter extends BaseAdapter {
 			holder = (Holder) convertView.getTag();
 		}
 		holder.tv_measures.setText(measures);
+		if(!TextUtils.isEmpty(Constant.poor.getMeasure()) && measures.contains(Constant.poor.getMeasure())){
+			holder.tv_measures.setTextColor(Color.rgb(255, 77, 77));
+		}else {
+			holder.tv_measures.setTextColor(Color.rgb(0, 0, 0));
+		}
 		return convertView;
 	}
 	

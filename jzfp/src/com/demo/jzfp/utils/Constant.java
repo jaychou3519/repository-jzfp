@@ -1,11 +1,16 @@
 package com.demo.jzfp.utils;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import com.demo.jzfp.entity.Member;
 import com.demo.jzfp.entity.PoorMessage;
 
 
 public class Constant {
 	
 	public static PoorMessage poor = new PoorMessage();
+	public static List<Member> members = new ArrayList<Member>();
 	
 	/**
 	 * 基础url

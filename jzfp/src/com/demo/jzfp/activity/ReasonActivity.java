@@ -62,6 +62,8 @@ public class ReasonActivity extends BaseActivity implements OnClickListener {
 			showWheelView("请选择致贫原因", reasons, 0);
 			break;
 		case R.id.txt_sure:
+			if(TextUtils.isEmpty(reason))
+				reason = reasons[1];
 			tv_reason.setText(reason);
 			dialog.dismiss();
 			break;

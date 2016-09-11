@@ -50,7 +50,7 @@ public class EconomyActivity extends BaseActivity implements OnClickListener {
 
 	@Override
 	protected void initData() {
-		constructions = new String[] { "土/木结构", "砖木结构", "砖混结构", "钢筋混凝土", "钢结构" };
+		constructions = new String[] { "土坯", "砖瓦"};
 		if (!TextUtils.isEmpty(Constant.poor.getConstruction()))
 			tv_construction.setText(Constant.poor.getConstruction());
 		if (!TextUtils.isEmpty(Constant.poor.getHouseArea()))
@@ -95,6 +95,8 @@ public class EconomyActivity extends BaseActivity implements OnClickListener {
 			showWheelView("请选择住房结构", constructions, 0);
 			break;
 		case R.id.txt_sure:
+			if(TextUtils.isEmpty(construction))
+				construction = constructions[1];
 			tv_construction.setText(construction);
 			dialog.dismiss();
 			break;
@@ -135,4 +137,6 @@ public class EconomyActivity extends BaseActivity implements OnClickListener {
 		txtCancle.setOnClickListener(this);
 	}
 
+	
+	
 }

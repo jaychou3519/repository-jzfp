@@ -189,8 +189,12 @@ public class FragmentReport extends Fragment implements OnClickListener {
 			break;
 		case R.id.txt_sure:
 			if (table == 1) {
+				if(TextUtils.isEmpty(state))
+					state = states[1];
 				tv_state.setText(state);
 			} else if (table == 2) {
+				if(TextUtils.isEmpty(health))
+					health = healths[1];
 				tv_health.setText(health);
 			}
 			dialog.dismiss();
@@ -235,7 +239,8 @@ public class FragmentReport extends Fragment implements OnClickListener {
 		super.onActivityResult(requestCode, resultCode, data);
 		switch (requestCode) {
 		case 300:
-			tv_education.setText(data.getStringExtra("education"));
+			if(data != null && TextUtils.isEmpty(data.getStringExtra("education")))
+				tv_education.setText(data.getStringExtra("education"));
 			break;
 		case PhotoUtils.REQUEST_TAKE_PICTURE:// 相机返回结果
 			filePath = photoUtils.getFilePath();

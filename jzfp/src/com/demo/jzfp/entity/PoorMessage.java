@@ -1,6 +1,9 @@
 package com.demo.jzfp.entity;
 
+import java.util.List;
+
 public class PoorMessage {
+	//////////基本信息
 	private String name;//户主姓名
 	private String poorState;//贫困状态
 	private String sex;//性别
@@ -9,13 +12,25 @@ public class PoorMessage {
 	private String tel;//联系电话
 	private String education;//文化程度
 	private String health;//健康状态
+	
+	///////////家庭经济
 	private String construction;//住房结构
 	private String houseArea;//住房面积
 	private String landArea;//耕地面积
 	private String hillArea;//山林面积
 	private String dominate;//年人均可支配金额
+	
+	//////////致贫原因
 	private String poorReason;//致贫原因
 	private String reasonIllustrate;//致贫说明
+	
+	/////////帮扶措施
+	private String measure;//帮扶措施
+	private String measureDetail;//措施详情
+	private String money;//增收获益
+	private String realCase;//实际情况
+	
+	///////////帮扶成效
 	private String date;//计划脱贫时间
 	private String income;//人均收入
 	private String allIncome;//总收入
@@ -28,9 +43,40 @@ public class PoorMessage {
 	private String fzrTel;//负责人电话
 	private String bffzr;//帮扶负责人
 	
+	//////////家庭成员
+	private List<Member> members;
 	
 	
-	
+	public String getMeasure() {
+		return measure;
+	}
+	public void setMeasure(String measure) {
+		this.measure = measure;
+	}
+	public String getMeasureDetail() {
+		return measureDetail;
+	}
+	public void setMeasureDetail(String measureDetail) {
+		this.measureDetail = measureDetail;
+	}
+	public String getMoney() {
+		return money;
+	}
+	public void setMoney(String money) {
+		this.money = money;
+	}
+	public String getRealCase() {
+		return realCase;
+	}
+	public void setRealCase(String realCase) {
+		this.realCase = realCase;
+	}
+	public List<Member> getMembers() {
+		return members;
+	}
+	public void setMembers(List<Member> members) {
+		this.members = members;
+	}
 	public String getDate() {
 		return date;
 	}
