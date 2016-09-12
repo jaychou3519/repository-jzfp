@@ -3,14 +3,14 @@ package com.demo.jzfp.utils;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.demo.jzfp.entity.Member;
-import com.demo.jzfp.entity.PoorMessage;
+import com.demo.jzfp.entity.TdataFamily;
+import com.demo.jzfp.entity.TdataCountryman;
 
 
 public class Constant {
 	
-	public static PoorMessage poor = new PoorMessage();
-	public static List<Member> members = new ArrayList<Member>();
+	public static TdataCountryman poor = new TdataCountryman();
+	public static List<TdataFamily> members = new ArrayList<TdataFamily>();
 	
 	/**
 	 * 基础url

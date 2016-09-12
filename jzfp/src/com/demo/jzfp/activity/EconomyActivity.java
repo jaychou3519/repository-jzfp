@@ -51,16 +51,16 @@ public class EconomyActivity extends BaseActivity implements OnClickListener {
 	@Override
 	protected void initData() {
 		constructions = new String[] { "土坯", "砖瓦"};
-		if (!TextUtils.isEmpty(Constant.poor.getConstruction()))
-			tv_construction.setText(Constant.poor.getConstruction());
-		if (!TextUtils.isEmpty(Constant.poor.getHouseArea()))
-			et_area.setText(Constant.poor.getHouseArea());
-		if (!TextUtils.isEmpty(Constant.poor.getLandArea()))
-			et_land.setText(Constant.poor.getLandArea());
-		if (!TextUtils.isEmpty(Constant.poor.getHillArea()))
-			et_hill.setText(Constant.poor.getHillArea());
-		if (!TextUtils.isEmpty(Constant.poor.getDominate()))
-			et_dominate.setText(Constant.poor.getDominate());
+		if (!TextUtils.isEmpty(Constant.poor.getZfjg()))
+			tv_construction.setText(Constant.poor.getZfjg());
+		if (!TextUtils.isEmpty(Constant.poor.getZzArea()))
+			et_area.setText(Constant.poor.getZzArea());
+		if (!TextUtils.isEmpty(Constant.poor.getGdArea()))
+			et_land.setText(Constant.poor.getGdArea());
+		if (!TextUtils.isEmpty(Constant.poor.getSlArea()))
+			et_hill.setText(Constant.poor.getSlArea());
+		if (!TextUtils.isEmpty(Constant.poor.getRjsrqk()))
+			et_dominate.setText(Constant.poor.getRjsrqk());
 
 	}
 
@@ -84,11 +84,11 @@ public class EconomyActivity extends BaseActivity implements OnClickListener {
 				Tools.showNewToast(this, "请填写可支配收入");
 				return;
 			}
-			Constant.poor.setConstruction(tv_construction.getText().toString().trim()+"");
-			Constant.poor.setHouseArea(et_area.getText().toString().trim()+"");
-			Constant.poor.setLandArea(et_land.getText().toString().trim()+"");
-			Constant.poor.setHillArea(et_hill.getText().toString().trim()+"");
-			Constant.poor.setDominate(et_dominate.getText().toString().trim()+"");
+			Constant.poor.setZfjg(tv_construction.getText().toString().trim()+"");
+			Constant.poor.setZzArea(et_area.getText().toString().trim()+"");
+			Constant.poor.setGdArea(et_land.getText().toString().trim()+"");
+			Constant.poor.setSlArea(et_hill.getText().toString().trim()+"");
+			Constant.poor.setRjsrqk(et_dominate.getText().toString().trim()+"");
 			finish();
 			break;
 		case R.id.rl_construction:

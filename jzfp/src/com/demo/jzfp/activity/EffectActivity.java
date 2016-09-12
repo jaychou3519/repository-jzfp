@@ -66,28 +66,28 @@ public class EffectActivity extends BaseActivity implements OnClickListener {
 	protected void initData() {
 		conditions = new String[]{"是", "否"};
 		
-		if(!TextUtils.isEmpty(Constant.poor.getDate()))
-			tv_time.setText(Constant.poor.getDate());
-		if(!TextUtils.isEmpty(Constant.poor.getIncome()))
-			et_income.setText(Constant.poor.getIncome());
-		if(!TextUtils.isEmpty(Constant.poor.getAllIncome()))
-			et_allIncome.setText(Constant.poor.getAllIncome());
-		if(!TextUtils.isEmpty(Constant.poor.getHouseSafe()))
-			et_houseSafe.setText(Constant.poor.getHouseSafe());
-		if(!TextUtils.isEmpty(Constant.poor.getMedical()))
-			et_medical.setText(Constant.poor.getMedical());
-		if(!TextUtils.isEmpty(Constant.poor.getCompulsoryEducation()))
-			et_education.setText(Constant.poor.getCompulsoryEducation());
-		if(!TextUtils.isEmpty(Constant.poor.getCondition()))
-			tv_condition.setText(Constant.poor.getCondition());
-		if(!TextUtils.isEmpty(Constant.poor.getOrganization()))
-			et_organization.setText(Constant.poor.getOrganization());
-		if(!TextUtils.isEmpty(Constant.poor.getFzr()))
-			et_name.setText(Constant.poor.getFzr());
-		if(!TextUtils.isEmpty(Constant.poor.getFzrTel()))
-			et_tel.setText(Constant.poor.getFzrTel());
-		if(!TextUtils.isEmpty(Constant.poor.getBffzr()))
-			et_helpMan.setText(Constant.poor.getBffzr());
+		if(!TextUtils.isEmpty(Constant.poor.getTdataResult().getTpDate()))
+			tv_time.setText(Constant.poor.getTdataResult().getTpDate());
+		if(!TextUtils.isEmpty(Constant.poor.getTdataResult().getJtsrRjsr()))
+			et_income.setText(Constant.poor.getTdataResult().getJtsrRjsr());
+		if(!TextUtils.isEmpty(Constant.poor.getTdataResult().getJtsrZsr()))
+			et_allIncome.setText(Constant.poor.getTdataResult().getJtsrZsr());
+		if(!TextUtils.isEmpty(Constant.poor.getTdataResult().getAddressSafe()))
+			et_houseSafe.setText(Constant.poor.getTdataResult().getAddressSafe());
+		if(!TextUtils.isEmpty(Constant.poor.getTdataResult().getJbshbzYl()))
+			et_medical.setText(Constant.poor.getTdataResult().getJbshbzYl());
+		if(!TextUtils.isEmpty(Constant.poor.getTdataResult().getJbshbzYwjy()))
+			et_education.setText(Constant.poor.getTdataResult().getJbshbzYwjy());
+		if(!TextUtils.isEmpty(Constant.poor.getTdataResult().getJffhtptj_name()))
+			tv_condition.setText(Constant.poor.getTdataResult().getJffhtptj_name());
+		if(!TextUtils.isEmpty(Constant.poor.getTdataHelper().getJdbfzrOrgname()))
+			et_organization.setText(Constant.poor.getTdataHelper().getJdbfzrOrgname());
+		if(!TextUtils.isEmpty(Constant.poor.getTdataHelper().getJdbfzrOrger()))
+			et_name.setText(Constant.poor.getTdataHelper().getJdbfzrOrger());
+		if(!TextUtils.isEmpty(Constant.poor.getTdataHelper().getBfzrrPhone()))
+			et_tel.setText(Constant.poor.getTdataHelper().getBfzrrPhone());
+		if(!TextUtils.isEmpty(Constant.poor.getTdataHelper().getJdbfzrr()))
+			et_helpMan.setText(Constant.poor.getTdataHelper().getJdbfzrr());
 		}
 
 	@Override
@@ -159,17 +159,17 @@ public class EffectActivity extends BaseActivity implements OnClickListener {
 	 * 设置贫因户信息
 	 */
 	private void setData(){
-		Constant.poor.setDate(tv_time.getText().toString().trim()+"");
-		Constant.poor.setIncome(et_income.getText().toString().trim()+"");
-		Constant.poor.setAllIncome(et_allIncome.getText().toString().trim()+"");
-		Constant.poor.setHouseSafe(et_houseSafe.getText().toString().trim()+"");
-		Constant.poor.setMedical(et_medical.getText().toString().trim()+"");
-		Constant.poor.setCompulsoryEducation(et_education.getText().toString().trim()+"");
-		Constant.poor.setCondition(tv_condition.getText().toString().trim()+"");
-		Constant.poor.setOrganization(et_organization.getText().toString().trim()+"");
-		Constant.poor.setFzr(et_name.getText().toString().trim()+"");
-		Constant.poor.setFzrTel(et_tel.getText().toString().trim()+"");
-		Constant.poor.setBffzr(et_helpMan.getText().toString().trim()+"");
+		Constant.poor.getTdataResult().setTpDate(tv_time.getText().toString().trim()+"");
+		Constant.poor.getTdataResult().setJtsrRjsr(et_income.getText().toString().trim()+"");
+		Constant.poor.getTdataResult().setJtsrZsr(et_allIncome.getText().toString().trim()+"");
+		Constant.poor.getTdataResult().setAddressSafe(et_houseSafe.getText().toString().trim()+"");
+		Constant.poor.getTdataResult().setJbshbzYl(et_medical.getText().toString().trim()+"");
+		Constant.poor.getTdataResult().setJbshbzYwjy(et_education.getText().toString().trim()+"");
+		Constant.poor.getTdataResult().setJffhtptj_name(tv_condition.getText().toString().trim()+"");
+		Constant.poor.getTdataHelper().setJdbfzrOrgname(et_organization.getText().toString().trim()+"");
+		Constant.poor.getTdataHelper().setJdbfzrOrger(et_name.getText().toString().trim()+"");
+		Constant.poor.getTdataHelper().setBfzrrPhone(et_tel.getText().toString().trim()+"");
+		Constant.poor.getTdataHelper().setJdbfzrr(et_helpMan.getText().toString().trim()+"");
 	}
 
 }

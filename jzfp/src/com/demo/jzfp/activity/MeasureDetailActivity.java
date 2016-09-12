@@ -63,11 +63,11 @@ public class MeasureDetailActivity extends BaseActivity implements OnClickListen
 		MeasureDetailAdapter adapter = new MeasureDetailAdapter(this, strs);
 		gv_checkbox.setAdapter(adapter);
 		
-		if(title.equals(Constant.poor.getMeasure())){
-			if(!TextUtils.isEmpty(Constant.poor.getMoney()))
-				et_income.setText(Constant.poor.getMoney());
-			if(!TextUtils.isEmpty(Constant.poor.getRealCase()))
-				et_illustrate.setText(Constant.poor.getRealCase());
+		if(title.equals(Constant.poor.getTdataAction().getActionType())){
+			if(!TextUtils.isEmpty(Constant.poor.getTdataAction().getActionMoney()))
+				et_income.setText(Constant.poor.getTdataAction().getActionMoney());
+			if(!TextUtils.isEmpty(Constant.poor.getTdataAction().getRemark()))
+				et_illustrate.setText(Constant.poor.getTdataAction().getRemark());
 		}
 		
 	}
@@ -87,10 +87,9 @@ public class MeasureDetailActivity extends BaseActivity implements OnClickListen
 	 * 设置贫因户信息
 	 */
 	private void setData(){
-		Constant.poor.setMeasure(title);
-		Constant.poor.setMeasureDetail("");
-		Constant.poor.setMoney(et_income.getText().toString().trim()+"");
-		Constant.poor.setRealCase(et_illustrate.getText().toString().trim()+"");
+		Constant.poor.getTdataAction().setActionType(title);
+		Constant.poor.getTdataAction().setActionMoney(et_income.getText().toString().trim()+"");
+		Constant.poor.getTdataAction().setRemark(et_illustrate.getText().toString().trim()+"");
 	}
 	
 

@@ -53,7 +53,7 @@ public class MeasuresAdapter extends BaseAdapter {
 			holder = (Holder) convertView.getTag();
 		}
 		holder.tv_measures.setText(measures);
-		if(!TextUtils.isEmpty(Constant.poor.getMeasure()) && measures.contains(Constant.poor.getMeasure())){
+		if(!TextUtils.isEmpty(Constant.poor.getTdataAction().getActionType()) && measures.contains(Constant.poor.getTdataAction().getActionType())){
 			holder.tv_measures.setTextColor(Color.rgb(255, 77, 77));
 		}else {
 			holder.tv_measures.setTextColor(Color.rgb(0, 0, 0));

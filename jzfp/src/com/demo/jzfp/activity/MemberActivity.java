@@ -12,7 +12,7 @@ import android.widget.TextView;
 
 import com.demo.jzfp.R;
 import com.demo.jzfp.apdater.MemberAdapter;
-import com.demo.jzfp.entity.Member;
+import com.demo.jzfp.entity.TdataFamily;
 import com.demo.jzfp.utils.Constant;
 import com.demo.jzfp.utils.MyApplication;
 
@@ -20,7 +20,7 @@ public class MemberActivity extends BaseActivity implements OnClickListener {
 	private MyApplication activityList;
 	private ListView lv_member;
 	private MemberAdapter adapter;
-	private List<Member> members = new ArrayList<Member>();
+	private List<TdataFamily> members = new ArrayList<TdataFamily>();
 
 	@Override
 	protected void setView() {
@@ -46,7 +46,7 @@ public class MemberActivity extends BaseActivity implements OnClickListener {
 	protected void initData() {
 		members.addAll(Constant.members);
 		if (members.isEmpty()) {
-			members.add(new Member());
+			members.add(new TdataFamily());
 		}
 		adapter = new MemberAdapter(this,members);
 		lv_member.setAdapter(adapter);
@@ -60,7 +60,7 @@ public class MemberActivity extends BaseActivity implements OnClickListener {
 			finish();
 			break;
 		case R.id.ll_add:
-			members.add(new Member());
+			members.add(new TdataFamily());
 			adapter.notifyDataSetChanged();
 			break;
 		}
@@ -68,7 +68,7 @@ public class MemberActivity extends BaseActivity implements OnClickListener {
 
 	private void setData(){
 		for (int i = 0; i < members.size(); i++) {
-			Member member = members.get(i);
+			TdataFamily member = members.get(i);
 			if(TextUtils.isEmpty(member.getMemberName()) || TextUtils.isEmpty(member.getYhzgx()) || TextUtils.isEmpty(member.getMemberSex())){
 				members.remove(i);
 				i--;

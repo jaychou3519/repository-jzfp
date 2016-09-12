@@ -5,7 +5,7 @@ import java.util.Calendar;
 import java.util.List;
 
 import com.demo.jzfp.R;
-import com.demo.jzfp.entity.Member;
+import com.demo.jzfp.entity.TdataFamily;
 import com.demo.jzfp.utils.Constant;
 import com.demo.jzfp.view.DoubleDatePickerDialog;
 import com.demo.jzfp.view.WheelView;
@@ -31,7 +31,7 @@ import android.widget.TextView;
 
 public class MemberAdapter extends BaseAdapter {
 	private Context context;
-	private List<Member> members;
+	private List<TdataFamily> members;
 	private LayoutInflater inflater;
 	private String[] healths = { "患有大病", "残疾", "长期慢性病", "健康" };
 	private String[] relations = { "之配偶", "之子", "之女", "之父", "之母", "之孙子", "之孙女", "之儿媳", "之女婿", "之公公", "之婆婆", "之岳父", "之岳母" };
@@ -39,7 +39,7 @@ public class MemberAdapter extends BaseAdapter {
 	private String relation;
 	private String health;
 
-	public MemberAdapter(Context context, List<Member> members) {
+	public MemberAdapter(Context context, List<TdataFamily> members) {
 		this.context = context;
 		this.members = members;
 		this.inflater = LayoutInflater.from(context);
@@ -122,7 +122,7 @@ public class MemberAdapter extends BaseAdapter {
 	}
 
 	private void initView(Holder holder, int position) {
-		Member member = members.get(position);
+		TdataFamily member = members.get(position);
 		Log.i("jjy", "MemberName="+member.getMemberName());
 		if (!TextUtils.isEmpty(member.getMemberName())) {
 			holder.et_name.setText(member.getMemberName());
@@ -173,11 +173,11 @@ public class MemberAdapter extends BaseAdapter {
 	 * 
 	 */
 	private void setListener(final Holder holder, int position) {
-		final Member member = members.get(position);
+		final TdataFamily member = members.get(position);
 		holder.et_name.addTextChangedListener(new TextWatcher() {
 			@Override
 			public void onTextChanged(CharSequence s, int start, int before, int count) {
-				Member mb = (Member) holder.et_name.getTag();
+				TdataFamily mb = (TdataFamily) holder.et_name.getTag();
 				mb.setMemberName(s.toString().trim());
 			}
 
@@ -247,7 +247,7 @@ public class MemberAdapter extends BaseAdapter {
 		holder.et_work.addTextChangedListener(new TextWatcher() {
 			@Override
 			public void onTextChanged(CharSequence s, int start, int before, int count) {
-				Member mb = (Member) holder.et_work.getTag();
+				TdataFamily mb = (TdataFamily) holder.et_work.getTag();
 				mb.setOther(s.toString().trim());
 			}
 
@@ -265,7 +265,7 @@ public class MemberAdapter extends BaseAdapter {
 	/**
 	 * 选择弹出窗
 	 */
-	private void showWheelView(final Holder holder, String title, String[] strs, final int table, final Member member) {
+	private void showWheelView(final Holder holder, String title, String[] strs, final int table, final TdataFamily member) {
 		View outerView = inflater.inflate(R.layout.wheel_view, null);
 		WheelView wv = (WheelView) outerView.findViewById(R.id.wheel_view_wv);
 		wv.setOffset(1);

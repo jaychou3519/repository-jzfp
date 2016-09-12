@@ -50,8 +50,8 @@ public class ReasonActivity extends BaseActivity implements OnClickListener {
 		reasons = new String[] { "因学", "因灾", "缺资源、耕地", "因交通、电力等条件", "缺资金", "缺技术", "因病", "其 他", "缺劳动力" };
 		if(!TextUtils.isEmpty(Constant.poor.getPoorReason()))
 			tv_reason.setText(Constant.poor.getPoorReason());
-		if(!TextUtils.isEmpty(Constant.poor.getReasonIllustrate()))
-			et_illustrate.setText(Constant.poor.getReasonIllustrate());	
+		if(!TextUtils.isEmpty(Constant.poor.getRemark()))
+			et_illustrate.setText(Constant.poor.getRemark());	
 	}
 
 	@Override
@@ -59,7 +59,7 @@ public class ReasonActivity extends BaseActivity implements OnClickListener {
 		switch (v.getId()) {
 		case R.id.tv_save:
 			Constant.poor.setPoorReason(tv_reason.getText().toString().trim()+"");
-			Constant.poor.setReasonIllustrate(et_illustrate.getText().toString().trim()+"");
+			Constant.poor.setRemark(et_illustrate.getText().toString().trim()+"");
 			finish();
 			break;
 		case R.id.rl_reason:

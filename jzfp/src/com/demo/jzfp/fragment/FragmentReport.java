@@ -12,8 +12,8 @@ import com.demo.jzfp.activity.EffectActivity;
 import com.demo.jzfp.activity.MeasuresActivity;
 import com.demo.jzfp.activity.MemberActivity;
 import com.demo.jzfp.activity.ReasonActivity;
-import com.demo.jzfp.entity.Member;
-import com.demo.jzfp.entity.PoorMessage;
+import com.demo.jzfp.entity.TdataFamily;
+import com.demo.jzfp.entity.TdataCountryman;
 import com.demo.jzfp.utils.AbImageUtil;
 import com.demo.jzfp.utils.Constant;
 import com.demo.jzfp.utils.PermissionsUtils;
@@ -350,15 +350,15 @@ public class FragmentReport extends Fragment implements OnClickListener, WebServ
 	 * 设置贫困户信息
 	 */
 	private void setData() {
-		Constant.poor.setName(et_name.getText().toString().trim() + "");
+		Constant.poor.setCountryman(et_name.getText().toString().trim() + "");
 		Constant.poor.setPoorState(tv_state.getText().toString().trim() + "");
 		Constant.poor.setSex(sex);
 		Constant.poor.setAge(et_age.getText().toString().trim() + "");
-		Constant.poor.setIdentity(et_identity.getText().toString().trim() + "");
-		Constant.poor.setTel(et_tel.getText().toString().trim() + "");
-		Constant.poor.setEducation(tv_education.getText().toString().trim() + "");
+		Constant.poor.setCard(et_identity.getText().toString().trim() + "");
+		Constant.poor.setTelphone(et_tel.getText().toString().trim() + "");
+		Constant.poor.setWhcd(tv_education.getText().toString().trim() + "");
 		Constant.poor.setHealth(tv_health.getText().toString().trim() + "");
-		Constant.poor.setMembers(Constant.members);
+		Constant.poor.setTdataFamilys(Constant.members);
 		String data = JSON.toJSONString(Constant.poor);
 		Log.i("haha", data);
 		LinkedHashMap<String, String> map = new LinkedHashMap<String, String>();
@@ -381,7 +381,7 @@ public class FragmentReport extends Fragment implements OnClickListener, WebServ
 			et_tel.setText("");
 			tv_education.setText("");
 			tv_health.setText("");
-			Constant.poor = new PoorMessage();
+			Constant.poor = new TdataCountryman();
 			Constant.members.clear();
 		}
 
