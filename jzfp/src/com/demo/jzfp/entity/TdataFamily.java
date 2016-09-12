@@ -1,18 +1,17 @@
 package com.demo.jzfp.entity;
 
 public class TdataFamily {
-	private String memberName;//成员名字
+	private String familyName;//成员名字
 	private String yhzgx;//与户主关系
-	private String memberSex;//成员性别
-	private String memberBirthday;//成员出生日期
-	private String memberHealth;//成员健康
-	private String other;//其它
-	
-	public String getMemberName() {
-		return memberName;
+	private String sex;//成员性别
+	private String birthday;//成员出生日期
+	private String jkzk;//成员健康
+	private String workDesc;//其它
+	public String getFamilyName() {
+		return familyName;
 	}
-	public void setMemberName(String memberName) {
-		this.memberName = memberName;
+	public void setFamilyName(String familyName) {
+		this.familyName = familyName;
 	}
 	public String getYhzgx() {
 		return yhzgx;
@@ -20,31 +19,28 @@ public class TdataFamily {
 	public void setYhzgx(String yhzgx) {
 		this.yhzgx = yhzgx;
 	}
-	public String getMemberSex() {
-		return memberSex;
+	public String getSex() {
+		return sex;
 	}
-	public void setMemberSex(String memberSex) {
-		this.memberSex = memberSex;
+	public void setSex(String sex) {
+		this.sex = sex;
 	}
-	public String getMemberBirthday() {
-		return memberBirthday;
+	public String getBirthday() {
+		return birthday;
 	}
-	public void setMemberBirthday(String memberBirthday) {
-		this.memberBirthday = memberBirthday;
+	public void setBirthday(String birthday) {
+		this.birthday = birthday;
 	}
-	public String getMemberHealth() {
-		return memberHealth;
+	public String getJkzk() {
+		return jkzk;
 	}
-	public void setMemberHealth(String memberHealth) {
-		this.memberHealth = memberHealth;
+	public void setJkzk(String jkzk) {
+		this.jkzk = jkzk;
 	}
-	public String getOther() {
-		return other;
+	public String getWorkDesc() {
+		return workDesc;
 	}
-	public void setOther(String other) {
-		this.other = other;
+	public void setWorkDesc(String workDesc) {
+		this.workDesc = workDesc;
 	}
-	
-	
-	
 }
