@@ -98,6 +98,7 @@ public class EconomyActivity extends BaseActivity implements OnClickListener {
 			if(TextUtils.isEmpty(construction))
 				construction = constructions[1];
 			tv_construction.setText(construction);
+			construction = "";
 			dialog.dismiss();
 			break;
 		case R.id.txt_cancel:

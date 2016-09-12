@@ -65,6 +65,7 @@ public class ReasonActivity extends BaseActivity implements OnClickListener {
 			if(TextUtils.isEmpty(reason))
 				reason = reasons[1];
 			tv_reason.setText(reason);
+			reason = "";
 			dialog.dismiss();
 			break;
 		case R.id.txt_cancel:
