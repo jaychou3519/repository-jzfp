@@ -1,7 +1,10 @@
 package com.demo.jzfp.fragment;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.LinkedHashMap;
 
+import com.alibaba.fastjson.JSON;
 import com.demo.jzfp.R;
 import com.demo.jzfp.activity.AducationActivity;
 import com.demo.jzfp.activity.EconomyActivity;
@@ -9,10 +12,14 @@ import com.demo.jzfp.activity.EffectActivity;
 import com.demo.jzfp.activity.MeasuresActivity;
 import com.demo.jzfp.activity.MemberActivity;
 import com.demo.jzfp.activity.ReasonActivity;
+import com.demo.jzfp.entity.Member;
+import com.demo.jzfp.entity.PoorMessage;
 import com.demo.jzfp.utils.AbImageUtil;
 import com.demo.jzfp.utils.Constant;
 import com.demo.jzfp.utils.PermissionsUtils;
 import com.demo.jzfp.utils.PhotoUtils;
+import com.demo.jzfp.utils.RequestWebService;
+import com.demo.jzfp.utils.RequestWebService.WebServiceCallback;
 import com.demo.jzfp.utils.Tools;
 import com.demo.jzfp.view.WheelView;
 
@@ -24,6 +31,7 @@ import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -34,7 +42,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-public class FragmentReport extends Fragment implements OnClickListener {
+public class FragmentReport extends Fragment implements OnClickListener, WebServiceCallback {
 	private View v;
 	private String sex = ""; // 姓别 0：未选 1：男 2：女
 	private ImageView iv_sex_women, iv_headpicture;
@@ -189,12 +197,12 @@ public class FragmentReport extends Fragment implements OnClickListener {
 			break;
 		case R.id.txt_sure:
 			if (table == 1) {
-				if(TextUtils.isEmpty(state))
+				if (TextUtils.isEmpty(state))
 					state = states[1];
 				tv_state.setText(state);
 				state = "";
 			} else if (table == 2) {
-				if(TextUtils.isEmpty(health))
+				if (TextUtils.isEmpty(health))
 					health = healths[1];
 				tv_health.setText(health);
 				health = "";
@@ -241,7 +249,7 @@ public class FragmentReport extends Fragment implements OnClickListener {
 		super.onActivityResult(requestCode, resultCode, data);
 		switch (requestCode) {
 		case 300:
-			if(data != null && !TextUtils.isEmpty(data.getStringExtra("education")))
+			if (data != null && !TextUtils.isEmpty(data.getStringExtra("education")))
 				tv_education.setText(data.getStringExtra("education"));
 			break;
 		case PhotoUtils.REQUEST_TAKE_PICTURE:// 相机返回结果
@@ -303,39 +311,34 @@ public class FragmentReport extends Fragment implements OnClickListener {
 		txtCancle.setOnClickListener(this);
 	}
 
-	/*@Override
-	public void onStart() {
-		super.onStart();
-		if (!TextUtils.isEmpty(Constant.poor.getName()))
-			et_name.setText(Constant.poor.getName());
-		if (!TextUtils.isEmpty(Constant.poor.getPoorState()))
-			tv_state.setText(Constant.poor.getPoorState());
-		if (!TextUtils.isEmpty(Constant.poor.getSex())) {
-			if ("女".equals(Constant.poor.getSex())) {
-				sex = "女";
-				iv_sex_women.setImageResource(R.drawable.woman_yes);
-				tv_sex_women.setTextColor(Color.rgb(155, 89, 182));
-				iv_sex_man.setImageResource(R.drawable.man_no);
-				tv_sex_man.setTextColor(Color.rgb(220, 220, 200));
-			} else if ("男".equals(Constant.poor.getSex())) {
-				sex = "男";
-				iv_sex_women.setImageResource(R.drawable.woman_no);
-				tv_sex_women.setTextColor(Color.rgb(220, 220, 220));
-				iv_sex_man.setImageResource(R.drawable.man_yes);
-				tv_sex_man.setTextColor(Color.rgb(52, 152, 219));
-			}
-		}
-		if (!TextUtils.isEmpty(Constant.poor.getAge()))
-			et_age.setText(Constant.poor.getAge());
-		if (!TextUtils.isEmpty(Constant.poor.getIdentity()))
-			et_identity.setText(Constant.poor.getIdentity());
-		if (!TextUtils.isEmpty(Constant.poor.getTel()))
-			et_tel.setText(Constant.poor.getTel());
-		if (!TextUtils.isEmpty(Constant.poor.getEducation()))
-			tv_education.setText(Constant.poor.getEducation());
-		if (!TextUtils.isEmpty(Constant.poor.getHealth()))
-			tv_health.setText(Constant.poor.getHealth());
-	}*/
+	/*
+	 * @Override public void onStart() { super.onStart(); if
+	 * (!TextUtils.isEmpty(Constant.poor.getName()))
+	 * et_name.setText(Constant.poor.getName()); if
+	 * (!TextUtils.isEmpty(Constant.poor.getPoorState()))
+	 * tv_state.setText(Constant.poor.getPoorState()); if
+	 * (!TextUtils.isEmpty(Constant.poor.getSex())) { if
+	 * ("女".equals(Constant.poor.getSex())) { sex = "女";
+	 * iv_sex_women.setImageResource(R.drawable.woman_yes);
+	 * tv_sex_women.setTextColor(Color.rgb(155, 89, 182));
+	 * iv_sex_man.setImageResource(R.drawable.man_no);
+	 * tv_sex_man.setTextColor(Color.rgb(220, 220, 200)); } else if
+	 * ("男".equals(Constant.poor.getSex())) { sex = "男";
+	 * iv_sex_women.setImageResource(R.drawable.woman_no);
+	 * tv_sex_women.setTextColor(Color.rgb(220, 220, 220));
+	 * iv_sex_man.setImageResource(R.drawable.man_yes);
+	 * tv_sex_man.setTextColor(Color.rgb(52, 152, 219)); } } if
+	 * (!TextUtils.isEmpty(Constant.poor.getAge()))
+	 * et_age.setText(Constant.poor.getAge()); if
+	 * (!TextUtils.isEmpty(Constant.poor.getIdentity()))
+	 * et_identity.setText(Constant.poor.getIdentity()); if
+	 * (!TextUtils.isEmpty(Constant.poor.getTel()))
+	 * et_tel.setText(Constant.poor.getTel()); if
+	 * (!TextUtils.isEmpty(Constant.poor.getEducation()))
+	 * tv_education.setText(Constant.poor.getEducation()); if
+	 * (!TextUtils.isEmpty(Constant.poor.getHealth()))
+	 * tv_health.setText(Constant.poor.getHealth()); }
+	 */
 
 	@Override
 	public void onStop() {
@@ -350,10 +353,38 @@ public class FragmentReport extends Fragment implements OnClickListener {
 		Constant.poor.setName(et_name.getText().toString().trim() + "");
 		Constant.poor.setPoorState(tv_state.getText().toString().trim() + "");
 		Constant.poor.setSex(sex);
-		Constant.poor.setAge(et_age.getText().toString().trim()+"");
+		Constant.poor.setAge(et_age.getText().toString().trim() + "");
 		Constant.poor.setIdentity(et_identity.getText().toString().trim() + "");
 		Constant.poor.setTel(et_tel.getText().toString().trim() + "");
 		Constant.poor.setEducation(tv_education.getText().toString().trim() + "");
 		Constant.poor.setHealth(tv_health.getText().toString().trim() + "");
+		Constant.poor.setMembers(Constant.members);
+		String data = JSON.toJSONString(Constant.poor);
+		Log.i("haha", data);
+		LinkedHashMap<String, String> map = new LinkedHashMap<String, String>();
+		map.put("org0", data);
+		RequestWebService.send("insertTDataCountryman", map, this, 100);
 	}
+
+	@Override
+	public void result(String reulst, int requestCode) {
+		// TODO Auto-generated method stub
+		if (reulst != null) {
+			et_name.setText("");
+			tv_state.setText("");
+			iv_sex_women.setImageResource(R.drawable.woman_no);
+			tv_sex_women.setTextColor(Color.rgb(220, 220, 220));
+			iv_sex_man.setImageResource(R.drawable.man_no);
+			tv_sex_man.setTextColor(Color.rgb(220, 220, 220));
+			et_age.setText("");
+			et_identity.setText("");
+			et_tel.setText("");
+			tv_education.setText("");
+			tv_health.setText("");
+			Constant.poor = new PoorMessage();
+			Constant.members.clear();
+		}
+
+	}
+
 }

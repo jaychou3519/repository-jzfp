@@ -21,6 +21,7 @@ public class ReasonActivity extends BaseActivity implements OnClickListener {
 	private String[] reasons;
 	private TextView tv_reason;
 	private String reason = "";
+	private EditText et_illustrate;
 
 	@Override
 	protected void setView() {
@@ -38,7 +39,7 @@ public class ReasonActivity extends BaseActivity implements OnClickListener {
 		RelativeLayout rl_reason = (RelativeLayout) findViewById(R.id.rl_reason);
 		tv_reason = (TextView) findViewById(R.id.tv_reason);
 
-		EditText et_illustrate = (EditText) findViewById(R.id.et_illustrate);
+		et_illustrate = (EditText) findViewById(R.id.et_illustrate);
 
 		tv_save.setOnClickListener(this);
 		rl_reason.setOnClickListener(this);
@@ -49,13 +50,16 @@ public class ReasonActivity extends BaseActivity implements OnClickListener {
 		reasons = new String[] { "因学", "因灾", "缺资源、耕地", "因交通、电力等条件", "缺资金", "缺技术", "因病", "其 他", "缺劳动力" };
 		if(!TextUtils.isEmpty(Constant.poor.getPoorReason()))
 			tv_reason.setText(Constant.poor.getPoorReason());
+		if(!TextUtils.isEmpty(Constant.poor.getReasonIllustrate()))
+			et_illustrate.setText(Constant.poor.getReasonIllustrate());	
 	}
 
 	@Override
 	public void onClick(View v) {
 		switch (v.getId()) {
 		case R.id.tv_save:
-			Constant.poor.setPoorReason(reason);
+			Constant.poor.setPoorReason(tv_reason.getText().toString().trim()+"");
+			Constant.poor.setReasonIllustrate(et_illustrate.getText().toString().trim()+"");
 			finish();
 			break;
 		case R.id.rl_reason:
