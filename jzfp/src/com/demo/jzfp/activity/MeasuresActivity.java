@@ -16,6 +16,7 @@ import com.demo.jzfp.utils.MyApplication;
 public class MeasuresActivity extends BaseActivity {
 	private MyApplication activityList;
 	private ListView lv_measures;
+	private MeasuresAdapter adapter;
 	
 	@Override
 	protected void setView() {
@@ -24,13 +25,11 @@ public class MeasuresActivity extends BaseActivity {
 		activityList.addActivity(this);
 		setTitleText("帮扶措施");
 		setOnback(this);
-
 	}
 
 	@Override
 	protected void initView() {
 		lv_measures = (ListView) findViewById(R.id.lv_measures);
-
 	}
 
 	@Override
@@ -46,7 +45,7 @@ public class MeasuresActivity extends BaseActivity {
 		measureses.add("政策性补助");
 		measureses.add("水、电、路等帮扶工程收益情况");
 		
-		MeasuresAdapter adapter = new MeasuresAdapter(this, measureses);
+		adapter = new MeasuresAdapter(this, measureses);
 		lv_measures.setAdapter(adapter);
 		
 		lv_measures.setOnItemClickListener(new OnItemClickListener() {
@@ -63,5 +62,10 @@ public class MeasuresActivity extends BaseActivity {
 			}
 		});
 	}
-
+	
+	@Override
+	protected void onStart() {
+		super.onStart();
+		adapter.notifyDataSetChanged();
+	}
 }
