@@ -20,7 +20,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@+id/tv"
-        android:layout_marginBottom="@dimen/y25"
+        android:layout_marginBottom="@dimen/y50"
         android:layout_gravity="center_vertical"
         android:orientation="vertical" >
 
