@@ -93,8 +93,8 @@ public class MemberAdapter extends BaseAdapter {
 		} else {
 			holder = (Holder) convertView.getTag();
 		}
-		holder.et_name.setTag(Constant.members.get(position));
-		holder.et_work.setTag(Constant.members.get(position));
+		holder.et_name.setTag(members.get(position));
+		holder.et_work.setTag(members.get(position));
 		if(position==members.size()-1)
 			setListener(holder, position);
 
@@ -122,7 +122,7 @@ public class MemberAdapter extends BaseAdapter {
 	}
 
 	private void initView(Holder holder, int position) {
-		Member member = Constant.members.get(position);
+		Member member = members.get(position);
 		Log.i("jjy", "MemberName="+member.getMemberName());
 		if (!TextUtils.isEmpty(member.getMemberName())) {
 			holder.et_name.setText(member.getMemberName());
@@ -173,7 +173,7 @@ public class MemberAdapter extends BaseAdapter {
 	 * 
 	 */
 	private void setListener(final Holder holder, int position) {
-		final Member member = Constant.members.get(position);
+		final Member member = members.get(position);
 		holder.et_name.addTextChangedListener(new TextWatcher() {
 			@Override
 			public void onTextChanged(CharSequence s, int start, int before, int count) {
