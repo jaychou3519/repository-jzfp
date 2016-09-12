@@ -3,6 +3,7 @@ package com.demo.jzfp.activity;
 import java.util.ArrayList;
 import java.util.List;
 
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -11,12 +12,18 @@ import android.widget.ListView;
 
 import com.demo.jzfp.R;
 import com.demo.jzfp.apdater.MeasuresAdapter;
+import com.demo.jzfp.dao.DictDataInfoDao;
+import com.demo.jzfp.dao.impl.DictDataInfoDaoImpl;
+import com.demo.jzfp.database.DatabaseHelper;
 import com.demo.jzfp.utils.MyApplication;
 
 public class MeasuresActivity extends BaseActivity {
 	private MyApplication activityList;
 	private ListView lv_measures;
 	private MeasuresAdapter adapter;
+	private List<String> measureses;
+	private SQLiteDatabase db = null;
+	private DictDataInfoDao dictDataDao = new DictDataInfoDaoImpl();
 	
 	@Override
 	protected void setView() {
@@ -34,16 +41,8 @@ public class MeasuresActivity extends BaseActivity {
 
 	@Override
 	protected void initData() {
-		final List<String> measureses = new ArrayList<String>();
-		measureses.add("发展生产脱贫");
-		measureses.add("易地扶贫搬迁脱贫");
-		measureses.add("发展教育脱贫");
-		measureses.add("社会保障兜底");
-		measureses.add("生态补偿脱贫");
-		measureses.add("转移就业脱贫");
-		measureses.add("医疗保障求助");
-		measureses.add("政策性补助");
-		measureses.add("水、电、路等帮扶工程收益情况");
+		db = (new DatabaseHelper(this)).getWritableDatabase();
+		measureses = dictDataDao.queryDictValueByType(db, "qgyp");
 		
 		adapter = new MeasuresAdapter(this, measureses);
 		lv_measures.setAdapter(adapter);
