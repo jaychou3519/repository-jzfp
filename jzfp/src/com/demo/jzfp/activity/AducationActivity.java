@@ -92,7 +92,7 @@ public class AducationActivity extends BaseActivity implements OnClickListener{
 			aducation = aducations[6];
 			break;
 		}
-		intent.putExtra("aducation", aducation);
+		intent.putExtra("education", aducation);
 		setResult(300, intent);
 	}
 

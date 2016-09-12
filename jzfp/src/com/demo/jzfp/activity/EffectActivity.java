@@ -115,6 +115,7 @@ public class EffectActivity extends BaseActivity implements OnClickListener {
 			if(TextUtils.isEmpty(condition))
 				condition = conditions[1];
 			tv_condition.setText(condition);
+			condition = "";
 			dialog.dismiss();
 			break;
 		case R.id.txt_cancel:

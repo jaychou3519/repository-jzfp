@@ -192,10 +192,12 @@ public class FragmentReport extends Fragment implements OnClickListener {
 				if(TextUtils.isEmpty(state))
 					state = states[1];
 				tv_state.setText(state);
+				state = "";
 			} else if (table == 2) {
 				if(TextUtils.isEmpty(health))
 					health = healths[1];
 				tv_health.setText(health);
+				health = "";
 			}
 			dialog.dismiss();
 			break;
@@ -239,7 +241,7 @@ public class FragmentReport extends Fragment implements OnClickListener {
 		super.onActivityResult(requestCode, resultCode, data);
 		switch (requestCode) {
 		case 300:
-			if(data != null && TextUtils.isEmpty(data.getStringExtra("education")))
+			if(data != null && !TextUtils.isEmpty(data.getStringExtra("education")))
 				tv_education.setText(data.getStringExtra("education"));
 			break;
 		case PhotoUtils.REQUEST_TAKE_PICTURE:// 相机返回结果
