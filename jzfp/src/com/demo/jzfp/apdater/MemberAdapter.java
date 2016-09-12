@@ -15,6 +15,7 @@ import android.graphics.Color;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -92,10 +93,10 @@ public class MemberAdapter extends BaseAdapter {
 		} else {
 			holder = (Holder) convertView.getTag();
 		}
+		setListener(holder, member);
 
 		initView(holder, member);
 
-		setOnClickListener(holder, member);
 
 		return convertView;
 	}
@@ -166,20 +167,31 @@ public class MemberAdapter extends BaseAdapter {
 	 * 设置监听
 	 * 
 	 */
-	private void setOnClickListener(final Holder holder, final Member member) {
+	private void setListener(final Holder holder, final Member member) {
+		Log.i("hahaaaa", member.getMemberName()+"321");
 		holder.et_name.addTextChangedListener(new TextWatcher() {
+			String names = "";
+			String after = "";
 			@Override
 			public void onTextChanged(CharSequence s, int start, int before, int count) {
-
+				after = s.toString();
+				Log.i("hahaaaa", after+"after");
 			}
 
 			@Override
 			public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+				names = s.toString();
+				Log.i("hahaaaa", names+"names");
 			}
 
 			@Override
 			public void afterTextChanged(Editable s) {
-				member.setMemberName(s.toString().trim());
+				if(names.length()!=after.length()&&names.length()>0&&s.length()>0){
+					Log.i("haha", s.toString());
+					member.setMemberName(s.toString().trim());
+					Log.i("haha", member.getMemberName()+"123");
+				}
+				
 			}
 		});
 
