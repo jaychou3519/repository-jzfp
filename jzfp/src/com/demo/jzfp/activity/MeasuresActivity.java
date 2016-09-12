@@ -55,7 +55,6 @@ public class MeasuresActivity extends BaseActivity {
 				} else {
 					bundle.putString("title", measureses.get(position));
 				}
-				bundle.putInt("position",position);
 				openActivity(MeasureDetailActivity.class, bundle);
 			}
 		});

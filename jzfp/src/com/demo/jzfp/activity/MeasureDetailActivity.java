@@ -20,7 +20,6 @@ import com.demo.jzfp.utils.Constant;
 import com.demo.jzfp.utils.MyApplication;
 
 public class MeasureDetailActivity extends BaseActivity implements OnClickListener {
-	private int POSITION = 0;
 	private GridView gv_checkbox;
 	private EditText et_income, et_illustrate;
 	private String title;
@@ -34,7 +33,6 @@ public class MeasureDetailActivity extends BaseActivity implements OnClickListen
 		activityList.addActivity(this);
 		Bundle bundle = getIntent().getExtras();
 		title = bundle.getString("title");
-		POSITION = bundle.getInt("position");
 		setTitleText(title);
 		setOnback(this);
 	}
