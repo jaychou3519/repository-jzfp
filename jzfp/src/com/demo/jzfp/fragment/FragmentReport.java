@@ -303,7 +303,7 @@ public class FragmentReport extends Fragment implements OnClickListener {
 		txtCancle.setOnClickListener(this);
 	}
 
-	@Override
+	/*@Override
 	public void onStart() {
 		super.onStart();
 		if (!TextUtils.isEmpty(Constant.poor.getName()))
@@ -335,7 +335,7 @@ public class FragmentReport extends Fragment implements OnClickListener {
 			tv_education.setText(Constant.poor.getEducation());
 		if (!TextUtils.isEmpty(Constant.poor.getHealth()))
 			tv_health.setText(Constant.poor.getHealth());
-	}
+	}*/
 
 	@Override
 	public void onStop() {

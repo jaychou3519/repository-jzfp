@@ -137,7 +137,7 @@ public class FragmentHome extends BaseFragment implements AsynceHttpInterface{
 				String temperature = results.getResults().get(0).getWeather_data().get(0).getTemperature();
 				if(temperature.contains(" ~ ")){
 					int tpt = temperature.indexOf(" ~ ");
-					tv_temperature_range.setText(temperature.substring(tpt+3, temperature.length())+"°/"+temperature.substring(0, 2)+"°");
+					tv_temperature_range.setText(temperature.substring(tpt+2, temperature.length())+"°/"+temperature.substring(0, 2)+"°");
 				}
 				
 			} catch (JSONException e) {
