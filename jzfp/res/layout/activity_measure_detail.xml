@@ -88,7 +88,7 @@
         android:layout_marginLeft="@dimen/x20"
         android:gravity="center_vertical"
         android:textSize="@dimen/x13"
-        android:text="实际情况" />
+        android:text="备注" />
 
     <EditText
         android:id="@+id/et_illustrate"

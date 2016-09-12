@@ -1,8 +1,8 @@
 package com.demo.jzfp.activity;
 
-import java.util.ArrayList;
 import java.util.List;
 
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -13,6 +13,9 @@ import android.widget.TextView;
 
 import com.demo.jzfp.R;
 import com.demo.jzfp.apdater.MeasureDetailAdapter;
+import com.demo.jzfp.dao.DictDataInfoDao;
+import com.demo.jzfp.dao.impl.DictDataInfoDaoImpl;
+import com.demo.jzfp.database.DatabaseHelper;
 import com.demo.jzfp.utils.Constant;
 import com.demo.jzfp.utils.MyApplication;
 
@@ -21,6 +24,8 @@ public class MeasureDetailActivity extends BaseActivity implements OnClickListen
 	private GridView gv_checkbox;
 	private EditText et_income, et_illustrate;
 	private String title;
+	private SQLiteDatabase db = null;
+	private DictDataInfoDao dictDataDao = new DictDataInfoDaoImpl();
 
 	@Override
 	protected void setView() {
@@ -50,26 +55,16 @@ public class MeasureDetailActivity extends BaseActivity implements OnClickListen
 
 	@Override
 	protected void initData() {
-		List<String> strs = new ArrayList<String>();
-		strs.add("含种苗");
-		strs.add("资金直接帮扶");
-		strs.add("委托企业帮扶返利");
-		strs.add("入股合作社分红");
-		strs.add("产权收益扶贫");
-		strs.add("光伏扶贫");
-		strs.add("旅游从业扶贫");
-		strs.add("种养技术培训");
+		db = (new DatabaseHelper(this)).getWritableDatabase();
+		List<String> strs = dictDataDao.queryDictValueByType(db, title);
 
 		MeasureDetailAdapter adapter = new MeasureDetailAdapter(this, strs);
 		gv_checkbox.setAdapter(adapter);
 		
-		if(title.equals(Constant.poor.getTdataAction().getActionType())){
-			if(!TextUtils.isEmpty(Constant.poor.getTdataAction().getActionMoney()))
-				et_income.setText(Constant.poor.getTdataAction().getActionMoney());
-			if(!TextUtils.isEmpty(Constant.poor.getTdataAction().getRemark()))
-				et_illustrate.setText(Constant.poor.getTdataAction().getRemark());
-		}
-		
+		if(!TextUtils.isEmpty(Constant.poor.getTdataAction().getActionMoney()))
+			et_income.setText(Constant.poor.getTdataAction().getActionMoney());
+		if(!TextUtils.isEmpty(Constant.poor.getTdataAction().getRemark()))
+			et_illustrate.setText(Constant.poor.getTdataAction().getRemark());
 	}
 
 	@Override
@@ -87,7 +82,13 @@ public class MeasureDetailActivity extends BaseActivity implements OnClickListen
 	 * 设置贫因户信息
 	 */
 	private void setData(){
-		Constant.poor.getTdataAction().setActionType(title);
+		if(("其他").equals(title) || ("政策性补助").equals(title)){
+			Constant.poor.getTdataAction().setActionType("2");
+		}else{
+			Constant.poor.getTdataAction().setActionType("1");
+		}
+		Constant.poor.getTdataAction().setActionXl("");
+		Constant.poor.getTdataAction().setActionDl("");
 		Constant.poor.getTdataAction().setActionMoney(et_income.getText().toString().trim()+"");
 		Constant.poor.getTdataAction().setRemark(et_illustrate.getText().toString().trim()+"");
 	}

@@ -1,6 +1,5 @@
 package com.demo.jzfp.activity;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import android.database.sqlite.SQLiteDatabase;
