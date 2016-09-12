@@ -1,31 +1,8 @@
 package com.demo.jzfp.fragment;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedHashMap;
-
-import com.alibaba.fastjson.JSON;
-import com.demo.jzfp.R;
-import com.demo.jzfp.activity.AducationActivity;
-import com.demo.jzfp.activity.EconomyActivity;
-import com.demo.jzfp.activity.EffectActivity;
-import com.demo.jzfp.activity.MeasuresActivity;
-import com.demo.jzfp.activity.MemberActivity;
-import com.demo.jzfp.activity.ReasonActivity;
-import com.demo.jzfp.dao.DictDataInfoDao;
-import com.demo.jzfp.dao.impl.DictDataInfoDaoImpl;
-import com.demo.jzfp.database.DatabaseHelper;
-import com.demo.jzfp.entity.TdataFamily;
-import com.demo.jzfp.entity.TdataCountryman;
-import com.demo.jzfp.service.IAppService;
-import com.demo.jzfp.utils.AbImageUtil;
-import com.demo.jzfp.utils.Constant;
-import com.demo.jzfp.utils.PermissionsUtils;
-import com.demo.jzfp.utils.PhotoUtils;
-import com.demo.jzfp.utils.RequestWebService;
-import com.demo.jzfp.utils.RequestWebService.WebServiceCallback;
-import com.demo.jzfp.utils.Tools;
-import com.demo.jzfp.view.WheelView;
+import java.util.List;
 
 import android.app.AlertDialog;
 import android.app.Fragment;
@@ -47,6 +24,27 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.alibaba.fastjson.JSON;
+import com.demo.jzfp.R;
+import com.demo.jzfp.activity.AducationActivity;
+import com.demo.jzfp.activity.EconomyActivity;
+import com.demo.jzfp.activity.EffectActivity;
+import com.demo.jzfp.activity.MeasuresActivity;
+import com.demo.jzfp.activity.MemberActivity;
+import com.demo.jzfp.activity.ReasonActivity;
+import com.demo.jzfp.dao.DictDataInfoDao;
+import com.demo.jzfp.dao.impl.DictDataInfoDaoImpl;
+import com.demo.jzfp.database.DatabaseHelper;
+import com.demo.jzfp.entity.TdataCountryman;
+import com.demo.jzfp.utils.AbImageUtil;
+import com.demo.jzfp.utils.Constant;
+import com.demo.jzfp.utils.PermissionsUtils;
+import com.demo.jzfp.utils.PhotoUtils;
+import com.demo.jzfp.utils.RequestWebService;
+import com.demo.jzfp.utils.RequestWebService.WebServiceCallback;
+import com.demo.jzfp.utils.Tools;
+import com.demo.jzfp.view.WheelView;
+
 public class FragmentReport extends Fragment implements OnClickListener, WebServiceCallback {
 	private View v;
 	private String sex = ""; // 姓别 0：未选 1：男 2：女
@@ -57,10 +55,11 @@ public class FragmentReport extends Fragment implements OnClickListener, WebServ
 	private TextView tv_education;
 	private PermissionsUtils pu;
 	private AlertDialog dialog;
-	private String[] states, healths;
-	private String state, health, filePath;
+	private String[] states;
+	private List<String> poorCards;
+	private String state, poorCard, filePath;
 	private int table;// 1:贫因状态 2:健康状态
-	private TextView tv_state, tv_health;
+	private TextView tv_state, tv_poorCard;
 	private EditText et_name, et_age, et_identity, et_tel;
 	private PhotoUtils photoUtils;
 	private SQLiteDatabase db = null;
@@ -102,8 +101,8 @@ public class FragmentReport extends Fragment implements OnClickListener, WebServ
 		RelativeLayout rl_education = (RelativeLayout) v.findViewById(R.id.rl_education);
 		tv_education = (TextView) v.findViewById(R.id.tv_education);
 
-		RelativeLayout rl_health = (RelativeLayout) v.findViewById(R.id.rl_health);
-		tv_health = (TextView) v.findViewById(R.id.tv_health);
+		RelativeLayout rl_poorCard = (RelativeLayout) v.findViewById(R.id.rl_poorCard);
+		tv_poorCard = (TextView) v.findViewById(R.id.tv_poorCard);
 
 		RelativeLayout rl_economy = (RelativeLayout) v.findViewById(R.id.rl_economy);
 		TextView tv_economy = (TextView) v.findViewById(R.id.tv_economy);
@@ -127,7 +126,7 @@ public class FragmentReport extends Fragment implements OnClickListener, WebServ
 		ll_women.setOnClickListener(this);
 		ll_man.setOnClickListener(this);
 		rl_education.setOnClickListener(this);
-		rl_health.setOnClickListener(this);
+		rl_poorCard.setOnClickListener(this);
 		rl_economy.setOnClickListener(this);
 		rl_member.setOnClickListener(this);
 		rl_reason.setOnClickListener(this);
@@ -139,10 +138,11 @@ public class FragmentReport extends Fragment implements OnClickListener, WebServ
 	 * 初始化数据
 	 */
 	private void initData() {
+		db = (new DatabaseHelper(getActivity())).getWritableDatabase();
 		pu = new PermissionsUtils(getActivity());
 		states = new String[] { "返贫", "未脱贫", "已脱贫", "预脱贫" };
-		healths = new String[] { "患有大病", "残疾", "长期慢性病", "健康" };
-		db = (new DatabaseHelper(getActivity())).getWritableDatabase();
+		poorCards = dictDataDao.queryDictValueByType(db, "poorCard");
+		
 	}
 
 	@Override
@@ -178,10 +178,10 @@ public class FragmentReport extends Fragment implements OnClickListener, WebServ
 			Intent intent = new Intent(getActivity(), AducationActivity.class);
 			startActivityForResult(intent, 300);
 			break;
-		case R.id.rl_health:
-			String title1 = "请选择健康状态";
+		case R.id.rl_poorCard:
+			String title1 = "请选择贫困户属性";
 			table = 2;
-			showWheelView(title1, healths, table);
+			showWheelView(title1, (String[])poorCards.toArray(new String[poorCards.size()]), table);
 			break;
 		case R.id.rl_economy:
 			Intent intent1 = new Intent(getActivity(), EconomyActivity.class);
@@ -210,10 +210,10 @@ public class FragmentReport extends Fragment implements OnClickListener, WebServ
 				tv_state.setText(state);
 				state = "";
 			} else if (table == 2) {
-				if (TextUtils.isEmpty(health))
-					health = healths[1];
-				tv_health.setText(health);
-				health = "";
+				if (TextUtils.isEmpty(poorCard))
+					poorCard = poorCards.get(1);
+				tv_poorCard.setText(poorCard);
+				poorCard = "";
 			}
 			dialog.dismiss();
 			break;
@@ -242,8 +242,8 @@ public class FragmentReport extends Fragment implements OnClickListener, WebServ
 			} else if (TextUtils.isEmpty(tv_education.getText().toString())) {
 				Tools.showNewToast(getActivity(), "请选择文化程度");
 				return;
-			} else if (TextUtils.isEmpty(tv_health.getText().toString())) {
-				Tools.showNewToast(getActivity(), "请选择健康状态");
+			} else if (TextUtils.isEmpty(tv_poorCard.getText().toString())) {
+				Tools.showNewToast(getActivity(), "请选择贫困户属性");
 				return;
 			}
 			setData();
@@ -307,7 +307,7 @@ public class FragmentReport extends Fragment implements OnClickListener, WebServ
 				if (table == 1) {
 					state = item;
 				} else if (table == 2) {
-					health = item;
+					poorCard = item;
 				}
 			}
 		});
@@ -367,8 +367,8 @@ public class FragmentReport extends Fragment implements OnClickListener, WebServ
 		Constant.poor.setTelphone(et_tel.getText().toString().trim() + "");
 		String whcd = dictDataDao.queryDictCodeByValue(db,tv_education.getText().toString().trim() + "");
 		Constant.poor.setWhcd(whcd);
-		String health = dictDataDao.queryDictCodeByValue(db,tv_health.getText().toString().trim() + "");
-		Constant.poor.setHealth(health);
+		String poorCard = dictDataDao.queryDictCodeByValue(db,tv_poorCard.getText().toString().trim() + "");
+		Constant.poor.setPoorCard(poorCard);
 		Constant.poor.setTdataFamilys(Constant.members);
 		String data = JSON.toJSONString(Constant.poor);
 		Log.i("haha", data);
@@ -391,7 +391,7 @@ public class FragmentReport extends Fragment implements OnClickListener, WebServ
 			et_identity.setText("");
 			et_tel.setText("");
 			tv_education.setText("");
-			tv_health.setText("");
+			tv_poorCard.setText("");
 			Constant.poor = new TdataCountryman();
 			Constant.members.clear();
 		}

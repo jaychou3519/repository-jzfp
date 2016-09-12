@@ -11,7 +11,8 @@ public class TdataCountryman {
 	private String card;//身份证
 	private String telphone;//联系电话
 	private String whcd;//文化程度
-	private String health;//健康状态
+	//private String health;//健康状态
+	private java.lang.String poorCard;//贫困户属性
 	
 	///////////家庭经济
 	private String zfjg;//住房结构
@@ -103,14 +104,14 @@ public class TdataCountryman {
 	}
 
 
-	public String getHealth() {
+	/*public String getHealth() {
 		return health;
 	}
 
 
 	public void setHealth(String health) {
 		this.health = health;
-	}
+	}*/
 
 
 	public String getZfjg() {
@@ -221,5 +222,14 @@ public class TdataCountryman {
 	public void setTdataResult(TdataResult tdataResult) {
 		this.tdataResult = tdataResult;
 	}
-	
+
+
+	public java.lang.String getPoorCard() {
+		return poorCard;
+	}
+
+
+	public void setPoorCard(java.lang.String poorCard) {
+		this.poorCard = poorCard;
+	}
 }
