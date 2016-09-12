@@ -12,8 +12,12 @@ import com.demo.jzfp.activity.EffectActivity;
 import com.demo.jzfp.activity.MeasuresActivity;
 import com.demo.jzfp.activity.MemberActivity;
 import com.demo.jzfp.activity.ReasonActivity;
+import com.demo.jzfp.dao.DictDataInfoDao;
+import com.demo.jzfp.dao.impl.DictDataInfoDaoImpl;
+import com.demo.jzfp.database.DatabaseHelper;
 import com.demo.jzfp.entity.TdataFamily;
 import com.demo.jzfp.entity.TdataCountryman;
+import com.demo.jzfp.service.IAppService;
 import com.demo.jzfp.utils.AbImageUtil;
 import com.demo.jzfp.utils.Constant;
 import com.demo.jzfp.utils.PermissionsUtils;
@@ -26,6 +30,7 @@ import com.demo.jzfp.view.WheelView;
 import android.app.AlertDialog;
 import android.app.Fragment;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.net.Uri;
@@ -58,6 +63,8 @@ public class FragmentReport extends Fragment implements OnClickListener, WebServ
 	private TextView tv_state, tv_health;
 	private EditText et_name, et_age, et_identity, et_tel;
 	private PhotoUtils photoUtils;
+	private SQLiteDatabase db = null;
+	private DictDataInfoDao dictDataDao = new DictDataInfoDaoImpl();
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -135,6 +142,7 @@ public class FragmentReport extends Fragment implements OnClickListener, WebServ
 		pu = new PermissionsUtils(getActivity());
 		states = new String[] { "返贫", "未脱贫", "已脱贫", "预脱贫" };
 		healths = new String[] { "患有大病", "残疾", "长期慢性病", "健康" };
+		db = (new DatabaseHelper(getActivity())).getWritableDatabase();
 	}
 
 	@Override
@@ -351,13 +359,16 @@ public class FragmentReport extends Fragment implements OnClickListener, WebServ
 	 */
 	private void setData() {
 		Constant.poor.setCountryman(et_name.getText().toString().trim() + "");
-		Constant.poor.setPoorState(tv_state.getText().toString().trim() + "");
+		String poorState = dictDataDao.queryDictCodeByValue(db,tv_state.getText().toString().trim() + "");
+		Constant.poor.setPoorState(poorState);
 		Constant.poor.setSex(sex);
 		Constant.poor.setAge(et_age.getText().toString().trim() + "");
 		Constant.poor.setCard(et_identity.getText().toString().trim() + "");
 		Constant.poor.setTelphone(et_tel.getText().toString().trim() + "");
-		Constant.poor.setWhcd(tv_education.getText().toString().trim() + "");
-		Constant.poor.setHealth(tv_health.getText().toString().trim() + "");
+		String whcd = dictDataDao.queryDictCodeByValue(db,tv_education.getText().toString().trim() + "");
+		Constant.poor.setWhcd(whcd);
+		String health = dictDataDao.queryDictCodeByValue(db,tv_health.getText().toString().trim() + "");
+		Constant.poor.setHealth(health);
 		Constant.poor.setTdataFamilys(Constant.members);
 		String data = JSON.toJSONString(Constant.poor);
 		Log.i("haha", data);
