@@ -123,9 +123,9 @@ public class MemberAdapter extends BaseAdapter {
 
 	private void initView(Holder holder, int position) {
 		TdataFamily member = members.get(position);
-		Log.i("jjy", "MemberName="+member.getMemberName());
-		if (!TextUtils.isEmpty(member.getMemberName())) {
-			holder.et_name.setText(member.getMemberName());
+		Log.i("jjy", "MemberName="+member.getFamilyName());
+		if (!TextUtils.isEmpty(member.getFamilyName())) {
+			holder.et_name.setText(member.getFamilyName());
 		} else {
 			holder.et_name.setText("");
 		}
@@ -135,12 +135,12 @@ public class MemberAdapter extends BaseAdapter {
 			holder.tv_relation.setText("");
 		}
 
-		if ("女".equals(member.getMemberSex())) {
+		if ("女".equals(member.getSex())) {
 			holder.iv_sex_women.setImageResource(R.drawable.woman_yes);
 			holder.tv_sex_women.setTextColor(Color.rgb(155, 89, 182));
 			holder.iv_sex_man.setImageResource(R.drawable.man_no);
 			holder.tv_sex_man.setTextColor(Color.rgb(220, 220, 200));
-		} else if ("男".equals(member.getMemberSex())) {
+		} else if ("男".equals(member.getSex())) {
 			holder.iv_sex_women.setImageResource(R.drawable.woman_no);
 			holder.tv_sex_women.setTextColor(Color.rgb(220, 220, 220));
 			holder.iv_sex_man.setImageResource(R.drawable.man_yes);
@@ -151,18 +151,18 @@ public class MemberAdapter extends BaseAdapter {
 			holder.iv_sex_man.setImageResource(R.drawable.man_no);
 			holder.tv_sex_man.setTextColor(Color.rgb(220, 220, 200));
 		}
-		if (!TextUtils.isEmpty(member.getMemberBirthday())) {
-			holder.tv_birthday.setText(member.getMemberBirthday());
+		if (!TextUtils.isEmpty(member.getBirthday())) {
+			holder.tv_birthday.setText(member.getBirthday());
 		} else {
 			holder.tv_birthday.setText("");
 		}
-		if (!TextUtils.isEmpty(member.getMemberHealth())) {
-			holder.tv_health.setText(member.getMemberHealth());
+		if (!TextUtils.isEmpty(member.getBirthday())) {
+			holder.tv_health.setText(member.getBirthday());
 		} else {
 			holder.tv_health.setText("");
 		}
-		if (!TextUtils.isEmpty(member.getOther())) {
-			holder.et_work.setText(member.getOther());
+		if (!TextUtils.isEmpty(member.getWorkDesc())) {
+			holder.et_work.setText(member.getWorkDesc());
 		} else {
 			holder.et_work.setText("");
 		}
@@ -178,7 +178,7 @@ public class MemberAdapter extends BaseAdapter {
 			@Override
 			public void onTextChanged(CharSequence s, int start, int before, int count) {
 				TdataFamily mb = (TdataFamily) holder.et_name.getTag();
-				mb.setMemberName(s.toString().trim());
+				mb.setFamilyName(s.toString().trim());
 			}
 
 			@Override
@@ -205,7 +205,7 @@ public class MemberAdapter extends BaseAdapter {
 				holder.tv_sex_women.setTextColor(Color.rgb(220, 220, 220));
 				holder.iv_sex_man.setImageResource(R.drawable.man_yes);
 				holder.tv_sex_man.setTextColor(Color.rgb(52, 152, 219));
-				member.setMemberSex("男");
+				member.setSex("男");
 			}
 		});
 
@@ -216,7 +216,7 @@ public class MemberAdapter extends BaseAdapter {
 				holder.tv_sex_women.setTextColor(Color.rgb(155, 89, 182));
 				holder.iv_sex_man.setImageResource(R.drawable.man_no);
 				holder.tv_sex_man.setTextColor(Color.rgb(220, 220, 200));
-				member.setMemberSex("女");
+				member.setSex("女");
 			}
 		});
 
@@ -230,7 +230,7 @@ public class MemberAdapter extends BaseAdapter {
 					public void onDateSet(DatePicker startDatePicker, int startYear, int startMonthOfYear, int startDayOfMonth) {
 						String textString = startYear + "年" + (startMonthOfYear + 1) + "月";
 						holder.tv_birthday.setText(textString);
-						member.setMemberBirthday(textString);
+						member.setBirthday(textString);
 					}
 				}, c.get(Calendar.YEAR), c.get(Calendar.MONTH), c.get(Calendar.DATE), false).show();
 
@@ -248,7 +248,7 @@ public class MemberAdapter extends BaseAdapter {
 			@Override
 			public void onTextChanged(CharSequence s, int start, int before, int count) {
 				TdataFamily mb = (TdataFamily) holder.et_work.getTag();
-				mb.setOther(s.toString().trim());
+				mb.setWorkDesc(s.toString().trim());
 			}
 
 			@Override
@@ -297,7 +297,7 @@ public class MemberAdapter extends BaseAdapter {
 					if (TextUtils.isEmpty(health))
 						health = healths[1];
 					holder.tv_health.setText(health);
-					member.setMemberHealth(health);
+					member.setJkzk(health);
 					health = "";
 				}
 				dialog.dismiss();

@@ -69,7 +69,7 @@ public class MemberActivity extends BaseActivity implements OnClickListener {
 	private void setData(){
 		for (int i = 0; i < members.size(); i++) {
 			TdataFamily member = members.get(i);
-			if(TextUtils.isEmpty(member.getMemberName()) || TextUtils.isEmpty(member.getYhzgx()) || TextUtils.isEmpty(member.getMemberSex())){
+			if(TextUtils.isEmpty(member.getFamilyName()) || TextUtils.isEmpty(member.getYhzgx()) || TextUtils.isEmpty(member.getSex())){
 				members.remove(i);
 				i--;
 			}
