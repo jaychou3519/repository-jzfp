@@ -6,6 +6,7 @@ import java.util.List;
 
 import com.demo.jzfp.R;
 import com.demo.jzfp.entity.Member;
+import com.demo.jzfp.utils.Constant;
 import com.demo.jzfp.view.DoubleDatePickerDialog;
 import com.demo.jzfp.view.WheelView;
 
@@ -64,7 +65,6 @@ public class MemberAdapter extends BaseAdapter {
 
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
-		Member member = members.get(position);
 		Holder holder;
 		if (convertView == null) {
 			holder = new Holder();
@@ -93,9 +93,12 @@ public class MemberAdapter extends BaseAdapter {
 		} else {
 			holder = (Holder) convertView.getTag();
 		}
-		setListener(holder, member);
+		holder.et_name.setTag(Constant.members.get(position));
+		holder.et_work.setTag(Constant.members.get(position));
+		if(position==members.size()-1)
+			setListener(holder, position);
 
-		initView(holder, member);
+		initView(holder, position);
 
 
 		return convertView;
@@ -118,7 +121,9 @@ public class MemberAdapter extends BaseAdapter {
 		EditText et_work;
 	}
 
-	private void initView(Holder holder, Member member) {
+	private void initView(Holder holder, int position) {
+		Member member = Constant.members.get(position);
+		Log.i("jjy", "MemberName="+member.getMemberName());
 		if (!TextUtils.isEmpty(member.getMemberName())) {
 			holder.et_name.setText(member.getMemberName());
 		} else {
@@ -167,30 +172,21 @@ public class MemberAdapter extends BaseAdapter {
 	 * 设置监听
 	 * 
 	 */
-	private void setListener(final Holder holder, final Member member) {
-		Log.i("hahaaaa", member.getMemberName()+"321");
+	private void setListener(final Holder holder, int position) {
+		final Member member = Constant.members.get(position);
 		holder.et_name.addTextChangedListener(new TextWatcher() {
-			String names = "";
-			String after = "";
 			@Override
 			public void onTextChanged(CharSequence s, int start, int before, int count) {
-				after = s.toString();
-				Log.i("hahaaaa", after+"after");
+				Member mb = (Member) holder.et_name.getTag();
+				mb.setMemberName(s.toString().trim());
 			}
 
 			@Override
 			public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-				names = s.toString();
-				Log.i("hahaaaa", names+"names");
 			}
 
 			@Override
 			public void afterTextChanged(Editable s) {
-				if(names.length()!=after.length()&&names.length()>0&&s.length()>0){
-					Log.i("haha", s.toString());
-					member.setMemberName(s.toString().trim());
-					Log.i("haha", member.getMemberName()+"123");
-				}
 				
 			}
 		});
@@ -251,7 +247,8 @@ public class MemberAdapter extends BaseAdapter {
 		holder.et_work.addTextChangedListener(new TextWatcher() {
 			@Override
 			public void onTextChanged(CharSequence s, int start, int before, int count) {
-
+				Member mb = (Member) holder.et_work.getTag();
+				mb.setOther(s.toString().trim());
 			}
 
 			@Override
@@ -260,7 +257,6 @@ public class MemberAdapter extends BaseAdapter {
 
 			@Override
 			public void afterTextChanged(Editable s) {
-				member.setOther(s.toString().trim());
 			}
 		});
 

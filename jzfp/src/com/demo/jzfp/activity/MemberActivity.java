@@ -48,7 +48,8 @@ public class MemberActivity extends BaseActivity implements OnClickListener {
 		if (members.isEmpty()) {
 			members.add(new Member());
 		}
-		adapter = new MemberAdapter(this, members);
+		Constant.members.add(new Member());
+		adapter = new MemberAdapter(this,Constant.members);
 		lv_member.setAdapter(adapter);
 	}
 
@@ -60,7 +61,7 @@ public class MemberActivity extends BaseActivity implements OnClickListener {
 			finish();
 			break;
 		case R.id.ll_add:
-			members.add(new Member());
+			Constant.members.add(new Member());
 			adapter.notifyDataSetChanged();
 			break;
 		}
