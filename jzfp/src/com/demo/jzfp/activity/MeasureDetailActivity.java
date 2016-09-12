@@ -44,9 +44,6 @@ public class MeasureDetailActivity extends BaseActivity implements OnClickListen
 		TextView tv_save = (TextView) findViewById(R.id.tv_save);
 
 		gv_checkbox = (GridView) findViewById(R.id.gv_checkbox);
-		if (0 != POSITION) {
-			gv_checkbox.setVisibility(View.GONE);
-		}
 		et_income = (EditText) findViewById(R.id.et_income);
 		et_illustrate = (EditText) findViewById(R.id.et_illustrate);
 		
