@@ -14,7 +14,9 @@ import android.widget.TextView;
 import com.demo.jzfp.R;
 import com.demo.jzfp.apdater.MeasureDetailAdapter;
 import com.demo.jzfp.dao.DictDataInfoDao;
+import com.demo.jzfp.dao.TdataConfigDao;
 import com.demo.jzfp.dao.impl.DictDataInfoDaoImpl;
+import com.demo.jzfp.dao.impl.TdataConfigDaoImpl;
 import com.demo.jzfp.database.DatabaseHelper;
 import com.demo.jzfp.utils.Constant;
 import com.demo.jzfp.utils.MyApplication;
@@ -24,7 +26,7 @@ public class MeasureDetailActivity extends BaseActivity implements OnClickListen
 	private EditText et_income, et_illustrate;
 	private String title;
 	private SQLiteDatabase db = null;
-	private DictDataInfoDao dictDataDao = new DictDataInfoDaoImpl();
+	private TdataConfigDao tdataConfigDao = new TdataConfigDaoImpl();
 
 	@Override
 	protected void setView() {
@@ -51,9 +53,9 @@ public class MeasureDetailActivity extends BaseActivity implements OnClickListen
 	@Override
 	protected void initData() {
 		db = (new DatabaseHelper(this)).getWritableDatabase();
-		List<String> strs = dictDataDao.queryDictValueByType(db, title);
-
-		MeasureDetailAdapter adapter = new MeasureDetailAdapter(this, strs);
+		String strs = tdataConfigDao.queryActionXlByActionDl(db, title);
+		String[] values = strs.split(",");
+		MeasureDetailAdapter adapter = new MeasureDetailAdapter(this, values);
 		gv_checkbox.setAdapter(adapter);
 		
 		if(!TextUtils.isEmpty(Constant.poor.getTdataAction().getActionMoney()))

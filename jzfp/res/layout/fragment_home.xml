@@ -39,6 +39,7 @@
                 android:background="@color/grap_c6c6c6" />
 
             <EditText
+                android:id="@+id/ed_search"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
@@ -49,6 +50,7 @@
         </LinearLayout>
 
         <TextView
+            android:id="@+id/tv_search"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"

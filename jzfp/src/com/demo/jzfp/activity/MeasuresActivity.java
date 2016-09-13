@@ -11,8 +11,8 @@ import android.widget.ListView;
 
 import com.demo.jzfp.R;
 import com.demo.jzfp.apdater.MeasuresAdapter;
-import com.demo.jzfp.dao.DictDataInfoDao;
-import com.demo.jzfp.dao.impl.DictDataInfoDaoImpl;
+import com.demo.jzfp.dao.TdataConfigDao;
+import com.demo.jzfp.dao.impl.TdataConfigDaoImpl;
 import com.demo.jzfp.database.DatabaseHelper;
 import com.demo.jzfp.utils.MyApplication;
 
@@ -22,7 +22,7 @@ public class MeasuresActivity extends BaseActivity {
 	private MeasuresAdapter adapter;
 	private List<String> measureses;
 	private SQLiteDatabase db = null;
-	private DictDataInfoDao dictDataDao = new DictDataInfoDaoImpl();
+	private TdataConfigDao tdataConfigDao = new TdataConfigDaoImpl();
 	
 	@Override
 	protected void setView() {
@@ -41,7 +41,7 @@ public class MeasuresActivity extends BaseActivity {
 	@Override
 	protected void initData() {
 		db = (new DatabaseHelper(this)).getWritableDatabase();
-		measureses = dictDataDao.queryDictValueByType(db, "qgyp");
+		measureses = tdataConfigDao.queryActionDl(db);
 		
 		adapter = new MeasuresAdapter(this, measureses);
 		lv_measures.setAdapter(adapter);

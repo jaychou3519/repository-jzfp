@@ -27,6 +27,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 	public void onCreate(SQLiteDatabase db) {
 		//字典信息表
 		db.execSQL("create table dict_data(dictId text,dictType text,dictName text,dictValue text,dictCode text,isdefault text,parentType text)");
+		db.execSQL("create table tdata_config(configId text,actionType text,actionDl text,actionXl text,actionDlCode text,actionXlCode text,configNo text)");
 	}
 
 	/**
@@ -55,6 +56,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 	@Override
 	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 		db.execSQL("create table  dict_data(dictId text,dictType text,dictName text,dictValue text,dictCode text,isdefault text,parentType text)");
+		db.execSQL("create table tdata_config(configId text,actionType text,actionDl text,actionXl text,actionDlCode text,actionXlCode text,configNo text)");
 	}
 	/**
 	 * 
