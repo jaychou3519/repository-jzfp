@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.EditText;
@@ -28,6 +29,7 @@ public class MeasureDetailActivity extends BaseActivity implements OnClickListen
 	private SQLiteDatabase db = null;
 	private TdataConfigDao tdataConfigDao = new TdataConfigDaoImpl();
 	private TdataAction action;
+	private static StringBuffer sb;
 
 	@Override
 	protected void setView() {
@@ -57,20 +59,30 @@ public class MeasureDetailActivity extends BaseActivity implements OnClickListen
 		db = (new DatabaseHelper(this)).getWritableDatabase();
 		String strs = tdataConfigDao.queryActionXlByActionDl(db, title);
 		String[] values = strs.split(",");
-		MeasureDetailAdapter adapter = new MeasureDetailAdapter(this, values);
-		gv_checkbox.setAdapter(adapter);
 		
 		if(Constant.poor.getTdataActions() != null){
 			for (int i = 0; i < Constant.poor.getTdataActions().size(); i++) {
 				TdataAction tdataAction = Constant.poor.getTdataActions().get(i);
+				int x = 0;
 				if(title.equals(tdataAction.getActionDl())){
 					if(!TextUtils.isEmpty(tdataAction.getActionMoney()))
 						et_income.setText(tdataAction.getActionMoney());
 					if(!TextUtils.isEmpty(tdataAction.getRemark()))
 						et_illustrate.setText(tdataAction.getRemark());
+					sb = new StringBuffer(TextUtils.isEmpty(tdataAction.getActionXl()) ? "" : tdataAction.getActionXl());
+					x = 1;
+					break;
 				}
+				
+				if(x == 0)
+					sb = new StringBuffer();
 			}
+		}else{
+			sb = new StringBuffer();
 		}
+		
+		MeasureDetailAdapter adapter = new MeasureDetailAdapter(this, values, sb);
+		gv_checkbox.setAdapter(adapter);
 		
 	}
 
@@ -94,6 +106,8 @@ public class MeasureDetailActivity extends BaseActivity implements OnClickListen
 		}else{
 			action.setActionType("1");
 		}
+		action.setActionXl(sb.toString());
+		Log.i("haha", "sb---"+sb.toString());
 		action.setActionDl(title);
 		action.setActionMoney(et_income.getText().toString().trim()+"");
 		action.setRemark(et_illustrate.getText().toString().trim()+"");
@@ -116,5 +130,8 @@ public class MeasureDetailActivity extends BaseActivity implements OnClickListen
 		}
 	}
 	
-
+	public static void setXl(StringBuffer str){
+		sb = str;
+	}
+	
 }
