@@ -5,7 +5,9 @@ import java.util.Map;
 
 import com.alibaba.fastjson.JSON;
 import com.demo.jzfp.dao.DictDataInfoDao;
+import com.demo.jzfp.dao.TdataConfigDao;
 import com.demo.jzfp.dao.impl.DictDataInfoDaoImpl;
+import com.demo.jzfp.dao.impl.TdataConfigDaoImpl;
 import com.demo.jzfp.database.DatabaseHelper;
 import com.demo.jzfp.utils.ThreadPoolUtils;
 import com.demo.jzfp.utils.WebServiceClient;
@@ -29,8 +31,9 @@ public class IAppService extends Service {
 	private boolean isSyn = true;
 	private SQLiteDatabase db = null;
 	private DictDataInfoDao dictDataDao = new DictDataInfoDaoImpl();
+	private TdataConfigDao tdataConfigDao = new TdataConfigDaoImpl();
 	private String result = null;
-	public final static  String[] SERVICESYN =  {"2001"};
+	public final static  String[] SERVICESYN =  {"2001","2002"};
 	
 	@Override
 	public IBinder onBind(Intent intent) {
@@ -83,6 +86,9 @@ public class IAppService extends Service {
 						case 2001:
 							dictDataSyn();
 							break;
+						case 2002:
+							tdataConfigSyn();
+							break;
 						default:
 							break;
 					}
@@ -128,6 +134,39 @@ public class IAppService extends Service {
 			} catch (Exception e) {
 				e.printStackTrace();
 				Log.e("dictDataDao>>>>", ">>>>>同步数据字典异常>>>>>");
+			}
+		}
+	}
+	/**
+	 * 七个一批数据同步
+	 */
+	public synchronized void tdataConfigSyn() {
+		try {
+			int count = tdataConfigDao.existTdataConfigInfo(db);
+			if(count<=0){
+				executeQueryTdataConfig();
+			}
+		} catch (Exception e) {
+			Log.e("tdataConfigSyn", e.getMessage());
+		}
+	}
+	private void executeQueryTdataConfig() {
+		result = WebServiceClient.callWeb("selectTdataConfig", null);
+		if(null != result){
+			try {
+				List<Map> mapList = JSON.parseObject(result, List.class);
+				if(mapList.size() > 0){
+					tdataConfigDao.deleteTdataConfig(db);
+					db.beginTransaction();
+					for (Map map : mapList) {
+						tdataConfigDao.insertTdataConfig(map, db);
+					}
+					db.setTransactionSuccessful();//设置事务处理成功，不设置会自动回滚不提交
+					db.endTransaction();//处理完成
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+				Log.e("executeQueryTdataConfig>>>>", ">>>>>同步数据字典异常>>>>>");
 			}
 		}
 	}
