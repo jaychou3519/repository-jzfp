@@ -50,8 +50,7 @@ public class TdataConfigDaoImpl implements TdataConfigDao{
 	}
 
 	@Override
-	public List<String> queryActionDl(SQLiteDatabase db)
-			throws Exception {
+	public List<String> queryActionDl(SQLiteDatabase db) {
 		List<String> actionDl = new ArrayList<String>(); 
 		StringBuffer sql = new StringBuffer();
 		sql.append("select * from tdata_config cc");
@@ -65,8 +64,7 @@ public class TdataConfigDaoImpl implements TdataConfigDao{
 	}
 
 	@Override
-	public String queryActionXlByActionDl(SQLiteDatabase db,
-			String actionDl) throws Exception {
+	public String queryActionXlByActionDl(SQLiteDatabase db,String actionDl){
 		String actionXl = null; 
 		StringBuffer sql = new StringBuffer();
 		sql.append("select * from tdata_config cc where cc.actionDl=?");

@@ -28,8 +28,8 @@ public class TdataCountryman {
 	
 	//////////家庭成员
 	private List<TdataFamily> tdataFamilys;
+	private List<TdataAction> tdataActions;
 	
-	private TdataAction tdataAction = new TdataAction();
 	private TdataHelper tdataHelper = new TdataHelper();
 	private TdataResult tdataResult = new TdataResult();
 
@@ -193,14 +193,13 @@ public class TdataCountryman {
 		this.tdataFamilys = tdataFamilys;
 	}
 
-
-	public TdataAction getTdataAction() {
-		return tdataAction;
+	public List<TdataAction> getTdataActions() {
+		return tdataActions;
 	}
 
 
-	public void setTdataAction(TdataAction tdataAction) {
-		this.tdataAction = tdataAction;
+	public void setTdataActions(List<TdataAction> tdataActions) {
+		this.tdataActions = tdataActions;
 	}
 
 
@@ -232,4 +231,6 @@ public class TdataCountryman {
 	public void setPoorCard(java.lang.String poorCard) {
 		this.poorCard = poorCard;
 	}
+
+
 }
