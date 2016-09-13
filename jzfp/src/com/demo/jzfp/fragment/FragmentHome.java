@@ -2,18 +2,14 @@ package com.demo.jzfp.fragment;
 
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import com.demo.jzfp.R;
 import com.demo.jzfp.activity.ArchivesActivity;
 import com.demo.jzfp.activity.BasicActivity;
 import com.demo.jzfp.activity.SupportActivity;
-import com.demo.jzfp.activity.VillagesActivity;
 import com.demo.jzfp.apdater.ImageAdapter;
-import com.demo.jzfp.entity.Results;
 import com.demo.jzfp.entity.Root;
 import com.demo.jzfp.utils.Tools;
 import com.demo.jzfp.utils.Asynce_NetWork;
@@ -21,26 +17,29 @@ import com.demo.jzfp.utils.Asynce_NetWork.AsynceHttpInterface;
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.view.annotation.event.OnClick;
 import com.demo.jzfp.utils.Constant;
-
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.view.ViewPager;
+import android.text.Editable;
+import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
+import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-public class FragmentHome extends BaseFragment implements AsynceHttpInterface{
+public class FragmentHome extends BaseFragment implements AsynceHttpInterface,OnClickListener{
 	private static final String TAG = "FragmentHome";
 	private ViewPager viewPager;
 	private ImageHandler handler = new ImageHandler(new WeakReference<FragmentHome>(this));
-	private TextView tv_year_mday,tv_week,tv_time,tv_county,tv_temperature,tv_temperature_range;
+	private TextView tv_year_mday,tv_week,tv_time,tv_county,tv_temperature,tv_temperature_range,tv_search;
+	private EditText ed_search;
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -62,6 +61,11 @@ public class FragmentHome extends BaseFragment implements AsynceHttpInterface{
 		tv_county = (TextView) v.findViewById(R.id.tv_county);
 		tv_temperature = (TextView) v.findViewById(R.id.tv_temperature);
 		tv_temperature_range = (TextView) v.findViewById(R.id.tv_temperature_range);
+		tv_search = (TextView) v.findViewById(R.id.tv_search);
+		ed_search = (EditText) v.findViewById(R.id.ed_search);
+		
+		ed_search.addTextChangedListener(new MyTextWatcher());
+		tv_search.setOnClickListener(this);
 		
 		ImageView view1 = new ImageView(getActivity());
 		view1.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
@@ -108,6 +112,20 @@ public class FragmentHome extends BaseFragment implements AsynceHttpInterface{
 	private void GetWeather(){
 		Asynce_NetWork.asyncHttpGet(getActivity(), Constant.weather, FragmentHome.this, 101);
 	}
+	
+	@Override
+	public void onClick(View v) {
+		switch (v.getId()) {
+		case R.id.tv_search:
+			if(!TextUtils.isEmpty(ed_search.getText().toString().trim()));
+			SearchPoor(ed_search.getText().toString().trim());
+			break;
+
+		default:
+			break;
+		}
+	}
+	
 	@Override
 	public void getNetData(int requestCode, String data) {
 		JSONObject json;
@@ -136,8 +154,9 @@ public class FragmentHome extends BaseFragment implements AsynceHttpInterface{
 				}
 				String temperature = results.getResults().get(0).getWeather_data().get(0).getTemperature();
 				if(temperature.contains(" ~ ")){
-					int tpt = temperature.indexOf(" ~ ");
-					tv_temperature_range.setText(temperature.substring(tpt+2, temperature.length())+"°/"+temperature.substring(0, 2)+"°");
+					int start = temperature.indexOf("~");
+					int end = temperature.indexOf("℃");
+					tv_temperature_range.setText(temperature.substring(start+2, end)+"°/"+temperature.substring(0, start-1)+"°");
 				}
 				
 			} catch (JSONException e) {
@@ -237,4 +256,27 @@ public class FragmentHome extends BaseFragment implements AsynceHttpInterface{
 		}
 	}
 
+	class MyTextWatcher implements TextWatcher{
+
+		@Override
+		public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+			
+		}
+
+		@Override
+		public void onTextChanged(CharSequence s, int start, int before, int count) {
+			if(s.toString().trim().length()>0){
+				SearchPoor(s.toString().trim());
+			}
+		}
+
+		@Override
+		public void afterTextChanged(Editable s) {
+		}
+		
+	}
+
+	private void SearchPoor(String data){
+		
+	}
 }
