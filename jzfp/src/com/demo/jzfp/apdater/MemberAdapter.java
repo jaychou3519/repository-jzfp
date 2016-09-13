@@ -156,8 +156,8 @@ public class MemberAdapter extends BaseAdapter {
 		} else {
 			holder.tv_birthday.setText("");
 		}
-		if (!TextUtils.isEmpty(member.getBirthday())) {
-			holder.tv_health.setText(member.getBirthday());
+		if (!TextUtils.isEmpty(member.getJkzk())) {
+			holder.tv_health.setText(member.getJkzk());
 		} else {
 			holder.tv_health.setText("");
 		}
