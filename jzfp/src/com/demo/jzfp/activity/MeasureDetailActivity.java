@@ -21,6 +21,7 @@ import com.demo.jzfp.database.DatabaseHelper;
 import com.demo.jzfp.entity.TdataAction;
 import com.demo.jzfp.utils.Constant;
 import com.demo.jzfp.utils.MyApplication;
+import com.demo.jzfp.utils.Tools;
 
 public class MeasureDetailActivity extends BaseActivity implements OnClickListener {
 	private GridView gv_checkbox;
@@ -101,6 +102,9 @@ public class MeasureDetailActivity extends BaseActivity implements OnClickListen
 	 * 保存帮扶措施信息
 	 */
 	private void setData(){
+		if(TextUtils.isEmpty(action.getActionMoney()) && TextUtils.isEmpty(action.getActionXl()) && TextUtils.isEmpty(action.getRemark()))
+			return;
+		
 		if(("其他").equals(title) || ("政策性补助").equals(title)){
 			action.setActionType("2");
 		}else{
