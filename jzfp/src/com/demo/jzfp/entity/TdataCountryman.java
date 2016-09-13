@@ -27,11 +27,11 @@ public class TdataCountryman {
 	
 	
 	//////////家庭成员
-	private List<TdataFamily> tdataFamilys;
-	private List<TdataAction> tdataActions;
+	private List<TdataFamily> tdataFamilys;//家庭成员
+	private List<TdataAction> tdataActions;//帮扶措施
 	
-	private TdataHelper tdataHelper = new TdataHelper();
-	private TdataResult tdataResult = new TdataResult();
+	private TdataHelper tdataHelper;
+	private TdataResult tdataResult;
 
 
 	public String getCountryman() {

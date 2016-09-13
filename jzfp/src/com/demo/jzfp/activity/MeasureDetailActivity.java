@@ -1,6 +1,7 @@
 package com.demo.jzfp.activity;
 
-import java.util.List;
+
+import java.util.ArrayList;
 
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -13,11 +14,10 @@ import android.widget.TextView;
 
 import com.demo.jzfp.R;
 import com.demo.jzfp.apdater.MeasureDetailAdapter;
-import com.demo.jzfp.dao.DictDataInfoDao;
 import com.demo.jzfp.dao.TdataConfigDao;
-import com.demo.jzfp.dao.impl.DictDataInfoDaoImpl;
 import com.demo.jzfp.dao.impl.TdataConfigDaoImpl;
 import com.demo.jzfp.database.DatabaseHelper;
+import com.demo.jzfp.entity.TdataAction;
 import com.demo.jzfp.utils.Constant;
 import com.demo.jzfp.utils.MyApplication;
 
@@ -27,6 +27,7 @@ public class MeasureDetailActivity extends BaseActivity implements OnClickListen
 	private String title;
 	private SQLiteDatabase db = null;
 	private TdataConfigDao tdataConfigDao = new TdataConfigDaoImpl();
+	private TdataAction action;
 
 	@Override
 	protected void setView() {
@@ -52,16 +53,25 @@ public class MeasureDetailActivity extends BaseActivity implements OnClickListen
 
 	@Override
 	protected void initData() {
+		action = new TdataAction();
 		db = (new DatabaseHelper(this)).getWritableDatabase();
 		String strs = tdataConfigDao.queryActionXlByActionDl(db, title);
 		String[] values = strs.split(",");
 		MeasureDetailAdapter adapter = new MeasureDetailAdapter(this, values);
 		gv_checkbox.setAdapter(adapter);
 		
-		if(!TextUtils.isEmpty(Constant.poor.getTdataAction().getActionMoney()))
-			et_income.setText(Constant.poor.getTdataAction().getActionMoney());
-		if(!TextUtils.isEmpty(Constant.poor.getTdataAction().getRemark()))
-			et_illustrate.setText(Constant.poor.getTdataAction().getRemark());
+		if(Constant.poor.getTdataActions() != null){
+			for (int i = 0; i < Constant.poor.getTdataActions().size(); i++) {
+				TdataAction tdataAction = Constant.poor.getTdataActions().get(i);
+				if(title.equals(tdataAction.getActionDl())){
+					if(!TextUtils.isEmpty(tdataAction.getActionMoney()))
+						et_income.setText(tdataAction.getActionMoney());
+					if(!TextUtils.isEmpty(tdataAction.getRemark()))
+						et_illustrate.setText(tdataAction.getRemark());
+				}
+			}
+		}
+		
 	}
 
 	@Override
@@ -76,18 +86,34 @@ public class MeasureDetailActivity extends BaseActivity implements OnClickListen
 	}
 	
 	/**
-	 * 设置贫因户信息
+	 * 保存帮扶措施信息
 	 */
 	private void setData(){
 		if(("其他").equals(title) || ("政策性补助").equals(title)){
-			Constant.poor.getTdataAction().setActionType("2");
+			action.setActionType("2");
 		}else{
-			Constant.poor.getTdataAction().setActionType("1");
+			action.setActionType("1");
 		}
-		Constant.poor.getTdataAction().setActionXl("");
-		Constant.poor.getTdataAction().setActionDl("");
-		Constant.poor.getTdataAction().setActionMoney(et_income.getText().toString().trim()+"");
-		Constant.poor.getTdataAction().setRemark(et_illustrate.getText().toString().trim()+"");
+		action.setActionDl(title);
+		action.setActionMoney(et_income.getText().toString().trim()+"");
+		action.setRemark(et_illustrate.getText().toString().trim()+"");
+		if(Constant.poor.getTdataActions() != null){
+			int x = 0;
+			for (int i = 0; i < Constant.poor.getTdataActions().size(); i++) {
+				TdataAction tdataAction = Constant.poor.getTdataActions().get(i);
+				if(title.equals(tdataAction.getActionDl())){
+					x = 1;
+					Constant.poor.getTdataActions().remove(i);
+					Constant.poor.getTdataActions().add(action);
+					break;
+				}
+			}
+			if(x == 0)
+				Constant.poor.getTdataActions().add(action);
+		} else {
+			Constant.poor.setTdataActions(new ArrayList<TdataAction>());
+			Constant.poor.getTdataActions().add(action);
+		}
 	}
 	
 

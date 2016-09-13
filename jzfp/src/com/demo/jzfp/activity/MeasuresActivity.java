@@ -23,7 +23,7 @@ public class MeasuresActivity extends BaseActivity {
 	private List<String> measureses;
 	private SQLiteDatabase db = null;
 	private TdataConfigDao tdataConfigDao = new TdataConfigDaoImpl();
-	
+
 	@Override
 	protected void setView() {
 		setContentView(R.layout.activity_measures);
@@ -42,24 +42,20 @@ public class MeasuresActivity extends BaseActivity {
 	protected void initData() {
 		db = (new DatabaseHelper(this)).getWritableDatabase();
 		measureses = tdataConfigDao.queryActionDl(db);
-		
+
 		adapter = new MeasuresAdapter(this, measureses);
 		lv_measures.setAdapter(adapter);
-		
+
 		lv_measures.setOnItemClickListener(new OnItemClickListener() {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 				Bundle bundle = new Bundle();
-				if(position == measureses.size() - 1){
-					bundle.putString("title", "帮扶工程收益");
-				} else {
-					bundle.putString("title", measureses.get(position));
-				}
+				bundle.putString("title", measureses.get(position));
 				openActivity(MeasureDetailActivity.class, bundle);
 			}
 		});
 	}
-	
+
 	@Override
 	protected void onStart() {
 		super.onStart();

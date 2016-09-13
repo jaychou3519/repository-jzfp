@@ -1,23 +1,11 @@
 package com.demo.jzfp.utils;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import com.demo.jzfp.entity.TdataFamily;
 import com.demo.jzfp.entity.TdataCountryman;
 
 
 public class Constant {
 	
 	public static TdataCountryman poor = new TdataCountryman();
-	public static List<TdataFamily> members = new ArrayList<TdataFamily>();
-	
-	/**
-	 * 基础url
-	 * */
-	public static String baseUrl = "http://mmj.zksr.cn/gold/app/salesman_app!";
-	public static String baseUrl_use = "http://mmj.zksr.cn/gold/app/app!";
-	public static String imageUrl="http://mmj.zksr.cn/gold";
 	
 	//webservice 
 	public static String NAME_SPACE = "http://webservice.item.hihsoft.com/";

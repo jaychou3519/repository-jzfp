@@ -7,7 +7,6 @@ import com.demo.jzfp.utils.Constant;
 
 import android.content.Context;
 import android.graphics.Color;
-import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -53,11 +52,20 @@ public class MeasuresAdapter extends BaseAdapter {
 			holder = (Holder) convertView.getTag();
 		}
 		holder.tv_measures.setText(measures);
-		if(!TextUtils.isEmpty(Constant.poor.getTdataAction().getActionType()) && measures.contains(Constant.poor.getTdataAction().getActionType())){
-			holder.tv_measures.setTextColor(Color.rgb(255, 77, 77));
-		}else {
+		
+		if(Constant.poor.getTdataActions() != null){
+			for (int i = 0; i < Constant.poor.getTdataActions().size(); i++) {
+				if(measures.equals(Constant.poor.getTdataActions().get(i).getActionDl())){
+					holder.tv_measures.setTextColor(Color.rgb(255, 77, 77));
+					break;
+				}else {
+					holder.tv_measures.setTextColor(Color.rgb(0, 0, 0));
+				}
+			}
+		} else {
 			holder.tv_measures.setTextColor(Color.rgb(0, 0, 0));
 		}
+		
 		return convertView;
 	}
 	

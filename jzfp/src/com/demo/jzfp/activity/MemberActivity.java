@@ -44,7 +44,8 @@ public class MemberActivity extends BaseActivity implements OnClickListener {
 
 	@Override
 	protected void initData() {
-		members.addAll(Constant.members);
+		if(Constant.poor.getTdataFamilys() != null )
+			members.addAll(Constant.poor.getTdataFamilys());
 		if (members.isEmpty()) {
 			members.add(new TdataFamily());
 		}
@@ -74,7 +75,7 @@ public class MemberActivity extends BaseActivity implements OnClickListener {
 				i--;
 			}
 		}
-		Constant.members = members;
+		Constant.poor.setTdataFamilys(members);
 		
 	}
 }

@@ -11,7 +11,7 @@ import com.demo.jzfp.utils.StringUtil;
 public class DatabaseHelper extends SQLiteOpenHelper {
 	private String TAG = "DatabaseHelper";
 	private static final String DATABASE_NAME = "jzfp.db"; //数据库名称
-	private static final int DATABASE_VERSION = 1; //数据库版本
+	private static final int DATABASE_VERSION = 2; //数据库版本
 	
 	public DatabaseHelper(Context context) {
 		super(context, DATABASE_NAME, null, DATABASE_VERSION);//CursorFactory设置为null,使用默认值
@@ -26,7 +26,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 	@Override
 	public void onCreate(SQLiteDatabase db) {
 		//字典信息表
-		db.execSQL("create table dict_data(dictId text,dictType text,dictName text,dictValue text,dictCode text,isdefault text,parentType text)");
+		//db.execSQL("create table dict_data(dictId text,dictType text,dictName text,dictValue text,dictCode text,isdefault text,parentType text)");
 		db.execSQL("create table tdata_config(configId text,actionType text,actionDl text,actionXl text,actionDlCode text,actionXlCode text,configNo text)");
 	}
 
@@ -55,7 +55,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 	 */
 	@Override
 	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-		db.execSQL("create table  dict_data(dictId text,dictType text,dictName text,dictValue text,dictCode text,isdefault text,parentType text)");
+		//db.execSQL("create table  dict_data(dictId text,dictType text,dictName text,dictValue text,dictCode text,isdefault text,parentType text)");
 		db.execSQL("create table tdata_config(configId text,actionType text,actionDl text,actionXl text,actionDlCode text,actionXlCode text,configNo text)");
 	}
 	/**

@@ -14,6 +14,8 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.demo.jzfp.R;
+import com.demo.jzfp.entity.TdataHelper;
+import com.demo.jzfp.entity.TdataResult;
 import com.demo.jzfp.utils.Constant;
 import com.demo.jzfp.utils.MyApplication;
 import com.demo.jzfp.view.DoubleDatePickerDialog;
@@ -38,24 +40,24 @@ public class EffectActivity extends BaseActivity implements OnClickListener {
 	@Override
 	protected void initView() {
 		TextView tv_save = (TextView) findViewById(R.id.tv_save);
-		
+
 		RelativeLayout rl_time = (RelativeLayout) findViewById(R.id.rl_time);
 		tv_time = (TextView) findViewById(R.id.tv_time);
-		
+
 		et_income = (EditText) findViewById(R.id.et_income);
 		et_allIncome = (EditText) findViewById(R.id.et_allIncome);
 		et_houseSafe = (EditText) findViewById(R.id.et_houseSafe);
 		et_medical = (EditText) findViewById(R.id.et_medical);
 		et_education = (EditText) findViewById(R.id.et_education);
-		
+
 		RelativeLayout rl_condition = (RelativeLayout) findViewById(R.id.rl_condition);
 		tv_condition = (TextView) findViewById(R.id.tv_condition);
-		
+
 		et_organization = (EditText) findViewById(R.id.et_organization);
 		et_name = (EditText) findViewById(R.id.et_name);
 		et_tel = (EditText) findViewById(R.id.et_tel);
 		et_helpMan = (EditText) findViewById(R.id.et_helpMan);
-		
+
 		tv_save.setOnClickListener(this);
 		rl_time.setOnClickListener(this);
 		rl_condition.setOnClickListener(this);
@@ -64,35 +66,40 @@ public class EffectActivity extends BaseActivity implements OnClickListener {
 
 	@Override
 	protected void initData() {
-		conditions = new String[]{"是", "否"};
-		
-		if(!TextUtils.isEmpty(Constant.poor.getTdataResult().getTpDate()))
-			tv_time.setText(Constant.poor.getTdataResult().getTpDate());
-		if(!TextUtils.isEmpty(Constant.poor.getTdataResult().getJtsrRjsr()))
-			et_income.setText(Constant.poor.getTdataResult().getJtsrRjsr());
-		if(!TextUtils.isEmpty(Constant.poor.getTdataResult().getJtsrZsr()))
-			et_allIncome.setText(Constant.poor.getTdataResult().getJtsrZsr());
-		if(!TextUtils.isEmpty(Constant.poor.getTdataResult().getAddressSafe()))
-			et_houseSafe.setText(Constant.poor.getTdataResult().getAddressSafe());
-		if(!TextUtils.isEmpty(Constant.poor.getTdataResult().getJbshbzYl()))
-			et_medical.setText(Constant.poor.getTdataResult().getJbshbzYl());
-		if(!TextUtils.isEmpty(Constant.poor.getTdataResult().getJbshbzYwjy()))
-			et_education.setText(Constant.poor.getTdataResult().getJbshbzYwjy());
-		if(!TextUtils.isEmpty(Constant.poor.getTdataResult().getJffhtptj_name()))
-			tv_condition.setText(Constant.poor.getTdataResult().getJffhtptj_name());
-		if(!TextUtils.isEmpty(Constant.poor.getTdataHelper().getJdbfzrOrgname()))
-			et_organization.setText(Constant.poor.getTdataHelper().getJdbfzrOrgname());
-		if(!TextUtils.isEmpty(Constant.poor.getTdataHelper().getJdbfzrOrger()))
-			et_name.setText(Constant.poor.getTdataHelper().getJdbfzrOrger());
-		if(!TextUtils.isEmpty(Constant.poor.getTdataHelper().getBfzrrPhone()))
-			et_tel.setText(Constant.poor.getTdataHelper().getBfzrrPhone());
-		if(!TextUtils.isEmpty(Constant.poor.getTdataHelper().getJdbfzrr()))
-			et_helpMan.setText(Constant.poor.getTdataHelper().getJdbfzrr());
+		conditions = new String[] { "是", "否" };
+		if (Constant.poor.getTdataResult() != null) {
+			if (!TextUtils.isEmpty(Constant.poor.getTdataResult().getTpDate()))
+				tv_time.setText(Constant.poor.getTdataResult().getTpDate());
+			if (!TextUtils.isEmpty(Constant.poor.getTdataResult().getJtsrRjsr()))
+				et_income.setText(Constant.poor.getTdataResult().getJtsrRjsr());
+			if (!TextUtils.isEmpty(Constant.poor.getTdataResult().getJtsrZsr()))
+				et_allIncome.setText(Constant.poor.getTdataResult().getJtsrZsr());
+			if (!TextUtils.isEmpty(Constant.poor.getTdataResult().getAddressSafe()))
+				et_houseSafe.setText(Constant.poor.getTdataResult().getAddressSafe());
+			if (!TextUtils.isEmpty(Constant.poor.getTdataResult().getJbshbzYl()))
+				et_medical.setText(Constant.poor.getTdataResult().getJbshbzYl());
+			if (!TextUtils.isEmpty(Constant.poor.getTdataResult().getJbshbzYwjy()))
+				et_education.setText(Constant.poor.getTdataResult().getJbshbzYwjy());
+			if (!TextUtils.isEmpty(Constant.poor.getTdataResult().getJffhtptj_name()))
+				tv_condition.setText(Constant.poor.getTdataResult().getJffhtptj_name());
 		}
+
+		if (Constant.poor.getTdataHelper() != null) {
+			if (!TextUtils.isEmpty(Constant.poor.getTdataHelper().getJdbfzrOrgname()))
+				et_organization.setText(Constant.poor.getTdataHelper().getJdbfzrOrgname());
+			if (!TextUtils.isEmpty(Constant.poor.getTdataHelper().getJdbfzrOrger()))
+				et_name.setText(Constant.poor.getTdataHelper().getJdbfzrOrger());
+			if (!TextUtils.isEmpty(Constant.poor.getTdataHelper().getBfzrrPhone()))
+				et_tel.setText(Constant.poor.getTdataHelper().getBfzrrPhone());
+			if (!TextUtils.isEmpty(Constant.poor.getTdataHelper().getJdbfzrr()))
+				et_helpMan.setText(Constant.poor.getTdataHelper().getJdbfzrr());
+		}
+
+	}
 
 	@Override
 	public void onClick(View v) {
-		switch(v.getId()){
+		switch (v.getId()) {
 		case R.id.tv_save:
 			setData();
 			finish();
@@ -103,7 +110,7 @@ public class EffectActivity extends BaseActivity implements OnClickListener {
 			new DoubleDatePickerDialog(this, 0, new DoubleDatePickerDialog.OnDateSetListener() {
 				@Override
 				public void onDateSet(DatePicker startDatePicker, int startYear, int startMonthOfYear, int startDayOfMonth) {
-					String textString = startYear + "年" + (startMonthOfYear+1) + "月";
+					String textString = startYear + "年" + (startMonthOfYear + 1) + "月";
 					tv_time.setText(textString);
 				}
 			}, c.get(Calendar.YEAR), c.get(Calendar.MONTH), c.get(Calendar.DATE), false).show();
@@ -112,7 +119,7 @@ public class EffectActivity extends BaseActivity implements OnClickListener {
 			showWheelView("是否符合脱贫条件", conditions, 0);
 			break;
 		case R.id.txt_sure:
-			if(TextUtils.isEmpty(condition))
+			if (TextUtils.isEmpty(condition))
 				condition = conditions[1];
 			tv_condition.setText(condition);
 			condition = "";
@@ -122,7 +129,7 @@ public class EffectActivity extends BaseActivity implements OnClickListener {
 			dialog.dismiss();
 			break;
 		}
-		
+
 	}
 
 	/**
@@ -154,22 +161,27 @@ public class EffectActivity extends BaseActivity implements OnClickListener {
 		txtSure.setOnClickListener(this);
 		txtCancle.setOnClickListener(this);
 	}
-	
+
 	/**
-	 * 设置贫因户信息
+	 * 保存帮扶成效信息
 	 */
-	private void setData(){
-		Constant.poor.getTdataResult().setTpDate(tv_time.getText().toString().trim()+"");
-		Constant.poor.getTdataResult().setJtsrRjsr(et_income.getText().toString().trim()+"");
-		Constant.poor.getTdataResult().setJtsrZsr(et_allIncome.getText().toString().trim()+"");
-		Constant.poor.getTdataResult().setAddressSafe(et_houseSafe.getText().toString().trim()+"");
-		Constant.poor.getTdataResult().setJbshbzYl(et_medical.getText().toString().trim()+"");
-		Constant.poor.getTdataResult().setJbshbzYwjy(et_education.getText().toString().trim()+"");
-		Constant.poor.getTdataResult().setJffhtptj_name(tv_condition.getText().toString().trim()+"");
-		Constant.poor.getTdataHelper().setJdbfzrOrgname(et_organization.getText().toString().trim()+"");
-		Constant.poor.getTdataHelper().setJdbfzrOrger(et_name.getText().toString().trim()+"");
-		Constant.poor.getTdataHelper().setBfzrrPhone(et_tel.getText().toString().trim()+"");
-		Constant.poor.getTdataHelper().setJdbfzrr(et_helpMan.getText().toString().trim()+"");
+	private void setData() {
+		TdataResult result = new TdataResult();
+		result.setTpDate(tv_time.getText().toString().trim() + "");
+		result.setJtsrRjsr(et_income.getText().toString().trim() + "");
+		result.setJtsrZsr(et_allIncome.getText().toString().trim() + "");
+		result.setAddressSafe(et_houseSafe.getText().toString().trim() + "");
+		result.setJbshbzYl(et_medical.getText().toString().trim() + "");
+		result.setJbshbzYwjy(et_education.getText().toString().trim() + "");
+		result.setJffhtptj_name(tv_condition.getText().toString().trim() + "");
+		Constant.poor.setTdataResult(result);
+
+		TdataHelper helper = new TdataHelper();
+		helper.setJdbfzrOrgname(et_organization.getText().toString().trim() + "");
+		helper.setJdbfzrOrger(et_name.getText().toString().trim() + "");
+		helper.setBfzrrPhone(et_tel.getText().toString().trim() + "");
+		helper.setJdbfzrr(et_helpMan.getText().toString().trim() + "");
+		Constant.poor.setTdataHelper(helper);
 	}
 
 }
