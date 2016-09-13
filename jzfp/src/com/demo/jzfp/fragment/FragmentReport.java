@@ -27,6 +27,7 @@ import android.widget.TextView;
 import com.alibaba.fastjson.JSON;
 import com.demo.jzfp.R;
 import com.demo.jzfp.activity.AducationActivity;
+import com.demo.jzfp.activity.ChooseAreaActivity;
 import com.demo.jzfp.activity.EconomyActivity;
 import com.demo.jzfp.activity.EffectActivity;
 import com.demo.jzfp.activity.MeasuresActivity;
@@ -59,11 +60,12 @@ public class FragmentReport extends Fragment implements OnClickListener, WebServ
 	private List<String> poorCards;
 	private String state, poorCard, filePath;
 	private int table;// 1:贫因状态 2:健康状态
-	private TextView tv_state, tv_poorCard, tv_economy, tv_member, tv_reason, tv_measures, tv_effect;
+	private TextView tv_state, tv_poorCard, tv_economy, tv_member, tv_reason, tv_measures, tv_effect,et_countryId;
 	private EditText et_name, et_age, et_identity, et_tel;
 	private PhotoUtils photoUtils;
 	private SQLiteDatabase db = null;
 	private DictDataInfoDao dictDataDao = new DictDataInfoDaoImpl();
+	private String areacode= null;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -118,6 +120,9 @@ public class FragmentReport extends Fragment implements OnClickListener, WebServ
 
 		RelativeLayout rl_effect = (RelativeLayout) v.findViewById(R.id.rl_effect);
 		tv_effect = (TextView) v.findViewById(R.id.tv_effect);
+		
+		RelativeLayout rl_countryId = (RelativeLayout) v.findViewById(R.id.rl_countryId);
+		et_countryId = (TextView) v.findViewById(R.id.et_countryId);
 
 		// 设置点击事件
 		tv_commit.setOnClickListener(this);
@@ -132,6 +137,7 @@ public class FragmentReport extends Fragment implements OnClickListener, WebServ
 		rl_reason.setOnClickListener(this);
 		rl_measures.setOnClickListener(this);
 		rl_effect.setOnClickListener(this);
+		rl_countryId.setOnClickListener(this);
 	}
 
 	/**
@@ -203,6 +209,12 @@ public class FragmentReport extends Fragment implements OnClickListener, WebServ
 			Intent intent5 = new Intent(getActivity(), EffectActivity.class);
 			startActivity(intent5);
 			break;
+		case R.id.rl_countryId:
+			Intent intent6 = new Intent(getActivity(), ChooseAreaActivity.class);
+			Bundle bundle=new Bundle();
+			intent6.putExtras(bundle);
+			startActivityForResult(intent6, 102);
+			break;
 		case R.id.txt_sure:
 			if (table == 1) {
 				if (TextUtils.isEmpty(state))
@@ -264,6 +276,13 @@ public class FragmentReport extends Fragment implements OnClickListener, WebServ
 		case 300:
 			if (data != null && !TextUtils.isEmpty(data.getStringExtra("education")))
 				tv_education.setText(data.getStringExtra("education"));
+				String whcd = dictDataDao.queryDictCodeByValue(db,data.getStringExtra("education"));
+				Constant.poor.setWhcd(whcd);
+			break;
+		case 102:
+			if (data != null && !TextUtils.isEmpty(data.getStringExtra("name")))
+			et_countryId.setText(data.getStringExtra("name"));
+			Constant.poor.setCountryId(data.getStringExtra("areacode"));
 			break;
 		case PhotoUtils.REQUEST_TAKE_PICTURE:// 相机返回结果
 			filePath = photoUtils.getFilePath();
@@ -376,8 +395,7 @@ public class FragmentReport extends Fragment implements OnClickListener, WebServ
 		Constant.poor.setAge(et_age.getText().toString().trim() + "");
 		Constant.poor.setCard(et_identity.getText().toString().trim() + "");
 		Constant.poor.setTelphone(et_tel.getText().toString().trim() + "");
-		String whcd = dictDataDao.queryDictCodeByValue(db, tv_education.getText().toString().trim() + "");
-		Constant.poor.setWhcd(whcd);
+		Constant.poor.setWhcd(tv_education.getText().toString().trim() + "");
 		String poorCard = dictDataDao.queryDictCodeByValue(db, tv_poorCard.getText().toString().trim() + "");
 		Constant.poor.setPoorCard(poorCard);
 	}
@@ -385,7 +403,8 @@ public class FragmentReport extends Fragment implements OnClickListener, WebServ
 	@Override
 	public void result(String reulst, int requestCode) {
 		// TODO Auto-generated method stub
-		if (reulst != null) {
+		if (reulst != null && ("1").equals(reulst)) {
+			Tools.showNewToast(getActivity(), "提交成功！");
 			et_name.setText("");
 			tv_state.setText("");
 			iv_sex_women.setImageResource(R.drawable.woman_no);
@@ -403,8 +422,9 @@ public class FragmentReport extends Fragment implements OnClickListener, WebServ
 			tv_measures.setText("");
 			tv_effect.setText("");
 			Constant.poor = new TdataCountryman();
+		}else{
+			Tools.showNewToast(getActivity(), "提交失败！");
 		}
-
 	}
 
 }

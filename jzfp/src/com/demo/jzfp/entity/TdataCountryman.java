@@ -5,6 +5,7 @@ import java.util.List;
 public class TdataCountryman {
 	//////////基本信息
 	private String countryman;//户主姓名
+	private String countryId;//机构ID
 	private String poorState;//贫困状态
 	private String sex;//性别
 	private String age;//年龄
@@ -233,4 +234,16 @@ public class TdataCountryman {
 	}
 
 
+	public String getCountryId() {
+		return countryId;
+	}
+
+
+	public void setCountryId(String countryId) {
+		this.countryId = countryId;
+	}
+
+	
+	
+	
 }
