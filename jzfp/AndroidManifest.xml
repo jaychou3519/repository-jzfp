@@ -9,9 +9,14 @@
         android:targetSdkVersion="23" />
 
     <uses-permission android:name="android.permission.INTERNET" />
-    
+    <!-- 在SDCard中创建与删除文件权限 -->
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
+    <!-- 往SDCard写入数据权限 -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA"/>
+
     <application
-         android:name=".utils.MyApplication"
+        android:name=".utils.MyApplication"
         android:allowBackup="true"
         android:icon="@drawable/logo"
         android:label="@string/app_name"
@@ -21,30 +26,54 @@
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <service android:name="com.demo.jzfp.service.IAppService" android:enabled="true"></service>
-        <activity android:name="com.demo.jzfp.activity.MainActivity"
-            	  android:launchMode="singleTask"></activity>
-        <activity android:name="com.demo.jzfp.activity.RegisterActivity"></activity>
-        <activity android:name="com.demo.jzfp.activity.VillagesActivity"></activity>
-        <activity android:name="com.demo.jzfp.activity.EditPwdActivity"></activity>
-        <activity android:name="com.demo.jzfp.activity.ChooseAreaActivity"></activity>
-        <activity android:name="com.demo.jzfp.activity.VillagesTextActivity"></activity>
-        <activity android:name="com.demo.jzfp.activity.SupportActivity"></activity>
-        <activity android:name="com.demo.jzfp.activity.ArchivesActivity"></activity>
-        <activity android:name="com.demo.jzfp.activity.AducationActivity"></activity>
-        <activity android:name="com.demo.jzfp.activity.EconomyActivity"></activity>
-        <activity android:name="com.demo.jzfp.activity.ReasonActivity"></activity>
-        <activity android:name="com.demo.jzfp.activity.MemberActivity"></activity>
-        <activity android:name="com.demo.jzfp.activity.ArchivesDetailsActivity"></activity>
-        <activity android:name="com.demo.jzfp.activity.ArchivesPoorActivity"></activity>
-        <activity android:name="com.demo.jzfp.activity.MeasuresActivity"></activity>
-        <activity android:name="com.demo.jzfp.activity.EffectActivity"></activity>
-        <activity android:name="com.demo.jzfp.activity.MeasureDetailActivity"></activity>
-        <activity android:name="com.demo.jzfp.activity.BasicActivity"></activity>
+
+        <service
+            android:name="com.demo.jzfp.service.IAppService"
+            android:enabled="true" >
+        </service>
+
+        <activity
+            android:name="com.demo.jzfp.activity.MainActivity"
+            android:launchMode="singleTask" >
+        </activity>
+        <activity android:name="com.demo.jzfp.activity.RegisterActivity" >
+        </activity>
+        <activity android:name="com.demo.jzfp.activity.VillagesActivity" >
+        </activity>
+        <activity android:name="com.demo.jzfp.activity.EditPwdActivity" >
+        </activity>
+        <activity android:name="com.demo.jzfp.activity.ChooseAreaActivity" >
+        </activity>
+        <activity android:name="com.demo.jzfp.activity.VillagesTextActivity" >
+        </activity>
+        <activity android:name="com.demo.jzfp.activity.SupportActivity" >
+        </activity>
+        <activity android:name="com.demo.jzfp.activity.ArchivesActivity" >
+        </activity>
+        <activity android:name="com.demo.jzfp.activity.AducationActivity" >
+        </activity>
+        <activity android:name="com.demo.jzfp.activity.EconomyActivity" >
+        </activity>
+        <activity android:name="com.demo.jzfp.activity.ReasonActivity" >
+        </activity>
+        <activity android:name="com.demo.jzfp.activity.MemberActivity" >
+        </activity>
+        <activity android:name="com.demo.jzfp.activity.ArchivesDetailsActivity" >
+        </activity>
+        <activity android:name="com.demo.jzfp.activity.ArchivesPoorActivity" >
+        </activity>
+        <activity android:name="com.demo.jzfp.activity.MeasuresActivity" >
+        </activity>
+        <activity android:name="com.demo.jzfp.activity.EffectActivity" >
+        </activity>
+        <activity android:name="com.demo.jzfp.activity.MeasureDetailActivity" >
+        </activity>
+        <activity android:name="com.demo.jzfp.activity.BasicActivity" >
+        </activity>
     </application>
 
-  
 </manifest>
