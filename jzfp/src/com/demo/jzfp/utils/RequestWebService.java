@@ -13,7 +13,7 @@ import android.util.Log;
 
 public class RequestWebService {
 	public static String NAME_SPACE = "http://webservice.item.hihsoft.com/";
-	public static String SERVER_URL = "http://115.28.14.1:9145/ylppbd/services/ylppbdWS/";
+	public static String SERVER_URL = "http://115.28.14.1:9145/ylppbd/services/ylppbdWS?wsdl";
 
 	public interface WebServiceCallback {
 		/**

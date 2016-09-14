@@ -262,7 +262,7 @@ public class FragmentReport extends Fragment implements OnClickListener, WebServ
 			String data = JSON.toJSONString(Constant.poor);
 			Log.i("haha", data);
 			LinkedHashMap<String, String> map = new LinkedHashMap<String, String>();
-			map.put("org0", data);
+			map.put("arg0", data);
 			RequestWebService.send("insertTDataCountryman", map, this, 100);
 			break;
 		}
