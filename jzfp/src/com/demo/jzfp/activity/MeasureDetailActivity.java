@@ -102,7 +102,7 @@ public class MeasureDetailActivity extends BaseActivity implements OnClickListen
 	 * 保存帮扶措施信息
 	 */
 	private void setData(){
-		if(TextUtils.isEmpty(action.getActionMoney()) && TextUtils.isEmpty(action.getActionXl()) && TextUtils.isEmpty(action.getRemark()))
+		if(TextUtils.isEmpty(et_income.getText().toString()) && TextUtils.isEmpty(sb.toString()) && TextUtils.isEmpty(et_illustrate.getText().toString()))
 			return;
 		
 		if(("其他").equals(title) || ("政策性补助").equals(title)){
