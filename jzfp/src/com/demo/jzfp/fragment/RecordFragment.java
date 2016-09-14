@@ -62,7 +62,6 @@ public class RecordFragment extends Fragment{
 	
 	private void initData(){
 		if(countryman==null) return;
-		Tools.showNewToast(getActivity(), "进入有数据地方");
 		tv_name.setText(Tools.parseEmpty(countryman.getCountryman()));
 		tv_state.setText(Tools.parseEmpty(countryman.getPoorState()));
 		tv_gender.setText(Tools.parseEmpty(countryman.getSex()));

@@ -193,8 +193,6 @@ public class ArchivesDetailsActivity extends BaseActivity implements WebServiceC
 			case 204:
 				setTabSelection(0);
 				rdfragment.setCountryMan(countryMan);
-				msfragment.setCountryMan(countryMan);
-				etfragment.setCountryMan(countryMan);
 				break;
 
 			default:
