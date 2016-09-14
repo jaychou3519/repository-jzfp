@@ -155,7 +155,9 @@ public class FragmentReport extends Fragment implements OnClickListener, WebServ
 	public void onClick(View v) {
 		switch (v.getId()) {
 		case R.id.rl_photo:
+			Log.i("haha", "头像");
 			if (pu.camera()) {
+				Log.i("haha", "打开照相机");
 				photoUtils = new PhotoUtils(getActivity(), v, this);
 				photoUtils.selectImage();
 			}
