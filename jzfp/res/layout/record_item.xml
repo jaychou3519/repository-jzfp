@@ -167,6 +167,7 @@
     </LinearLayout>
 
     <View
+        android:id="@+id/vw_lines"
         android:layout_width="match_parent"
         android:layout_height="@dimen/x1"
         android:layout_marginTop="@dimen/x15"

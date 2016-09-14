@@ -46,7 +46,7 @@
                 android:layout_marginLeft="@dimen/x5"
                 android:background="@null"
                 android:hint="可模糊搜索帮扶户主姓名等"
-                android:textSize="14sp" />
+                android:textSize="@dimen/fontx14" />
         </LinearLayout>
 
         <TextView
@@ -57,7 +57,7 @@
             android:layout_marginRight="@dimen/x30"
             android:text="搜索"
             android:textColor="@color/bai"
-            android:textSize="17sp" />
+            android:textSize="@dimen/fontx17" />
     </LinearLayout>
 
     <FrameLayout
@@ -101,7 +101,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/x5"
                     android:text="2016-08-28"
-                    android:textColor="@color/bai" />
+                    android:textColor="@color/bai" 
+                    android:textSize="@dimen/fontx14"/>
 
                 <TextView
                     android:id="@+id/tv_week"
@@ -111,7 +112,8 @@
                     android:layout_marginTop="@dimen/x5"
                     android:layout_toRightOf="@id/tv_year_mday"
                     android:text="星期天"
-                    android:textColor="@color/bai" />
+                    android:textColor="@color/bai" 
+                    android:textSize="@dimen/fontx14"/>
             </LinearLayout>
 
             <com.demo.jzfp.view.MyDigitalClock
@@ -123,7 +125,7 @@
                 android:layout_marginTop="@dimen/x5"
                 android:gravity="center"
                 android:textColor="@color/bai"
-                android:textSize="32sp" />
+                android:textSize="@dimen/fontx32" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -140,7 +142,8 @@
                 android:layout_marginLeft="@dimen/x10"
                 android:layout_marginTop="@dimen/x5"
                 android:text="炎陵县"
-                android:textColor="@color/bai" />
+                android:textColor="@color/bai" 
+                android:textSize="@dimen/fontx14"/>
 
             <TextView
                 android:id="@+id/tv_temperature"
@@ -151,7 +154,7 @@
                 android:layout_marginTop="@dimen/x5"
                 android:text="29°"
                 android:textColor="@color/bai"
-                android:textSize="30sp" />
+                android:textSize="@dimen/fontx30" />
 
             <LinearLayout
                 android:layout_width="fill_parent"
@@ -178,7 +181,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="小雨"
-                        android:textColor="@color/bai" />
+                        android:textColor="@color/bai" 
+                        android:textSize="@dimen/fontx14"/>
 
                     <TextView
                         android:id="@+id/tv_temperature_range"
@@ -187,7 +191,8 @@
                         android:layout_marginLeft="@dimen/x5"
                         android:layout_marginRight="@dimen/x5"
                         android:text="25°/29°"
-                        android:textColor="@color/bai" />
+                        android:textColor="@color/bai"
+                        android:textSize="@dimen/fontx14" />
                 </LinearLayout>
             </LinearLayout>
         </RelativeLayout>
@@ -226,7 +231,7 @@
                 android:layout_marginRight="@dimen/x10"
                 android:text="扶贫档案"
                 android:textColor="@color/bai"
-                android:textSize="15sp" />
+                android:textSize="@dimen/fontx15" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -253,7 +258,7 @@
                 android:layout_marginRight="@dimen/x10"
                 android:text="帮扶政策"
                 android:textColor="@color/bai"
-                android:textSize="15sp" />
+                android:textSize="@dimen/fontx15" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -280,7 +285,7 @@
                 android:layout_marginRight="@dimen/x10"
                 android:text="基础信息"
                 android:textColor="@color/bai"
-                android:textSize="15sp" />
+                android:textSize="@dimen/fontx15" />
         </RelativeLayout>
     </LinearLayout>
 
