@@ -4,17 +4,21 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
+import android.view.View.OnCreateContextMenuListener;
 
 import com.demo.jzfp.utils.StringUtil;
+import com.demo.jzfp.utils.Tools;
 
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 	private String TAG = "DatabaseHelper";
 	private static final String DATABASE_NAME = "jzfp.db"; //数据库名称
-	private static final int DATABASE_VERSION = 2; //数据库版本
+	private static final int DATABASE_VERSION = 4; //数据库版本
 	
+	private Context context;
 	public DatabaseHelper(Context context) {
 		super(context, DATABASE_NAME, null, DATABASE_VERSION);//CursorFactory设置为null,使用默认值
+		this.context = context;
 	}
 
 	/**
@@ -25,11 +29,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 	 */
 	@Override
 	public void onCreate(SQLiteDatabase db) {
+		Tools.showNewToast(context, "进入创建数据库");
+		Tools.i(TAG, "进入创建数据库...........");
+		
+		db.execSQL("DROP TABLE IF EXISTS dict_data");
+		db.execSQL("DROP TABLE IF EXISTS tdata_config");
 		//字典信息表
-		db.execSQL("create table dict_data(dictId text,dictType text,dictName text,dictValue text,dictCode text,isdefault text,parentType text)");
-		db.execSQL("create table tdata_config(configId text,actionType text,actionDl text,actionXl text,actionDlCode text,actionXlCode text,configNo text)");
+		db.execSQL("create table IF NOT EXISTS dict_data(dictId text,dictType text,dictName text,dictValue text,dictCode text,isdefault text,parentType text)");
+		db.execSQL("create table IF NOT EXISTS tdata_config(configId text,actionType text,actionDl text,actionXl text,actionDlCode text,actionXlCode text,configNo text)");
 	}
-
 	/**
 	 * 
 	 * @param db
@@ -55,8 +63,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 	 */
 	@Override
 	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-		db.execSQL("create table  dict_data(dictId text,dictType text,dictName text,dictValue text,dictCode text,isdefault text,parentType text)");
-		db.execSQL("create table tdata_config(configId text,actionType text,actionDl text,actionXl text,actionDlCode text,actionXlCode text,configNo text)");
+		Tools.showNewToast(context, "进入创建数据库");
+		Tools.i(TAG, "进入创建数据库...........");
+		
+		db.execSQL("DROP TABLE IF EXISTS dict_data");
+		db.execSQL("DROP TABLE IF EXISTS tdata_config");
+		
+		db.execSQL("create table IF NOT EXISTS dict_data(dictId text,dictType text,dictName text,dictValue text,dictCode text,isdefault text,parentType text)");
+		db.execSQL("create table IF NOT EXISTS tdata_config(configId text,actionType text,actionDl text,actionXl text,actionDlCode text,actionXlCode text,configNo text)");
 	}
 	/**
 	 * 

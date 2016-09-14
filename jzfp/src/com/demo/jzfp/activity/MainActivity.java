@@ -12,6 +12,7 @@ import android.view.View.OnClickListener;
 import android.widget.LinearLayout;
 
 import com.demo.jzfp.R;
+import com.demo.jzfp.database.DatabaseHelper;
 import com.demo.jzfp.fragment.FragmentHome;
 import com.demo.jzfp.fragment.FragmentOptions;
 import com.demo.jzfp.fragment.FragmentReport;

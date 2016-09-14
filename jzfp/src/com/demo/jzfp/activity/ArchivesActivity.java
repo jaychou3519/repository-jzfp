@@ -44,6 +44,7 @@ public class ArchivesActivity extends BaseActivity implements WebServiceCallback
 		linkedHashMap.put("arg0", "412500005003");
 		RequestWebService.send(methodName, linkedHashMap, this, 101);
 		RequestWebService.send("selectToCountrymans", linkedHashMap, this, 101);
+		RequestWebService.send("selectNewsList", linkedHashMap, this, 101);
 	}
 
 	@Override

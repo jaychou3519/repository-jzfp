@@ -44,9 +44,13 @@ public class RecordAdapter extends BaseAdapter{
 			holder.tv_YearM = (TextView) convertView.findViewById(R.id.tv_YearM);
 			holder.tv_health = (TextView) convertView.findViewById(R.id.tv_health);
 			holder.tv_other = (TextView) convertView.findViewById(R.id.tv_other);
+			holder.vw_lines = convertView.findViewById(R.id.vw_lines);
 			convertView.setTag(holder);
 		}else{
 			holder = (ViewHolder) convertView.getTag();
+		}
+		if(getCount()==(position+1)){
+			holder.vw_lines.setVisibility(View.GONE);
 		}
 		return convertView;
 	}
@@ -59,5 +63,6 @@ public class RecordAdapter extends BaseAdapter{
 		TextView tv_YearM;
 		TextView tv_health;
 		TextView tv_other;
+		View vw_lines;
 	}
 }

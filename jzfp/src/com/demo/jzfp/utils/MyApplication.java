@@ -3,6 +3,7 @@ package com.demo.jzfp.utils;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.demo.jzfp.database.DatabaseHelper;
 import com.demo.jzfp.entity.Login;
 
 import android.app.Activity;
@@ -10,6 +11,10 @@ import android.app.Application;
 
 public class MyApplication extends Application {
 	
+	@Override
+	public void onCreate() {
+		super.onCreate();
+	}
 	public static Login login;
 	
 	private List<Activity> list = new ArrayList<Activity>();

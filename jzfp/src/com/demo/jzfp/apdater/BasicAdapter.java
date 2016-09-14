@@ -1,6 +1,6 @@
 package com.demo.jzfp.apdater;
 
-import java.util.List;
+import java.util.List;import org.apache.http.message.BasicStatusLine;
 
 import com.demo.jzfp.R;
 import com.demo.jzfp.entity.Basic;
@@ -42,8 +42,12 @@ public class BasicAdapter extends BaseAdapter{
 			convertView = View.inflate(context, R.layout.basic_item, null);
 			holder.tv_name = (TextView) convertView.findViewById(R.id.tv_name);
 			holder.tv_phone = (TextView) convertView.findViewById(R.id.tv_phone);
+			holder.vw_lines = convertView.findViewById(R.id.vw_lines);
 		}else{
 			holder = (ViewHolder) convertView.getTag();
+		}
+		if(position==(basics.size()-1)){
+			holder.vw_lines.setVisibility(View.GONE);
 		}
 		return convertView;
 	}
@@ -51,5 +55,6 @@ public class BasicAdapter extends BaseAdapter{
 	class ViewHolder{
 		TextView tv_name;
 		TextView tv_phone;
+		View vw_lines;
 	}
 }
