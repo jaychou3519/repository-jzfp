@@ -1,18 +1,21 @@
 package com.demo.jzfp.activity;
 
 import java.util.LinkedHashMap;
-
+import java.util.List;
+import com.alibaba.fastjson.JSON;
 import com.demo.jzfp.R;
 import com.demo.jzfp.apdater.ArchivesAdapter;
+import com.demo.jzfp.entity.ToFiles;
 import com.demo.jzfp.utils.MyApplication;
 import com.demo.jzfp.utils.RequestWebService;
 import com.demo.jzfp.utils.RequestWebService.WebServiceCallback;
 import com.demo.jzfp.utils.Tools;
 import com.lidroid.xutils.ViewUtils;
+import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
-
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.ListView;
 
@@ -22,7 +25,9 @@ public class ArchivesActivity extends BaseActivity implements WebServiceCallback
 	private MyApplication activityList;
 	private ArchivesAdapter adapter;
 	private String methodName = "selectToFiles";
-	
+	private List<ToFiles> toFiles;
+	@ViewInject(R.id.lv_listview)
+	private ListView lv_listview;
 	@Override
 	protected void setView() {
 		View view = View.inflate(ArchivesActivity.this, R.layout.activity_archives, null);
@@ -36,15 +41,11 @@ public class ArchivesActivity extends BaseActivity implements WebServiceCallback
 
 	@Override
 	protected void initView() {
-		ListView listView  = (ListView) findViewById(R.id.lv_listview);
-		adapter = new ArchivesAdapter(this);
-		listView.setAdapter(adapter);
+		
 		
 		LinkedHashMap<String, String> linkedHashMap = new LinkedHashMap<String, String>();
-		linkedHashMap.put("arg0", "412500005003");
+		linkedHashMap.put("arg0", MyApplication.login.getOrgId()+"");
 		RequestWebService.send(methodName, linkedHashMap, this, 101);
-		RequestWebService.send("selectToCountrymans", linkedHashMap, this, 101);
-		RequestWebService.send("selectNewsList", linkedHashMap, this, 101);
 	}
 
 	@Override
@@ -67,6 +68,19 @@ public class ArchivesActivity extends BaseActivity implements WebServiceCallback
 		}
 	}
 	
+	private Handler handler = new Handler(){
+		public void handleMessage(android.os.Message msg) {
+			switch (msg.what) {
+			case 201:
+				adapter = new ArchivesAdapter(ArchivesActivity.this,toFiles);
+				lv_listview.setAdapter(adapter);
+				break;
+
+			default:
+				break;
+			}
+		};
+	};
 	/**
 	 * 跳转到其它Activity
 	 * 
@@ -97,10 +111,15 @@ public class ArchivesActivity extends BaseActivity implements WebServiceCallback
 
 	@Override
 	public void result(String reulst, int requestCode) {
-		if(reulst==null){ 
-			Tools.showNewToast(this, "为空");
-			return;
-		}
-		Tools.i(TAG, reulst.toString());
+		if(reulst == null){
+			Tools.showNewToast(getApplication(), "链接服务器失败");
+		}else{
+    		try {
+				toFiles = JSON.parseArray(reulst, ToFiles.class);
+				handler.sendEmptyMessage(201);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+    	}
 	}
 }

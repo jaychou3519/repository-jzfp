@@ -63,7 +63,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 	 */
 	@Override
 	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-		Tools.showNewToast(context, "进入创建数据库");
 		Tools.i(TAG, "进入创建数据库...........");
 		
 		db.execSQL("DROP TABLE IF EXISTS dict_data");

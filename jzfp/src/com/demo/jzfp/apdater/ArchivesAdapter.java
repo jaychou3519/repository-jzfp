@@ -9,29 +9,34 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import junit.framework.Test;
 
+import java.util.List;
+
 import com.demo.jzfp.R;
 import com.demo.jzfp.activity.ArchivesPoorActivity;
+import com.demo.jzfp.entity.ToFiles;
 import com.demo.jzfp.utils.Tools;
 
 public class ArchivesAdapter extends BaseAdapter{
 
 	private Context context;
-	public ArchivesAdapter(Context context) {
+	private List<ToFiles> toFiles;
+	public ArchivesAdapter(Context context,List<ToFiles> toFiles) {
 		this.context = context;
+		this.toFiles = toFiles;
 	}
 	@Override
 	public int getCount() {
-		return 3;
+		return toFiles.size();
 	}
 
 	@Override
 	public Object getItem(int position) {
-		return null;
+		return toFiles.get(position);
 	}
 
 	@Override
 	public long getItemId(int position) {
-		return 0;
+		return position;
 	}
 
 	@Override
@@ -48,6 +53,8 @@ public class ArchivesAdapter extends BaseAdapter{
 		}else{
 			holder = (ViewHolder) convertView.getTag();
 		}
+		holder.tv_address.setText(toFiles.get(position).getAddressC()+"");
+		holder.tv_number.setText(toFiles.get(position).getJtstRjsr()+"");
 		holder.rl_archives.setOnClickListener(new OnClickListener() {
 			
 			@Override
