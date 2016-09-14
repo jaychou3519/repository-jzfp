@@ -27,6 +27,7 @@ public class EffectActivity extends BaseActivity implements OnClickListener {
 	private String condition;
 	private TextView tv_time, tv_condition;
 	private EditText et_income, et_allIncome, et_houseSafe, et_medical, et_education, et_organization, et_name, et_tel, et_helpMan;
+	private EditText et_dwsjName,et_dwsjPhone, et_zzName, et_zzPhone, et_csjName, et_csjPhone, et_czrName, et_czrPhone;
 
 	@Override
 	protected void setView() {
@@ -57,6 +58,14 @@ public class EffectActivity extends BaseActivity implements OnClickListener {
 		et_name = (EditText) findViewById(R.id.et_name);
 		et_tel = (EditText) findViewById(R.id.et_tel);
 		et_helpMan = (EditText) findViewById(R.id.et_helpMan);
+		et_dwsjName = (EditText) findViewById(R.id.et_dwsjName);
+		et_dwsjPhone = (EditText) findViewById(R.id.et_dwsjPhone);
+		et_zzName = (EditText) findViewById(R.id.et_zzName);
+		et_zzPhone = (EditText) findViewById(R.id.et_zzPhone);
+		et_csjName = (EditText) findViewById(R.id.et_csjName);
+		et_csjPhone = (EditText) findViewById(R.id.et_csjPhone);
+		et_czrName = (EditText) findViewById(R.id.et_czrName);
+		et_czrPhone = (EditText) findViewById(R.id.et_czrPhone);
 
 		tv_save.setOnClickListener(this);
 		rl_time.setOnClickListener(this);
@@ -93,6 +102,22 @@ public class EffectActivity extends BaseActivity implements OnClickListener {
 				et_tel.setText(Constant.poor.getTdataHelper().getBfzrrPhone());
 			if (!TextUtils.isEmpty(Constant.poor.getTdataHelper().getJdbfzrr()))
 				et_helpMan.setText(Constant.poor.getTdataHelper().getJdbfzrr());
+			if (!TextUtils.isEmpty(Constant.poor.getTdataHelper().getDwsjName()))
+				et_dwsjName.setText(Constant.poor.getTdataHelper().getDwsjName());
+			if (!TextUtils.isEmpty(Constant.poor.getTdataHelper().getDwsjPhone()))
+				et_dwsjPhone.setText(Constant.poor.getTdataHelper().getDwsjPhone());
+			if (!TextUtils.isEmpty(Constant.poor.getTdataHelper().getZzName()))
+				et_zzName.setText(Constant.poor.getTdataHelper().getZzName());
+			if (!TextUtils.isEmpty(Constant.poor.getTdataHelper().getZzPhone()))
+				et_zzPhone.setText(Constant.poor.getTdataHelper().getZzPhone());
+			if (!TextUtils.isEmpty(Constant.poor.getTdataHelper().getCsjName()))
+				et_csjName.setText(Constant.poor.getTdataHelper().getCsjName());
+			if (!TextUtils.isEmpty(Constant.poor.getTdataHelper().getCxjPhone()))
+				et_csjPhone.setText(Constant.poor.getTdataHelper().getCxjPhone());
+			if (!TextUtils.isEmpty(Constant.poor.getTdataHelper().getCzrName()))
+				et_czrName.setText(Constant.poor.getTdataHelper().getCzrName());
+			if (!TextUtils.isEmpty(Constant.poor.getTdataHelper().getCzrPhone()))
+				et_czrPhone.setText(Constant.poor.getTdataHelper().getCzrPhone());
 		}
 
 	}
@@ -181,6 +206,14 @@ public class EffectActivity extends BaseActivity implements OnClickListener {
 		helper.setJdbfzrOrger(et_name.getText().toString().trim() + "");
 		helper.setBfzrrPhone(et_tel.getText().toString().trim() + "");
 		helper.setJdbfzrr(et_helpMan.getText().toString().trim() + "");
+		helper.setDwsjName(et_dwsjName.getText().toString().trim()+"");
+		helper.setDwsjPhone(et_dwsjPhone.getText().toString().trim()+"");
+		helper.setZzName(et_zzName.getText().toString().trim()+"");
+		helper.setZzPhone(et_zzPhone.getText().toString().trim()+"");
+		helper.setCsjName(et_csjName.getText().toString().trim()+"");
+		helper.setCxjPhone(et_csjName.getText().toString().trim()+"");
+		helper.setCzrName(et_czrName.getText().toString().trim()+"");
+		helper.setCzrPhone(et_czrPhone.getText().toString().trim()+"");
 		Constant.poor.setTdataHelper(helper);
 	}
 

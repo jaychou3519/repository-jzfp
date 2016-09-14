@@ -549,7 +549,7 @@
                     android:layout_toLeftOf="@id/iv_into_tel"
                     android:background="@null"
                     android:hint="请填写帮扶户联系电话"
-                    android:digits="0123456789-"
+                    android:phoneNumber="true"
                     android:maxLength="15"
                     android:singleLine="true"
                     android:textColor="#000"

@@ -276,13 +276,10 @@ public class FragmentReport extends Fragment implements OnClickListener, WebServ
 		case 300:
 			if (data != null && !TextUtils.isEmpty(data.getStringExtra("education")))
 				tv_education.setText(data.getStringExtra("education"));
-				String whcd = dictDataDao.queryDictCodeByValue(db,data.getStringExtra("education"));
-				Constant.poor.setWhcd(whcd);
 			break;
 		case 102:
 			if (data != null && !TextUtils.isEmpty(data.getStringExtra("name")))
-			et_countryId.setText(data.getStringExtra("name"));
-			Constant.poor.setCountryId(data.getStringExtra("areacode"));
+				et_countryId.setText(data.getStringExtra("name"));
 			break;
 		case PhotoUtils.REQUEST_TAKE_PICTURE:// 相机返回结果
 			filePath = photoUtils.getFilePath();
@@ -395,7 +392,13 @@ public class FragmentReport extends Fragment implements OnClickListener, WebServ
 		Constant.poor.setAge(et_age.getText().toString().trim() + "");
 		Constant.poor.setCard(et_identity.getText().toString().trim() + "");
 		Constant.poor.setTelphone(et_tel.getText().toString().trim() + "");
-		Constant.poor.setWhcd(tv_education.getText().toString().trim() + "");
+		
+		if(TextUtils.isEmpty(tv_education.getText().toString().trim())){
+			String whcd = dictDataDao.queryDictCodeByValue(db,tv_education.getText().toString().trim());
+			Constant.poor.setWhcd(whcd);
+		}
+		
+		Constant.poor.setCountryId(et_countryId.getText().toString().trim()+"");
 		String poorCard = dictDataDao.queryDictCodeByValue(db, tv_poorCard.getText().toString().trim() + "");
 		Constant.poor.setPoorCard(poorCard);
 	}
@@ -421,6 +424,7 @@ public class FragmentReport extends Fragment implements OnClickListener, WebServ
 			tv_reason.setText("");
 			tv_measures.setText("");
 			tv_effect.setText("");
+			et_countryId.setText("");
 			Constant.poor = new TdataCountryman();
 		}else{
 			Tools.showNewToast(getActivity(), "提交失败！");
