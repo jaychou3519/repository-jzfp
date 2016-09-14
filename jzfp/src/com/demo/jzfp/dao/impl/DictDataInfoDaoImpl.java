@@ -18,7 +18,7 @@ public class DictDataInfoDaoImpl implements DictDataInfoDao {
 	public int existDictDataInfo(SQLiteDatabase db)throws SQLException {
 		int count = 0;
 		StringBuffer sql = new StringBuffer();
-		sql.append("select count(1) as count from dict_data");
+		sql.append("select count(1) as count from tdata_config");
 		Cursor cursor = db.rawQuery(sql.toString(), new String[] {});
 		if (cursor.moveToNext()) {
 			count=cursor.getInt(cursor.getColumnIndex("count"));
@@ -30,7 +30,7 @@ public class DictDataInfoDaoImpl implements DictDataInfoDao {
 	@Override
 	public void deleteDictDataInfo(SQLiteDatabase db) throws SQLException {
 		db.beginTransaction();
-		db.execSQL("delete from dict_data");
+		db.execSQL("delete from tdata_config");
 		db.setTransactionSuccessful();//设置事务处理成功，不设置会自动回滚不提交
 		db.endTransaction();//处理完成
 	}
@@ -46,7 +46,7 @@ public class DictDataInfoDaoImpl implements DictDataInfoDao {
 		String dictCode =  StringUtil.Object2String(map.get("dictCode"));
 		String isdefault =  StringUtil.Object2String(map.get("isdefault"));
 		String parentType =  StringUtil.Object2String(map.get("parentType"));
-		db.execSQL("insert into dict_data(dictId,dictType,dictName,dictValue,dictCode,isdefault,parentType) values(?,?,?,?,?,?,?)",
+		db.execSQL("insert into tdata_config(dictId,dictType,dictName,dictValue,dictCode,isdefault,parentType) values(?,?,?,?,?,?,?)",
 				new Object[] {dictId,dictType,dictName,dictValue,dictCode,isdefault,parentType});
 		return true;
 	}
@@ -55,7 +55,7 @@ public class DictDataInfoDaoImpl implements DictDataInfoDao {
 	public List<String> queryDictValueByType(SQLiteDatabase db,String dictType) {
 		List<String> dictValue = new ArrayList<String>(); 
 		StringBuffer sql = new StringBuffer();
-		sql.append("select * from dict_data dd where dd.dictType=?");
+		sql.append("select * from tdata_config dd where dd.dictType=?");
 		Cursor cursor = db.rawQuery(sql.toString(), new String[] {dictType});
 		while (cursor.moveToNext()) {
 			String _value = cursor.getString(cursor.getColumnIndex("dictValue"));
@@ -69,7 +69,7 @@ public class DictDataInfoDaoImpl implements DictDataInfoDao {
 	public String queryDictCodeByValue(SQLiteDatabase db, String value) {
 		String dictCode = null; 
 		StringBuffer sql = new StringBuffer();
-		sql.append("select * from dict_data dd where dd.dictValue=?");
+		sql.append("select * from tdata_config dd where dd.dictValue=?");
 		Cursor cursor = db.rawQuery(sql.toString(), new String[] {value});
 		while (cursor.moveToNext()) {
 			 dictCode = cursor.getString(cursor.getColumnIndex("dictCode"));
