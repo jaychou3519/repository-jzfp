@@ -60,12 +60,12 @@ public class FragmentReport extends Fragment implements OnClickListener, WebServ
 	private List<String> poorCards;
 	private String state, poorCard, filePath;
 	private int table;// 1:贫因状态 2:健康状态
-	private TextView tv_state, tv_poorCard, tv_economy, tv_member, tv_reason, tv_measures, tv_effect,et_countryId;
+	private TextView tv_state, tv_poorCard, tv_economy, tv_member, tv_reason, tv_measures, tv_effect, et_countryId;
 	private EditText et_name, et_age, et_identity, et_tel;
 	private PhotoUtils photoUtils;
 	private SQLiteDatabase db = null;
 	private DictDataInfoDao dictDataDao = new DictDataInfoDaoImpl();
-	private String areacode= null;
+	private String areacode = null;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -120,7 +120,7 @@ public class FragmentReport extends Fragment implements OnClickListener, WebServ
 
 		RelativeLayout rl_effect = (RelativeLayout) v.findViewById(R.id.rl_effect);
 		tv_effect = (TextView) v.findViewById(R.id.tv_effect);
-		
+
 		RelativeLayout rl_countryId = (RelativeLayout) v.findViewById(R.id.rl_countryId);
 		et_countryId = (TextView) v.findViewById(R.id.et_countryId);
 
@@ -155,11 +155,10 @@ public class FragmentReport extends Fragment implements OnClickListener, WebServ
 	public void onClick(View v) {
 		switch (v.getId()) {
 		case R.id.rl_photo:
-			// if (pu.camera()) {
-			Tools.showNewToast(getActivity(), "进入....相机");
-			photoUtils = new PhotoUtils(getActivity(), v, this);
-			photoUtils.selectImage();
-			// }
+			if (pu.camera()) {
+				photoUtils = new PhotoUtils(getActivity(), v, this);
+				photoUtils.selectImage();
+			}
 			break;
 		case R.id.rl_state:
 			String title = "请选择贫因户状态";
@@ -211,7 +210,7 @@ public class FragmentReport extends Fragment implements OnClickListener, WebServ
 			break;
 		case R.id.rl_countryId:
 			Intent intent6 = new Intent(getActivity(), ChooseAreaActivity.class);
-			Bundle bundle=new Bundle();
+			Bundle bundle = new Bundle();
 			intent6.putExtras(bundle);
 			startActivityForResult(intent6, 102);
 			break;
@@ -392,13 +391,13 @@ public class FragmentReport extends Fragment implements OnClickListener, WebServ
 		Constant.poor.setAge(et_age.getText().toString().trim() + "");
 		Constant.poor.setCard(et_identity.getText().toString().trim() + "");
 		Constant.poor.setTelphone(et_tel.getText().toString().trim() + "");
-		
-		if(TextUtils.isEmpty(tv_education.getText().toString().trim())){
-			String whcd = dictDataDao.queryDictCodeByValue(db,tv_education.getText().toString().trim());
+
+		if (TextUtils.isEmpty(tv_education.getText().toString().trim())) {
+			String whcd = dictDataDao.queryDictCodeByValue(db, tv_education.getText().toString().trim());
 			Constant.poor.setWhcd(whcd);
 		}
-		
-		Constant.poor.setCountryId(et_countryId.getText().toString().trim()+"");
+
+		Constant.poor.setCountryId(et_countryId.getText().toString().trim() + "");
 		String poorCard = dictDataDao.queryDictCodeByValue(db, tv_poorCard.getText().toString().trim() + "");
 		Constant.poor.setPoorCard(poorCard);
 	}
@@ -426,7 +425,7 @@ public class FragmentReport extends Fragment implements OnClickListener, WebServ
 			tv_effect.setText("");
 			et_countryId.setText("");
 			Constant.poor = new TdataCountryman();
-		}else{
+		} else {
 			Tools.showNewToast(getActivity(), "提交失败！");
 		}
 	}
