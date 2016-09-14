@@ -2,6 +2,7 @@ package com.demo.jzfp.fragment;
 
 import com.demo.jzfp.R;
 import com.demo.jzfp.apdater.RecordAdapter;
+import com.demo.jzfp.entity.TdataCountryman;
 import com.demo.jzfp.utils.Tools;
 
 import android.app.Fragment;
@@ -23,18 +24,17 @@ public class RecordFragment extends Fragment{
 					,tv_health,tv_home_flat,tv_home_area,tv_plough_area,tv_mountains_area
 					,tv_year_money,tv_reason,tv_explain;
 	private ImageView iv_photo;
+	private TdataCountryman countryman;
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		adapter = new RecordAdapter(getActivity());
+		
 	}
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		View view = inflater.inflate(R.layout.fragment_record, null);
 		initView(view);
-		lv_listview.setAdapter(adapter);
-		Tools.setListViewHeight(lv_listview);
 		return view;
 	}
 
@@ -60,4 +60,30 @@ public class RecordFragment extends Fragment{
 		iv_photo = 	(ImageView) view.findViewById(R.id.iv_photo);
 	}
 	
+	private void initData(){
+		if(countryman==null) return;
+		Tools.showNewToast(getActivity(), "进入有数据地方");
+		tv_name.setText(Tools.parseEmpty(countryman.getCountryman()));
+		tv_state.setText(Tools.parseEmpty(countryman.getPoorState()));
+		tv_gender.setText(Tools.parseEmpty(countryman.getSex()));
+		tv_idcard.setText(Tools.parseEmpty(countryman.getCard()));
+		tv_age.setText(Tools.parseEmpty(countryman.getAge()));
+		tv_phone.setText(Tools.parseEmpty(countryman.getTelphone()));
+		tv_educational.setText(Tools.parseEmpty(countryman.getWhcd()));
+		tv_health.setText(Tools.parseEmpty(countryman.getJkzk()));
+		tv_home_flat.setText(Tools.parseEmpty(countryman.getZfjg()));
+		tv_home_area.setText(Tools.parseEmpty(countryman.getZzArea()));
+		tv_plough_area.setText(Tools.parseEmpty(countryman.getGdArea()));
+		tv_mountains_area.setText(Tools.parseEmpty(countryman.getSlArea()));
+		tv_year_money.setText(Tools.parseEmpty(countryman.getRjsrqk()));
+		tv_reason.setText(Tools.parseEmpty(countryman.getPoorReason()));
+		tv_explain.setText(Tools.parseEmpty(countryman.getRemark()));
+		adapter = new RecordAdapter(getActivity(),countryman.getTdataFamilys());
+		lv_listview.setAdapter(adapter);
+		Tools.setListViewHeight(lv_listview);
+	}
+	public void setCountryMan(TdataCountryman countryMan){
+		this.countryman = countryMan;
+		initData();
+	}
 }

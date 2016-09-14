@@ -41,8 +41,6 @@ public class ArchivesActivity extends BaseActivity implements WebServiceCallback
 
 	@Override
 	protected void initView() {
-		
-		
 		LinkedHashMap<String, String> linkedHashMap = new LinkedHashMap<String, String>();
 		linkedHashMap.put("arg0", MyApplication.login.getOrgId()+"");
 		RequestWebService.send(methodName, linkedHashMap, this, 101);

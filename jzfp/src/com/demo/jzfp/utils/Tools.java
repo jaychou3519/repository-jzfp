@@ -86,6 +86,19 @@ public class Tools {
 		return getGson();
 	}
 
+	 /**
+     * 描述：将null转化为“”.
+     *
+     * @param str 指定的字符串
+     * @return 字符串的String类型
+     */
+    public static String parseEmpty(String str) {
+        if(str==null || "null".equals(str.trim())){
+        	str = "";
+        }
+        return str.trim();
+    }
+    
 	/**
 	 * 获得屏幕宽度
 	 * 

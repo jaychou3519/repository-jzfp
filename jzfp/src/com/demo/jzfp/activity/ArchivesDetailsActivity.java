@@ -1,20 +1,28 @@
 package com.demo.jzfp.activity;
 
+import java.util.LinkedHashMap;
+import com.alibaba.fastjson.JSON;
 import com.demo.jzfp.R;
+import com.demo.jzfp.entity.CountryMans;
+import com.demo.jzfp.entity.TdataCountryman;
 import com.demo.jzfp.fragment.EffectFragment;
 import com.demo.jzfp.fragment.MeasureFragment;
 import com.demo.jzfp.fragment.RecordFragment;
 import com.demo.jzfp.utils.MyApplication;
+import com.demo.jzfp.utils.RequestWebService;
+import com.demo.jzfp.utils.Tools;
+import com.demo.jzfp.utils.RequestWebService.WebServiceCallback;
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
 import android.app.FragmentTransaction;
 import android.content.res.Resources;
+import android.os.Handler;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
-public class ArchivesDetailsActivity extends BaseActivity {
+public class ArchivesDetailsActivity extends BaseActivity implements WebServiceCallback{
 	private MyApplication activityList;
 
 	@ViewInject(R.id.fl_framelayout)
@@ -30,7 +38,9 @@ public class ArchivesDetailsActivity extends BaseActivity {
 	private EffectFragment etfragment;
 	private MeasureFragment msfragment;
 	private FragmentTransaction transaction;
+	private String methodName = "selectByCountryman";
 
+	private TdataCountryman countryMan;
 	@Override
 	protected void setView() {
 		View view = View.inflate(this, R.layout.activity_archives_details, null);
@@ -42,7 +52,9 @@ public class ArchivesDetailsActivity extends BaseActivity {
 
 	@Override
 	protected void initView() {
-
+		LinkedHashMap<String, String> linkedHashMap = new LinkedHashMap<String, String>();
+		linkedHashMap.put("arg0", getIntent().getExtras().getString("countrymanId"));
+		RequestWebService.send(methodName, linkedHashMap, this, 101);
 	}
 
 	@Override
@@ -160,5 +172,35 @@ public class ArchivesDetailsActivity extends BaseActivity {
 			transaction.hide(etfragment);
 		}
 	}
+
+	@Override
+	public void result(String reulst, int requestCode) {
+		if(reulst == null){
+			Tools.showNewToast(getApplication(), "链接服务器失败");
+		}else{
+    		try {
+    			countryMan = JSON.parseObject(reulst, TdataCountryman.class);
+    			handler.sendEmptyMessage(204);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+    	}
+	}
+	
+	private Handler handler = new Handler(){
+		public void handleMessage(android.os.Message msg) {
+			switch (msg.what) {
+			case 204:
+				setTabSelection(0);
+				rdfragment.setCountryMan(countryMan);
+				msfragment.setCountryMan(countryMan);
+				etfragment.setCountryMan(countryMan);
+				break;
+
+			default:
+				break;
+			}
+		};
+	};
 
 }

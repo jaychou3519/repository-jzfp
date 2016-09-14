@@ -1,6 +1,7 @@
 package com.demo.jzfp.apdater;
 
 import android.content.Context;
+import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
@@ -40,7 +41,7 @@ public class ArchivesAdapter extends BaseAdapter{
 	}
 
 	@Override
-	public View getView(int position, View convertView, ViewGroup parent) {
+	public View getView(final int position, View convertView, ViewGroup parent) {
 		ViewHolder holder = null;
 		if(convertView==null){
 			convertView = View.inflate(context, R.layout.archives_item, null);
@@ -59,7 +60,9 @@ public class ArchivesAdapter extends BaseAdapter{
 			
 			@Override
 			public void onClick(View v) {
-				Tools.setOpenActivity(context, ArchivesPoorActivity.class);
+				Bundle bundle = new Bundle();
+				bundle.putString("countrymanId", toFiles.get(position).getCountrymanId()+"");
+				Tools.setOpenActivityBundle(context, ArchivesPoorActivity.class, bundle);
 			}
 		});
 		return convertView;

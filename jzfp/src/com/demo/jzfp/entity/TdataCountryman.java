@@ -12,7 +12,9 @@ public class TdataCountryman {
 	private String card;//身份证
 	private String telphone;//联系电话
 	private String whcd;//文化程度
-	//private String health;//健康状态
+	private String jkzk;//健康状态
+
+
 	private java.lang.String poorCard;//贫困户属性
 	
 	///////////家庭经济
@@ -33,6 +35,15 @@ public class TdataCountryman {
 	
 	private TdataHelper tdataHelper;
 	private TdataResult tdataResult;
+	
+	public String getJkzk() {
+		return jkzk;
+	}
+
+
+	public void setJkzk(String jkzk) {
+		this.jkzk = jkzk;
+	}
 
 
 	public String getCountryman() {

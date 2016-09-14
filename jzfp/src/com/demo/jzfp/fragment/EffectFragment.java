@@ -6,6 +6,7 @@ import java.util.List;
 import com.demo.jzfp.R;
 import com.demo.jzfp.apdater.EffectAdapter;
 import com.demo.jzfp.entity.Effect;
+import com.demo.jzfp.entity.TdataCountryman;
 
 import android.app.Fragment;
 import android.os.Bundle;
@@ -21,6 +22,7 @@ public class EffectFragment extends Fragment{
 	private List<Effect> effects1 = new ArrayList<Effect>();
 	private ListView lv_listview,lv_listview1;
 	private TextView tv_person_money,tv_all_money;
+	private TdataCountryman countryman;
 	private String[] string = new String[]{"住房安全","医疗","义务教育","是否符合脱贫条件"};
 	private String[] string1 = new String[]{"责任单位","负责人","联系电话","结对帮扶责任人","职务","联系电话"};
 	private String[] string2 = new String[]{"炎陵镇财务局","财神爷","22034567","周密","科员","13908488899"};
@@ -53,5 +55,13 @@ public class EffectFragment extends Fragment{
 		lv_listview1.setAdapter(adapter1);
 		
 		return view;
+	}
+	public void setCountryMan(TdataCountryman countryMan){
+		this.countryman = countryMan;
+		initData();
+	}
+
+	private void initData() {
+		
 	}
 }
