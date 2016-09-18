@@ -4,6 +4,7 @@ import java.util.List;
 
 public class TdataCountryman {
 	//////////基本信息
+	private String countrymanId;
 	private String countryman;//户主姓名
 	private String countryId;//机构ID
 	private String poorState;//贫困状态
@@ -36,6 +37,17 @@ public class TdataCountryman {
 	private TdataHelper tdataHelper;
 	private TdataResult tdataResult;
 	
+
+	public String getCountrymanId() {
+		return countrymanId;
+	}
+
+
+	public void setCountrymanId(String countrymanId) {
+		this.countrymanId = countrymanId;
+	}
+
+
 	public String getJkzk() {
 		return jkzk;
 	}
@@ -253,8 +265,6 @@ public class TdataCountryman {
 	public void setCountryId(String countryId) {
 		this.countryId = countryId;
 	}
-
-	
 	
 	
 }

@@ -3,6 +3,7 @@ package com.demo.jzfp.fragment;
 import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.UUID;
 
 import android.app.AlertDialog;
 import android.app.Fragment;
@@ -393,6 +394,7 @@ public class FragmentReport extends Fragment implements OnClickListener, WebServ
 		Constant.poor.setAge(et_age.getText().toString().trim() + "");
 		Constant.poor.setCard(et_identity.getText().toString().trim() + "");
 		Constant.poor.setTelphone(et_tel.getText().toString().trim() + "");
+		Constant.poor.setCountrymanId(UUID.randomUUID().toString().replace("-", ""));
 
 		if (TextUtils.isEmpty(tv_education.getText().toString().trim())) {
 			String whcd = dictDataDao.queryDictCodeByValue(db, tv_education.getText().toString().trim());
