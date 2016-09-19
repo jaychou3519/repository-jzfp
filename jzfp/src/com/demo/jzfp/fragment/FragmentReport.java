@@ -284,7 +284,6 @@ public class FragmentReport extends Fragment implements OnClickListener, WebServ
 				Tools.showNewToast(getActivity(), "请填写帮扶成效信息");
 				return;
 			} 
-			
 			setData();
 			rl_jindu.setVisibility(View.VISIBLE);
 			uploadImage();
