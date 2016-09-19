@@ -72,6 +72,7 @@ public class FragmentReport extends Fragment implements OnClickListener, WebServ
 	private DictDataInfoDao dictDataDao = new DictDataInfoDaoImpl();
 	private Bitmap bitmap;
 	private RelativeLayout rl_jindu;
+	private String areacode;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -287,6 +288,7 @@ public class FragmentReport extends Fragment implements OnClickListener, WebServ
 		case 102:
 			if (data != null && !TextUtils.isEmpty(data.getStringExtra("name")))
 				et_countryId.setText(data.getStringExtra("name"));
+				areacode = data.getStringExtra("areacode");
 			break;
 		case PhotoUtils.REQUEST_TAKE_PICTURE:// 相机返回结果
 			filePath = photoUtils.getFilePath();
@@ -426,7 +428,7 @@ public class FragmentReport extends Fragment implements OnClickListener, WebServ
 			Constant.poor.setWhcd(whcd);
 		}
 
-		Constant.poor.setCountryId(et_countryId.getText().toString().trim() + "");
+		Constant.poor.setCountryId(areacode);
 		String poorCard = dictDataDao.queryDictCodeByValue(db, tv_poorCard.getText().toString().trim() + "");
 		Constant.poor.setPoorCard(poorCard);
 	}
