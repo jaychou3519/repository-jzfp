@@ -12,4 +12,5 @@ public interface DictDataInfoDao {
 	public boolean insertDictDataInfo(Map map,SQLiteDatabase db) throws Exception;
 	public List<String> queryDictValueByType(SQLiteDatabase db,String type);
 	public String queryDictCodeByValue(SQLiteDatabase db,String value);
+	public String queryValueByDictCode(SQLiteDatabase db,String dictCode,String type);
 }

@@ -2,11 +2,15 @@ package com.demo.jzfp.fragment;
 
 import com.demo.jzfp.R;
 import com.demo.jzfp.apdater.RecordAdapter;
+import com.demo.jzfp.dao.DictDataInfoDao;
+import com.demo.jzfp.dao.impl.DictDataInfoDaoImpl;
+import com.demo.jzfp.database.DatabaseHelper;
 import com.demo.jzfp.entity.TdataCountryman;
 import com.demo.jzfp.utils.Tools;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
 import android.app.Fragment;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -22,8 +26,10 @@ public class RecordFragment extends Fragment{
 	private ScrollView sv_scroll;
 	private ListView lv_listview;
 	private RecordAdapter adapter;
+	private SQLiteDatabase db = null;
+	private DictDataInfoDao dictDataDao = new DictDataInfoDaoImpl();
 	private TextView tv_name,tv_state,tv_gender,tv_idcard,tv_age,tv_phone,tv_educational
-					,tv_health,tv_home_flat,tv_home_area,tv_plough_area,tv_mountains_area
+					,tv_home_flat,tv_home_area,tv_plough_area,tv_mountains_area
 					,tv_year_money,tv_reason,tv_explain;
 	private ImageView iv_photo;
 	private TdataCountryman countryman;
@@ -50,7 +56,6 @@ public class RecordFragment extends Fragment{
 		tv_age = 	(TextView) view.findViewById(R.id.tv_age);
 		tv_phone = 	(TextView) view.findViewById(R.id.tv_phone);
 		tv_educational = 	(TextView) view.findViewById(R.id.tv_educational);
-		tv_health = 	(TextView) view.findViewById(R.id.tv_health);
 		tv_home_flat = 	(TextView) view.findViewById(R.id.tv_home_flat);
 		tv_home_area = 	(TextView) view.findViewById(R.id.tv_home_area);
 		tv_plough_area = 	(TextView) view.findViewById(R.id.tv_plough_area);
@@ -64,15 +69,16 @@ public class RecordFragment extends Fragment{
 	}
 	
 	private void initData(){
+		db = (new DatabaseHelper(getActivity())).getWritableDatabase();
 		if(countryman==null) return;
 		tv_name.setText(Tools.parseEmpty(countryman.getCountryman()));
-		tv_state.setText(Tools.parseEmpty(countryman.getPoorState()));
+		tv_state.setText(dictDataDao.queryValueByDictCode(db,countryman.getPoorState(),"poorState"));
 		tv_gender.setText(Tools.parseEmpty(countryman.getSex()));
 		tv_idcard.setText(Tools.parseEmpty(countryman.getCard()));
 		tv_age.setText(Tools.parseEmpty(countryman.getAge()));
 		tv_phone.setText(Tools.parseEmpty(countryman.getTelphone()));
-		tv_educational.setText(Tools.parseEmpty(countryman.getWhcd()));
-		tv_health.setText(Tools.parseEmpty(countryman.getJkzk()));
+		String whcd = dictDataDao.queryValueByDictCode(db,countryman.getWhcd(),"whcd");
+		tv_educational.setText(whcd);
 		tv_home_flat.setText(Tools.parseEmpty(countryman.getZfjg()));
 		tv_home_area.setText(Tools.parseEmpty(countryman.getZzArea()));
 		tv_plough_area.setText(Tools.parseEmpty(countryman.getGdArea()));

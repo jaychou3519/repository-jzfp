@@ -16,7 +16,7 @@ import com.demo.jzfp.utils.MyApplication;
 public class AducationActivity extends BaseActivity implements OnClickListener{
 	private List<RelativeLayout> rls = new ArrayList<RelativeLayout>();
 	private List<ImageView> ivs = new ArrayList<ImageView>();
-	private String[] aducations = {"研究生教育", "大学本科/专科教育", "中等职业教育", "普通高级中学教育", "初级中学教育", "小学教育", "其它"};
+	private String[] aducations = {"研究生教育", "大学本科", "大专及以上", "高中", "初中", "小学", "其它"};
 	private String aducation = "";
 	private Intent intent;
 	private MyApplication activityList;

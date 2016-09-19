@@ -77,4 +77,17 @@ public class DictDataInfoDaoImpl implements DictDataInfoDao {
 		cursor.close();
 		return dictCode;
 	}
+
+	@Override
+	public String queryValueByDictCode(SQLiteDatabase db, String dictCode,String type) {
+		String value = null; 
+		StringBuffer sql = new StringBuffer();
+		sql.append("select * from dict_data dd where dd.dictCode=? and dictType=?");
+		Cursor cursor = db.rawQuery(sql.toString(), new String[] {dictCode,type});
+		while (cursor.moveToNext()) {
+			value = cursor.getString(cursor.getColumnIndex("dictValue"));
+		}
+		cursor.close();
+		return value;
+	}
 }

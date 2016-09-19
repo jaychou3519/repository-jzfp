@@ -62,8 +62,7 @@ public class FragmentReport extends Fragment implements OnClickListener, WebServ
 	private TextView tv_education;
 	private PermissionsUtils pu;
 	private AlertDialog dialog;
-	private String[] states;
-	private List<String> poorCards;
+	private List<String> poorCards,states;
 	private String state, poorCard, filePath;
 	private int table;// 1:贫因状态 2:健康状态
 	private TextView tv_state, tv_poorCard, tv_economy, tv_member, tv_reason, tv_measures, tv_effect, et_countryId;
@@ -131,6 +130,10 @@ public class FragmentReport extends Fragment implements OnClickListener, WebServ
 
 		RelativeLayout rl_countryId = (RelativeLayout) v.findViewById(R.id.rl_countryId);
 		et_countryId = (TextView) v.findViewById(R.id.et_countryId);
+		
+		if(MyApplication.login.getLoginName().equals("admin")){
+			rl_countryId.setVisibility(View.VISIBLE);
+		}
 
 		rl_jindu = (RelativeLayout) v.findViewById(R.id.rl_jindu);
 
@@ -156,7 +159,7 @@ public class FragmentReport extends Fragment implements OnClickListener, WebServ
 	private void initData() {
 		db = (new DatabaseHelper(getActivity())).getWritableDatabase();
 		pu = new PermissionsUtils(getActivity());
-		states = new String[] { "返贫", "未脱贫", "已脱贫", "预脱贫" };
+		states = dictDataDao.queryDictValueByType(db, "poorState");
 		poorCards = dictDataDao.queryDictValueByType(db, "poorCard");
 
 	}
@@ -175,7 +178,7 @@ public class FragmentReport extends Fragment implements OnClickListener, WebServ
 		case R.id.rl_state:
 			String title = "请选择贫因户状态";
 			table = 1;
-			showWheelView(title, states, table);
+			showWheelView(title, (String[]) states.toArray(new String[states.size()]), table);
 			break;
 		case R.id.ll_women:
 			sex = "女";
@@ -229,7 +232,7 @@ public class FragmentReport extends Fragment implements OnClickListener, WebServ
 		case R.id.txt_sure:
 			if (table == 1) {
 				if (TextUtils.isEmpty(state))
-					state = states[1];
+					state = states.get(1);
 				tv_state.setText(state);
 				state = "";
 			} else if (table == 2) {
@@ -442,8 +445,11 @@ public class FragmentReport extends Fragment implements OnClickListener, WebServ
 			String whcd = dictDataDao.queryDictCodeByValue(db, tv_education.getText().toString().trim());
 			Constant.poor.setWhcd(whcd);
 		}
-		
-		Constant.poor.setCountryId(MyApplication.login.getOrgId());
+		if(MyApplication.login.getLoginName().equals("admin")){
+			Constant.poor.setCountryId(areacode);
+		}else{
+			Constant.poor.setCountryId(MyApplication.login.getOrgId());
+		}
 		String poorCard = dictDataDao.queryDictCodeByValue(db, tv_poorCard.getText().toString().trim() + "");
 		Constant.poor.setPoorCard(poorCard);
 	}
