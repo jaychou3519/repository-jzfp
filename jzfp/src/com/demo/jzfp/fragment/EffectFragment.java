@@ -81,7 +81,12 @@ public class EffectFragment extends Fragment {
 					effect.setContent(tResult.getJbshbzYwjy() + "");
 					break;
 				case 3:
-					effect.setContent(tResult.getJffhtptj() + "");
+					if(tResult.getJffhtptj().equals("1")){
+						effect.setContent("是");
+					}
+					if(tResult.getJffhtptj().equals("2")){
+						effect.setContent("否");
+					}
 					break;
 				}
 			}
