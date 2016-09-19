@@ -44,6 +44,7 @@ import com.demo.jzfp.database.DatabaseHelper;
 import com.demo.jzfp.entity.TdataCountryman;
 import com.demo.jzfp.utils.AbImageUtil;
 import com.demo.jzfp.utils.Constant;
+import com.demo.jzfp.utils.MyApplication;
 import com.demo.jzfp.utils.PermissionsUtils;
 import com.demo.jzfp.utils.PhotoUtils;
 import com.demo.jzfp.utils.RequestWebService;
@@ -427,8 +428,8 @@ public class FragmentReport extends Fragment implements OnClickListener, WebServ
 			String whcd = dictDataDao.queryDictCodeByValue(db, tv_education.getText().toString().trim());
 			Constant.poor.setWhcd(whcd);
 		}
-
-		Constant.poor.setCountryId(areacode);
+		
+		Constant.poor.setCountryId(MyApplication.login.getOrgId());
 		String poorCard = dictDataDao.queryDictCodeByValue(db, tv_poorCard.getText().toString().trim() + "");
 		Constant.poor.setPoorCard(poorCard);
 	}
