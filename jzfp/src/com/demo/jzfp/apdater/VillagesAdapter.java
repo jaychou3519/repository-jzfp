@@ -5,6 +5,7 @@ import java.util.List;
 import com.demo.jzfp.R;
 import com.demo.jzfp.activity.VillagesTextActivity;
 import com.demo.jzfp.entity.Policy;
+import com.demo.jzfp.entity.Villages;
 import com.demo.jzfp.utils.Tools;
 
 import android.content.Context;
@@ -20,6 +21,7 @@ public class VillagesAdapter extends BaseAdapter{
 
 	private Context context;
 	private List<Policy> policies;
+	private List<Villages> villages;
 	public static final int SUPPORT = 12;
 	public static final int VILLAGES = 19;
 	private int state;
@@ -28,14 +30,28 @@ public class VillagesAdapter extends BaseAdapter{
 		this.policies = policies;
 		this.state = state;
 	}
+	public VillagesAdapter(Context context,int state,List<Villages> villages) {
+		this.context = context;
+		this.villages = villages;
+		this.state = state;
+	}
 	@Override
 	public int getCount() {
-		return policies.size();
+		if(state==VILLAGES){
+			return villages.size();
+		}else{
+			return policies.size();
+		}
+		
 	}
 
 	@Override
 	public Object getItem(int position) {
-		return policies.get(position);
+		if(state==VILLAGES){
+			return villages.get(position);
+		}else{
+			return policies.get(position);
+		}
 	}
 
 	@Override
@@ -55,7 +71,11 @@ public class VillagesAdapter extends BaseAdapter{
 		}else{
 			holder = (ViewHolder) convertView.getTag(); 
 		}
-		holder.tv_villages_name.setText(policies.get(position).getNewTitle());
+		if(state==VILLAGES){
+			holder.tv_villages_name.setText(villages.get(position).getOrgName());
+		}else{
+			holder.tv_villages_name.setText(policies.get(position).getNewTitle());
+		}
 		holder.ll_villages.setOnClickListener(new OnClickListener() {
 			
 			@Override

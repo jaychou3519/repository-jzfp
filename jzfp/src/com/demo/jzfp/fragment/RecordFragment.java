@@ -4,9 +4,11 @@ import com.demo.jzfp.R;
 import com.demo.jzfp.apdater.RecordAdapter;
 import com.demo.jzfp.entity.TdataCountryman;
 import com.demo.jzfp.utils.Tools;
+import com.nostra13.universalimageloader.core.ImageLoader;
 
 import android.app.Fragment;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -78,6 +80,9 @@ public class RecordFragment extends Fragment{
 		tv_year_money.setText(Tools.parseEmpty(countryman.getRjsrqk()));
 		tv_reason.setText(Tools.parseEmpty(countryman.getPoorReason()));
 		tv_explain.setText(Tools.parseEmpty(countryman.getRemark()));
+		
+		if(!TextUtils.isEmpty(countryman.getPkhimg()))
+			ImageLoader.getInstance().displayImage(countryman.getPkhimg(), iv_photo);
 		adapter = new RecordAdapter(getActivity(),countryman.getTdataFamilys());
 		lv_listview.setAdapter(adapter);
 		Tools.setListViewHeight(lv_listview);

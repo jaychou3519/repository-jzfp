@@ -193,6 +193,7 @@ public class ArchivesDetailsActivity extends BaseActivity implements WebServiceC
     		switch (requestCode) {
 			case 101:
 				try {
+					Tools.i("selectByCountryman", reulst.toString());
 					countryMan = JSON.parseObject(reulst, TdataCountryman.class);
 	    			handler.sendEmptyMessage(204);
 				} catch (Exception e) {

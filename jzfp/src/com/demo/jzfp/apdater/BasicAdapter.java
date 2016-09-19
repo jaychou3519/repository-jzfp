@@ -1,6 +1,9 @@
 package com.demo.jzfp.apdater;
 
-import java.util.List;import org.apache.http.message.BasicStatusLine;
+import java.util.List;
+import java.util.Map;
+
+import org.apache.http.message.BasicStatusLine;
 
 import com.demo.jzfp.R;
 import com.demo.jzfp.entity.Basic;
@@ -13,20 +16,20 @@ import android.widget.TextView;
 
 public class BasicAdapter extends BaseAdapter{
 
-	private List<Basic> basics;
+	private List<Map> maps;
 	private Context context;
-	public BasicAdapter(Context context,List<Basic> basics) {
+	public BasicAdapter(Context context,List<Map> maps) {
 		this.context = context;
-		this.basics = basics;
+		this.maps = maps;
 	}
 	@Override
 	public int getCount() {
-		return basics.size();
+		return maps.size();
 	}
 
 	@Override
 	public Object getItem(int position) {
-		return basics.get(position);
+		return maps.get(position);
 	}
 
 	@Override
@@ -46,7 +49,9 @@ public class BasicAdapter extends BaseAdapter{
 		}else{
 			holder = (ViewHolder) convertView.getTag();
 		}
-		if(position==(basics.size()-1)){
+		holder.tv_name.setText(maps.get(position).get("name")+"");
+		holder.tv_phone.setText(maps.get(position).get("phone")+"");
+		if(position==(maps.size()-1)){
 			holder.vw_lines.setVisibility(View.GONE);
 		}
 		return convertView;

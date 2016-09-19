@@ -57,7 +57,6 @@ public class SupportActivity extends BaseActivity implements WebServiceCallback 
 		policies = JSON.parseArray(reulst, Policy.class);
 		VillagesAdapter adapter = new VillagesAdapter(SupportActivity.this, policies, VillagesAdapter.SUPPORT);
 		lv_listview.setAdapter(adapter);
-		Tools.showNewToast(this, "数量=" + policies.size());
 	}
 
 }
