@@ -150,7 +150,7 @@ public class ChooseAreaActivity extends BaseActivity implements OnClickListener{
 			case R.id.tv_commit:
 			   Bundle bundle = this.getIntent().getExtras();
 		       bundle.putString("name", (String) mm.get("name"));
-		       bundle.putString("areacode", (String) mm.get("areacode"));
+		       bundle.putString("areacode", (String) mm.get("id"));
 		       Intent intent = this.getIntent();
 		       intent.putExtras(bundle);
 		   	   this.setResult(102, intent);
