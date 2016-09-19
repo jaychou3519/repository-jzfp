@@ -283,7 +283,7 @@ public class FragmentReport extends Fragment implements OnClickListener, WebServ
 			} else if (TextUtils.isEmpty(tv_economy.getText().toString())) {
 				Tools.showNewToast(getActivity(), "请填写帮扶措施信息");
 				return;
-			} else if (TextUtils.isEmpty(tv_effect.getText().toString())) {
+			} else if (TextUtils.isEmpty(tv_effect.getText().toString()) || Constant.poor.getTdataHelper() == null || Constant.poor.getTdataResult() == null) {
 				Tools.showNewToast(getActivity(), "请填写帮扶成效信息");
 				return;
 			} 
@@ -460,6 +460,7 @@ public class FragmentReport extends Fragment implements OnClickListener, WebServ
 		if (requestCode == 100) {// 提交贫困户信息
 			if ("1".equals(result)) {
 				Tools.showNewToast(getActivity(), "提交成功！");
+				iv_headpicture.setImageDrawable(getResources().getDrawable(R.drawable.headpicture));
 				et_name.setText("");
 				tv_state.setText("");
 				iv_sex_women.setImageResource(R.drawable.woman_no);
