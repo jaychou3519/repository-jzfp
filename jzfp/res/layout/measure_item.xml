@@ -28,6 +28,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:maxLines="2"
                 android:text="发展生产脱贫贫困农户小额贷款"
                 android:textSize="@dimen/x14" />
 
