@@ -1,10 +1,14 @@
 package com.demo.jzfp.activity;
 
 import java.util.LinkedHashMap;
+import java.util.List;
+
 import com.alibaba.fastjson.JSON;
 import com.demo.jzfp.R;
 import com.demo.jzfp.entity.CountryMans;
+import com.demo.jzfp.entity.TdataAction;
 import com.demo.jzfp.entity.TdataCountryman;
+import com.demo.jzfp.entity.TdataResult;
 import com.demo.jzfp.fragment.EffectFragment;
 import com.demo.jzfp.fragment.MeasureFragment;
 import com.demo.jzfp.fragment.RecordFragment;
@@ -41,6 +45,8 @@ public class ArchivesDetailsActivity extends BaseActivity implements WebServiceC
 	private String methodName = "selectByCountryman";
 
 	private TdataCountryman countryMan;
+	private TdataResult tresult;
+	private List<TdataAction> tactions;
 	@Override
 	protected void setView() {
 		View view = View.inflate(this, R.layout.activity_archives_details, null);
@@ -52,9 +58,11 @@ public class ArchivesDetailsActivity extends BaseActivity implements WebServiceC
 
 	@Override
 	protected void initView() {
-		LinkedHashMap<String, String> linkedHashMap = new LinkedHashMap<String, String>();
+		linkedHashMap = new LinkedHashMap<String, String>();
 		linkedHashMap.put("arg0", getIntent().getExtras().getString("countrymanId"));
 		RequestWebService.send(methodName, linkedHashMap, this, 101);
+
+		Tools.i("JJY", getIntent().getExtras().getString("countrymanId"));
 	}
 
 	@Override
@@ -72,9 +80,13 @@ public class ArchivesDetailsActivity extends BaseActivity implements WebServiceC
 			setTabSelection(0);
 			break;
 		case R.id.tv_measure:
+			if(tactions==null)
+			RequestWebService.send("selectByAction", linkedHashMap, this, 102);
 			setTabSelection(1);
 			break;
 		case R.id.tv_effect:
+			if(tresult==null)
+			RequestWebService.send("selectByResult", linkedHashMap, this, 103);
 			setTabSelection(2);
 			break;
 		case R.id.iv_edit:
@@ -178,11 +190,37 @@ public class ArchivesDetailsActivity extends BaseActivity implements WebServiceC
 		if(reulst == null){
 			Tools.showNewToast(getApplication(), "链接服务器失败");
 		}else{
-    		try {
-    			countryMan = JSON.parseObject(reulst, TdataCountryman.class);
-    			handler.sendEmptyMessage(204);
-			} catch (Exception e) {
-				e.printStackTrace();
+    		switch (requestCode) {
+			case 101:
+				try {
+					countryMan = JSON.parseObject(reulst, TdataCountryman.class);
+	    			handler.sendEmptyMessage(204);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+				break;
+			case 102:
+				try {
+					Tools.i("selectByAction", reulst.toString());
+					Tools.showNewToast(ArchivesDetailsActivity.this, "selectByAction="+reulst.toString());
+					tactions = JSON.parseArray(reulst, TdataAction.class);
+					handler.sendEmptyMessage(205);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+				break;
+			case 103:
+				try {
+					Tools.i("selectByResult", reulst.toString());
+					tresult = JSON.parseObject(reulst, TdataResult.class);
+					handler.sendEmptyMessage(206);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+				break;
+
+			default:
+				break;
 			}
     	}
 	}
@@ -194,11 +232,21 @@ public class ArchivesDetailsActivity extends BaseActivity implements WebServiceC
 				setTabSelection(0);
 				rdfragment.setCountryMan(countryMan);
 				break;
+			case 205:
+				setTabSelection(1);
+				msfragment.setTdataAction(tactions);
+				break;
+			case 206:
+				setTabSelection(2);
+				etfragment.setTdataResult(tresult);
+				break;
 
 			default:
 				break;
 			}
 		};
 	};
+
+	private LinkedHashMap<String, String> linkedHashMap;
 
 }

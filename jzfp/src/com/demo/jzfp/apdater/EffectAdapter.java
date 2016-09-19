@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.demo.jzfp.R;
 import com.demo.jzfp.entity.Effect;
+import com.demo.jzfp.utils.Tools;
 
 import android.content.Context;
 import android.view.View;
@@ -46,8 +47,8 @@ public class EffectAdapter extends BaseAdapter{
 		}else{
 			holder = (ViewHolder) convertView.getTag();
 		}
-		holder.tv_title.setText(effects.get(position).getTitle());
-		holder.tv_content.setText(effects.get(position).getContent());
+		holder.tv_title.setText(Tools.parseEmpty(effects.get(position).getTitle())+"");
+		holder.tv_content.setText(Tools.parseEmpty(effects.get(position).getContent())+"");
 		return convertView;
 	}
 

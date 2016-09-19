@@ -1,9 +1,13 @@
 package com.demo.jzfp.fragment;
 
+import java.util.List;
+
 import com.demo.jzfp.R;
 import com.demo.jzfp.apdater.ImageAdapter;
 import com.demo.jzfp.apdater.MeasureAdapter;
+import com.demo.jzfp.entity.TdataAction;
 import com.demo.jzfp.entity.TdataCountryman;
+import com.demo.jzfp.entity.TdataResult;
 import com.demo.jzfp.utils.Tools;
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
@@ -19,7 +23,8 @@ public class MeasureFragment extends Fragment{
 
 	private ListView lv_listview;
 	private MeasureAdapter adapter;
-	private TdataCountryman countryman;
+
+	private List<TdataAction> tdataActions;
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -28,7 +33,6 @@ public class MeasureFragment extends Fragment{
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		View view = inflater.inflate(R.layout.fragment_measure, null);
-		adapter = new MeasureAdapter(getActivity());
 		lv_listview = (ListView) view.findViewById(R.id.lv_listview_measure);
 		if(lv_listview==null){
 			Tools.showNewToast(getActivity(), "listview 空指针。。。。");
@@ -38,16 +42,16 @@ public class MeasureFragment extends Fragment{
 			Tools.showNewToast(getActivity(), "adapter 空指针。。。。");
 			return view;
 		}
-		lv_listview.setAdapter(adapter);
 		return view;
 	}
 	
-	public void setCountryMan(TdataCountryman countryMan){
-		this.countryman = countryMan;
+	public void setTdataAction(List<TdataAction> tdataActions){
+		this.tdataActions = tdataActions;
 		initData();
 	}
 
 	private void initData() {
-		
+		adapter = new MeasureAdapter(getActivity(),tdataActions);
+		lv_listview.setAdapter(adapter);
 	}
 }

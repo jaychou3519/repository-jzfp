@@ -40,7 +40,6 @@ public class RecordFragment extends Fragment{
 
 	private void initView(View view) {
 		sv_scroll = (ScrollView) view.findViewById(R.id.sv_scroll);
-		sv_scroll.smoothScrollTo(0, 0);
 		lv_listview = (ListView) view.findViewById(R.id.lv_listview);
 		tv_name = 	(TextView) view.findViewById(R.id.tv_name);
 		tv_state = 	(TextView) view.findViewById(R.id.tv_state);
@@ -58,6 +57,8 @@ public class RecordFragment extends Fragment{
 		tv_reason = 	(TextView) view.findViewById(R.id.tv_reason);
 		tv_explain = 	(TextView) view.findViewById(R.id.tv_explain);
 		iv_photo = 	(ImageView) view.findViewById(R.id.iv_photo);
+		sv_scroll.smoothScrollTo(0, 20);
+		sv_scroll.setFocusable(true);
 	}
 	
 	private void initData(){
@@ -80,6 +81,8 @@ public class RecordFragment extends Fragment{
 		adapter = new RecordAdapter(getActivity(),countryman.getTdataFamilys());
 		lv_listview.setAdapter(adapter);
 		Tools.setListViewHeight(lv_listview);
+		sv_scroll.smoothScrollTo(0, 20);
+		sv_scroll.setFocusable(true);
 	}
 	public void setCountryMan(TdataCountryman countryMan){
 		this.countryman = countryMan;
