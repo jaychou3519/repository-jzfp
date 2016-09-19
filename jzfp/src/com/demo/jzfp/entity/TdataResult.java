@@ -9,7 +9,7 @@ public class TdataResult{
 	private String addressSafe;//住房安全
 	private String jbshbzYl;//医疗
 	private String jbshbzYwjy;//义务教育
-	private String jffhtptj_name;//是否符合脱贫条件
+	private String jffhtptj;//是否符合脱贫条件
 	public String getTpDate() {
 		return tpDate;
 	}
@@ -46,11 +46,11 @@ public class TdataResult{
 	public void setJbshbzYwjy(String jbshbzYwjy) {
 		this.jbshbzYwjy = jbshbzYwjy;
 	}
-	public String getJffhtptj_name() {
-		return jffhtptj_name;
+	public String getJffhtptj() {
+		return jffhtptj;
 	}
-	public void setJffhtptj_name(String jffhtptj_name) {
-		this.jffhtptj_name = jffhtptj_name;
+	public void setJffhtptj(String jffhtptj) {
+		this.jffhtptj = jffhtptj;
 	}
 }
 

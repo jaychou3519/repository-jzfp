@@ -81,7 +81,7 @@ public class EffectFragment extends Fragment {
 					effect.setContent(tResult.getJbshbzYwjy() + "");
 					break;
 				case 3:
-					effect.setContent(tResult.getJffhtptj_name() + "");
+					effect.setContent(tResult.getJffhtptj() + "");
 					break;
 				}
 			}

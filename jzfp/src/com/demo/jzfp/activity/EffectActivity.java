@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.Calendar;
 
 import android.app.AlertDialog;
+import android.database.sqlite.SQLiteDatabase;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +15,9 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.demo.jzfp.R;
+import com.demo.jzfp.dao.DictDataInfoDao;
+import com.demo.jzfp.dao.impl.DictDataInfoDaoImpl;
+import com.demo.jzfp.database.DatabaseHelper;
 import com.demo.jzfp.entity.TdataHelper;
 import com.demo.jzfp.entity.TdataResult;
 import com.demo.jzfp.utils.Constant;
@@ -28,6 +32,8 @@ public class EffectActivity extends BaseActivity implements OnClickListener {
 	private TextView tv_time, tv_condition;
 	private EditText et_income, et_allIncome, et_houseSafe, et_medical, et_education, et_organization, et_name, et_tel, et_helpMan;
 	private EditText et_dwsjName,et_dwsjPhone, et_zzName, et_zzPhone, et_csjName, et_csjPhone, et_czrName, et_czrPhone;
+	private SQLiteDatabase db = null;
+	private DictDataInfoDao dictDataDao = new DictDataInfoDaoImpl();
 
 	@Override
 	protected void setView() {
@@ -75,6 +81,7 @@ public class EffectActivity extends BaseActivity implements OnClickListener {
 
 	@Override
 	protected void initData() {
+		db = (new DatabaseHelper(this)).getWritableDatabase();
 		conditions = new String[] { "是", "否" };
 		if (Constant.poor.getTdataResult() != null) {
 			if (!TextUtils.isEmpty(Constant.poor.getTdataResult().getTpDate()))
@@ -89,8 +96,8 @@ public class EffectActivity extends BaseActivity implements OnClickListener {
 				et_medical.setText(Constant.poor.getTdataResult().getJbshbzYl());
 			if (!TextUtils.isEmpty(Constant.poor.getTdataResult().getJbshbzYwjy()))
 				et_education.setText(Constant.poor.getTdataResult().getJbshbzYwjy());
-			if (!TextUtils.isEmpty(Constant.poor.getTdataResult().getJffhtptj_name()))
-				tv_condition.setText(Constant.poor.getTdataResult().getJffhtptj_name());
+			if (!TextUtils.isEmpty(Constant.poor.getTdataResult().getJffhtptj()))
+				tv_condition.setText(Constant.poor.getTdataResult().getJffhtptj());
 		}
 
 		if (Constant.poor.getTdataHelper() != null) {
@@ -198,7 +205,10 @@ public class EffectActivity extends BaseActivity implements OnClickListener {
 		result.setAddressSafe(et_houseSafe.getText().toString().trim() + "");
 		result.setJbshbzYl(et_medical.getText().toString().trim() + "");
 		result.setJbshbzYwjy(et_education.getText().toString().trim() + "");
-		result.setJffhtptj_name(tv_condition.getText().toString().trim() + "");
+		if (!TextUtils.isEmpty(tv_condition.getText().toString().trim())) {
+			String jffhtptj = dictDataDao.queryDictCodeByValue(db, tv_condition.getText().toString().trim());
+			result.setJffhtptj(jffhtptj);
+		}
 		Constant.poor.setTdataResult(result);
 
 		TdataHelper helper = new TdataHelper();
