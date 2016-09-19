@@ -268,7 +268,22 @@ public class FragmentReport extends Fragment implements OnClickListener, WebServ
 			} else if (TextUtils.isEmpty(tv_poorCard.getText().toString())) {
 				Tools.showNewToast(getActivity(), "请选择贫困户属性");
 				return;
-			}
+			} else if (TextUtils.isEmpty(tv_economy.getText().toString())) {
+				Tools.showNewToast(getActivity(), "请填写家庭经济信息");
+				return;
+			} else if (TextUtils.isEmpty(tv_member.getText().toString())) {
+				Tools.showNewToast(getActivity(), "请填写家庭成员信息");
+				return;
+			} else if (TextUtils.isEmpty(tv_reason.getText().toString())) {
+				Tools.showNewToast(getActivity(), "请填写致贫原因信息");
+				return;
+			} else if (TextUtils.isEmpty(tv_economy.getText().toString())) {
+				Tools.showNewToast(getActivity(), "请填写帮扶措施信息");
+				return;
+			} else if (TextUtils.isEmpty(tv_effect.getText().toString())) {
+				Tools.showNewToast(getActivity(), "请填写帮扶成效信息");
+				return;
+			} 
 			setData();
 			rl_jindu.setVisibility(View.VISIBLE);
 			uploadImage();
