@@ -6,7 +6,6 @@ import java.util.List;
 
 import com.demo.jzfp.R;
 import com.demo.jzfp.entity.TdataFamily;
-import com.demo.jzfp.utils.Constant;
 import com.demo.jzfp.view.DoubleDatePickerDialog;
 import com.demo.jzfp.view.WheelView;
 
@@ -157,7 +156,15 @@ public class MemberAdapter extends BaseAdapter {
 			holder.tv_birthday.setText("");
 		}
 		if (!TextUtils.isEmpty(member.getJkzk())) {
-			holder.tv_health.setText(member.getJkzk());
+			if("jkzkhydb".equals(member.getJkzk())){
+				holder.tv_health.setText("患有大病");
+			} else if("jkzkcj".equals(member.getJkzk())){
+				holder.tv_health.setText("残疾");
+			} else if("jkzkcqmxb".equals(member.getJkzk())){
+				holder.tv_health.setText("长期慢性病");
+			} else if("jkzkjk".equals(member.getJkzk())){
+				holder.tv_health.setText("健康");
+			}
 		} else {
 			holder.tv_health.setText("");
 		}
@@ -297,7 +304,15 @@ public class MemberAdapter extends BaseAdapter {
 					if (TextUtils.isEmpty(health))
 						health = healths[1];
 					holder.tv_health.setText(health);
-					member.setJkzk(health);
+					if("患有大病".equals(health)){
+						member.setJkzk("jkzkhydb");
+					} else if("残疾".equals(health)){
+						member.setJkzk("jkzkcj");
+					} else if("长期慢性病".equals(health)){
+						member.setJkzk("jkzkcqmxb");
+					} else if("健康".equals(health)){
+						member.setJkzk("jkzkjk");
+					}
 					health = "";
 				}
 				dialog.dismiss();
