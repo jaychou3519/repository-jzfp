@@ -74,6 +74,8 @@
         </activity>
         <activity android:name="com.demo.jzfp.activity.BasicActivity" >
         </activity>
+        <activity android:name="com.demo.jzfp.activity.VillagesTextActivity2" >
+        </activity>
     </application>
 
 </manifest>
