@@ -487,6 +487,7 @@ public class FragmentReport extends Fragment implements OnClickListener, WebServ
 				Tools.showNewToast(getActivity(), "图片上传失败！");
 				rl_jindu.setVisibility(View.GONE);
 			} else {
+				Constant.poor.setPkhimg(result);//设置图片地址
 				commit();
 			}
 		}
