@@ -212,7 +212,8 @@ public class MemberAdapter extends BaseAdapter {
 				holder.tv_sex_women.setTextColor(Color.rgb(220, 220, 220));
 				holder.iv_sex_man.setImageResource(R.drawable.man_yes);
 				holder.tv_sex_man.setTextColor(Color.rgb(52, 152, 219));
-				member.setSex("男");
+				
+				member.setSex("1");
 			}
 		});
 
@@ -223,7 +224,7 @@ public class MemberAdapter extends BaseAdapter {
 				holder.tv_sex_women.setTextColor(Color.rgb(155, 89, 182));
 				holder.iv_sex_man.setImageResource(R.drawable.man_no);
 				holder.tv_sex_man.setTextColor(Color.rgb(220, 220, 200));
-				member.setSex("女");
+				member.setSex("2");
 			}
 		});
 

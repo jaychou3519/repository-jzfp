@@ -434,9 +434,8 @@ public class FragmentReport extends Fragment implements OnClickListener, WebServ
 	private void setData() {
 		Constant.poor.setCountryman(et_name.getText().toString().trim() + "");
 		String poorState = dictDataDao.queryDictCodeByValue(db, tv_state.getText().toString().trim() + "","poorState");
-		String sexcode = dictDataDao.queryDictCodeByValue(db, sex,"sex");
 		Constant.poor.setPoorState(poorState);
-		Constant.poor.setSex(sexcode);
+		Constant.poor.setSex(sex);
 		Constant.poor.setAge(et_age.getText().toString().trim() + "");
 		Constant.poor.setCard(et_identity.getText().toString().trim() + "");
 		Constant.poor.setTelphone(et_tel.getText().toString().trim() + "");
