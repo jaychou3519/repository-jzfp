@@ -433,7 +433,7 @@ public class FragmentReport extends Fragment implements OnClickListener, WebServ
 	 */
 	private void setData() {
 		Constant.poor.setCountryman(et_name.getText().toString().trim() + "");
-		String poorState = dictDataDao.queryDictCodeByValue(db, tv_state.getText().toString().trim() + "");
+		String poorState = dictDataDao.queryDictCodeByValue(db, tv_state.getText().toString().trim() + "","poorState");
 		Constant.poor.setPoorState(poorState);
 		Constant.poor.setSex(sex);
 		Constant.poor.setAge(et_age.getText().toString().trim() + "");
@@ -442,7 +442,7 @@ public class FragmentReport extends Fragment implements OnClickListener, WebServ
 		Constant.poor.setCountrymanId(UUID.randomUUID().toString().replace("-", ""));
 
 		if (!TextUtils.isEmpty(tv_education.getText().toString().trim())) {
-			String whcd = dictDataDao.queryDictCodeByValue(db, tv_education.getText().toString().trim());
+			String whcd = dictDataDao.queryDictCodeByValue(db, tv_education.getText().toString().trim(),"whcd");
 			Constant.poor.setWhcd(whcd);
 		}
 		if(MyApplication.login.getLoginName().equals("admin")){
@@ -450,7 +450,7 @@ public class FragmentReport extends Fragment implements OnClickListener, WebServ
 		}else{
 			Constant.poor.setCountryId(MyApplication.login.getOrgId());
 		}
-		String poorCard = dictDataDao.queryDictCodeByValue(db, tv_poorCard.getText().toString().trim() + "");
+		String poorCard = dictDataDao.queryDictCodeByValue(db, tv_poorCard.getText().toString().trim() + "","poorCard");
 		Constant.poor.setPoorCard(poorCard);
 	}
 

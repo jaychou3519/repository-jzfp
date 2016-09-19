@@ -206,7 +206,7 @@ public class EffectActivity extends BaseActivity implements OnClickListener {
 		result.setJbshbzYl(et_medical.getText().toString().trim() + "");
 		result.setJbshbzYwjy(et_education.getText().toString().trim() + "");
 		if (!TextUtils.isEmpty(tv_condition.getText().toString().trim())) {
-			String jffhtptj = dictDataDao.queryDictCodeByValue(db, tv_condition.getText().toString().trim());
+			String jffhtptj = dictDataDao.queryDictCodeByValue(db, tv_condition.getText().toString().trim(),"sf");
 			result.setJffhtptj(jffhtptj);
 		}
 		Constant.poor.setTdataResult(result);
