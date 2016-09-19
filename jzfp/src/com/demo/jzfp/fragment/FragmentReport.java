@@ -439,7 +439,7 @@ public class FragmentReport extends Fragment implements OnClickListener, WebServ
 		Constant.poor.setTelphone(et_tel.getText().toString().trim() + "");
 		Constant.poor.setCountrymanId(UUID.randomUUID().toString().replace("-", ""));
 
-		if (TextUtils.isEmpty(tv_education.getText().toString().trim())) {
+		if (!TextUtils.isEmpty(tv_education.getText().toString().trim())) {
 			String whcd = dictDataDao.queryDictCodeByValue(db, tv_education.getText().toString().trim());
 			Constant.poor.setWhcd(whcd);
 		}
