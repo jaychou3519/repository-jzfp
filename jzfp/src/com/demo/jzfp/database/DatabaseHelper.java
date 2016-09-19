@@ -34,9 +34,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		
 		db.execSQL("DROP TABLE IF EXISTS dict_data");
 		db.execSQL("DROP TABLE IF EXISTS tdata_config");
+		db.execSQL("DROP TABLE IF EXISTS area_data");
+		
 		//字典信息表
 		db.execSQL("create table IF NOT EXISTS dict_data(dictId text,dictType text,dictName text,dictValue text,dictCode text,isdefault text,parentType text)");
 		db.execSQL("create table IF NOT EXISTS tdata_config(configId text,actionType text,actionDl text,actionXl text,actionDlCode text,actionXlCode text,configNo text)");
+		db.execSQL("create table IF NOT EXISTS area_data(id text,pid text,name text,areacode text)");
 	}
 	/**
 	 * 
@@ -67,9 +70,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		
 		db.execSQL("DROP TABLE IF EXISTS dict_data");
 		db.execSQL("DROP TABLE IF EXISTS tdata_config");
+		db.execSQL("DROP TABLE IF EXISTS area_data");
 		
 		db.execSQL("create table IF NOT EXISTS dict_data(dictId text,dictType text,dictName text,dictValue text,dictCode text,isdefault text,parentType text)");
 		db.execSQL("create table IF NOT EXISTS tdata_config(configId text,actionType text,actionDl text,actionXl text,actionDlCode text,actionXlCode text,configNo text)");
+		db.execSQL("create table IF NOT EXISTS area_data(id text,pid text,name text,areacode text)");
 	}
 	/**
 	 * 

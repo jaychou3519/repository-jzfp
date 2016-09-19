@@ -4,8 +4,10 @@ import java.util.List;
 import java.util.Map;
 
 import com.alibaba.fastjson.JSON;
+import com.demo.jzfp.dao.AreaDataDao;
 import com.demo.jzfp.dao.DictDataInfoDao;
 import com.demo.jzfp.dao.TdataConfigDao;
+import com.demo.jzfp.dao.impl.AreaDataDaoImpl;
 import com.demo.jzfp.dao.impl.DictDataInfoDaoImpl;
 import com.demo.jzfp.dao.impl.TdataConfigDaoImpl;
 import com.demo.jzfp.database.DatabaseHelper;
@@ -32,8 +34,9 @@ public class IAppService extends Service {
 	private SQLiteDatabase db = null;
 	private DictDataInfoDao dictDataDao = new DictDataInfoDaoImpl();
 	private TdataConfigDao tdataConfigDao = new TdataConfigDaoImpl();
+	private AreaDataDao areaDataDao = new AreaDataDaoImpl();
 	private String result = null;
-	public final static  String[] SERVICESYN =  {"2001","2002"};
+	public final static  String[] SERVICESYN =  {"2001","2002","2003"};
 	
 	@Override
 	public IBinder onBind(Intent intent) {
@@ -89,6 +92,9 @@ public class IAppService extends Service {
 						case 2002:
 							tdataConfigSyn();
 							break;
+						case 2003:
+							areaDataSyn();
+							break;
 						default:
 							break;
 					}
@@ -133,7 +139,7 @@ public class IAppService extends Service {
 				}
 			} catch (Exception e) {
 				e.printStackTrace();
-				Log.e("dictDataDao>>>>", ">>>>>同步数据字典异常>>>>>");
+				Log.e("executeQueryDictDataInfo>>>>", ">>>>>同步数据字典异常>>>>>");
 			}
 		}
 	}
@@ -166,7 +172,40 @@ public class IAppService extends Service {
 				}
 			} catch (Exception e) {
 				e.printStackTrace();
-				Log.e("executeQueryTdataConfig>>>>", ">>>>>同步数据字典异常>>>>>");
+				Log.e("executeQueryTdataConfig>>>>", ">>>>>同步七个一批数据异常>>>>>");
+			}
+		}
+	}
+	/**
+	 * 机构信息同步
+	 */
+	public synchronized void areaDataSyn() {
+		try {
+			int count = areaDataDao.existAreaDataInfo(db);
+			if(count<=0){
+				executeQueryAreaDataSyn();
+			}
+		} catch (Exception e) {
+			Log.e("areaDataSyn", e.getMessage());
+		}
+	}
+	private void executeQueryAreaDataSyn() {
+		result = WebServiceClient.callWeb("selectToRegister", null);
+		if(null != result){
+			try {
+				List<Map> mapList = JSON.parseObject(result, List.class);
+				if(mapList.size() > 0){
+					areaDataDao.deleteAreaData(db);
+					db.beginTransaction();
+					for (Map map : mapList) {
+						areaDataDao.insertAreaData(map, db);
+					}
+					db.setTransactionSuccessful();//设置事务处理成功，不设置会自动回滚不提交
+					db.endTransaction();//处理完成
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+				Log.e("executeQueryAreaDataSyn>>>>", ">>>>>同步机构信息异常>>>>>");
 			}
 		}
 	}
