@@ -324,7 +324,6 @@ public class FragmentReport extends Fragment implements OnClickListener, WebServ
 			}
 			Uri uri = data.getData();
 			filePath = AbImageUtil.getPath(uri, getActivity());
-			Tools.showNewToast(getActivity(), "filePath=" + filePath);
 			new Thread(new Runnable() {
 
 				@Override
