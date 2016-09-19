@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.demo.jzfp.R;
 import com.demo.jzfp.activity.VillagesTextActivity;
+import com.demo.jzfp.activity.VillagesTextActivity2;
 import com.demo.jzfp.entity.Policy;
 import com.demo.jzfp.entity.Villages;
 import com.demo.jzfp.utils.Tools;
@@ -88,8 +89,9 @@ public class VillagesAdapter extends BaseAdapter{
 					Tools.setOpenActivityBundle(context, VillagesTextActivity.class,bundle);
 					break;
 				case VILLAGES:
-					bundle.putInt("villages", VILLAGES);
-					Tools.setOpenActivityBundle(context, VillagesTextActivity.class,bundle);
+					bundle.putString("content", villages.get(position).getRemark()+"");
+					bundle.putString("title", villages.get(position).getOrgName()+"");
+					Tools.setOpenActivityBundle(context, VillagesTextActivity2.class,bundle);
 					break;
 
 				default:

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <include
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        layout="@layout/top_title" />
+
+    <TextView
+        android:id="@+id/tv_title_name"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="炎陵镇"
+        android:textSize="@dimen/fontx25"
+        android:gravity="center" 
+        android:layout_marginTop="@dimen/x20"
+        android:layout_marginBottom="@dimen/x20"/>
+    <TextView
+        android:id="@+id/tv_context"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:textSize="@dimen/fontx13" 
+        android:padding="@dimen/x20"/>
+
+</LinearLayout>

@@ -46,6 +46,7 @@ public class BasicAdapter extends BaseAdapter{
 			holder.tv_name = (TextView) convertView.findViewById(R.id.tv_name);
 			holder.tv_phone = (TextView) convertView.findViewById(R.id.tv_phone);
 			holder.vw_lines = convertView.findViewById(R.id.vw_lines);
+			convertView.setTag(holder);
 		}else{
 			holder = (ViewHolder) convertView.getTag();
 		}

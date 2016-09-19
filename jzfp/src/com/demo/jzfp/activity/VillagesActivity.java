@@ -18,11 +18,15 @@ import com.demo.jzfp.service.IAppService;
 import com.demo.jzfp.utils.MyApplication;
 import com.demo.jzfp.utils.RequestWebService;
 import com.demo.jzfp.utils.Tools;
+import com.lidroid.xutils.ViewUtils;
+import com.lidroid.xutils.view.annotation.ViewInject;
 import com.demo.jzfp.utils.RequestWebService.WebServiceCallback;
 
 import android.database.sqlite.SQLiteDatabase;
+import android.os.Handler;
 import android.view.View;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 
 public class VillagesActivity extends BaseActivity implements WebServiceCallback{
 
@@ -32,10 +36,15 @@ public class VillagesActivity extends BaseActivity implements WebServiceCallback
 	private AreaDataDao areaDataDao = new AreaDataDaoImpl();
 	private SQLiteDatabase db = null;
 	private List<Map> maps;
+	private int number = 0;
+	@ViewInject(R.id.rl_jindu)
+	private RelativeLayout rl_jindu;
+	
 	@Override
 	protected void setView() {
 		View view = View.inflate(this, R.layout.activity_villages, null);
 		setContentView(view);
+		ViewUtils.inject(this,view);
 		activityList = (MyApplication) getApplicationContext();
 		activityList.addActivity(this);
 		lv_listview = (ListView) findViewById(R.id.lv_listview);
@@ -45,19 +54,21 @@ public class VillagesActivity extends BaseActivity implements WebServiceCallback
 
 	@Override
 	protected void initView() {
-		/*LinkedHashMap<String, String> linkedHashMap = new LinkedHashMap<String, String>();
-		linkedHashMap.put("arg0", MyApplication.login.getOrgId()+"");
-		RequestWebService.send("selectorgRemark", linkedHashMap, this, 101);*/
+		handler.sendEmptyMessage(1);
 	}
 
 	@Override
 	protected void initData() {
 		db = (new DatabaseHelper(this)).getWritableDatabase();
 		maps = areaDataDao.queryAreaData(db);
-		LinkedHashMap<String, String> linkedHashMap = new LinkedHashMap<String, String>();
+		number = 0;
 		for (int i = 0; i < maps.size(); i++) {
-			linkedHashMap.put("arg0", maps.get(i).get("id")+"");
-			RequestWebService.send("selectorgRemark", linkedHashMap, this, 101);
+			if(!maps.get(i).get("name").toString().contains("村")){
+				LinkedHashMap<String, String> linkedHashMap = new LinkedHashMap<String, String>();
+				linkedHashMap.put("arg0", maps.get(i).get("id")+"");
+				RequestWebService.send("selectorgRemark", linkedHashMap, this, 101);
+				number++;
+			}
 		}
 	}
 
@@ -70,10 +81,23 @@ public class VillagesActivity extends BaseActivity implements WebServiceCallback
 		}
 		Villages village = JSON.parseObject(reulst, Villages.class);
 		villages.add(village);
-		if(villages.size()==maps.size()){
+		if(villages.size()==number){
 			VillagesAdapter adapter = new VillagesAdapter(VillagesActivity.this,  VillagesAdapter.VILLAGES,villages);
 			lv_listview.setAdapter(adapter);
+			handler.sendEmptyMessage(2);
 		}
 	}
 
+	private Handler handler = new Handler(){
+		public void handleMessage(android.os.Message msg) {
+			switch (msg.what) {
+			case 1:
+				rl_jindu.setVisibility(View.VISIBLE);
+				break;
+			case 2:
+				rl_jindu.setVisibility(View.GONE);
+				break;
+			}
+		};
+	};
 }

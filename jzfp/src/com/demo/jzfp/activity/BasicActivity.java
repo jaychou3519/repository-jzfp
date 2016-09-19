@@ -17,6 +17,7 @@ import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
 import android.database.sqlite.SQLiteDatabase;
+import android.os.Handler;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
@@ -53,6 +54,7 @@ public class BasicActivity extends BaseActivity{
 	private SQLiteDatabase db = null;
 	private Map map;
 	private BasicAdapter adapter;
+	private List<Map> maps;
 	@Override
 	protected void setView() {
 		View view = View.inflate(this, R.layout.activity_basic, null);
@@ -76,10 +78,9 @@ public class BasicActivity extends BaseActivity{
 
 	@Override
 	protected void initData() {
-		List<Map> maps = basicdao.queryBasicAll(db);
+		maps = basicdao.queryBasicAll(db);
 		adapter = new BasicAdapter(this, maps);
 		lv_listview.setAdapter(adapter);
-		Tools.setListViewHeight(lv_listview);
 	}
 
 	@OnClick({R.id.ll_add,R.id.iv_save})
@@ -93,7 +94,8 @@ public class BasicActivity extends BaseActivity{
 				if(isSave()){
 					basicdao.insertBasic(map, db);
 					setGone(true);
-					adapter.notifyDataSetChanged();
+					adapter = new BasicAdapter(BasicActivity.this, maps);
+					lv_listview.setAdapter(adapter);
 				}
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -118,6 +120,7 @@ public class BasicActivity extends BaseActivity{
 		}
 		map.put("name", name);
 		map.put("phone", phone);
+		maps.add(map);
 		return true;
 	}
 	private void setGone(boolean isb){
