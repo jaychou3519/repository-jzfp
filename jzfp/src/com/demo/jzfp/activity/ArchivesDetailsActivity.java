@@ -202,7 +202,6 @@ public class ArchivesDetailsActivity extends BaseActivity implements WebServiceC
 			case 102:
 				try {
 					Tools.i("selectByAction", reulst.toString());
-					Tools.showNewToast(ArchivesDetailsActivity.this, "selectByAction="+reulst.toString());
 					tactions = JSON.parseArray(reulst, TdataAction.class);
 					handler.sendEmptyMessage(205);
 				} catch (Exception e) {
@@ -234,6 +233,7 @@ public class ArchivesDetailsActivity extends BaseActivity implements WebServiceC
 				break;
 			case 205:
 				setTabSelection(1);
+				if(tactions!=null&&tactions.size()>0)
 				msfragment.setTdataAction(tactions);
 				break;
 			case 206:

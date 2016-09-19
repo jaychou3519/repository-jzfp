@@ -35,11 +35,9 @@ public class MeasureFragment extends Fragment{
 		View view = inflater.inflate(R.layout.fragment_measure, null);
 		lv_listview = (ListView) view.findViewById(R.id.lv_listview_measure);
 		if(lv_listview==null){
-			Tools.showNewToast(getActivity(), "listview 空指针。。。。");
 			return view;
 		}
 		if(adapter==null){
-			Tools.showNewToast(getActivity(), "adapter 空指针。。。。");
 			return view;
 		}
 		return view;

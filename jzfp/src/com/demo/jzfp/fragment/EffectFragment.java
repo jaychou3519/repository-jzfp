@@ -19,22 +19,23 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.TextView;
 
-public class EffectFragment extends Fragment{
-	private EffectAdapter adapter,adapter1;
+public class EffectFragment extends Fragment {
+	private EffectAdapter adapter, adapter1;
 	private List<Effect> effects = new ArrayList<Effect>();
 	private List<Effect> effects1 = new ArrayList<Effect>();
-	private ListView lv_listview,lv_listview1;
-	private TextView tv_person_money,tv_all_money,tv_date;
+	private ListView lv_listview, lv_listview1;
+	private TextView tv_person_money, tv_all_money, tv_date;
 	private TdataResult tResult;
-	private String[] string = new String[]{"住房安全","医疗","义务教育","是否符合脱贫条件"};
-	private String[] string1 = new String[]{"责任单位","负责人","联系电话","结对帮扶责任人","职务","联系电话"};
-	private String[] string2 = new String[]{"炎陵镇财务局","财神爷","22034567","周密","科员","13908488899"};
+	private String[] string = new String[] { "住房安全", "医疗", "义务教育", "是否符合脱贫条件" };
+	private String[] string1 = new String[] { "责任单位", "负责人", "联系电话", "结对帮扶责任人", "职务", "联系电话" };
+	private String[] string2 = new String[] { "炎陵镇财务局", "财神爷", "22034567", "周密", "科员", "13908488899" };
 	private View view;
+
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
-		for(int i =0;i<string1.length;i++){
+		for (int i = 0; i < string1.length; i++) {
 			Effect effect = new Effect();
 			effect.setContent(string2[i]);
 			effect.setTitle(string1[i]);
@@ -52,43 +53,48 @@ public class EffectFragment extends Fragment{
 		tv_all_money = (TextView) view.findViewById(R.id.tv_all_money);
 		tv_date = (TextView) view.findViewById(R.id.tv_date);
 		lv_listview1.setAdapter(adapter1);
-		
+
 		return view;
 	}
-	
-	public void setTdataResult(TdataResult tResult){
+
+	public void setTdataResult(TdataResult tResult) {
 		this.tResult = tResult;
 		initData();
 	}
 
 	private void initData() {
-		for(int i=0;i<string.length;i++){
+		effects.clear();
+		for (int i = 0; i < string.length; i++) {
 			Effect effect = new Effect();
 			effect.setTitle(string[i]);
-			switch (i) {
-			case 0:
-				effect.setContent(tResult.getAddressSafe()+"");
-				break;
-			case 1:
-				effect.setContent(tResult.getJbshbzYl()+"");
-				break;
-			case 2:
-				effect.setContent(tResult.getJbshbzYwjy()+"");
-				break;
-			case 3:
-				effect.setContent(tResult.getJffhtptj_name()+"");
-				break;
+			if (tResult == null) {
+				effect.setContent("");
+			} else {
+				switch (i) {
+				case 0:
+					effect.setContent(tResult.getAddressSafe() + "");
+					break;
+				case 1:
+					effect.setContent(tResult.getJbshbzYl() + "");
+					break;
+				case 2:
+					effect.setContent(tResult.getJbshbzYwjy() + "");
+					break;
+				case 3:
+					effect.setContent(tResult.getJffhtptj_name() + "");
+					break;
+				}
 			}
 			effects.add(effect);
 		}
 		adapter = new EffectAdapter(getActivity(), effects);
-		if(lv_listview==null){
+		if (lv_listview == null) {
 			lv_listview = (ListView) view.findViewById(R.id.lv_listview);
 		}
 		lv_listview.setAdapter(adapter);
-		Tools.showNewToast(getActivity(), Tools.parseEmpty(tResult.getTpDate())+"");
-		tv_date.setText(Tools.parseEmpty(tResult.getTpDate())+"");
-		tv_person_money.setText(Tools.parseEmpty(tResult.getJtsrRjsr())+"");
-		tv_all_money.setText(Tools.parseEmpty(tResult.getJtsrZsr())+"");
+		if(tResult==null) return;
+		tv_date.setText(Tools.parseEmpty(tResult.getTpDate()) + "");
+		tv_person_money.setText(Tools.parseEmpty(tResult.getJtsrRjsr()) + "");
+		tv_all_money.setText(Tools.parseEmpty(tResult.getJtsrZsr()) + "");
 	}
 }
