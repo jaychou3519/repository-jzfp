@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="#fff"
     android:orientation="vertical" >
 
     <RelativeLayout
+        android:id="@+id/rl"
         android:layout_width="match_parent"
         android:layout_height="@dimen/y30"
         android:background="#ff4d4d" >
@@ -32,6 +33,7 @@
     </RelativeLayout>
 
     <ScrollView
+        android:layout_below="@+id/rl"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fillViewport="true"
@@ -924,5 +926,29 @@
                 android:background="#c9c9c9" />
         </LinearLayout>
     </ScrollView>
+    
+    <RelativeLayout
+        android:id="@+id/rl_jindu"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#8000"
+        android:clickable="true"
+        android:visibility="gone" >
 
-</LinearLayout>
+        <ProgressBar
+            android:id="@+id/prog"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true" />
+
+        <TextView
+            android:id="@+id/prog_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/prog"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="@dimen/x10"
+            android:text="正在提交..."
+            android:textColor="@color/bai" />
+    </RelativeLayout>
+</RelativeLayout>

@@ -1,5 +1,6 @@
 package com.demo.jzfp.fragment;
 
+import java.io.ByteArrayOutputStream;
 import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -10,10 +11,13 @@ import android.app.Fragment;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.text.TextUtils;
+import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -66,7 +70,8 @@ public class FragmentReport extends Fragment implements OnClickListener, WebServ
 	private PhotoUtils photoUtils;
 	private SQLiteDatabase db = null;
 	private DictDataInfoDao dictDataDao = new DictDataInfoDaoImpl();
-	private String areacode = null;
+	private Bitmap bitmap;
+	private RelativeLayout rl_jindu;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -125,6 +130,8 @@ public class FragmentReport extends Fragment implements OnClickListener, WebServ
 		RelativeLayout rl_countryId = (RelativeLayout) v.findViewById(R.id.rl_countryId);
 		et_countryId = (TextView) v.findViewById(R.id.et_countryId);
 
+		rl_jindu = (RelativeLayout) v.findViewById(R.id.rl_jindu);
+
 		// 设置点击事件
 		tv_commit.setOnClickListener(this);
 		rl_photo.setOnClickListener(this);
@@ -159,7 +166,7 @@ public class FragmentReport extends Fragment implements OnClickListener, WebServ
 			Log.i("haha", "头像");
 			if (pu.camera()) {
 				Log.i("haha", "打开照相机");
-				photoUtils = new PhotoUtils(getActivity(), v, this);
+				photoUtils = new PhotoUtils(getActivity(), this.v, this);
 				photoUtils.selectImage();
 			}
 			break;
@@ -261,11 +268,8 @@ public class FragmentReport extends Fragment implements OnClickListener, WebServ
 				return;
 			}
 			setData();
-			String data = JSON.toJSONString(Constant.poor);
-			Log.i("haha", data);
-			LinkedHashMap<String, String> map = new LinkedHashMap<String, String>();
-			map.put("arg0", data);
-			RequestWebService.send("insertTDataCountryman", map, this, 100);
+			rl_jindu.setVisibility(View.VISIBLE);
+			uploadImage();
 			break;
 		}
 
@@ -274,6 +278,7 @@ public class FragmentReport extends Fragment implements OnClickListener, WebServ
 	@Override
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
+
 		switch (requestCode) {
 		case 300:
 			if (data != null && !TextUtils.isEmpty(data.getStringExtra("education")))
@@ -285,11 +290,14 @@ public class FragmentReport extends Fragment implements OnClickListener, WebServ
 			break;
 		case PhotoUtils.REQUEST_TAKE_PICTURE:// 相机返回结果
 			filePath = photoUtils.getFilePath();
-			Tools.showNewToast(getActivity(), "filePath=" + filePath);
-			Bitmap bitmap = Tools.Readimg(filePath);
-			if (bitmap != null) {
-				iv_headpicture.setImageBitmap(bitmap);
-			}
+			new Thread(new Runnable() {
+
+				@Override
+				public void run() {
+					bitmap = Tools.Readimg(filePath);
+					handler.sendEmptyMessage(101);
+				}
+			}).start();
 			break;
 		case PhotoUtils.REQUEST_PICK_PICTURE:// 相册返回结果
 			if (data == null) {
@@ -299,14 +307,31 @@ public class FragmentReport extends Fragment implements OnClickListener, WebServ
 			Uri uri = data.getData();
 			filePath = AbImageUtil.getPath(uri, getActivity());
 			Tools.showNewToast(getActivity(), "filePath=" + filePath);
-			Bitmap bitmaps = Tools.Readimg(filePath);
-			if (bitmaps != null) {
-				iv_headpicture.setImageBitmap(bitmaps);
-			}
+			new Thread(new Runnable() {
+
+				@Override
+				public void run() {
+					bitmap = Tools.Readimg(filePath);
+					handler.sendEmptyMessage(101);
+				}
+			}).start();
+
 			break;
 		}
 
 	}
+
+	private Handler handler = new Handler() {
+		public void handleMessage(android.os.Message msg) {
+			switch (msg.what) {
+			case 101:
+				if (bitmap != null) {
+					iv_headpicture.setImageBitmap(bitmap);
+				}
+				break;
+			}
+		};
+	};
 
 	/**
 	 * 选择弹出窗
@@ -407,31 +432,108 @@ public class FragmentReport extends Fragment implements OnClickListener, WebServ
 	}
 
 	@Override
-	public void result(String reulst, int requestCode) {
+	public void result(String result, int requestCode) {
 		// TODO Auto-generated method stub
-		if (reulst != null && ("1").equals(reulst)) {
-			Tools.showNewToast(getActivity(), "提交成功！");
-			et_name.setText("");
-			tv_state.setText("");
-			iv_sex_women.setImageResource(R.drawable.woman_no);
-			tv_sex_women.setTextColor(Color.rgb(220, 220, 220));
-			iv_sex_man.setImageResource(R.drawable.man_no);
-			tv_sex_man.setTextColor(Color.rgb(220, 220, 220));
-			et_age.setText("");
-			et_identity.setText("");
-			et_tel.setText("");
-			tv_education.setText("");
-			tv_poorCard.setText("");
-			tv_economy.setText("");
-			tv_member.setText("");
-			tv_reason.setText("");
-			tv_measures.setText("");
-			tv_effect.setText("");
-			et_countryId.setText("");
-			Constant.poor = new TdataCountryman();
-		} else {
-			Tools.showNewToast(getActivity(), "提交失败！");
+		if (requestCode == 100) {// 提交贫困户信息
+			if ("1".equals(result)) {
+				Tools.showNewToast(getActivity(), "提交成功！");
+				et_name.setText("");
+				tv_state.setText("");
+				iv_sex_women.setImageResource(R.drawable.woman_no);
+				tv_sex_women.setTextColor(Color.rgb(220, 220, 220));
+				iv_sex_man.setImageResource(R.drawable.man_no);
+				tv_sex_man.setTextColor(Color.rgb(220, 220, 220));
+				et_age.setText("");
+				et_identity.setText("");
+				et_tel.setText("");
+				tv_education.setText("");
+				tv_poorCard.setText("");
+				tv_economy.setText("");
+				tv_member.setText("");
+				tv_reason.setText("");
+				tv_measures.setText("");
+				tv_effect.setText("");
+				et_countryId.setText("");
+				Constant.poor = new TdataCountryman();
+			} else {
+				Tools.showNewToast(getActivity(), "提交失败！");
+			}
+			rl_jindu.setVisibility(View.GONE);
+		} else if (requestCode == 200) {// 上传图片
+			if (TextUtils.isEmpty(result)) {
+				Tools.showNewToast(getActivity(), "图片上传失败！");
+				rl_jindu.setVisibility(View.GONE);
+			} else {
+				commit();
+			}
 		}
 	}
+
+	/**
+	 * 图片上传
+	 */
+	private void uploadImage() {
+		try {
+			if (TextUtils.isEmpty(filePath)) {
+				commit();
+				return;
+			}
+			String imageBuffer = bitmapToString(filePath);
+			if (TextUtils.isEmpty(imageBuffer)) {
+				commit();
+				return;
+			}
+			String methodName = "insertUploadImage";
+			RequestWebService.uploadImage(this, Constant.poor.getCountrymanId(), imageBuffer, methodName, 200);
+		} catch (Exception e) {
+			e.printStackTrace();
+			rl_jindu.setVisibility(View.GONE);
+			Tools.showNewToast(getActivity().getApplication(), "图片上传失败");
+		}
+
+	}
+
+	/**
+	 * 提交
+	 */
+	private void commit() {
+		String data = JSON.toJSONString(Constant.poor);
+		Log.i("haha", data);
+		LinkedHashMap<String, String> map = new LinkedHashMap<String, String>();
+		map.put("arg0", data);
+		RequestWebService.send("insertTDataCountryman", map, this, 100);
+	}
+
+	// 根据路径获得图片并压缩，返回bitmap用于显示
+	private Bitmap getSmallBitmap(String filePath) {
+		final BitmapFactory.Options options = new BitmapFactory.Options();
+		options.inJustDecodeBounds = true;
+		BitmapFactory.decodeFile(filePath, options);
+		options.inSampleSize = calculateInSampleSize(options, 480, 800);
+		options.inJustDecodeBounds = false;
+		return BitmapFactory.decodeFile(filePath, options);
+	}
+
+	//计算图片的缩放值
+	private static int calculateInSampleSize(BitmapFactory.Options options, int reqWidth, int reqHeight) {
+		final int height = options.outHeight;
+		final int width = options.outWidth;
+		int inSampleSize = 1;
+		if (height > reqHeight || width > reqWidth) {
+			final int heightRatio = Math.round((float) height / (float) reqHeight);
+			final int widthRatio = Math.round((float) width / (float) reqWidth);
+			inSampleSize = heightRatio < widthRatio ? heightRatio : widthRatio;
+		}
+		return inSampleSize;
+	}
+	
+	//把bitmap转换成String 
+	private String bitmapToString(String filePath) { 
+		Bitmap bm = getSmallBitmap(filePath); 
+		ByteArrayOutputStream baos = new ByteArrayOutputStream(); 
+		bm.compress(Bitmap.CompressFormat.JPEG, 40, baos); 
+		byte[] b = baos.toByteArray(); 
+		return Base64.encodeToString(b, Base64.DEFAULT); 
+	} 
 
 }

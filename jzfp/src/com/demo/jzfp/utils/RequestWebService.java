@@ -1,5 +1,7 @@
 package com.demo.jzfp.utils;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -88,9 +90,9 @@ public class RequestWebService {
 			e.printStackTrace();
 		}
 		// 如果有返回值，得到返回值并且返回
-		String reulst = soapObject != null ? soapObject.getProperty(0).toString() : null;
-		Log.i("haha", methodName + "------" + reulst);
-		return reulst;
+		String result = soapObject != null ? soapObject.getProperty(0).toString() : null;
+		Log.i("haha", methodName + "------" + result);
+		return result;
 	}
 
 	/**
@@ -106,4 +108,58 @@ public class RequestWebService {
 			object.addProperty(entry.getKey(), entry.getValue());
 		}
 	}
+
+	/**
+	 * 上传图片
+	 * @param countrymanid
+	 * @param imageBuffer
+	 * @param methodName
+	 * @return
+	 */
+	public static void uploadImage(WebServiceCallback ws, String countrymanid,String imageBuffer, String methodName, int requestCode) {
+		new UploadImageTask(ws, methodName, countrymanid, imageBuffer, requestCode).execute();
+	}
+	
+	static class UploadImageTask extends AsyncTask<String, Integer, String> {
+		private WebServiceCallback ws;
+		private String methodName;
+		private String countrymanid;
+		private String imageBuffer;
+		private int requestCode;
+
+		public UploadImageTask(final WebServiceCallback ws, String methodName, String countrymanid, String imageBuffer, int requestCode) {
+			this.ws = ws;
+			this.methodName = methodName;
+			this.requestCode = requestCode;
+			this.imageBuffer = imageBuffer;
+			this.countrymanid = countrymanid;
+		}
+
+		@Override
+		protected String doInBackground(String... params) {
+			SoapObject soapObject = new SoapObject(NAME_SPACE, methodName);
+			soapObject.addProperty("arg0", countrymanid); // 贫困户ID
+			soapObject.addProperty("arg1", countrymanid + ".jpg"); // 参数1 图片名
+			soapObject.addProperty("arg2", imageBuffer); // 参数2 图片字符串
+			SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(SoapEnvelope.VER11);
+			envelope.bodyOut = soapObject;
+			HttpTransportSE httpTransportSE = new HttpTransportSE(SERVER_URL + methodName, 10 * 1000);
+			try {
+				httpTransportSE.debug = true;
+				httpTransportSE.call(null, envelope);
+				soapObject = (SoapObject) envelope.bodyIn;
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			String result = soapObject != null ? soapObject.getProperty(0).toString() : null;
+			Log.i("haha", methodName + "------" + result);
+			return result;
+		}
+
+		@Override
+		protected void onPostExecute(String result) {
+			ws.result(result, requestCode);
+		}
+	}
+
 }
