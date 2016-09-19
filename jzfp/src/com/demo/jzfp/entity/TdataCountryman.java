@@ -36,6 +36,7 @@ public class TdataCountryman {
 	
 	private TdataHelper tdataHelper;
 	private TdataResult tdataResult;
+	private String pkhimg;
 	
 
 	public String getCountrymanId() {
@@ -265,6 +266,15 @@ public class TdataCountryman {
 	public void setCountryId(String countryId) {
 		this.countryId = countryId;
 	}
-	
+
+
+	public String getPkhimg() {
+		return pkhimg;
+	}
+
+
+	public void setPkhimg(String pkhimg) {
+		this.pkhimg = pkhimg;
+	}
 	
 }
