@@ -6,6 +6,8 @@ import java.util.List;import java.util.Map;
 import com.demo.jzfp.R;
 import com.demo.jzfp.apdater.BasicAdapter;
 import com.demo.jzfp.apdater.EffectAdapter;
+import com.demo.jzfp.dao.AreaDataDao;
+import com.demo.jzfp.dao.impl.AreaDataDaoImpl;
 import com.demo.jzfp.dao.impl.BasicDaoImpl;
 import com.demo.jzfp.database.DatabaseHelper;
 import com.demo.jzfp.entity.Basic;
@@ -16,6 +18,9 @@ import com.demo.jzfp.utils.Tools;
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
+
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Handler;
 import android.text.TextUtils;
@@ -49,7 +54,7 @@ public class BasicActivity extends BaseActivity{
 	//private String[] string1 = new String[]{"责任单位","负责人","联系电话","结对帮扶责任人","职务","联系电话"};
 	//private String[] string2 = new String[]{"炎陵镇财务局","财神爷","22034567","周密","科员","13908488899"};
 	
-	
+	private AreaDataDao areaDataDao = new AreaDataDaoImpl();
 	private BasicDaoImpl basicdao = new BasicDaoImpl();
 	private SQLiteDatabase db = null;
 	private Map map;
@@ -72,8 +77,6 @@ public class BasicActivity extends BaseActivity{
 			basic.setName_title(string[i]);
 			basics.add(basic);
 		}
-		if(MyApplication.login!=null)
-		tv_organization.setText(MyApplication.login.getOrgId()+"");
 	}
 
 	@Override
@@ -81,6 +84,20 @@ public class BasicActivity extends BaseActivity{
 		maps = basicdao.queryBasicAll(db);
 		adapter = new BasicAdapter(this, maps);
 		lv_listview.setAdapter(adapter);
+		List<Map> list = areaDataDao.queryAreaData(db);
+		String id ;
+		for (int i = 0; i < list.size(); i++) {
+			if(MyApplication.login!=null){
+				id = MyApplication.login.getOrgId();
+			}else{
+				SharedPreferences sp = getSharedPreferences("user", Context.MODE_PRIVATE);
+				id = sp.getString("orgId", "");
+			}
+			if(id.equals(list.get(i).get("id"))){
+				tv_organization.setText(list.get(i).get("name")+"");
+				break;
+			}
+		}
 	}
 
 	@OnClick({R.id.ll_add,R.id.iv_save})
@@ -130,6 +147,14 @@ public class BasicActivity extends BaseActivity{
 		}else{
 			ll_name.setVisibility(View.VISIBLE);
 			ll_phone.setVisibility(View.VISIBLE);
+		}
+	}
+	
+	@Override
+	protected void onDestroy() {
+		super.onDestroy();
+		if(db!=null){
+			db.close();
 		}
 	}
 }

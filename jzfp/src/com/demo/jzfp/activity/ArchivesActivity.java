@@ -13,7 +13,10 @@ import com.demo.jzfp.utils.Tools;
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
+
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
@@ -42,7 +45,12 @@ public class ArchivesActivity extends BaseActivity implements WebServiceCallback
 	@Override
 	protected void initView() {
 		LinkedHashMap<String, String> linkedHashMap = new LinkedHashMap<String, String>();
-		linkedHashMap.put("arg0", MyApplication.login.getOrgId()+"");
+		if(MyApplication.login!=null){
+			linkedHashMap.put("arg0", MyApplication.login.getOrgId()+"");
+		}else{
+			SharedPreferences sp = getSharedPreferences("user", Context.MODE_PRIVATE);
+			linkedHashMap.put("arg0", sp.getString("orgId", "")+"");
+		}
 		RequestWebService.send(methodName, linkedHashMap, this, 101);
 	}
 
