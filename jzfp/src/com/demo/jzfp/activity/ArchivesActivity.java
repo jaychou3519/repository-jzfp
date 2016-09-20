@@ -66,7 +66,7 @@ public class ArchivesActivity extends BaseActivity implements WebServiceCallback
 			
 			break;
 		case R.id.ll_location:
-			openResultActivity(ChooseAreaActivity.class,null);
+			//openResultActivity(ChooseAreaActivity.class,null);
 			break;
 
 		default:

@@ -8,7 +8,9 @@ import java.util.UUID;
 
 import android.app.AlertDialog;
 import android.app.Fragment;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -446,10 +448,19 @@ public class FragmentReport extends Fragment implements OnClickListener, WebServ
 			String whcd = dictDataDao.queryDictCodeByValue(db, tv_education.getText().toString().trim(),"whcd");
 			Constant.poor.setWhcd(whcd);
 		}
-		if(MyApplication.login.getLoginName().equals("admin")){
-			Constant.poor.setCountryId(areacode);
+		if(MyApplication.login!=null){
+			if(MyApplication.login.getLoginName().equals("admin")){
+				Constant.poor.setCountryId(areacode);
+			}else{
+				Constant.poor.setCountryId(MyApplication.login.getOrgId());
+			}
 		}else{
-			Constant.poor.setCountryId(MyApplication.login.getOrgId());
+			SharedPreferences sp = getActivity().getSharedPreferences("user", Context.MODE_PRIVATE);
+			if(sp.getString("username", "").equals("admin")){
+				Constant.poor.setCountryId(areacode);
+			}else{
+				Constant.poor.setCountryId(sp.getString("orgId", ""));
+			}
 		}
 		String poorCard = dictDataDao.queryDictCodeByValue(db, tv_poorCard.getText().toString().trim() + "","poorCard");
 		Constant.poor.setPoorCard(poorCard);

@@ -2,10 +2,8 @@ package com.demo.jzfp.activity;
 
 import java.util.LinkedHashMap;
 import java.util.List;
-
 import com.alibaba.fastjson.JSON;
 import com.demo.jzfp.R;
-import com.demo.jzfp.entity.CountryMans;
 import com.demo.jzfp.entity.TdataAction;
 import com.demo.jzfp.entity.TdataCountryman;
 import com.demo.jzfp.entity.TdataResult;
@@ -47,6 +45,9 @@ public class ArchivesDetailsActivity extends BaseActivity implements WebServiceC
 	private TdataCountryman countryMan;
 	private TdataResult tresult;
 	private List<TdataAction> tactions;
+
+	private LinkedHashMap<String, String> linkedHashMap;
+
 	@Override
 	protected void setView() {
 		View view = View.inflate(this, R.layout.activity_archives_details, null);
@@ -58,11 +59,11 @@ public class ArchivesDetailsActivity extends BaseActivity implements WebServiceC
 
 	@Override
 	protected void initView() {
+		Tools.i("JJY", getIntent().getExtras().getString("countrymanId"));
 		linkedHashMap = new LinkedHashMap<String, String>();
 		linkedHashMap.put("arg0", getIntent().getExtras().getString("countrymanId"));
 		RequestWebService.send(methodName, linkedHashMap, this, 101);
 
-		Tools.i("JJY", getIntent().getExtras().getString("countrymanId"));
 	}
 
 	@Override
@@ -247,7 +248,4 @@ public class ArchivesDetailsActivity extends BaseActivity implements WebServiceC
 			}
 		};
 	};
-
-	private LinkedHashMap<String, String> linkedHashMap;
-
 }
