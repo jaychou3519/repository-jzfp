@@ -88,7 +88,7 @@
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/y25"
+                android:layout_height="@dimen/y35"
                 android:orientation="horizontal" >
 
                 <TextView
@@ -124,7 +124,7 @@
                 <EditText
                     android:id="@+id/et_name"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="@dimen/x30"
                     android:layout_centerVertical="true"
                     android:layout_toLeftOf="@id/iv_into_name"
                     android:background="@null"
@@ -144,7 +144,7 @@
             <RelativeLayout
                  android:id="@+id/rl_countryId"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/y25"
+                android:layout_height="@dimen/y35"
                 android:orientation="horizontal" 
                 android:visibility="gone">
 
@@ -200,7 +200,7 @@
             <RelativeLayout
                 android:id="@+id/rl_poorCard"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/y25"
+                android:layout_height="@dimen/y35"
                 android:orientation="horizontal" >
 
                 <TextView
@@ -253,7 +253,7 @@
             <RelativeLayout
                 android:id="@+id/rl_state"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/y25"
+                android:layout_height="@dimen/y35"
                 android:orientation="horizontal" >
 
                 <TextView
@@ -306,7 +306,7 @@
             <RelativeLayout
                 android:id="@+id/rl_sex"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/y25"
+                android:layout_height="@dimen/y35"
                 android:orientation="horizontal" >
 
                 <TextView
@@ -399,7 +399,7 @@
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/y25"
+                android:layout_height="@dimen/y35"
                 android:orientation="horizontal" >
 
                 <TextView
@@ -455,7 +455,7 @@
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/y25"
+                android:layout_height="@dimen/y35"
                 android:orientation="horizontal" >
 
                 <TextView
@@ -511,7 +511,7 @@
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/y25"
+                android:layout_height="@dimen/y35"
                 android:orientation="horizontal" >
 
                 <TextView
@@ -568,7 +568,7 @@
             <RelativeLayout
                 android:id="@+id/rl_education"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/y25"
+                android:layout_height="@dimen/y35"
                 android:orientation="horizontal" >
 
                 <TextView
@@ -622,7 +622,7 @@
                 android:id="@+id/rl_health"
                 android:visibility="gone"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/y25"
+                android:layout_height="@dimen/y35"
                 android:orientation="horizontal" >
 
                 <TextView
@@ -675,7 +675,7 @@
             <RelativeLayout
                 android:id="@+id/rl_economy"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/y25"
+                android:layout_height="@dimen/y35"
                 android:orientation="horizontal" >
 
                 <ImageView
@@ -726,7 +726,7 @@
             <RelativeLayout
                 android:id="@+id/rl_member"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/y25"
+                android:layout_height="@dimen/y35"
                 android:orientation="horizontal" >
 
                 <ImageView
@@ -777,7 +777,7 @@
             <RelativeLayout
                 android:id="@+id/rl_reason"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/y25"
+                android:layout_height="@dimen/y35"
                 android:orientation="horizontal" >
 
                 <ImageView
@@ -828,7 +828,7 @@
             <RelativeLayout
                 android:id="@+id/rl_measures"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/y25"
+                android:layout_height="@dimen/y35"
                 android:orientation="horizontal" >
 
                 <ImageView
@@ -879,7 +879,7 @@
             <RelativeLayout
                 android:id="@+id/rl_effect"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/y25"
+                android:layout_height="@dimen/y35"
                 android:orientation="horizontal" >
 
                 <ImageView

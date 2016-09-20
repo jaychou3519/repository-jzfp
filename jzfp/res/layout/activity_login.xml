@@ -2,25 +2,38 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/login"
     android:orientation="vertical" >
 
-    <TextView
+    <LinearLayout
         android:id="@+id/tv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="@dimen/y45"
-        android:gravity="center"
-        android:text="炎陵县版权所有@2016"
-        android:textColor="#000"
-        android:textSize="@dimen/x13" />
+        android:background="@drawable/login_bottom" >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/y45"
+            android:gravity="center"
+            android:text="炎陵县版权所有@2016"
+            android:textColor="#000"
+            android:textSize="@dimen/x13" />
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/top"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:src="@drawable/login_top" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/tv"
-        android:layout_marginBottom="@dimen/y50"
+        android:layout_above="@id/tv"
+        android:layout_below="@id/top"
+        android:background="@color/bai"
         android:layout_gravity="center_vertical"
         android:orientation="vertical" >
 
@@ -34,7 +47,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/y27"
+            android:layout_height="@dimen/y30"
             android:layout_marginLeft="@dimen/x25"
             android:layout_marginRight="@dimen/x25"
             android:layout_marginTop="@dimen/x18"
@@ -60,7 +73,7 @@
             <EditText
                 android:id="@+id/et_username"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/y20"
+                android:layout_height="@dimen/y25"
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="@dimen/x10"
                 android:background="@null"
@@ -71,11 +84,10 @@
                 android:textColorHint="#d6d6d6"
                 android:textSize="@dimen/x15" />
         </LinearLayout>
-        
-        
-         <LinearLayout
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/y27"
+            android:layout_height="@dimen/y30"
             android:layout_marginLeft="@dimen/x25"
             android:layout_marginRight="@dimen/x25"
             android:layout_marginTop="@dimen/x10"
@@ -99,22 +111,21 @@
                 android:background="@color/grap_c6c6c6" />
 
             <EditText
-                 android:id="@+id/et_password"
+                android:id="@+id/et_password"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/y20"
+                android:layout_height="@dimen/y25"
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="@dimen/x10"
                 android:background="@null"
-                android:hint="请输入密码"
                 android:digits="0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
-                android:password="true"
+                android:hint="请输入密码"
                 android:maxLength="15"
+                android:password="true"
                 android:singleLine="true"
                 android:textColor="#000"
                 android:textColorHint="#d6d6d6"
                 android:textSize="@dimen/x15" />
         </LinearLayout>
-
 
         <Button
             android:id="@+id/btn_login"
