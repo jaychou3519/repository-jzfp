@@ -1,8 +1,9 @@
 package com.demo.jzfp.entity;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class CountryMans {
+public class CountryMans implements Serializable{
 	private String contextPath;
 
 	private String page;

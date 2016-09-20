@@ -1,8 +1,10 @@
 package com.demo.jzfp.fragment;
 
+import java.io.Serializable;
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
+import java.util.List;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -11,9 +13,11 @@ import org.json.JSONObject;
 import com.alibaba.fastjson.JSON;
 import com.demo.jzfp.R;
 import com.demo.jzfp.activity.ArchivesActivity;
+import com.demo.jzfp.activity.ArchivesPoorActivity;
 import com.demo.jzfp.activity.BasicActivity;
 import com.demo.jzfp.activity.SupportActivity;
 import com.demo.jzfp.apdater.ImageAdapter;
+import com.demo.jzfp.entity.CountryMans;
 import com.demo.jzfp.entity.Root;
 import com.demo.jzfp.entity.ToFiles;
 import com.demo.jzfp.utils.Tools;
@@ -51,6 +55,7 @@ public class FragmentHome extends BaseFragment implements AsynceHttpInterface,On
 	private ImageHandler handler = new ImageHandler(new WeakReference<FragmentHome>(this));
 	private TextView tv_year_mday,tv_week,tv_time,tv_county,tv_temperature,tv_temperature_range,tv_search;
 	private EditText ed_search;
+	private List<CountryMans> countrys;
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -306,6 +311,11 @@ public class FragmentHome extends BaseFragment implements AsynceHttpInterface,On
 		}else{
     		try {
     			Tools.i("selectToCountrymans", reulst.toString());
+    			countrys = JSON.parseArray(reulst, CountryMans.class);
+    			Bundle bundle = new Bundle();
+    			bundle.putBoolean("state", false);
+    			bundle.putSerializable("countrys", (Serializable) countrys);
+    			Tools.setOpenActivityBundle(getActivity(), ArchivesPoorActivity.class, bundle);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
