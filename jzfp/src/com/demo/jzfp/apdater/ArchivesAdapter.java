@@ -61,6 +61,7 @@ public class ArchivesAdapter extends BaseAdapter{
 			@Override
 			public void onClick(View v) {
 				Bundle bundle = new Bundle();
+				bundle.putBoolean("state", true);
 				bundle.putString("countrymanId", toFiles.get(position).getCountrymanId()+"");
 				Tools.setOpenActivityBundle(context, ArchivesPoorActivity.class, bundle);
 			}

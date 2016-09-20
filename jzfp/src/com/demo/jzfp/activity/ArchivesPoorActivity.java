@@ -13,6 +13,7 @@ import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
 
 import android.os.Handler;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.ListView;
 
@@ -52,12 +53,17 @@ public class ArchivesPoorActivity extends BaseActivity implements WebServiceCall
 	private ArchivesPoorAdapter adapter;
 	@Override
 	protected void initData() {
-		LinkedHashMap<String, String> linkedHashMap = new LinkedHashMap<String, String>();
-		linkedHashMap.put("arg0", getIntent().getExtras().getString("countrymanId"));
-		RequestWebService.send(methodName, linkedHashMap, this, 101);
-/*		RequestWebService.send("selectByAction", linkedHashMap, this, 102);
-		RequestWebService.send("selectByResult", linkedHashMap, this, 103);
-		Tools.i("JJY", getIntent().getExtras().getString("countrymanId"));*/
+		if(getIntent().getExtras().getBoolean("state")){
+			LinkedHashMap<String, String> linkedHashMap = new LinkedHashMap<String, String>();
+			linkedHashMap.put("arg0", getIntent().getExtras().getString("countrymanId"));
+			RequestWebService.send(methodName, linkedHashMap, this, 101);
+		}else{
+			countrys =  (List<CountryMans>) getIntent().getExtras().getSerializable("countrys");
+			if(countrys.size()>0){
+				adapter = new ArchivesPoorAdapter(ArchivesPoorActivity.this,countrys);
+				lv_listview.setAdapter(adapter);
+			}
+		}
 	}
 
 	@Override
@@ -74,23 +80,6 @@ public class ArchivesPoorActivity extends BaseActivity implements WebServiceCall
 					e.printStackTrace();
 				}
 				break;
-			case 102:
-				try {
-					Tools.i("selectByAction", reulst.toString());
-					Tools.showNewToast(ArchivesPoorActivity.this, "selectByAction="+reulst.toString());
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-				break;
-			case 103:
-				try {
-					Tools.i("selectByResult", reulst.toString());
-					Tools.showNewToast(ArchivesPoorActivity.this, "selectByResult="+reulst.toString());
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-				break;
-
 			default:
 				break;
 			}

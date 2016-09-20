@@ -1,22 +1,37 @@
 package com.demo.jzfp.fragment;
 
+import java.io.Serializable;
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.List;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import com.alibaba.fastjson.JSON;
 import com.demo.jzfp.R;
 import com.demo.jzfp.activity.ArchivesActivity;
+import com.demo.jzfp.activity.ArchivesPoorActivity;
 import com.demo.jzfp.activity.BasicActivity;
 import com.demo.jzfp.activity.SupportActivity;
 import com.demo.jzfp.apdater.ImageAdapter;
+import com.demo.jzfp.entity.CountryMans;
 import com.demo.jzfp.entity.Root;
+import com.demo.jzfp.entity.ToFiles;
 import com.demo.jzfp.utils.Tools;
 import com.demo.jzfp.utils.Asynce_NetWork;
 import com.demo.jzfp.utils.Asynce_NetWork.AsynceHttpInterface;
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.view.annotation.event.OnClick;
 import com.demo.jzfp.utils.Constant;
+import com.demo.jzfp.utils.MyApplication;
+import com.demo.jzfp.utils.RequestWebService;
+import com.demo.jzfp.utils.RequestWebService.WebServiceCallback;
+
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -34,12 +49,13 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-public class FragmentHome extends BaseFragment implements AsynceHttpInterface,OnClickListener{
+public class FragmentHome extends BaseFragment implements AsynceHttpInterface,OnClickListener,WebServiceCallback{
 	private static final String TAG = "FragmentHome";
 	private ViewPager viewPager;
 	private ImageHandler handler = new ImageHandler(new WeakReference<FragmentHome>(this));
 	private TextView tv_year_mday,tv_week,tv_time,tv_county,tv_temperature,tv_temperature_range,tv_search;
 	private EditText ed_search;
+	private List<CountryMans> countrys;
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -118,7 +134,7 @@ public class FragmentHome extends BaseFragment implements AsynceHttpInterface,On
 		switch (v.getId()) {
 		case R.id.tv_search:
 			if(!TextUtils.isEmpty(ed_search.getText().toString().trim()));
-			SearchPoor(ed_search.getText().toString().trim());
+				SearchPoor(ed_search.getText().toString().trim());
 			break;
 
 		default:
@@ -266,7 +282,7 @@ public class FragmentHome extends BaseFragment implements AsynceHttpInterface,On
 		@Override
 		public void onTextChanged(CharSequence s, int start, int before, int count) {
 			if(s.toString().trim().length()>0){
-				SearchPoor(s.toString().trim());
+				//SearchPoor(s.toString().trim());
 			}
 		}
 
@@ -277,6 +293,32 @@ public class FragmentHome extends BaseFragment implements AsynceHttpInterface,On
 	}
 
 	private void SearchPoor(String data){
-		
+		LinkedHashMap<String, String> linkedHashMap = new LinkedHashMap<String, String>();
+		if(MyApplication.login!=null){
+			linkedHashMap.put("arg0", MyApplication.login.getOrgId()+"");
+		}else{
+			SharedPreferences sp = getActivity().getSharedPreferences("user", Context.MODE_PRIVATE);
+			linkedHashMap.put("arg0", sp.getString("orgId", "")+"");
+		}
+		linkedHashMap.put("arg1", ed_search.getText().toString().trim());
+		RequestWebService.send("selectToCountrymans", linkedHashMap,this, 101);
+		Tools.i("selectToCountrymans", linkedHashMap.values().toString());
+	}
+	@Override
+	public void result(String reulst, int requestCode) {
+		if(reulst == null){
+			Tools.showNewToast(getActivity(), "链接服务器失败");
+		}else{
+    		try {
+    			Tools.i("selectToCountrymans", reulst.toString());
+    			countrys = JSON.parseArray(reulst, CountryMans.class);
+    			Bundle bundle = new Bundle();
+    			bundle.putBoolean("state", false);
+    			bundle.putSerializable("countrys", (Serializable) countrys);
+    			Tools.setOpenActivityBundle(getActivity(), ArchivesPoorActivity.class, bundle);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+    	}
 	}
 }

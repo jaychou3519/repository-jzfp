@@ -129,6 +129,9 @@ public class LoginActivity extends BaseActivity implements OnClickListener, WebS
     	}else{
     		try {
 				MyApplication.login = JSON.parseObject(result, Login.class);
+				Editor ed = sp.edit();
+				ed.putString("orgId", MyApplication.login.getOrgId());
+				ed.apply();
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
