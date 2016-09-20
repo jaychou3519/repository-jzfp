@@ -38,41 +38,52 @@ public class BasicDaoImpl implements BasicDao {
 
 	@Override
 	public boolean insertBasic(Map map, SQLiteDatabase db) throws Exception {
-		String name =  StringUtil.Object2String(map.get("name"));
-		String phone =  StringUtil.Object2String(map.get("phone"));
-		db.execSQL("insert into baisc(name,phone) values(?,?)",
-				new Object[] {name,phone});
+		String xzdwsj =  StringUtil.Object2String(map.get("xzdwsj"));
+		String xzdwsjdh =  StringUtil.Object2String(map.get("xzdwsjdh"));
+		String xzz =  StringUtil.Object2String(map.get("xzz"));
+		String xzzdh =  StringUtil.Object2String(map.get("xzzdh"));
+		String csj =  StringUtil.Object2String(map.get("csj"));
+		String csjdh =  StringUtil.Object2String(map.get("csjdh"));
+		String czr =  StringUtil.Object2String(map.get("czr"));
+		String czrdh =  StringUtil.Object2String(map.get("czrdh"));
+		db.execSQL("insert into baisc(id,xzdwsj,xzdwsjdh,xzz,xzzdh,csj,csjdh,czr,czrdh) values(?,?,?,?,?,?,?,?,?)",
+				new Object[] {"1",xzdwsj,xzdwsjdh,xzz,xzzdh,csj,csjdh,czr,czrdh});
 		return true;
 	}
 
 	@Override
-	public List<Map> queryBasicAll(SQLiteDatabase db) {
-		List<Map> mapList = new ArrayList<Map>(); 
+	public Map queryBasicAll(SQLiteDatabase db) {
+		Map map = new HashMap(); 
 		StringBuffer sql = new StringBuffer();
 		sql.append("select * from baisc");
 		Cursor cursor = db.rawQuery(sql.toString(), new String[]{});
 		while (cursor.moveToNext()) {
-			Map map = new HashMap();
-			map.put("name", cursor.getString(cursor.getColumnIndex("name")));
-			map.put("phone", cursor.getString(cursor.getColumnIndex("phone")));
-			mapList.add(map);
+			map.put("id", cursor.getString(cursor.getColumnIndex("id")));
+			map.put("xzdwsj", cursor.getString(cursor.getColumnIndex("xzdwsj")));
+			map.put("xzdwsjdh", cursor.getString(cursor.getColumnIndex("xzdwsjdh")));
+			map.put("xzz", cursor.getString(cursor.getColumnIndex("xzz")));
+			map.put("xzzdh", cursor.getString(cursor.getColumnIndex("xzzdh")));
+			map.put("csj", cursor.getString(cursor.getColumnIndex("csj")));
+			map.put("csjdh", cursor.getString(cursor.getColumnIndex("csjdh")));
+			map.put("czr", cursor.getString(cursor.getColumnIndex("czr")));
+			map.put("czrdh", cursor.getString(cursor.getColumnIndex("czrdh")));
 		}
 		cursor.close();
-		return mapList;
+		return map;
 	}
 
 	@Override
-	public String queryNameById(SQLiteDatabase db, String phone) {
-		String name = null; 
-		StringBuffer sql = new StringBuffer();
-		sql.append("select * from baisc dd where dd.phone=?");
-		Cursor cursor = db.rawQuery(sql.toString(), new String[] {phone});
-		while (cursor.moveToNext()) {
-			name = cursor.getString(cursor.getColumnIndex("phone"));
-		}
-		cursor.close();
-		return name;
+	public boolean updateBasic(SQLiteDatabase db, Map map) {
+		String xzdwsj =  StringUtil.Object2String(map.get("xzdwsj"));
+		String xzdwsjdh =  StringUtil.Object2String(map.get("xzdwsjdh"));
+		String xzz =  StringUtil.Object2String(map.get("xzz"));
+		String xzzdh =  StringUtil.Object2String(map.get("xzzdh"));
+		String csj =  StringUtil.Object2String(map.get("csj"));
+		String csjdh =  StringUtil.Object2String(map.get("csjdh"));
+		String czr =  StringUtil.Object2String(map.get("czr"));
+		String czrdh =  StringUtil.Object2String(map.get("czrdh"));
+		db.execSQL("update baisc set xzdwsj=?,xzdwsjdh=?,xzz=?,xzzdh=?,csj=?,csjdh=?,czr=?,czrdh=? where id=?",
+				new Object[] {xzdwsj,xzdwsjdh,xzz,xzzdh,csj,csjdh,czr,czrdh,"1"});
+		return true;
 	}
-
-
 }

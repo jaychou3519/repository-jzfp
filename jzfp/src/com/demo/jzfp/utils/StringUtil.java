@@ -71,6 +71,13 @@ public class StringUtil {
 		return str;
 	}
 	
+	public static String toString(Object obj) {
+		if (obj != null) {
+			return obj.toString();
+		}
+		return null;
+	}
+	
 	/**
 	 * 
 	 * Description: 

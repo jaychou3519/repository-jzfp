@@ -64,37 +64,13 @@
         android:textSize="@dimen/x14" />
 
     <LinearLayout
-        android:id="@+id/ll_add"
-        android:layout_width="wrap_content"
-        android:layout_height="@dimen/y30"
-        android:layout_gravity="center_horizontal"
-        android:gravity="center"
-        android:paddingLeft="@dimen/x5"
-        android:paddingRight="@dimen/x5" >
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/y5"
-            android:src="@drawable/add" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text=" 添加家庭成员"
-            android:textColor="#3498db"
-            android:textSize="@dimen/x15" />
-    </LinearLayout>
-
-    <LinearLayout
         android:id="@+id/ll_name"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/x10"
         android:layout_marginTop="@dimen/x10"
         android:baselineAligned="false"
-        android:orientation="horizontal"
-        android:visibility="gone" >
+        android:orientation="horizontal">
 
         <TextView
             android:layout_width="0dp"
@@ -104,13 +80,22 @@
             android:textSize="@dimen/x14" />
 
         <EditText
-            android:id="@+id/et_name"
+            android:id="@+id/et_xzdwsj"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@null"
             android:hint="请输入姓名"
-            android:textSize="@dimen/x14" />
+            android:textSize="@dimen/x14"
+            android:visibility="gone" />
+        <TextView
+           android:id="@+id/tx_xzdwsj"
+           android:layout_width="0dp"
+           android:layout_height="wrap_content"
+           android:layout_weight="1"
+           android:background="@null"
+           android:textSize="@dimen/x14"
+            />
     </LinearLayout>
 
     <LinearLayout
@@ -121,18 +106,17 @@
         android:layout_marginLeft="@dimen/x10"
         android:layout_marginTop="@dimen/x10"
         android:baselineAligned="false"
-        android:orientation="horizontal"
-        android:visibility="gone" >
+        android:orientation="horizontal">
 
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="联系电话"
+            android:text="乡镇党委书记电话"
             android:textSize="@dimen/x14" />
 
         <EditText
-            android:id="@+id/et_phone"
+            android:id="@+id/et_xzdwsjdh"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -140,13 +124,237 @@
             android:hint="请输入电话号码"
             android:inputType="phone"
             android:maxLength="11"
+            android:textSize="@dimen/x14"
+            android:visibility="gone"  />
+        
+         <TextView
+           android:id="@+id/tx_xzdwsjdh"
+           android:layout_width="0dp"
+           android:layout_height="wrap_content"
+           android:layout_weight="1"
+           android:background="@null"
+           android:textSize="@dimen/x14"/>
+    </LinearLayout>
+    
+    
+	<LinearLayout
+        android:id="@+id/ll_xzz"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/x10"
+        android:layout_marginTop="@dimen/x10"
+        android:baselineAligned="false"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="乡(镇)长姓名"
             android:textSize="@dimen/x14" />
+
+        <EditText
+            android:id="@+id/et_xzz"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@null"
+            android:hint="请输入姓名"
+            android:textSize="@dimen/x14"
+            android:visibility="gone" />
+        
+        <TextView
+           android:id="@+id/tx_xzz"
+           android:layout_width="0dp"
+           android:layout_height="wrap_content"
+           android:layout_weight="1"
+           android:background="@null"
+           android:textSize="@dimen/x14"/>
     </LinearLayout>
 
-    <ListView
-        android:id="@+id/lv_listview"
+    <LinearLayout
+        android:id="@+id/ll_xzzdh"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent" >
-    </ListView>
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/x10"
+        android:layout_marginLeft="@dimen/x10"
+        android:layout_marginTop="@dimen/x10"
+        android:baselineAligned="false"
+        android:orientation="horizontal">
 
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="乡(镇)长电话"
+            android:textSize="@dimen/x14" />
+
+        <EditText
+            android:id="@+id/et_xzzdh"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@null"
+            android:hint="请输入电话号码"
+            android:inputType="phone"
+            android:maxLength="11"
+            android:textSize="@dimen/x14"
+            android:visibility="gone" />
+        
+         <TextView
+           android:id="@+id/tx_xzzdh"
+           android:layout_width="0dp"
+           android:layout_height="wrap_content"
+           android:layout_weight="1"
+           android:background="@null"
+           android:textSize="@dimen/x14"/>
+    </LinearLayout>
+    
+    <LinearLayout
+        android:id="@+id/ll_csj"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/x10"
+        android:layout_marginTop="@dimen/x10"
+        android:baselineAligned="false"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="村书记姓名"
+            android:textSize="@dimen/x14" />
+
+        <EditText
+            android:id="@+id/et_csj"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@null"
+            android:hint="请输入姓名"
+            android:textSize="@dimen/x14"
+            android:visibility="gone" />
+        
+        <TextView
+           android:id="@+id/tx_csj"
+           android:layout_width="0dp"
+           android:layout_height="wrap_content"
+           android:layout_weight="1"
+           android:background="@null"
+           android:textSize="@dimen/x14"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_csjdh"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/x10"
+        android:layout_marginLeft="@dimen/x10"
+        android:layout_marginTop="@dimen/x10"
+        android:baselineAligned="false"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="村书记电话"
+            android:textSize="@dimen/x14" />
+
+        <EditText
+            android:id="@+id/et_csjdh"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@null"
+            android:hint="请输入电话号码"
+            android:inputType="phone"
+            android:maxLength="11"
+            android:textSize="@dimen/x14"
+            android:visibility="gone" />
+        
+         <TextView
+           android:id="@+id/tx_csjdh"
+           android:layout_width="0dp"
+           android:layout_height="wrap_content"
+           android:layout_weight="1"
+           android:background="@null"
+           android:textSize="@dimen/x14"/>
+    </LinearLayout>
+    
+    <LinearLayout
+        android:id="@+id/ll_czr"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/x10"
+        android:layout_marginTop="@dimen/x10"
+        android:baselineAligned="false"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="村主任姓名"
+            android:textSize="@dimen/x14" />
+
+        <EditText
+            android:id="@+id/et_czr"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@null"
+            android:hint="请输入姓名"
+            android:textSize="@dimen/x14"
+            android:visibility="gone" />
+        
+         <TextView
+           android:id="@+id/tx_czr"
+           android:layout_width="0dp"
+           android:layout_height="wrap_content"
+           android:layout_weight="1"
+           android:background="@null"
+           android:textSize="@dimen/x14"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_czrdh"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/x10"
+        android:layout_marginLeft="@dimen/x10"
+        android:layout_marginTop="@dimen/x10"
+        android:baselineAligned="false"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="村主任电话"
+            android:textSize="@dimen/x14" />
+
+        <EditText
+            android:id="@+id/et_czrdh"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@null"
+            android:hint="请输入电话号码"
+            android:inputType="phone"
+            android:maxLength="11"
+            android:textSize="@dimen/x14"
+            android:visibility="gone" />
+        
+         <TextView
+           android:id="@+id/tx_czrdh"
+           android:layout_width="0dp"
+           android:layout_height="wrap_content"
+           android:layout_weight="1"
+           android:background="@null"
+           android:textSize="@dimen/x14"/>
+    </LinearLayout>
+  
+    
 </LinearLayout>

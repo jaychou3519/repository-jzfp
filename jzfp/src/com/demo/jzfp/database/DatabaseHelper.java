@@ -13,7 +13,7 @@ import com.demo.jzfp.utils.Tools;
 public class DatabaseHelper extends SQLiteOpenHelper {
 	private String TAG = "DatabaseHelper";
 	private static final String DATABASE_NAME = "jzfp.db"; //数据库名称
-	private static final int DATABASE_VERSION = 5; //数据库版本
+	private static final int DATABASE_VERSION = 7; //数据库版本
 	
 	private Context context;
 	public DatabaseHelper(Context context) {
@@ -40,7 +40,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		db.execSQL("create table IF NOT EXISTS dict_data(dictId text,dictType text,dictName text,dictValue text,dictCode text,isdefault text,parentType text)");
 		db.execSQL("create table IF NOT EXISTS tdata_config(configId text,actionType text,actionDl text,actionXl text,actionDlCode text,actionXlCode text,configNo text)");
 		db.execSQL("create table IF NOT EXISTS area_data(id text,pid text,name text,areacode text)");
-		db.execSQL("create table IF NOT EXISTS baisc(name text,phone text)");
+		db.execSQL("create table IF NOT EXISTS baisc(xzdwsj text,xzdwsjdh text,xzz text,xzzdh text,csj text,csjdh text,czr text,czrdh text)");
 	}
 	/**
 	 * 
@@ -77,7 +77,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		db.execSQL("create table IF NOT EXISTS dict_data(dictId text,dictType text,dictName text,dictValue text,dictCode text,isdefault text,parentType text)");
 		db.execSQL("create table IF NOT EXISTS tdata_config(configId text,actionType text,actionDl text,actionXl text,actionDlCode text,actionXlCode text,configNo text)");
 		db.execSQL("create table IF NOT EXISTS area_data(id text,pid text,name text,areacode text)");
-		db.execSQL("create table IF NOT EXISTS baisc(name text,phone text)");
+		db.execSQL("create table IF NOT EXISTS baisc(id text,xzdwsj text,xzdwsjdh text,xzz text,xzzdh text,csj text,csjdh text,czr text,czrdh text)");
 	}
 	/**
 	 * 
