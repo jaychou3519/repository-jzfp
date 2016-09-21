@@ -5,7 +5,6 @@ import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.UUID;
-
 import android.app.AlertDialog;
 import android.app.Fragment;
 import android.content.Context;
@@ -30,7 +29,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-
 import com.alibaba.fastjson.JSON;
 import com.demo.jzfp.R;
 import com.demo.jzfp.activity.AducationActivity;
@@ -500,6 +498,7 @@ public class FragmentReport extends Fragment implements OnClickListener, WebServ
 				Tools.showNewToast(getActivity(), "图片上传失败！");
 				rl_jindu.setVisibility(View.GONE);
 			} else {
+				Tools.i("FragmentReport", result.toString());
 				Constant.poor.setPkhimg(result);//设置图片地址
 				commit();
 			}
@@ -535,7 +534,7 @@ public class FragmentReport extends Fragment implements OnClickListener, WebServ
 	 */
 	private void commit() {
 		String data = JSON.toJSONString(Constant.poor);
-		Log.i("haha", data);
+		Log.i("FragmentReport", data);
 		LinkedHashMap<String, String> map = new LinkedHashMap<String, String>();
 		map.put("arg0", data);
 		RequestWebService.send("insertTDataCountryman", map, this, 100);

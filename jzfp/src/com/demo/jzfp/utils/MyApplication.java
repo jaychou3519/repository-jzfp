@@ -5,6 +5,8 @@ import java.util.List;
 
 import com.demo.jzfp.database.DatabaseHelper;
 import com.demo.jzfp.entity.Login;
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 
 import android.app.Activity;
 import android.app.Application;
@@ -14,6 +16,7 @@ public class MyApplication extends Application {
 	@Override
 	public void onCreate() {
 		super.onCreate();
+		ImageLoader.getInstance().init(ImageLoaderConfiguration.createDefault(this));
 	}
 	public static Login login;
 	
