@@ -78,7 +78,7 @@
             android:layout_centerVertical="true"
             android:layout_marginLeft="10dp"
             android:scaleType="centerInside"
-            android:src="@drawable/edit" />
+            android:src="@drawable/edit"/>
     </RelativeLayout>
 
     <FrameLayout
