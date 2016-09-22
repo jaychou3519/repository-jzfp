@@ -19,6 +19,7 @@ import com.demo.jzfp.fragment.FragmentReport;
 import com.demo.jzfp.service.IAppService;
 import com.demo.jzfp.utils.MyApplication;
 import com.demo.jzfp.utils.Tools;
+import com.google.gson.JsonObject;
 
 public class MainActivity extends BaseActivity implements OnClickListener {
 	private long time;
@@ -51,6 +52,7 @@ public class MainActivity extends BaseActivity implements OnClickListener {
 	@Override
 	protected void initData() {
 		setTabSelection(0);
+		JsonObject object = new JsonObject();
 	}
 
 	/***

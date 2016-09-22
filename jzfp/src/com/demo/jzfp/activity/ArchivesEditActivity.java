@@ -1,6 +1,5 @@
 package com.demo.jzfp.activity;
 
-import java.io.Serializable;
 import java.util.LinkedHashMap;
 import java.util.List;
 import com.alibaba.fastjson.JSON;
@@ -8,9 +7,9 @@ import com.demo.jzfp.R;
 import com.demo.jzfp.entity.TdataAction;
 import com.demo.jzfp.entity.TdataCountryman;
 import com.demo.jzfp.entity.TdataResult;
-import com.demo.jzfp.fragment.EffectFragment;
-import com.demo.jzfp.fragment.MeasureFragment;
-import com.demo.jzfp.fragment.RecordFragment;
+import com.demo.jzfp.fragment.EffectFragmentEdit;
+import com.demo.jzfp.fragment.MeasureFragmentEdit;
+import com.demo.jzfp.fragment.RecordFragmentEdit;
 import com.demo.jzfp.utils.MyApplication;
 import com.demo.jzfp.utils.RequestWebService;
 import com.demo.jzfp.utils.Tools;
@@ -20,13 +19,12 @@ import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
 import android.app.FragmentTransaction;
 import android.content.res.Resources;
-import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
-public class ArchivesDetailsActivity extends BaseActivity implements WebServiceCallback{
+public class ArchivesEditActivity extends BaseActivity implements WebServiceCallback{
 	private MyApplication activityList;
 
 	@ViewInject(R.id.fl_framelayout)
@@ -38,20 +36,21 @@ public class ArchivesDetailsActivity extends BaseActivity implements WebServiceC
 	@ViewInject(R.id.tv_effect)
 	private TextView tv_effect;
 
-	private RecordFragment rdfragment;
-	private EffectFragment etfragment;
-	private MeasureFragment msfragment;
+	private RecordFragmentEdit rdfragment;
+	private EffectFragmentEdit etfragment;
+	private MeasureFragmentEdit msfragment;
 	private FragmentTransaction transaction;
 	private String methodName = "selectByCountryman";
 
 	private TdataCountryman countryMan;
 	private TdataResult tresult;
 	private List<TdataAction> tactions;
-	private LinkedHashMap<String, String> linkedHashMap;
 
+	private LinkedHashMap<String, String> linkedHashMap;
+	private boolean rd=false,ms=false,et=false;
 	@Override
 	protected void setView() {
-		View view = View.inflate(this, R.layout.activity_archives_details, null);
+		View view = View.inflate(this, R.layout.activity_archives_edit, null);
 		setContentView(view);
 		activityList = (MyApplication) getApplicationContext();
 		activityList.addActivity(this);
@@ -72,7 +71,7 @@ public class ArchivesDetailsActivity extends BaseActivity implements WebServiceC
 		setTabSelection(0);
 	}
 
-	@OnClick({ R.id.iv_back, R.id.tv_record, R.id.tv_measure, R.id.tv_effect, R.id.iv_edit })
+	@OnClick({ R.id.iv_back, R.id.tv_record, R.id.tv_measure, R.id.tv_effect, R.id.tv_sumbit })
 	public void mClick(View view) {
 		switch (view.getId()) {
 		case R.id.iv_back:
@@ -82,24 +81,17 @@ public class ArchivesDetailsActivity extends BaseActivity implements WebServiceC
 			setTabSelection(0);
 			break;
 		case R.id.tv_measure:
-			if(tactions==null)
+			if(tactions==null&&!ms)
 			RequestWebService.send("selectByAction", linkedHashMap, this, 102);
 			setTabSelection(1);
 			break;
 		case R.id.tv_effect:
-			if(tresult==null)
+			if(tresult==null&&!et)
 			RequestWebService.send("selectByResult", linkedHashMap, this, 103);
 			setTabSelection(2);
 			break;
-		case R.id.iv_edit:
-			/*Bundle bundle = new Bundle();
-			bundle.putSerializable("countryMan", (Serializable) countryMan);
-			bundle.putSerializable("tresult", (Serializable) tresult);
-			bundle.putSerializable("tactions", (Serializable) tactions);
-			Tools.setOpenActivityBundle(this, ArchivesEditActivity.class, bundle);*/
-			Bundle bundle = new Bundle();
-			bundle.putString("countrymanId", linkedHashMap.get("arg0"));
-			Tools.setOpenActivityBundle(this, ArchivesEditActivity.class,bundle);
+		case R.id.tv_sumbit:
+
 			break;
 
 		default:
@@ -155,7 +147,7 @@ public class ArchivesDetailsActivity extends BaseActivity implements WebServiceC
 		case 0:
 			if (rdfragment == null) {
 				// 如果FragmentHome为空，则创建一个并添加到界面上
-				rdfragment = new RecordFragment();
+				rdfragment = new RecordFragmentEdit();
 				transaction.replace(R.id.fl_framelayout, rdfragment);
 			} else {
 				// 如果FragmentHome不为空，则直接将它显示出来
@@ -164,7 +156,7 @@ public class ArchivesDetailsActivity extends BaseActivity implements WebServiceC
 			break;
 		case 1:
 			if (msfragment == null) {
-				msfragment = new MeasureFragment();
+				msfragment = new MeasureFragmentEdit();
 				transaction.add(R.id.fl_framelayout, msfragment);
 			} else {
 				transaction.show(msfragment);
@@ -172,7 +164,7 @@ public class ArchivesDetailsActivity extends BaseActivity implements WebServiceC
 			break;
 		case 2:
 			if (etfragment == null) {
-				etfragment = new EffectFragment();
+				etfragment = new EffectFragmentEdit();
 				transaction.add(R.id.fl_framelayout, etfragment);
 			} else {
 				transaction.show(etfragment);
@@ -239,16 +231,24 @@ public class ArchivesDetailsActivity extends BaseActivity implements WebServiceC
 			switch (msg.what) {
 			case 204:
 				setTabSelection(0);
-				rdfragment.setCountryMan(countryMan);
+				if(!rd){
+					rd = true;
+					rdfragment.setCountryMan(countryMan);
+				}
 				break;
 			case 205:
 				setTabSelection(1);
-				if(tactions!=null&&tactions.size()>0)
-				msfragment.setTdataAction(tactions);
+				if(tactions!=null&&tactions.size()>0&&!ms){
+					ms = true;
+					msfragment.setTdataAction(tactions);
+				}
 				break;
 			case 206:
 				setTabSelection(2);
-				etfragment.setTdataResult(tresult);
+				if(!et){
+					et = true;
+					etfragment.setTdataResult(tresult);
+				}
 				break;
 
 			default:
