@@ -99,4 +99,9 @@ public class RecordFragment extends Fragment{
 		this.countryman = countryMan;
 		initData();
 	}
+	
+	public TdataCountryman getCountryMan(){
+		TdataCountryman tdataCountryman = new TdataCountryman();
+		return null;
+	}
 }

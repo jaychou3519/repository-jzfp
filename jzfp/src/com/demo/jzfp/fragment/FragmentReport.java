@@ -306,6 +306,7 @@ public class FragmentReport extends Fragment implements OnClickListener, WebServ
 				tv_education.setText(data.getStringExtra("education"));
 			break;
 		case 102:
+			if(data==null) break;
 			if (data != null && !TextUtils.isEmpty(data.getStringExtra("name")))
 				et_countryId.setText(data.getStringExtra("name"));
 				areacode = data.getStringExtra("areacode");

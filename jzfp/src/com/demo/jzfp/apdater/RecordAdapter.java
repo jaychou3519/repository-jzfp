@@ -54,7 +54,7 @@ public class RecordAdapter extends BaseAdapter{
 			holder = (ViewHolder) convertView.getTag();
 		}
 		holder.tv_name.setText(Tools.parseEmpty(families.get(position).getFamilyName()));
-		holder.tv_relation.setText(Tools.parseEmpty(families.get(position).getFamilyName()+""));
+		holder.tv_relation.setText(Tools.parseEmpty(families.get(position).getYhzgx()+""));
 		holder.tv_gender.setText(Tools.parseEmpty(families.get(position).getSex()+""));
 		holder.tv_YearM.setText(Tools.parseEmpty(families.get(position).getBirthday()+""));
 		holder.tv_health.setText(Tools.parseEmpty(families.get(position).getJkzk()+""));

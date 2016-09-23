@@ -7,6 +7,7 @@ import com.demo.jzfp.R;
 import com.demo.jzfp.activity.AducationActivity;
 import com.demo.jzfp.activity.ReasonActivity;
 import com.demo.jzfp.apdater.RecordAdapter;
+import com.demo.jzfp.apdater.RecordAdapterEdit;
 import com.demo.jzfp.dao.DictDataInfoDao;
 import com.demo.jzfp.dao.impl.DictDataInfoDaoImpl;
 import com.demo.jzfp.database.DatabaseHelper;
@@ -42,7 +43,7 @@ public class RecordFragmentEdit extends Fragment implements OnClickListener{
 
 	private ScrollView sv_scroll;
 	private ListView lv_listview;
-	private RecordAdapter adapter;
+	private RecordAdapterEdit adapter;
 	private SQLiteDatabase db = null;
 	private DictDataInfoDao dictDataDao = new DictDataInfoDaoImpl();
 	private TextView tv_state,tv_gender,tv_educational
@@ -53,7 +54,7 @@ public class RecordFragmentEdit extends Fragment implements OnClickListener{
 	private AlertDialog dialog;
 	private int table;// 1:贫因状态 2:健康状态
 	private List<String> poorCards,states;
-	private String state, poorCard,reason,construction,filePath;
+	private String state, poorCard,reason,construction,gender,filePath;
 	private PhotoUtils photoUtils;
 	private PermissionsUtils pu;
 	private View view;
@@ -99,6 +100,7 @@ public class RecordFragmentEdit extends Fragment implements OnClickListener{
 		tv_educational.setOnClickListener(this);
 		tv_home_flat.setOnClickListener(this);
 		tv_reason.setOnClickListener(this);
+		tv_gender.setOnClickListener(this);
 		ed_name.setFocusable(true);
 		ed_name.setSelection(ed_name.getText().toString().length());
 	}
@@ -131,7 +133,7 @@ public class RecordFragmentEdit extends Fragment implements OnClickListener{
 		
 		if(!TextUtils.isEmpty(countryman.getPkhimg()))
 			ImageLoader.getInstance().displayImage(countryman.getPkhimg(), iv_photo);
-		adapter = new RecordAdapter(getActivity(),countryman.getTdataFamilys());
+		adapter = new RecordAdapterEdit(getActivity(),countryman.getTdataFamilys());
 		lv_listview.setAdapter(adapter);
 		Tools.setListViewHeight(lv_listview);
 		sv_scroll.smoothScrollTo(0, 20);
@@ -181,6 +183,10 @@ public class RecordFragmentEdit extends Fragment implements OnClickListener{
 				tv_home_flat.setText(construction);
 				construction = "";
 				break;
+			case 5:
+				tv_gender.setText(gender);
+				gender = "";
+				break;
 			}
 			dialog.dismiss();
 			break;
@@ -202,6 +208,12 @@ public class RecordFragmentEdit extends Fragment implements OnClickListener{
 			table = 4;
 			String[] constructions = new String[] { "土坯", "砖瓦"};
 			showWheelView(title, constructions, table);
+			break;
+		case R.id.tv_gender:
+			title = "请选择性别";
+			table = 5;
+			String[] gedners = new String[] { "男", "女"};
+			showWheelView(title, gedners, table);
 			break;
 		default:
 			break;
@@ -239,6 +251,9 @@ public class RecordFragmentEdit extends Fragment implements OnClickListener{
 					break;
 				case 4:
 					construction = item;
+					break;
+				case 5:
+					gender = item;
 					break;
 				}
 			}
