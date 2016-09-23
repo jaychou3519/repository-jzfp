@@ -26,10 +26,10 @@
                 android:textSize="@dimen/fontx14" />
 
             <EditText
-                android:id="@+id/tv_name"
-                android:layout_width="wrap_content"
+                android:id="@+id/ed_name"
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/x20"
+                android:layout_marginLeft="@dimen/x10"
                 android:hint="请输入姓名"
                 android:background="@null"
                 android:textSize="@dimen/fontx14" />
@@ -154,13 +154,15 @@
                 android:textColor="@color/gray"
                 android:textSize="@dimen/fontx14" />
 
-            <TextView
+            <EditText
                 android:id="@+id/tv_other"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/x5"
                 android:layout_marginRight="@dimen/x5"
-                android:text="无"
+                android:hint="请输入工作及其他情况"
+                android:singleLine="true"
+                android:background="@null"
                 android:textSize="@dimen/fontx14" />
         </LinearLayout>
     </LinearLayout>
