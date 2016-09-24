@@ -39,5 +39,11 @@ public class TdataAction{
 	public void setActionXl(java.lang.String actionXl) {
 		this.actionXl = actionXl;
 	}
+	@Override
+	public String toString() {
+		return "TdataAction [actionType=" + actionType + ", actionDl=" + actionDl + ", actionXl=" + actionXl
+				+ ", actionMoney=" + actionMoney + ", remark=" + remark + "]";
+	}
+	
 }
 

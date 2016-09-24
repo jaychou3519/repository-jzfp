@@ -276,5 +276,17 @@ public class TdataCountryman {
 	public void setPkhimg(String pkhimg) {
 		this.pkhimg = pkhimg;
 	}
+
+
+	@Override
+	public String toString() {
+		return "TdataCountryman [countrymanId=" + countrymanId + ", countryman=" + countryman + ", countryId="
+				+ countryId + ", poorState=" + poorState + ", sex=" + sex + ", age=" + age + ", card=" + card
+				+ ", telphone=" + telphone + ", whcd=" + whcd + ", jkzk=" + jkzk + ", poorCard=" + poorCard + ", zfjg="
+				+ zfjg + ", zzArea=" + zzArea + ", gdArea=" + gdArea + ", slArea=" + slArea + ", rjsrqk=" + rjsrqk
+				+ ", poorReason=" + poorReason + ", remark=" + remark + ", tdataFamilys=" + tdataFamilys
+				+ ", tdataActions=" + tdataActions + ", tdataHelper=" + tdataHelper + ", tdataResult=" + tdataResult
+				+ ", pkhimg=" + pkhimg + "]";
+	}
 	
 }

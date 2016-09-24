@@ -59,6 +59,9 @@ public class RecordFragmentEdit extends Fragment implements OnClickListener{
 	private PermissionsUtils pu;
 	private View view;
 	private Bitmap bitmap;
+	private String[] gedners = new String[] { "男", "女"};
+	private String[] constructions = new String[] { "土坯", "砖瓦"};
+	private String[] reasons = new String[] { "因学", "因灾", "缺资源、耕地", "因交通、电力等条件", "缺资金", "缺技术", "因病", "其 他", "缺劳动力" };
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -91,8 +94,6 @@ public class RecordFragmentEdit extends Fragment implements OnClickListener{
 		tv_reason = 	(TextView) view.findViewById(R.id.tv_reason);
 		ed_explain = 	(EditText) view.findViewById(R.id.ed_explain);
 		iv_photo = 	(ImageView) view.findViewById(R.id.iv_photo);
-		sv_scroll.smoothScrollTo(0, 20);
-		sv_scroll.setFocusable(true);
 		
 		tv_state.setOnClickListener(this);
 		iv_photo.setOnClickListener(this);
@@ -133,28 +134,49 @@ public class RecordFragmentEdit extends Fragment implements OnClickListener{
 		
 		if(!TextUtils.isEmpty(countryman.getPkhimg()))
 			ImageLoader.getInstance().displayImage(countryman.getPkhimg(), iv_photo);
+		filePath = countryman.getPkhimg();
+		
 		adapter = new RecordAdapterEdit(getActivity(),countryman.getTdataFamilys());
 		lv_listview.setAdapter(adapter);
 		Tools.setListViewHeight(lv_listview);
 		sv_scroll.smoothScrollTo(0, 20);
 		sv_scroll.setFocusable(true);
 		ed_name.setSelection(ed_name.getText().toString().length());
+		
 	}
 	public void setCountryMan(TdataCountryman countryMan){
 		this.countryman = countryMan;
 		SetData();
 	}
 
+	public TdataCountryman getCountryman() {
+		countryman.setCountryman(ed_name.getText().toString().trim());
+		countryman.setSex(tv_gender.getText().toString().trim());
+		countryman.setCard(ed_idcard.getText().toString().trim());
+		countryman.setAge(ed_age.getText().toString().trim());
+		countryman.setTelphone(ed_phone.getText().toString().trim());
+		countryman.setZfjg(tv_home_flat.getText().toString().trim());
+		countryman.setZzArea(ed_home_area.getText().toString().trim());
+		countryman.setGdArea(ed_plough_area.getText().toString().trim());
+		countryman.setSlArea(ed_mountains_area.getText().toString().trim());
+		countryman.setRjsrqk(ed_year_money.getText().toString().trim());
+		countryman.setPoorReason(tv_reason.getText().toString().trim());
+		countryman.setRemark(ed_explain.getText().toString().trim());
+		countryman.setPoorState(dictDataDao.queryDictCodeByValue(db,tv_state.getText().toString().trim(),"poorState"));
+		countryman.setWhcd(dictDataDao.queryDictCodeByValue(db,tv_educational.getText().toString().trim(),"whcd"));
+		countryman.setPkhimg(filePath);
+		return countryman;
+	}
 	@Override
 	public void onClick(View v) {
 		String title = "";
 		switch (v.getId()) {
 		case R.id.iv_photo:
-			if (pu.camera()) {
+			/*if (pu.camera()) {
 				Log.i("haha", "打开照相机");
 				photoUtils = new PhotoUtils(getActivity(), view, this);
 				photoUtils.selectImage();
-			}
+			}*/
 			break;
 		case R.id.tv_state:
 			title = "请选择贫因户状态";
@@ -176,14 +198,20 @@ public class RecordFragmentEdit extends Fragment implements OnClickListener{
 				poorCard = "";
 				break;
 			case 3:
+				if(TextUtils.isEmpty(reason))
+					reason = reasons[1];
 				tv_reason.setText(reason);
 				reason = "";
 				break;
 			case 4:
+				if(TextUtils.isEmpty(construction))
+					construction = constructions[1];
 				tv_home_flat.setText(construction);
 				construction = "";
 				break;
 			case 5:
+				if(TextUtils.isEmpty(gender))
+					gender = gedners[1];
 				tv_gender.setText(gender);
 				gender = "";
 				break;
@@ -200,19 +228,16 @@ public class RecordFragmentEdit extends Fragment implements OnClickListener{
 		case R.id.tv_reason:
 			title = "请选择致贫原因";
 			table = 3;
-			String[] reasons = new String[] { "因学", "因灾", "缺资源、耕地", "因交通、电力等条件", "缺资金", "缺技术", "因病", "其 他", "缺劳动力" };
 			showWheelView(title, reasons, table);
 			break;
 		case R.id.tv_home_flat:
 			title = "请选择住房结构";
 			table = 4;
-			String[] constructions = new String[] { "土坯", "砖瓦"};
 			showWheelView(title, constructions, table);
 			break;
 		case R.id.tv_gender:
 			title = "请选择性别";
 			table = 5;
-			String[] gedners = new String[] { "男", "女"};
 			showWheelView(title, gedners, table);
 			break;
 		default:
@@ -315,5 +340,6 @@ public class RecordFragmentEdit extends Fragment implements OnClickListener{
 			}
 		};
 	};
+	
 }
 

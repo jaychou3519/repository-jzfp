@@ -10,6 +10,7 @@ import com.demo.jzfp.entity.TdataResult;
 import com.demo.jzfp.fragment.EffectFragmentEdit;
 import com.demo.jzfp.fragment.MeasureFragmentEdit;
 import com.demo.jzfp.fragment.RecordFragmentEdit;
+import com.demo.jzfp.utils.Constant;
 import com.demo.jzfp.utils.MyApplication;
 import com.demo.jzfp.utils.RequestWebService;
 import com.demo.jzfp.utils.Tools;
@@ -18,6 +19,7 @@ import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
 import android.app.FragmentTransaction;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Handler;
 import android.view.View;
@@ -25,6 +27,7 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 
 public class ArchivesEditActivity extends BaseActivity implements WebServiceCallback{
+	private String TAG  = "ArchivesEditActivity";
 	private MyApplication activityList;
 
 	@ViewInject(R.id.fl_framelayout)
@@ -63,7 +66,8 @@ public class ArchivesEditActivity extends BaseActivity implements WebServiceCall
 		linkedHashMap = new LinkedHashMap<String, String>();
 		linkedHashMap.put("arg0", getIntent().getExtras().getString("countrymanId"));
 		RequestWebService.send(methodName, linkedHashMap, this, 101);
-
+		RequestWebService.send("selectByResult", linkedHashMap, this, 103);
+		RequestWebService.send("selectByAction", linkedHashMap, this, 102);
 	}
 
 	@Override
@@ -84,14 +88,16 @@ public class ArchivesEditActivity extends BaseActivity implements WebServiceCall
 			if(tactions==null&&!ms)
 			RequestWebService.send("selectByAction", linkedHashMap, this, 102);
 			setTabSelection(1);
+			handler.sendEmptyMessage(205);
 			break;
 		case R.id.tv_effect:
 			if(tresult==null&&!et)
 			RequestWebService.send("selectByResult", linkedHashMap, this, 103);
 			setTabSelection(2);
+			handler.sendEmptyMessage(206);
 			break;
 		case R.id.tv_sumbit:
-
+			getData();
 			break;
 
 		default:
@@ -192,6 +198,15 @@ public class ArchivesEditActivity extends BaseActivity implements WebServiceCall
 			Tools.showNewToast(getApplication(), "链接服务器失败");
 		}else{
     		switch (requestCode) {
+    		case 100:
+    			if (requestCode == 100) {// 提交贫困户信息
+    				if ("1".equals(reulst)) {
+    					Intent intent = new Intent(this,ArchivesActivity.class);
+    					startActivity(intent);
+    					finish();
+    				}
+    			}
+    			break;
 			case 101:
 				try {
 					Tools.i("selectByCountryman", reulst.toString());
@@ -205,7 +220,6 @@ public class ArchivesEditActivity extends BaseActivity implements WebServiceCall
 				try {
 					Tools.i("selectByAction", reulst.toString());
 					tactions = JSON.parseArray(reulst, TdataAction.class);
-					handler.sendEmptyMessage(205);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -214,7 +228,6 @@ public class ArchivesEditActivity extends BaseActivity implements WebServiceCall
 				try {
 					Tools.i("selectByResult", reulst.toString());
 					tresult = JSON.parseObject(reulst, TdataResult.class);
-					handler.sendEmptyMessage(206);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -226,6 +239,28 @@ public class ArchivesEditActivity extends BaseActivity implements WebServiceCall
     	}
 	}
 	
+	private void getData(){
+		if(rdfragment!=null){
+			countryMan = rdfragment.getCountryman();
+			Tools.i(TAG, "tdataCountryman结束"+countryMan.toString());
+		}
+		if(msfragment!=null){
+			tactions = msfragment.getTdataActions();
+			Tools.i(TAG, "tdataActions结束"+tactions.toString());
+			}
+		if(etfragment!=null){
+			tresult = etfragment.getTdataResult();
+			Tools.i(TAG, "tdataResult结束"+tresult.toString());
+		}
+		countryMan.setTdataActions(tactions);
+		countryMan.setTdataResult(tresult);
+		String data = JSON.toJSONString(countryMan);
+		LinkedHashMap<String, String> map = new LinkedHashMap<String, String>();
+		map.put("arg0", data);
+		map.put("arg1", "edit");
+		RequestWebService.send("insertTDataCountryman", map, this, 100);
+	}
+	
 	private Handler handler = new Handler(){
 		public void handleMessage(android.os.Message msg) {
 			switch (msg.what) {
@@ -234,6 +269,7 @@ public class ArchivesEditActivity extends BaseActivity implements WebServiceCall
 				if(!rd){
 					rd = true;
 					rdfragment.setCountryMan(countryMan);
+					Tools.i(TAG,  "countryMan开始="+countryMan.toString());
 				}
 				break;
 			case 205:
@@ -241,6 +277,7 @@ public class ArchivesEditActivity extends BaseActivity implements WebServiceCall
 				if(tactions!=null&&tactions.size()>0&&!ms){
 					ms = true;
 					msfragment.setTdataAction(tactions);
+					Tools.i(TAG, "tactions开始="+tactions.toString());
 				}
 				break;
 			case 206:
@@ -248,6 +285,7 @@ public class ArchivesEditActivity extends BaseActivity implements WebServiceCall
 				if(!et){
 					et = true;
 					etfragment.setTdataResult(tresult);
+					Tools.i(TAG, "tresult开始="+tresult.toString());
 				}
 				break;
 
@@ -256,4 +294,5 @@ public class ArchivesEditActivity extends BaseActivity implements WebServiceCall
 			}
 		};
 	};
+	
 }

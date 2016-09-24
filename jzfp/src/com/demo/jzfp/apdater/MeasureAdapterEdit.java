@@ -54,7 +54,8 @@ public class MeasureAdapterEdit extends BaseAdapter{
 			
 			@Override
 			public void onTextChanged(CharSequence s, int start, int before, int count) {
-				actions.get(position).setActionMoney(s.toString().trim());
+				if(s.length()>=0)
+					actions.get(position).setActionMoney(s.toString().trim());
 			}
 			
 			@Override
@@ -68,7 +69,6 @@ public class MeasureAdapterEdit extends BaseAdapter{
 			}
 		});
 		if(position==0){
-			holder.ed_monery.setFocusable(true);
 			holder.ed_monery.setSelection(holder.ed_monery.getText().toString().length());
 		}
 		String content = Tools.parseEmpty(actions.get(position).getActionXl());

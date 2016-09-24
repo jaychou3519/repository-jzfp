@@ -63,6 +63,7 @@ public class ArchivesAdapter extends BaseAdapter{
 				Bundle bundle = new Bundle();
 				bundle.putBoolean("state", true);
 				bundle.putString("countrymanId", toFiles.get(position).getCountrymanId()+"");
+				Tools.i("CountrymanId",  toFiles.get(position).getCountrymanId()+"");
 				Tools.setOpenActivityBundle(context, ArchivesPoorActivity.class, bundle);
 			}
 		});

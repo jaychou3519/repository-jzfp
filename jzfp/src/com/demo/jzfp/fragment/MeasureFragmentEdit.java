@@ -44,4 +44,8 @@ public class MeasureFragmentEdit extends Fragment{
 		adapter = new MeasureAdapterEdit(getActivity(),tdataActions);
 		lv_listview.setAdapter(adapter);
 	}
+	
+	public List<TdataAction> getTdataActions(){
+		return tdataActions;
+	}
 }

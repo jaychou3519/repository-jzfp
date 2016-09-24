@@ -10,7 +10,9 @@ import com.demo.jzfp.view.DoubleDatePickerDialog;
 import com.demo.jzfp.view.WheelView;
 import android.app.AlertDialog;
 import android.content.Context;
+import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
@@ -60,7 +62,7 @@ public class RecordAdapterEdit extends BaseAdapter{
 			holder.tv_gender = (TextView) convertView.findViewById(R.id.tv_gender);
 			holder.tv_YearM = (TextView) convertView.findViewById(R.id.tv_YearM);
 			holder.tv_health = (TextView) convertView.findViewById(R.id.tv_health);
-			holder.tv_other = (TextView) convertView.findViewById(R.id.tv_other);
+			holder.ed_other = (EditText) convertView.findViewById(R.id.ed_other);
 			holder.vw_lines = convertView.findViewById(R.id.vw_lines);
 			convertView.setTag(holder);
 		}else{
@@ -71,7 +73,7 @@ public class RecordAdapterEdit extends BaseAdapter{
 		holder.tv_gender.setText(Tools.parseEmpty(families.get(position).getSex()+""));
 		holder.tv_YearM.setText(Tools.parseEmpty(families.get(position).getBirthday()+""));
 		holder.tv_health.setText(Tools.parseEmpty(families.get(position).getJkzk()+""));
-		holder.tv_other.setText(Tools.parseEmpty(families.get(position).getWorkDesc()+""));
+		holder.ed_other.setText(Tools.parseEmpty(families.get(position).getWorkDesc()+""));
 		if(getCount()==(position+1)){
 			holder.vw_lines.setVisibility(View.GONE);
 		}
@@ -84,13 +86,11 @@ public class RecordAdapterEdit extends BaseAdapter{
 	 * 设置监听
 	 * 
 	 */
-	private void setListener(final ViewHolder holder, int position) {
-		final TdataFamily member = families.get(position);
-		
+	private void setListener(final ViewHolder holder, final int position) {
 		holder.tv_relation.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				showWheelView(holder, "请选择与户主的关系", relations, 1, member);
+				showWheelView(holder, "请选择与户主的关系", relations, 1, families.get(position));
 			}
 		});
 		holder.tv_YearM.setOnClickListener(new OnClickListener() {
@@ -103,7 +103,7 @@ public class RecordAdapterEdit extends BaseAdapter{
 					public void onDateSet(DatePicker startDatePicker, int startYear, int startMonthOfYear, int startDayOfMonth) {
 						String textString = startYear + "年" + (startMonthOfYear + 1) + "月";
 						holder.tv_YearM.setText(textString);
-						member.setBirthday(textString);
+						families.get(position).setBirthday(textString);
 					}
 				}, c.get(Calendar.YEAR), c.get(Calendar.MONTH), c.get(Calendar.DATE), false).show();
 			}
@@ -111,13 +111,43 @@ public class RecordAdapterEdit extends BaseAdapter{
 		holder.tv_gender.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				showWheelView(holder, "请选择性别", genders, 3, member);
+				showWheelView(holder, "请选择性别", genders, 3, families.get(position));
 			}
 		});
 		holder.tv_health.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				showWheelView(holder, "请选择健康状态", healths, 2, member);
+				showWheelView(holder, "请选择健康状态", healths, 2, families.get(position));
+			}
+		});
+		holder.ed_name.addTextChangedListener(new TextWatcher() {
+			@Override
+			public void onTextChanged(CharSequence s, int start, int before, int count) {
+				if(s.length()>=0)
+					families.get(position).setFamilyName(s.toString().trim());
+			}
+			
+			@Override
+			public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+			}
+			@Override
+			public void afterTextChanged(Editable s) {
+			}
+		});
+		holder.ed_other.addTextChangedListener(new TextWatcher() {
+			
+			@Override
+			public void onTextChanged(CharSequence s, int start, int before, int count) {
+				if(s.length()>=0)
+					families.get(position).setWorkDesc(s.toString().trim());
+			}
+			
+			@Override
+			public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+			}
+			
+			@Override
+			public void afterTextChanged(Editable s) {
 			}
 		});
 	}
@@ -191,7 +221,7 @@ public class RecordAdapterEdit extends BaseAdapter{
 		TextView tv_gender;
 		TextView tv_YearM;
 		TextView tv_health;
-		TextView tv_other;
+		EditText ed_other;
 		View vw_lines;
 	}
 }

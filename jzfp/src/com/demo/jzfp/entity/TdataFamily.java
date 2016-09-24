@@ -43,4 +43,10 @@ public class TdataFamily {
 	public void setWorkDesc(String workDesc) {
 		this.workDesc = workDesc;
 	}
+	@Override
+	public String toString() {
+		return "TdataFamily [familyName=" + familyName + ", yhzgx=" + yhzgx + ", sex=" + sex + ", birthday=" + birthday
+				+ ", jkzk=" + jkzk + ", workDesc=" + workDesc + "]";
+	}
+	
 }

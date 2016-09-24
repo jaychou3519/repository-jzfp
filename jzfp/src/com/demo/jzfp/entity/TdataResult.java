@@ -52,5 +52,12 @@ public class TdataResult{
 	public void setJffhtptj(String jffhtptj) {
 		this.jffhtptj = jffhtptj;
 	}
+	@Override
+	public String toString() {
+		return "TdataResult [tpDate=" + tpDate + ", jtsrRjsr=" + jtsrRjsr + ", jtsrZsr=" + jtsrZsr + ", addressSafe="
+				+ addressSafe + ", jbshbzYl=" + jbshbzYl + ", jbshbzYwjy=" + jbshbzYwjy + ", jffhtptj=" + jffhtptj
+				+ "]";
+	}
+	
 }
 
