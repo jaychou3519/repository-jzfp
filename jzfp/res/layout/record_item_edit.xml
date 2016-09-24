@@ -155,7 +155,7 @@
                 android:textSize="@dimen/fontx14" />
 
             <EditText
-                android:id="@+id/tv_other"
+                android:id="@+id/ed_other"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/x5"

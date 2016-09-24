@@ -19,12 +19,11 @@
             android:textColor="@color/gray"
             android:textSize="@dimen/x14" />
 
-        <EditText
+        <TextView
             android:id="@+id/tv_date"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="@null"
             android:layout_marginRight="@dimen/x10"
             android:textSize="@dimen/x14" />
     </LinearLayout>
@@ -171,12 +170,11 @@
             android:textColor="@color/gray"
             android:textSize="@dimen/x14" />
 
-        <EditText
-            android:id="@+id/ed_poverty"
+        <TextView
+            android:id="@+id/tv_poverty"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="@null"
             android:textSize="@dimen/x14" />
     </LinearLayout>
 

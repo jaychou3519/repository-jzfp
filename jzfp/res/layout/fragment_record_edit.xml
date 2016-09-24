@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/sv_scroll"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:scrollbars="none"
-	android:focusable="false"
-    android:id="@+id/sv_scroll" >
+    android:focusable="false"
+    android:scrollbars="none" >
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -100,11 +100,11 @@
                 android:textSize="@dimen/fontx14" />
 
             <TextView
-                android:layout_toRightOf="@id/tv_gd"
                 android:id="@+id/tv_gender"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/x10"
+                android:layout_toRightOf="@id/tv_gd"
                 android:text="男"
                 android:textSize="@dimen/fontx14" />
 
@@ -120,11 +120,11 @@
                 android:id="@+id/ed_idcard"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
                 android:layout_marginLeft="@dimen/x5"
                 android:layout_marginRight="@dimen/x5"
-                android:layout_alignParentRight="true"
-                android:hint="请输入身份证"
                 android:background="@null"
+                android:hint="请输入身份证"
                 android:textSize="@dimen/fontx14" />
         </RelativeLayout>
 
@@ -154,8 +154,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/x10"
-                    android:text="54"
                     android:background="@null"
+                    android:text="54"
                     android:textSize="@dimen/fontx14" />
             </LinearLayout>
 
@@ -178,10 +178,10 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/x10"
                     android:layout_marginRight="@dimen/x10"
-                    android:singleLine="true"
                     android:background="@null"
-                    android:textSize="@dimen/fontx14"
-                    android:hint="请输入电话" />
+                    android:hint="请输入电话"
+                    android:singleLine="true"
+                    android:textSize="@dimen/fontx14" />
             </LinearLayout>
         </LinearLayout>
 
@@ -289,10 +289,10 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/x5"
                     android:layout_marginRight="@dimen/x5"
-                    android:textSize="@dimen/fontx14"
                     android:background="@null"
+                    android:hint="请输入住房面积"
                     android:singleLine="true"
-                    android:hint="请输入住房面积" />
+                    android:textSize="@dimen/fontx14" />
             </LinearLayout>
         </LinearLayout>
 
@@ -322,8 +322,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/x10"
-                    android:hint="请输入耕地面积"
                     android:background="@null"
+                    android:hint="请输入耕地面积"
                     android:singleLine="true"
                     android:textSize="@dimen/fontx14" />
             </LinearLayout>
@@ -347,10 +347,10 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/x5"
                     android:layout_marginRight="@dimen/x5"
-                    android:textSize="@dimen/fontx14"
-                    android:hint="请输入山林面积"
                     android:background="@null"
-                    android:singleLine="true" />
+                    android:hint="请输入山林面积"
+                    android:singleLine="true"
+                    android:textSize="@dimen/fontx14" />
             </LinearLayout>
         </LinearLayout>
 
@@ -373,10 +373,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/x10"
-                android:hint="请输入家庭年人均可支配收入"
                 android:background="@null"
+                android:hint="请输入家庭年人均可支配收入"
                 android:singleLine="true"
-                android:textSize="@dimen/fontx14"/>
+                android:textSize="@dimen/fontx14" />
         </LinearLayout>
 
         <View
@@ -477,8 +477,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/x10"
-                android:hint="请输入说明"
                 android:background="@null"
+                android:hint="请输入说明"
                 android:textSize="@dimen/fontx14" />
         </LinearLayout>
     </LinearLayout>
