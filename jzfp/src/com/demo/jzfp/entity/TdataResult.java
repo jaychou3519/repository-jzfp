@@ -3,6 +3,7 @@ package com.demo.jzfp.entity;
 public class TdataResult{
 	
 	///////////帮扶成效
+	private java.lang.String resultId;
 	private String tpDate;//计划脱贫时间
 	private String jtsrRjsr;//人均收入
 	private String jtsrZsr;//总收入
@@ -10,6 +11,13 @@ public class TdataResult{
 	private String jbshbzYl;//医疗
 	private String jbshbzYwjy;//义务教育
 	private String jffhtptj;//是否符合脱贫条件
+	
+	public java.lang.String getResultId() {
+		return resultId;
+	}
+	public void setResultId(java.lang.String resultId) {
+		this.resultId = resultId;
+	}
 	public String getTpDate() {
 		return tpDate;
 	}

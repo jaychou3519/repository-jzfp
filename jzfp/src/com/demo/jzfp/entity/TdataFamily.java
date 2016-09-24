@@ -1,12 +1,20 @@
 package com.demo.jzfp.entity;
 
 public class TdataFamily {
+	private java.lang.String memberId;
 	private String familyName;//成员名字
 	private String yhzgx;//与户主关系
 	private String sex;//成员性别
 	private String birthday;//成员出生日期
 	private String jkzk;//成员健康
 	private String workDesc;//其它
+	
+	public java.lang.String getMemberId() {
+		return memberId;
+	}
+	public void setMemberId(java.lang.String memberId) {
+		this.memberId = memberId;
+	}
 	public String getFamilyName() {
 		return familyName;
 	}

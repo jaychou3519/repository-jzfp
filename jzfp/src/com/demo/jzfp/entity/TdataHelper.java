@@ -2,7 +2,7 @@ package com.demo.jzfp.entity;
 
 
 public class TdataHelper {
-	
+	private java.lang.String helperId;
 	private String jdbfzrOrgname;//责任单位
 	private String jdbfzrOrger;//负责人
 	private String bfzrrPhone;//负责人电话
@@ -39,6 +39,13 @@ public class TdataHelper {
      * 帮扶户所在乡（镇）村主任联系电话       db_column: czr_phone 
      */	
 	private java.lang.String czrPhone;
+	
+	public java.lang.String getHelperId() {
+		return helperId;
+	}
+	public void setHelperId(java.lang.String helperId) {
+		this.helperId = helperId;
+	}
 	public String getJdbfzrOrgname() {
 		return jdbfzrOrgname;
 	}

@@ -4,11 +4,18 @@ package com.demo.jzfp.entity;
 public class TdataAction{
 	
 	/////////帮扶措施
+	private java.lang.String actionId;
 	private java.lang.String actionType;//政策措施分类:1七个一批；2、其他
 	private java.lang.String actionDl;//大类
 	private java.lang.String actionXl;//小类
 	private String actionMoney;//增收获益
 	private String remark;//说明
+	public java.lang.String getActionId() {
+		return actionId;
+	}
+	public void setActionId(java.lang.String actionId) {
+		this.actionId = actionId;
+	}
 	public String getActionType() {
 		return actionType;
 	}
