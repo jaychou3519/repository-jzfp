@@ -9,10 +9,13 @@
         android:layout_height="wrap_content"
         layout="@layout/top_title" />
 
-    <ListView
-        android:id="@+id/lv_listview"
+    <com.demo.jzfp.view.MyGridView
+        android:id="@+id/gv_photo"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" >
-    </ListView>
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/x10"
+        android:layout_marginRight="@dimen/x10"
+        android:descendantFocusability="blocksDescendants"
+        android:numColumns="3"/>
 
 </LinearLayout>
