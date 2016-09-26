@@ -10,7 +10,6 @@ import com.demo.jzfp.entity.TdataResult;
 import com.demo.jzfp.fragment.EffectFragmentEdit;
 import com.demo.jzfp.fragment.MeasureFragmentEdit;
 import com.demo.jzfp.fragment.RecordFragmentEdit;
-import com.demo.jzfp.utils.Constant;
 import com.demo.jzfp.utils.MyApplication;
 import com.demo.jzfp.utils.RequestWebService;
 import com.demo.jzfp.utils.Tools;

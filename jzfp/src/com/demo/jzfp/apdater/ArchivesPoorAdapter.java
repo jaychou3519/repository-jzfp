@@ -7,13 +7,18 @@ import com.demo.jzfp.activity.ArchivesDetailsActivity;
 import com.demo.jzfp.activity.ArchivesPoorActivity;
 import com.demo.jzfp.entity.CountryMans;
 import com.demo.jzfp.utils.Tools;
+import com.nostra13.universalimageloader.core.ImageLoader;
 
 import android.content.Context;
+import android.graphics.Point;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup.LayoutParams;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -46,25 +51,27 @@ public class ArchivesPoorAdapter extends BaseAdapter{
 		if(convertView==null){
 			holder = new ViewHolder();
 			convertView = View.inflate(context, R.layout.archives_poor_item, null);
-			holder.rl_poor = (RelativeLayout) convertView.findViewById(R.id.rl_poor);
 			holder.tv_name = (TextView) convertView.findViewById(R.id.tv_name);
-			holder.tv_age = (TextView) convertView.findViewById(R.id.tv_age);
-			holder.tv_state = (TextView) convertView.findViewById(R.id.tv_state);
-			holder.tv_phone = (TextView) convertView.findViewById(R.id.tv_phone);
+			holder.iv_photo = (ImageView) convertView.findViewById(R.id.iv_photo);
+			holder.ll_linear = (LinearLayout) convertView.findViewById(R.id.ll_linear);
 			convertView.setTag(holder);
 		}else{
 			holder = (ViewHolder) convertView.getTag();
 		}
 		holder.tv_name.setText(countrys.get(position).getCountryman()+"");
-		holder.tv_age.setText(countrys.get(position).getAge()+"");
-		holder.tv_state.setText(countrys.get(position).getPoorState()+"");
-		holder.tv_phone.setText(countrys.get(position).getTelphone()+"");
-		holder.rl_poor.setOnClickListener(new OnClickListener() {
-			
+		Point p = Tools.getPoint(context);
+		LayoutParams para = holder.iv_photo.getLayoutParams();
+		para.height = (p.x) / 4;
+		para.width = (p.x - 40) / 4;
+		holder.iv_photo.setLayoutParams(para);
+		Tools.i("ArchivesPoorAdapter", countrys.get(position).getPkhimg());
+		if(countrys.get(position).getPkhimg()!=null)
+			ImageLoader.getInstance().displayImage(countrys.get(position).getPkhimg(), holder.iv_photo); 
+		holder.ll_linear.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				Bundle bundle = new Bundle();
-				bundle.putString("countrymanId", countrys.get(position).getCountrymanId()+"");
+				bundle.putString("countrymanId", countrys.get(position).getCountrymanId());
 				Tools.setOpenActivityBundle(context, ArchivesDetailsActivity.class, bundle);
 			}
 		});
@@ -72,10 +79,8 @@ public class ArchivesPoorAdapter extends BaseAdapter{
 	}
 
 	class ViewHolder{
-		RelativeLayout rl_poor;
 		TextView tv_name;
-		TextView tv_age;
-		TextView tv_state;
-		TextView tv_phone;
+		ImageView iv_photo;
+		LinearLayout ll_linear;
 	}
 }

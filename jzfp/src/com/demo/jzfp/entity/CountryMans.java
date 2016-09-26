@@ -66,7 +66,7 @@ public class CountryMans implements Serializable{
 
 	private String familyNo;
 
-	private int familyMemers;
+	private String familyMemers;
 
 	private String telphone;
 
@@ -346,11 +346,11 @@ public class CountryMans implements Serializable{
 		return this.familyNo;
 	}
 
-	public void setFamilyMemers(int familyMemers) {
+	public void setFamilyMemers(String familyMemers) {
 		this.familyMemers = familyMemers;
 	}
 
-	public int getFamilyMemers() {
+	public String getFamilyMemers() {
 		return this.familyMemers;
 	}
 

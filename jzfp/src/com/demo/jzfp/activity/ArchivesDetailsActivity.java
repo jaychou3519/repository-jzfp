@@ -203,6 +203,7 @@ public class ArchivesDetailsActivity extends BaseActivity implements WebServiceC
 			case 101:
 				try {
 					Tools.i("selectByCountryman", reulst.toString());
+					countryMan = null;
 					countryMan = JSON.parseObject(reulst, TdataCountryman.class);
 	    			handler.sendEmptyMessage(204);
 				} catch (Exception e) {
@@ -212,6 +213,7 @@ public class ArchivesDetailsActivity extends BaseActivity implements WebServiceC
 			case 102:
 				try {
 					Tools.i("selectByAction", reulst.toString());
+					tactions.clear();
 					tactions = JSON.parseArray(reulst, TdataAction.class);
 					handler.sendEmptyMessage(205);
 				} catch (Exception e) {
@@ -221,6 +223,7 @@ public class ArchivesDetailsActivity extends BaseActivity implements WebServiceC
 			case 103:
 				try {
 					Tools.i("selectByResult", reulst.toString());
+					tresult = null;
 					tresult = JSON.parseObject(reulst, TdataResult.class);
 					handler.sendEmptyMessage(206);
 				} catch (Exception e) {

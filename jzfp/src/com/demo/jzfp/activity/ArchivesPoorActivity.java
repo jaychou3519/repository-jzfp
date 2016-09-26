@@ -9,6 +9,7 @@ import com.demo.jzfp.entity.CountryMans;
 import com.demo.jzfp.utils.RequestWebService;
 import com.demo.jzfp.utils.Tools;
 import com.demo.jzfp.utils.RequestWebService.WebServiceCallback;
+import com.demo.jzfp.view.MyGridView;
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
 
@@ -19,8 +20,8 @@ import android.widget.ListView;
 
 public class ArchivesPoorActivity extends BaseActivity implements WebServiceCallback{
 
-	@ViewInject(R.id.lv_listview)
-	private ListView lv_listview;
+	@ViewInject(R.id.gv_photo)
+	private MyGridView gv_photo;
 	private String methodName = "selectToCountrymans";
 	private List<CountryMans> countrys;
 	@Override
@@ -42,7 +43,7 @@ public class ArchivesPoorActivity extends BaseActivity implements WebServiceCall
 			switch (msg.what) {
 			case 201:
 				adapter = new ArchivesPoorAdapter(ArchivesPoorActivity.this,countrys);
-				lv_listview.setAdapter(adapter);
+				gv_photo.setAdapter(adapter);
 				break;
 
 			default:
@@ -61,7 +62,7 @@ public class ArchivesPoorActivity extends BaseActivity implements WebServiceCall
 			countrys =  (List<CountryMans>) getIntent().getExtras().getSerializable("countrys");
 			if(countrys.size()>0){
 				adapter = new ArchivesPoorAdapter(ArchivesPoorActivity.this,countrys);
-				lv_listview.setAdapter(adapter);
+				gv_photo.setAdapter(adapter);
 			}
 		}
 	}
@@ -74,6 +75,7 @@ public class ArchivesPoorActivity extends BaseActivity implements WebServiceCall
 			switch (requestCode) {
 			case 101:
 				try {
+					Tools.i("ArchivesPoorActivity", "ArchivesPoorActivity="+reulst.toString());
 	    			countrys = JSON.parseArray(reulst, CountryMans.class);
 					handler.sendEmptyMessage(201);
 				} catch (Exception e) {

@@ -121,6 +121,7 @@ public class ArchivesActivity extends BaseActivity implements WebServiceCallback
 			Tools.showNewToast(getApplication(), "链接服务器失败");
 		}else{
     		try {
+    			Tools.i(TAG, "ArchivesActivity="+reulst.toString());
 				toFiles = JSON.parseArray(reulst, ToFiles.class);
 				handler.sendEmptyMessage(201);
 			} catch (Exception e) {
