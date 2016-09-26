@@ -5,6 +5,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import com.alibaba.fastjson.JSON;
 import com.demo.jzfp.R;
+import com.demo.jzfp.entity.CountryMans;
 import com.demo.jzfp.entity.TdataAction;
 import com.demo.jzfp.entity.TdataCountryman;
 import com.demo.jzfp.entity.TdataResult;
@@ -49,6 +50,7 @@ public class ArchivesDetailsActivity extends BaseActivity implements WebServiceC
 	private List<TdataAction> tactions;
 	private LinkedHashMap<String, String> linkedHashMap;
 
+	private CountryMans countrys;
 	@Override
 	protected void setView() {
 		View view = View.inflate(this, R.layout.activity_archives_details, null);
@@ -61,6 +63,7 @@ public class ArchivesDetailsActivity extends BaseActivity implements WebServiceC
 	@Override
 	protected void initView() {
 		Tools.i("JJY", getIntent().getExtras().getString("countrymanId"));
+		countrys = (CountryMans) getIntent().getExtras().getSerializable("countrys");
 		linkedHashMap = new LinkedHashMap<String, String>();
 		linkedHashMap.put("arg0", getIntent().getExtras().getString("countrymanId"));
 		RequestWebService.send(methodName, linkedHashMap, this, 101);
@@ -99,6 +102,7 @@ public class ArchivesDetailsActivity extends BaseActivity implements WebServiceC
 			Tools.setOpenActivityBundle(this, ArchivesEditActivity.class, bundle);*/
 			Bundle bundle = new Bundle();
 			bundle.putString("countrymanId", linkedHashMap.get("arg0"));
+			bundle.putSerializable("countrys",  countrys);
 			Tools.setOpenActivityBundle(this, ArchivesEditActivity.class,bundle);
 			break;
 

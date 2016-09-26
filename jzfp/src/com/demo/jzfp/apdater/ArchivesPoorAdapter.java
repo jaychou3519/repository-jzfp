@@ -72,6 +72,7 @@ public class ArchivesPoorAdapter extends BaseAdapter{
 			public void onClick(View v) {
 				Bundle bundle = new Bundle();
 				bundle.putString("countrymanId", countrys.get(position).getCountrymanId());
+				bundle.putSerializable("countrys",  countrys.get(position));
 				Tools.setOpenActivityBundle(context, ArchivesDetailsActivity.class, bundle);
 			}
 		});

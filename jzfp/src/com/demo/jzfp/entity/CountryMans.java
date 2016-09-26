@@ -30,7 +30,7 @@ public class CountryMans implements Serializable{
 
 	private String tdataResult;
 
-	private String tdataHelper;
+	private TdataHelper tdataHelper;
 
 	private String orgType;
 
@@ -202,11 +202,11 @@ public class CountryMans implements Serializable{
 		return this.tdataResult;
 	}
 
-	public void setTdataHelper(String tdataHelper) {
+	public void setTdataHelper(TdataHelper tdataHelper) {
 		this.tdataHelper = tdataHelper;
 	}
 
-	public String getTdataHelper() {
+	public TdataHelper getTdataHelper() {
 		return this.tdataHelper;
 	}
 

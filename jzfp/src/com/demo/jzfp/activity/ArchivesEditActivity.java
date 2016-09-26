@@ -4,6 +4,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import com.alibaba.fastjson.JSON;
 import com.demo.jzfp.R;
+import com.demo.jzfp.entity.CountryMans;
 import com.demo.jzfp.entity.TdataAction;
 import com.demo.jzfp.entity.TdataCountryman;
 import com.demo.jzfp.entity.TdataResult;
@@ -50,6 +51,7 @@ public class ArchivesEditActivity extends BaseActivity implements WebServiceCall
 
 	private LinkedHashMap<String, String> linkedHashMap;
 	private boolean rd=false,ms=false,et=false;
+	private CountryMans countrys;
 	@Override
 	protected void setView() {
 		View view = View.inflate(this, R.layout.activity_archives_edit, null);
@@ -62,6 +64,7 @@ public class ArchivesEditActivity extends BaseActivity implements WebServiceCall
 	@Override
 	protected void initView() {
 		Tools.i("JJY", getIntent().getExtras().getString("countrymanId"));
+		countrys = (CountryMans) getIntent().getExtras().getSerializable("countrys");
 		linkedHashMap = new LinkedHashMap<String, String>();
 		linkedHashMap.put("arg0", getIntent().getExtras().getString("countrymanId"));
 		RequestWebService.send(methodName, linkedHashMap, this, 101);
@@ -253,6 +256,7 @@ public class ArchivesEditActivity extends BaseActivity implements WebServiceCall
 		}
 		countryMan.setTdataActions(tactions);
 		countryMan.setTdataResult(tresult);
+		countryMan.setTdataHelper(countrys.getTdataHelper());
 		String data = JSON.toJSONString(countryMan);
 		LinkedHashMap<String, String> map = new LinkedHashMap<String, String>();
 		map.put("arg0", data);
