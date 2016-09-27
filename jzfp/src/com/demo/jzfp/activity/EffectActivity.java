@@ -142,7 +142,7 @@ public class EffectActivity extends BaseActivity implements OnClickListener {
 			new DoubleDatePickerDialog(this, 0, new DoubleDatePickerDialog.OnDateSetListener() {
 				@Override
 				public void onDateSet(DatePicker startDatePicker, int startYear, int startMonthOfYear, int startDayOfMonth) {
-					String textString = startYear + "年" + (startMonthOfYear + 1) + "月";
+					String textString = startYear + "-" + (startMonthOfYear + 1) + "-" + startDayOfMonth;
 					tv_time.setText(textString);
 				}
 			}, c.get(Calendar.YEAR), c.get(Calendar.MONTH), c.get(Calendar.DATE), false).show();

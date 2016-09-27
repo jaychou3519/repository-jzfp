@@ -236,7 +236,7 @@ public class MemberAdapter extends BaseAdapter {
 				new DoubleDatePickerDialog(context, 0, new DoubleDatePickerDialog.OnDateSetListener() {
 					@Override
 					public void onDateSet(DatePicker startDatePicker, int startYear, int startMonthOfYear, int startDayOfMonth) {
-						String textString = startYear + "年" + (startMonthOfYear + 1) + "月";
+						String textString = startYear + "-" + (startMonthOfYear + 1) + "-" + startDayOfMonth;
 						holder.tv_birthday.setText(textString);
 						member.setBirthday(textString);
 					}
