@@ -103,7 +103,7 @@ public class EffectFragmentEdit extends Fragment implements OnClickListener {
 				@Override
 				public void onDateSet(DatePicker startDatePicker, int startYear, int startMonthOfYear,
 						int startDayOfMonth) {
-					String textString = startYear + "年" + (startMonthOfYear + 1) + "月";
+					String textString = startYear + "-" + (startMonthOfYear + 1) + "-"+startMonthOfYear;
 					tv_date.setText(textString);
 				}
 			}, c.get(Calendar.YEAR), c.get(Calendar.MONTH), c.get(Calendar.DATE), false).show();
