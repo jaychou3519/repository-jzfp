@@ -217,7 +217,6 @@ public class ArchivesDetailsActivity extends BaseActivity implements WebServiceC
 			case 102:
 				try {
 					Tools.i("selectByAction", reulst.toString());
-					tactions.clear();
 					tactions = JSON.parseArray(reulst, TdataAction.class);
 					handler.sendEmptyMessage(205);
 				} catch (Exception e) {

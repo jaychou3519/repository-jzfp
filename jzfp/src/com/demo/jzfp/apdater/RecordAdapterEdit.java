@@ -70,9 +70,9 @@ public class RecordAdapterEdit extends BaseAdapter{
 		}
 		holder.ed_name.setText(Tools.parseEmpty(families.get(position).getFamilyName()));
 		holder.tv_relation.setText(Tools.parseEmpty(families.get(position).getYhzgx()+""));
-		holder.tv_gender.setText(Tools.parseEmpty(families.get(position).getSex()+""));
+		//holder.tv_gender.setText(Tools.parseEmpty(families.get(position).getSex()+""));
 		holder.tv_YearM.setText(Tools.parseEmpty(families.get(position).getBirthday()+""));
-		holder.tv_health.setText(Tools.parseEmpty(families.get(position).getJkzk()+""));
+		//holder.tv_health.setText(Tools.parseEmpty(families.get(position).getJkzk()+""));
 		holder.ed_other.setText(Tools.parseEmpty(families.get(position).getWorkDesc()+""));
 		if(getCount()==(position+1)){
 			holder.vw_lines.setVisibility(View.GONE);
@@ -167,6 +167,8 @@ public class RecordAdapterEdit extends BaseAdapter{
 					relation = item;
 				} else if (table == 2) {
 					health = item;
+				} else if(table == 3){
+					gender = item;
 				}
 			}
 		});
