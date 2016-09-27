@@ -28,14 +28,12 @@ public class LoginActivity extends BaseActivity implements OnClickListener, WebS
 	private EditText et_username,et_password;
 	private CheckBox cb_keep;
 	private SharedPreferences sp;
-	private MyApplication activityList;
 	private static String METHOD_NAME = "selectLogin";
 	
 	@Override
 	protected void setView() {
 		setContentView(R.layout.activity_login);
-		activityList = (MyApplication) getApplicationContext();
-		activityList.addActivity(this);
+		MyApplication.addActivity(LoginActivity.this);
 	}
 
 	@Override

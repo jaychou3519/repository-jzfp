@@ -19,15 +19,13 @@ import android.widget.ListView;
 public class SupportActivity extends BaseActivity implements WebServiceCallback {
 	private ListView lv_listview;
 	private List<String> datas = new ArrayList<String>();
-	private MyApplication activityList;
 	private List<Policy> policies;
 
 	@Override
 	protected void setView() {
 		View view = View.inflate(this, R.layout.activity_villages, null);
 		setContentView(view);
-		activityList = (MyApplication) getApplicationContext();
-		activityList.addActivity(this);
+		MyApplication.addActivity(SupportActivity.this);
 		lv_listview = (ListView) findViewById(R.id.lv_listview);
 		setTitleText("帮扶政策");
 		setOnback(this);

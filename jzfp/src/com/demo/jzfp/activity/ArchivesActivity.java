@@ -25,7 +25,6 @@ import android.widget.ListView;
 public class ArchivesActivity extends BaseActivity implements WebServiceCallback{
 	
 	private String TAG = "ArchivesActivity";
-	private MyApplication activityList;
 	private ArchivesAdapter adapter;
 	private String methodName = "selectToFiles";
 	private List<ToFiles> toFiles;
@@ -35,8 +34,7 @@ public class ArchivesActivity extends BaseActivity implements WebServiceCallback
 	protected void setView() {
 		View view = View.inflate(ArchivesActivity.this, R.layout.activity_archives, null);
 		setContentView(view);
-		activityList = (MyApplication) getApplicationContext();
-		activityList.addActivity(this);
+		MyApplication.addActivity(ArchivesActivity.this);
 		ViewUtils.inject(this,view);
 		setTitleText("扶贫档案");
 		setOnback(this);

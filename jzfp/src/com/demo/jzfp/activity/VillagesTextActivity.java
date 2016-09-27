@@ -13,12 +13,10 @@ public class VillagesTextActivity extends BaseActivity{
 
 	@ViewInject(R.id.tv_context)
 	private WebView tv_context;
-	private MyApplication activityList;
 	@Override
 	protected void setView() {
 		View view = View.inflate(this, R.layout.activity_villages_text, null);
-		activityList = (MyApplication) getApplicationContext();
-		activityList.addActivity(this);
+		MyApplication.addActivity(VillagesTextActivity.this);
 		setContentView(view);
 		ViewUtils.inject(this,view);
 		setOnback(this);

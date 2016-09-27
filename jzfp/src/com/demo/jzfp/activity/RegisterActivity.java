@@ -37,7 +37,6 @@ public class RegisterActivity extends BaseActivity {
 	private TextView tv_institution;
 	@ViewInject(R.id.ed_realname)
 	private TextView ed_realname;
-	private MyApplication activityList;
 	private String name;
 	private String areacode;
 	private String result;
@@ -47,8 +46,7 @@ public class RegisterActivity extends BaseActivity {
 	@Override
 	protected void setView() {
 		View view = View.inflate(this, R.layout.activity_register, null);
-		activityList = (MyApplication) getApplicationContext();
-		activityList.addActivity(this);
+		MyApplication.addActivity(RegisterActivity.this);
 		setContentView(view);
 		ViewUtils.inject(this,view);
 		setTitleText("用户注册");

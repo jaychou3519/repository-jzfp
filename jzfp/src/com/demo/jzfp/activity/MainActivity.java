@@ -29,13 +29,11 @@ public class MainActivity extends BaseActivity implements OnClickListener {
 	private FragmentHome fr_home;
 	private FragmentReport fr_report;
 	private int count;
-	private MyApplication activityList;
 
 	@Override
 	protected void setView() {
 		setContentView(R.layout.activity_main);
-		activityList = (MyApplication) getApplicationContext();
-		activityList.addActivity(this);
+		MyApplication.addActivity(MainActivity.this);
 	}
 
 	@Override

@@ -17,12 +17,10 @@ public class VillagesTextActivity2 extends BaseActivity{
 	private TextView tv_context;
 	@ViewInject(R.id.tv_title_name)
 	private TextView tv_title_name;
-	private MyApplication activityList;
 	@Override
 	protected void setView() {
 		View view = View.inflate(this, R.layout.activity_villages_text2, null);
-		activityList = (MyApplication) getApplicationContext();
-		activityList.addActivity(this);
+		MyApplication.addActivity(VillagesTextActivity2.this);
 		setContentView(view);
 		ViewUtils.inject(this,view);
 		setOnback(this);

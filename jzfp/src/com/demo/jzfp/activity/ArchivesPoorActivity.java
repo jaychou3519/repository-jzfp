@@ -6,17 +6,15 @@ import com.alibaba.fastjson.JSON;
 import com.demo.jzfp.R;
 import com.demo.jzfp.apdater.ArchivesPoorAdapter;
 import com.demo.jzfp.entity.CountryMans;
+import com.demo.jzfp.utils.MyApplication;
 import com.demo.jzfp.utils.RequestWebService;
 import com.demo.jzfp.utils.Tools;
 import com.demo.jzfp.utils.RequestWebService.WebServiceCallback;
 import com.demo.jzfp.view.MyGridView;
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
-
 import android.os.Handler;
-import android.text.TextUtils;
 import android.view.View;
-import android.widget.ListView;
 
 public class ArchivesPoorActivity extends BaseActivity implements WebServiceCallback{
 
@@ -29,6 +27,7 @@ public class ArchivesPoorActivity extends BaseActivity implements WebServiceCall
 		View view = View.inflate(this, R.layout.activity_poor, null);
 		setContentView(view);
 		ViewUtils.inject(this,view);
+		MyApplication.addActivity(ArchivesPoorActivity.this);
 		setTitleText("扶贫档案");
 		setOnback(this);
 	}

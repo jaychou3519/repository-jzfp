@@ -19,13 +19,11 @@ public class AducationActivity extends BaseActivity implements OnClickListener{
 	private String[] aducations = {"研究生教育", "大学本科", "大专及以上", "高中", "初中", "小学", "其它"};
 	private String aducation = "";
 	private Intent intent;
-	private MyApplication activityList;
  	
 	@Override
 	protected void setView() {
 		setContentView(R.layout.activity_aducation);
-		activityList = (MyApplication) getApplicationContext();
-		activityList.addActivity(this);
+		MyApplication.addActivity(AducationActivity.this);
 		setTitleText("文化程度");
 		setOnback(this);
 	}

@@ -17,7 +17,6 @@ import com.demo.jzfp.database.DatabaseHelper;
 import com.demo.jzfp.utils.MyApplication;
 
 public class MeasuresActivity extends BaseActivity {
-	private MyApplication activityList;
 	private ListView lv_measures;
 	private MeasuresAdapter adapter;
 	private List<String> measureses;
@@ -27,8 +26,7 @@ public class MeasuresActivity extends BaseActivity {
 	@Override
 	protected void setView() {
 		setContentView(R.layout.activity_measures);
-		activityList = (MyApplication) getApplicationContext();
-		activityList.addActivity(this);
+		MyApplication.addActivity(MeasuresActivity.this);
 		setTitleText("帮扶措施");
 		setOnback(this);
 	}

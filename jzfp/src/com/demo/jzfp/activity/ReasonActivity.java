@@ -21,8 +21,7 @@ public class ReasonActivity extends BaseActivity implements OnClickListener {
 	@Override
 	protected void setView() {
 		setContentView(R.layout.activity_reason);
-		MyApplication activityList = (MyApplication) getApplicationContext();
-		activityList.addActivity(this);
+		MyApplication.addActivity(ReasonActivity.this);
 		setTitleText("致贫说明");
 		setOnback(this);
 	}

@@ -28,7 +28,6 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 
 public class ArchivesDetailsActivity extends BaseActivity implements WebServiceCallback{
-	private MyApplication activityList;
 
 	@ViewInject(R.id.fl_framelayout)
 	private FrameLayout fl_framelayout;
@@ -55,8 +54,7 @@ public class ArchivesDetailsActivity extends BaseActivity implements WebServiceC
 	protected void setView() {
 		View view = View.inflate(this, R.layout.activity_archives_details, null);
 		setContentView(view);
-		activityList = (MyApplication) getApplicationContext();
-		activityList.addActivity(this);
+		MyApplication.addActivity(ArchivesDetailsActivity.this);
 		ViewUtils.inject(this, view);
 	}
 

@@ -28,7 +28,6 @@ import com.lidroid.xutils.view.annotation.event.OnClick;
 
 public class EditPwdActivity  extends BaseActivity implements android.view.View.OnClickListener{
 	
-	private MyApplication activityList;
 	private Button btn_submit;
 	private EditText oldPwd;
 	private EditText newPwd;
@@ -41,8 +40,7 @@ public class EditPwdActivity  extends BaseActivity implements android.view.View.
 	protected void setView() {
 		setContentView(R.layout.fragment_options_pwd);
 		View view = View.inflate(this, R.layout.activity_register, null);
-		activityList = (MyApplication) getApplicationContext();
-		activityList.addActivity(this);
+		MyApplication.addActivity(EditPwdActivity.this);
 	}
 
 	@Override

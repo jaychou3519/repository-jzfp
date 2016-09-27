@@ -70,9 +70,9 @@ public class RecordAdapterEdit extends BaseAdapter{
 		}
 		holder.ed_name.setText(Tools.parseEmpty(families.get(position).getFamilyName()));
 		holder.tv_relation.setText(Tools.parseEmpty(families.get(position).getYhzgx()+""));
-		//holder.tv_gender.setText(Tools.parseEmpty(families.get(position).getSex()+""));
+		holder.tv_gender.setText(Tools.parseEmpty(families.get(position).getSex()+""));
 		holder.tv_YearM.setText(Tools.parseEmpty(families.get(position).getBirthday()+""));
-		//holder.tv_health.setText(Tools.parseEmpty(families.get(position).getJkzk()+""));
+		holder.tv_health.setText(Tools.parseEmpty(families.get(position).getJkzk()+""));
 		holder.ed_other.setText(Tools.parseEmpty(families.get(position).getWorkDesc()+""));
 		if(getCount()==(position+1)){
 			holder.vw_lines.setVisibility(View.GONE);
@@ -101,7 +101,7 @@ public class RecordAdapterEdit extends BaseAdapter{
 				new DoubleDatePickerDialog(context, 0, new DoubleDatePickerDialog.OnDateSetListener() {
 					@Override
 					public void onDateSet(DatePicker startDatePicker, int startYear, int startMonthOfYear, int startDayOfMonth) {
-						String textString = startYear + "年" + (startMonthOfYear + 1) + "月";
+						String textString = startYear + "-" + (startMonthOfYear + 1) + "-"+startDayOfMonth;
 						holder.tv_YearM.setText(textString);
 						families.get(position).setBirthday(textString);
 					}

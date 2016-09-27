@@ -17,7 +17,6 @@ import com.demo.jzfp.utils.Constant;
 import com.demo.jzfp.utils.MyApplication;
 
 public class MemberActivity extends BaseActivity implements OnClickListener {
-	private MyApplication activityList;
 	private ListView lv_member;
 	private MemberAdapter adapter;
 	private List<TdataFamily> members = new ArrayList<TdataFamily>();
@@ -25,8 +24,7 @@ public class MemberActivity extends BaseActivity implements OnClickListener {
 	@Override
 	protected void setView() {
 		setContentView(R.layout.activity_member);
-		activityList = (MyApplication) getApplicationContext();
-		activityList.addActivity(this);
+		MyApplication.addActivity(MemberActivity.this);
 		setTitleText("家庭成员");
 		setOnback(this);
 	}

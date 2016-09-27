@@ -3,6 +3,8 @@ package com.demo.jzfp.utils;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.demo.jzfp.activity.ArchivesDetailsActivity;
+import com.demo.jzfp.activity.BaseActivity;
 import com.demo.jzfp.database.DatabaseHelper;
 import com.demo.jzfp.entity.Login;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -20,25 +22,26 @@ public class MyApplication extends Application {
 	}
 	public static Login login;
 	
-	private List<Activity> list = new ArrayList<Activity>();
+	public static List<Activity> list = new ArrayList<Activity>();
 	/**
 	 * 
 	 * Description: 
 	 * 添加一个activity到集合
 	 * @param activity
 	 */
-	public void addActivity(Activity activity) {
+	public static void addActivity(Activity activity) {
 		if (list == null) {
 			list = new ArrayList<Activity>();
 		}
-		list.add(activity);
+		if(!list.contains(activity))
+				list.add(activity);
 	}
 	/**
 	 * 
 	 * Description: 
 	 * 结束所有activity
 	 */
-	public void finishAll() {
+	public static void finishAll() {
 		for (Activity activity : list) {
 			activity.finish();
 		}
@@ -51,7 +54,7 @@ public class MyApplication extends Application {
 	 * 获取集合大小
 	 * @return
 	 */
-	public int getListSize(){
+	public static int getListSize(){
 		if (list == null) {
 			return 0;
 		}
@@ -64,7 +67,7 @@ public class MyApplication extends Application {
 	 * 移除指定activity
 	 * @param activity
 	 */
-	public void removeActivity(Activity activity){
+	public static void removeActivity(Activity activity){
 		if (list != null) {
 			list.remove(activity);
 		}
@@ -77,7 +80,7 @@ public class MyApplication extends Application {
 	 * @param activity
 	 * @return
 	 */
-	public boolean isHasActivity(Activity activity){
+	public static boolean isHasActivity(Activity activity){
 		if (list != null) {
 			return list.contains(activity);
 		}
@@ -90,7 +93,7 @@ public class MyApplication extends Application {
 	 * 结束指定的同类activity
 	 * @param activity
 	 */
-	public void finishActivityByName(Activity activity){
+	public static void finishActivityByName(Activity activity){
 		String className = activity.getClass().getName();
 		List<Activity> removeAcList = new ArrayList<Activity>();
 		if(list != null){
@@ -102,5 +105,19 @@ public class MyApplication extends Application {
 			}
 			list.removeAll(removeAcList);
 		}
+	}
+	public static void finishActivityByName(String className) {
+		List<Activity> removeAcList = new ArrayList<Activity>();
+		if(list != null){
+			for(Activity ac : list){
+				Tools.i("list=", ac.getClass().getName());
+				if(ac.getClass().getName().contains(className)){
+					ac.finish();
+					removeAcList.add(ac);
+					Tools.i("classname", className);
+				}
+			}
+			list.removeAll(removeAcList);
+		}		
 	}
 }

@@ -51,6 +51,7 @@ public class BasicActivity extends BaseActivity implements OnClickListener{
 		View view = View.inflate(this, R.layout.activity_basic, null);
 		setContentView(view);
 		ViewUtils.inject(this,view);
+		MyApplication.addActivity(BasicActivity.this);
 		setTitleText("基础信息");
 		setOnback(this);
 		db = (new DatabaseHelper(this)).getWritableDatabase();

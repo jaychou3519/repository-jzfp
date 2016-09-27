@@ -32,7 +32,6 @@ public class VillagesActivity extends BaseActivity implements WebServiceCallback
 
 	private ListView lv_listview;
 	private List<Villages> villages = new ArrayList<Villages>();
-	private MyApplication activityList;
 	private AreaDataDao areaDataDao = new AreaDataDaoImpl();
 	private SQLiteDatabase db = null;
 	private List<Map> maps;
@@ -45,8 +44,7 @@ public class VillagesActivity extends BaseActivity implements WebServiceCallback
 		View view = View.inflate(this, R.layout.activity_villages, null);
 		setContentView(view);
 		ViewUtils.inject(this,view);
-		activityList = (MyApplication) getApplicationContext();
-		activityList.addActivity(this);
+		MyApplication.addActivity(VillagesActivity.this);
 		lv_listview = (ListView) findViewById(R.id.lv_listview);
 		setTitleText("乡镇介绍");
 		setOnback(this);

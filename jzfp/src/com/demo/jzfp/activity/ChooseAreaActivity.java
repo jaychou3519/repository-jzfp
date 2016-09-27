@@ -32,13 +32,11 @@ public class ChooseAreaActivity extends BaseActivity implements OnClickListener{
     private static String METHOD_NAME = "selectToRegister";
     private static Map mm = null;
 	private VillagesAdapter2 villagesAdapter;
-	private MyApplication activityList;
 
 	@Override
 	protected void setView() {
 		setContentView(R.layout.choose_area);
-		activityList = (MyApplication) getApplicationContext();
-		activityList.addActivity(this);
+		MyApplication.addActivity(ChooseAreaActivity.this);
 	}
 
 	@Override

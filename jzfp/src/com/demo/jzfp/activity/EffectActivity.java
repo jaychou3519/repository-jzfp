@@ -38,8 +38,7 @@ public class EffectActivity extends BaseActivity implements OnClickListener {
 	@Override
 	protected void setView() {
 		setContentView(R.layout.activity_effect);
-		MyApplication activityList = (MyApplication) getApplicationContext();
-		activityList.addActivity(this);
+		MyApplication.addActivity(EffectActivity.this);
 		setTitleText("帮扶成效");
 		setOnback(this);
 	}

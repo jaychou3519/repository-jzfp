@@ -28,7 +28,6 @@ import android.widget.TextView;
 
 public class ArchivesEditActivity extends BaseActivity implements WebServiceCallback{
 	private String TAG  = "ArchivesEditActivity";
-	private MyApplication activityList;
 
 	@ViewInject(R.id.fl_framelayout)
 	private FrameLayout fl_framelayout;
@@ -56,8 +55,7 @@ public class ArchivesEditActivity extends BaseActivity implements WebServiceCall
 	protected void setView() {
 		View view = View.inflate(this, R.layout.activity_archives_edit, null);
 		setContentView(view);
-		activityList = (MyApplication) getApplicationContext();
-		activityList.addActivity(this);
+		MyApplication.addActivity(ArchivesEditActivity.this);
 		ViewUtils.inject(this, view);
 	}
 
@@ -206,6 +204,9 @@ public class ArchivesEditActivity extends BaseActivity implements WebServiceCall
     					Intent intent = new Intent(this,ArchivesActivity.class);
     					startActivity(intent);
     					finish();
+    					MyApplication.finishActivityByName("ArchivesDetailsActivity");
+    					MyApplication.finishActivityByName("ArchivesPoorActivity");
+    					MyApplication.finishActivityByName("ArchivesActivity");
     				}
     			}
     			break;

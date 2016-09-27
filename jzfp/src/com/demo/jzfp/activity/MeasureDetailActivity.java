@@ -2,7 +2,6 @@ package com.demo.jzfp.activity;
 
 
 import java.util.ArrayList;
-
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -12,7 +11,6 @@ import android.view.View.OnClickListener;
 import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.TextView;
-
 import com.demo.jzfp.R;
 import com.demo.jzfp.apdater.MeasureDetailAdapter;
 import com.demo.jzfp.dao.TdataConfigDao;
@@ -21,7 +19,6 @@ import com.demo.jzfp.database.DatabaseHelper;
 import com.demo.jzfp.entity.TdataAction;
 import com.demo.jzfp.utils.Constant;
 import com.demo.jzfp.utils.MyApplication;
-import com.demo.jzfp.utils.Tools;
 
 public class MeasureDetailActivity extends BaseActivity implements OnClickListener {
 	private GridView gv_checkbox;
@@ -35,8 +32,7 @@ public class MeasureDetailActivity extends BaseActivity implements OnClickListen
 	@Override
 	protected void setView() {
 		setContentView(R.layout.activity_measure_detail);
-		MyApplication activityList = (MyApplication) getApplicationContext();
-		activityList.addActivity(this);
+		MyApplication.addActivity(MeasureDetailActivity.this);
 		Bundle bundle = getIntent().getExtras();
 		title = bundle.getString("title");
 		setTitleText(title);

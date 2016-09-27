@@ -28,8 +28,7 @@ public class EconomyActivity extends BaseActivity implements OnClickListener {
 	@Override
 	protected void setView() {
 		setContentView(R.layout.activity_ecomomy);
-		MyApplication activityList = (MyApplication) getApplicationContext();
-		activityList.addActivity(this);
+		MyApplication.addActivity(EconomyActivity.this);
 		setTitleText("家庭经济");
 		setOnback(this);
 	}
