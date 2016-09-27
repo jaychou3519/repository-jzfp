@@ -26,9 +26,12 @@ public class ArchivesPoorAdapter extends BaseAdapter{
 
 	private Context context;
 	private List<CountryMans> countrys;
-	public ArchivesPoorAdapter(Context context,List<CountryMans> countrys) {
+	private String toForm = null;
+	
+	public ArchivesPoorAdapter(Context context,List<CountryMans> countrys,String toForm) {
 		this.context = context;
 		this.countrys = countrys;
+		this.toForm = toForm;
 	}
 	@Override
 	public int getCount() {
@@ -71,8 +74,8 @@ public class ArchivesPoorAdapter extends BaseAdapter{
 			@Override
 			public void onClick(View v) {
 				Bundle bundle = new Bundle();
-				bundle.putString("countrymanId", countrys.get(position).getCountrymanId());
-				bundle.putSerializable("countrys",  countrys.get(position));
+				bundle.putString("countrymanId", countrys.get(position).getCountrymanId()+"");
+				bundle.putString("toForm", toForm);
 				Tools.setOpenActivityBundle(context, ArchivesDetailsActivity.class, bundle);
 			}
 		});

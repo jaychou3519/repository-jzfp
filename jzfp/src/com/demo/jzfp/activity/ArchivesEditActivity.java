@@ -11,6 +11,7 @@ import com.demo.jzfp.entity.TdataResult;
 import com.demo.jzfp.fragment.EffectFragmentEdit;
 import com.demo.jzfp.fragment.MeasureFragmentEdit;
 import com.demo.jzfp.fragment.RecordFragmentEdit;
+import com.demo.jzfp.utils.Constant;
 import com.demo.jzfp.utils.MyApplication;
 import com.demo.jzfp.utils.RequestWebService;
 import com.demo.jzfp.utils.Tools;
@@ -28,6 +29,7 @@ import android.widget.TextView;
 
 public class ArchivesEditActivity extends BaseActivity implements WebServiceCallback{
 	private String TAG  = "ArchivesEditActivity";
+	private MyApplication activityList;
 
 	@ViewInject(R.id.fl_framelayout)
 	private FrameLayout fl_framelayout;
@@ -55,7 +57,8 @@ public class ArchivesEditActivity extends BaseActivity implements WebServiceCall
 	protected void setView() {
 		View view = View.inflate(this, R.layout.activity_archives_edit, null);
 		setContentView(view);
-		MyApplication.addActivity(ArchivesEditActivity.this);
+		activityList = (MyApplication) getApplicationContext();
+		activityList.addActivity(this);
 		ViewUtils.inject(this, view);
 	}
 
@@ -139,14 +142,14 @@ public class ArchivesEditActivity extends BaseActivity implements WebServiceCall
 	}
 
 	/***
-	 * 根据传入的index参数来设置选中的tab页。
+	 * 根据传入的index参数来设置选中的tab页�?
 	 * 
 	 * @param index
 	 */
 	private void setTabSelection(int index) {
-		// 每次选中之前先清楚掉上次的选中状态
+		// 每次选中之前先清楚掉上次的选中状�?
 		transaction = getFragmentManager().beginTransaction();
-		// 先隐藏掉所有的Fragment，以防止有多个Fragment显示在界面上的情况
+		// 先隐藏掉所有的Fragment，以防止有多个Fragment显示在界面上的情�?
 		selectId(index);
 		hideFragments(transaction);
 		switch (index) {
@@ -156,7 +159,7 @@ public class ArchivesEditActivity extends BaseActivity implements WebServiceCall
 				rdfragment = new RecordFragmentEdit();
 				transaction.replace(R.id.fl_framelayout, rdfragment);
 			} else {
-				// 如果FragmentHome不为空，则直接将它显示出来
+				// 如果FragmentHome不为空，则直接将它显示出�?
 				transaction.show(rdfragment);
 			}
 			break;
@@ -199,7 +202,7 @@ public class ArchivesEditActivity extends BaseActivity implements WebServiceCall
 		}else{
     		switch (requestCode) {
     		case 100:
-    			if (requestCode == 100) {// 提交贫困户信息
+    			if (requestCode == 100) {// 提交贫困户信�?
     				if ("1".equals(reulst)) {
     					Intent intent = new Intent(this,ArchivesActivity.class);
     					startActivity(intent);
@@ -275,7 +278,7 @@ public class ArchivesEditActivity extends BaseActivity implements WebServiceCall
 				if(!rd){
 					rd = true;
 					rdfragment.setCountryMan(countryMan);
-					Tools.i(TAG,  "countryMan开始="+countryMan.toString());
+					Tools.i(TAG,  "countryMan开�?"+countryMan.toString());
 				}
 				break;
 			case 205:
@@ -283,7 +286,7 @@ public class ArchivesEditActivity extends BaseActivity implements WebServiceCall
 				if(tactions!=null&&tactions.size()>0&&!ms){
 					ms = true;
 					msfragment.setTdataAction(tactions);
-					Tools.i(TAG, "tactions开始="+tactions.toString());
+					Tools.i(TAG, "tactions开�?"+tactions.toString());
 				}
 				break;
 			case 206:
@@ -291,7 +294,7 @@ public class ArchivesEditActivity extends BaseActivity implements WebServiceCall
 				if(!et){
 					et = true;
 					etfragment.setTdataResult(tresult);
-					Tools.i(TAG, "tresult开始="+tresult.toString());
+					Tools.i(TAG, "tresult开�?"+tresult.toString());
 				}
 				break;
 

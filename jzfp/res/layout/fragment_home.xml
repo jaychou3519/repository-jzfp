@@ -85,8 +85,9 @@
             android:layout_width="0dp"
             android:layout_height="@dimen/x90"
             android:layout_weight="1"
+            android:background="@drawable/blue_bg_x"
             android:gravity="center"
-            android:background="@drawable/blue_bg_x" >
+            android:visibility="gone" >
 
             <LinearLayout
                 android:id="@+id/ll_year_mday"
@@ -101,8 +102,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/x5"
                     android:text="2016-08-28"
-                    android:textColor="@color/bai" 
-                    android:textSize="@dimen/fontx14"/>
+                    android:textColor="@color/bai"
+                    android:textSize="@dimen/fontx14" />
 
                 <TextView
                     android:id="@+id/tv_week"
@@ -112,8 +113,8 @@
                     android:layout_marginTop="@dimen/x5"
                     android:layout_toRightOf="@id/tv_year_mday"
                     android:text="星期天"
-                    android:textColor="@color/bai" 
-                    android:textSize="@dimen/fontx14"/>
+                    android:textColor="@color/bai"
+                    android:textSize="@dimen/fontx14" />
             </LinearLayout>
 
             <com.demo.jzfp.view.MyDigitalClock
@@ -132,8 +133,9 @@
             android:layout_width="0dp"
             android:layout_height="@dimen/x90"
             android:layout_weight="1"
+            android:background="@drawable/yellow_bg_x"
             android:gravity="center"
-            android:background="@drawable/yellow_bg_x" >
+            android:visibility="gone" >
 
             <TextView
                 android:id="@+id/tv_county"
@@ -142,8 +144,8 @@
                 android:layout_marginLeft="@dimen/x10"
                 android:layout_marginTop="@dimen/x5"
                 android:text="炎陵县"
-                android:textColor="@color/bai" 
-                android:textSize="@dimen/fontx14"/>
+                android:textColor="@color/bai"
+                android:textSize="@dimen/fontx14" />
 
             <TextView
                 android:id="@+id/tv_temperature"
@@ -163,10 +165,10 @@
                 android:orientation="vertical" >
 
                 <ImageView
-                    android:layout_marginTop="@dimen/x5"
                     android:layout_width="@dimen/x50"
                     android:layout_height="@dimen/x50"
                     android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="@dimen/x5"
                     android:src="@drawable/rain" />
 
                 <LinearLayout
@@ -181,8 +183,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="小雨"
-                        android:textColor="@color/bai" 
-                        android:textSize="@dimen/fontx14"/>
+                        android:textColor="@color/bai"
+                        android:textSize="@dimen/fontx14" />
 
                     <TextView
                         android:id="@+id/tv_temperature_range"
@@ -198,39 +200,125 @@
         </RelativeLayout>
     </LinearLayout>
 
+    <!--
+               <LinearLayout
+		        android:id="@+id/line1"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:background="@color/white"
+		        android:layout_marginTop="@dimen/x5"
+		        android:orientation="vertical" >
+		       android:layout_below="@id/optionsTile"
+    -->
+
     <LinearLayout
+        android:id="@+id/linearCenter"
         android:layout_width="fill_parent"
-        android:layout_height="@dimen/x90"
+        android:layout_height="@dimen/x100"
         android:layout_below="@id/ll_weather_info"
-        android:layout_marginLeft="@dimen/x10"
-        android:layout_marginRight="@dimen/x10"
-        android:layout_marginTop="@dimen/x15"
+        android:layout_marginTop="@dimen/x10"
+        android:background="@color/white"
         android:baselineAligned="false"
         android:orientation="horizontal" >
+
+        <!--
+	        android:layout_marginLeft="@dimen/x10"
+	        android:layout_marginRight="@dimen/x10"
+	        android:orientation="vertical"
+        -->
 
         <RelativeLayout
             android:id="@+id/rl_archives"
             android:layout_width="0dp"
             android:layout_height="fill_parent"
-            android:layout_weight="1"
-            android:background="@color/green_3fd07a" >
+            android:layout_weight="1" >
+
+            <!-- android:background="@color/green_3fd07a" -->
 
             <ImageView
+                android:id="@+id/imgView_fpda"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/x10"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="@dimen/x10"
                 android:layout_marginTop="@dimen/x10"
-                android:src="@drawable/record" />
+                android:src="@drawable/record_1" />
+            <!-- android:layout_marginLeft="@dimen/x10" -->
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_below="@id/imgView_fpda"
+                android:layout_centerHorizontal="true"
+                android:text="基本信息"
+                android:textColor="@color/hei"
+                android:textSize="@dimen/fontx15" />
+
+            <!--
                 android:layout_alignParentBottom="true"
                 android:layout_alignParentRight="true"
                 android:layout_marginBottom="@dimen/x10"
                 android:layout_marginRight="@dimen/x10"
-                android:text="扶贫档案"
-                android:textColor="@color/bai"
+            -->
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_info"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1" >
+
+            <!--
+            android:layout_marginLeft="@dimen/x10"
+            android:background="@color/red_e1548a"
+            -->
+
+            <ImageView
+                android:id="@+id/imgView_bfcs"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="@dimen/x10"
+                android:layout_marginTop="@dimen/x10"
+                android:src="@drawable/basis_1" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/imgView_bfcs"
+                android:layout_centerHorizontal="true"
+                android:text="帮扶措施"
+                android:textColor="@color/hei"
+                android:textSize="@dimen/fontx15" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_chengx"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1" >
+
+            <!--
+            android:layout_marginLeft="@dimen/x10"
+            android:background="@color/red_e1548a"
+            -->
+
+            <ImageView
+                android:id="@+id/imgView_bfcx"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="@dimen/x10"
+                android:layout_marginTop="@dimen/x10"
+                android:src="@drawable/chengx_1" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/imgView_bfcx"
+                android:layout_centerHorizontal="true"
+                android:text="帮扶成效"
+                android:textColor="@color/hei"
                 android:textSize="@dimen/fontx15" />
         </RelativeLayout>
 
@@ -238,55 +326,48 @@
             android:id="@+id/rl_policy"
             android:layout_width="0dp"
             android:layout_height="fill_parent"
-            android:layout_marginLeft="@dimen/x10"
-            android:layout_weight="1"
-            android:background="@color/blue_30b7b9" >
+            android:layout_weight="1" >
+
+            <!--
+            android:layout_marginLeft="@dimen/x10" 
+            android:background="@color/blue_30b7b9"
+            -->
 
             <ImageView
+                android:id="@+id/imgView_bfzc"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/x10"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="@dimen/x10"
                 android:layout_marginTop="@dimen/x10"
-                android:src="@drawable/policy" />
+                android:src="@drawable/policy_1" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_alignParentRight="true"
-                android:layout_marginBottom="@dimen/x10"
-                android:layout_marginRight="@dimen/x10"
+                android:layout_below="@id/imgView_bfzc"
+                android:layout_centerHorizontal="true"
                 android:text="帮扶政策"
-                android:textColor="@color/bai"
-                android:textSize="@dimen/fontx15" />
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:id="@+id/rl_info"
-            android:layout_width="0dp"
-            android:layout_height="fill_parent"
-            android:layout_marginLeft="@dimen/x10"
-            android:layout_weight="1"
-            android:background="@color/red_e1548a" >
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/x10"
-                android:layout_marginTop="@dimen/x10"
-                android:src="@drawable/basis" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_alignParentRight="true"
-                android:layout_marginBottom="@dimen/x10"
-                android:layout_marginRight="@dimen/x10"
-                android:text="基础信息"
-                android:textColor="@color/bai"
+                android:textColor="@color/hei"
                 android:textSize="@dimen/fontx15" />
         </RelativeLayout>
     </LinearLayout>
 
+    <com.demo.jzfp.view.FlowLayout
+        android:id="@+id/id_flowlayout"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/linearCenter"
+        android:background="#FFFFFF"
+        android:padding="10dp" >
+    </com.demo.jzfp.view.FlowLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/x10"
+        android:layout_above="@+id/id_flowlayout"
+        android:layout_marginTop="@dimen/x15"
+        android:background="#EDEDED" >
+    </LinearLayout>
+ 
 </RelativeLayout>

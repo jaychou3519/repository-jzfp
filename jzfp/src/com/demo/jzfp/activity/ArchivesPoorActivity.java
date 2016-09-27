@@ -13,8 +13,11 @@ import com.demo.jzfp.utils.RequestWebService.WebServiceCallback;
 import com.demo.jzfp.view.MyGridView;
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
+import android.content.Intent;
 import android.os.Handler;
+import android.text.TextUtils;
 import android.view.View;
+import android.widget.ListView;
 
 public class ArchivesPoorActivity extends BaseActivity implements WebServiceCallback{
 
@@ -22,13 +25,15 @@ public class ArchivesPoorActivity extends BaseActivity implements WebServiceCall
 	private MyGridView gv_photo;
 	private String methodName = "selectToCountrymans";
 	private List<CountryMans> countrys;
+	private Intent intent = null;
+	private String toForm = null;
 	@Override
 	protected void setView() {
 		View view = View.inflate(this, R.layout.activity_poor, null);
 		setContentView(view);
+		intent = getIntent();
 		ViewUtils.inject(this,view);
-		MyApplication.addActivity(ArchivesPoorActivity.this);
-		setTitleText("扶贫档案");
+		setTitleText("基本信息");
 		setOnback(this);
 	}
 
@@ -41,7 +46,7 @@ public class ArchivesPoorActivity extends BaseActivity implements WebServiceCall
 		public void handleMessage(android.os.Message msg) {
 			switch (msg.what) {
 			case 201:
-				adapter = new ArchivesPoorAdapter(ArchivesPoorActivity.this,countrys);
+				adapter = new ArchivesPoorAdapter(ArchivesPoorActivity.this,countrys,toForm);
 				gv_photo.setAdapter(adapter);
 				break;
 
@@ -60,7 +65,7 @@ public class ArchivesPoorActivity extends BaseActivity implements WebServiceCall
 		}else{
 			countrys =  (List<CountryMans>) getIntent().getExtras().getSerializable("countrys");
 			if(countrys.size()>0){
-				adapter = new ArchivesPoorAdapter(ArchivesPoorActivity.this,countrys);
+				adapter = new ArchivesPoorAdapter(ArchivesPoorActivity.this,countrys,toForm);
 				gv_photo.setAdapter(adapter);
 			}
 		}
@@ -74,7 +79,7 @@ public class ArchivesPoorActivity extends BaseActivity implements WebServiceCall
 			switch (requestCode) {
 			case 101:
 				try {
-					Tools.i("ArchivesPoorActivity", "ArchivesPoorActivity="+reulst.toString());
+					toForm = intent.getStringExtra("toForm");
 	    			countrys = JSON.parseArray(reulst, CountryMans.class);
 					handler.sendEmptyMessage(201);
 				} catch (Exception e) {

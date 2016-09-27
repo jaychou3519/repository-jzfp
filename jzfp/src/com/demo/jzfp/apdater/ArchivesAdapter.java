@@ -21,9 +21,11 @@ public class ArchivesAdapter extends BaseAdapter{
 
 	private Context context;
 	private List<ToFiles> toFiles;
-	public ArchivesAdapter(Context context,List<ToFiles> toFiles) {
+	private String toForm = null;
+	public ArchivesAdapter(Context context,List<ToFiles> toFiles,String toForm) {
 		this.context = context;
 		this.toFiles = toFiles;
+		this.toForm = toForm;
 	}
 	@Override
 	public int getCount() {
@@ -62,6 +64,7 @@ public class ArchivesAdapter extends BaseAdapter{
 			public void onClick(View v) {
 				Bundle bundle = new Bundle();
 				bundle.putBoolean("state", true);
+				bundle.putString("toForm", toForm);
 				bundle.putString("countrymanId", toFiles.get(position).getCountrymanId()+"");
 				Tools.i("CountrymanId",  toFiles.get(position).getCountrymanId()+"");
 				Tools.setOpenActivityBundle(context, ArchivesPoorActivity.class, bundle);

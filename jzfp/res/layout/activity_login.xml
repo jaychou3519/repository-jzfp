@@ -41,7 +41,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="炎陵县扶贫数据采集"
+            android:text="炎陵县精准扶贫"
             android:textColor="#000"
             android:textSize="@dimen/x20" />
 

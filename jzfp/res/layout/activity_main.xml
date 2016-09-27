@@ -17,7 +17,7 @@
         android:layout_height="@dimen/x42"
         android:layout_alignParentBottom="true"
         android:layout_gravity="bottom"
-        android:background="#dcdcdc"
+        android:background="#274862"
         android:orientation="horizontal" >
 
         <LinearLayout
@@ -41,7 +41,7 @@
                 android:layout_marginBottom="@dimen/x1"
                 android:layout_marginTop="@dimen/x1"
                 android:text="首页"
-                android:textColor="#ff4d4d"
+                android:textColor="#ffffff"
                 android:textSize="@dimen/x10" />
         </LinearLayout>
 
@@ -62,8 +62,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/x2"
-                android:text="上报"
-                android:textColor="#ff4d4d"
+                android:text="数据采集"
+                android:textColor="#FFFFFF"
                 android:textSize="@dimen/x13" />
         </LinearLayout>
 
@@ -88,7 +88,7 @@
                 android:layout_marginBottom="@dimen/x1"
                 android:layout_marginTop="@dimen/x1"
                 android:text="设置"
-                android:textColor="#ff4d4d"
+                android:textColor="#ffffff"
                 android:textSize="@dimen/x10" />
         </LinearLayout>
     </LinearLayout>
@@ -103,7 +103,7 @@
         android:gravity="center"
         android:orientation="vertical" >
 
-        <TextView
+        <!-- <TextView
             android:layout_width="@dimen/y15"
             android:layout_height="@dimen/y15"
             android:layout_marginTop="@dimen/x2"
@@ -111,16 +111,21 @@
             android:text="+"
             android:textColor="#fff"
             android:textSize="@dimen/x20"
-            android:textStyle="bold" />
+            android:textStyle="bold" /> -->
+        
+        <ImageView
+            android:layout_width="@dimen/x30"
+            android:layout_height="@dimen/x30"
+            android:gravity="center"
+            android:src="@drawable/round_21" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/x2"
-            android:layout_marginTop="@dimen/x2"
-            android:text="上报"
-            android:textColor="#fff"
-            android:textSize="@dimen/x12" />
+            android:layout_marginBottom="@dimen/x1"
+            android:layout_marginTop="@dimen/x1"
+            android:text="数据采集"
+            android:textColor="#ffffff"
+            android:textSize="@dimen/x10" />
     </LinearLayout>
-
 </RelativeLayout>

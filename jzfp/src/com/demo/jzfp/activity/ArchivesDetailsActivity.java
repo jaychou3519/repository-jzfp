@@ -20,6 +20,7 @@ import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
 import android.app.FragmentTransaction;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.os.Handler;
@@ -28,6 +29,7 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 
 public class ArchivesDetailsActivity extends BaseActivity implements WebServiceCallback{
+	private MyApplication activityList;
 
 	@ViewInject(R.id.fl_framelayout)
 	private FrameLayout fl_framelayout;
@@ -49,19 +51,18 @@ public class ArchivesDetailsActivity extends BaseActivity implements WebServiceC
 	private List<TdataAction> tactions;
 	private LinkedHashMap<String, String> linkedHashMap;
 
-	private CountryMans countrys;
 	@Override
 	protected void setView() {
 		View view = View.inflate(this, R.layout.activity_archives_details, null);
 		setContentView(view);
-		MyApplication.addActivity(ArchivesDetailsActivity.this);
+		activityList = (MyApplication) getApplicationContext();
+		activityList.addActivity(this);
 		ViewUtils.inject(this, view);
 	}
 
 	@Override
 	protected void initView() {
 		Tools.i("JJY", getIntent().getExtras().getString("countrymanId"));
-		countrys = (CountryMans) getIntent().getExtras().getSerializable("countrys");
 		linkedHashMap = new LinkedHashMap<String, String>();
 		linkedHashMap.put("arg0", getIntent().getExtras().getString("countrymanId"));
 		RequestWebService.send(methodName, linkedHashMap, this, 101);
@@ -100,7 +101,6 @@ public class ArchivesDetailsActivity extends BaseActivity implements WebServiceC
 			Tools.setOpenActivityBundle(this, ArchivesEditActivity.class, bundle);*/
 			Bundle bundle = new Bundle();
 			bundle.putString("countrymanId", linkedHashMap.get("arg0"));
-			bundle.putSerializable("countrys",  countrys);
 			Tools.setOpenActivityBundle(this, ArchivesEditActivity.class,bundle);
 			break;
 
@@ -143,14 +143,14 @@ public class ArchivesDetailsActivity extends BaseActivity implements WebServiceC
 	}
 
 	/***
-	 * 根据传入的index参数来设置选中的tab页。
+	 * 根据传入的index参数来设置选中的tab页�?
 	 * 
 	 * @param index
 	 */
 	private void setTabSelection(int index) {
-		// 每次选中之前先清楚掉上次的选中状态
+		// 每次选中之前先清楚掉上次的选中状�?
 		transaction = getFragmentManager().beginTransaction();
-		// 先隐藏掉所有的Fragment，以防止有多个Fragment显示在界面上的情况
+		// 先隐藏掉所有的Fragment，以防止有多个Fragment显示在界面上的情�?
 		selectId(index);
 		hideFragments(transaction);
 		switch (index) {
@@ -158,9 +158,9 @@ public class ArchivesDetailsActivity extends BaseActivity implements WebServiceC
 			if (rdfragment == null) {
 				// 如果FragmentHome为空，则创建一个并添加到界面上
 				rdfragment = new RecordFragment();
-				transaction.replace(R.id.fl_framelayout, rdfragment);
+				transaction.add(R.id.fl_framelayout, rdfragment);
 			} else {
-				// 如果FragmentHome不为空，则直接将它显示出来
+				// 如果FragmentHome不为空，则直接将它显示出�?
 				transaction.show(rdfragment);
 			}
 			break;
@@ -205,7 +205,6 @@ public class ArchivesDetailsActivity extends BaseActivity implements WebServiceC
 			case 101:
 				try {
 					Tools.i("selectByCountryman", reulst.toString());
-					countryMan = null;
 					countryMan = JSON.parseObject(reulst, TdataCountryman.class);
 	    			handler.sendEmptyMessage(204);
 				} catch (Exception e) {
@@ -224,7 +223,6 @@ public class ArchivesDetailsActivity extends BaseActivity implements WebServiceC
 			case 103:
 				try {
 					Tools.i("selectByResult", reulst.toString());
-					tresult = null;
 					tresult = JSON.parseObject(reulst, TdataResult.class);
 					handler.sendEmptyMessage(206);
 				} catch (Exception e) {
