@@ -162,6 +162,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/x5"
                 android:layout_marginRight="@dimen/x5"
+                android:singleLine="true"
                 android:text="无" />
         </LinearLayout>
     </LinearLayout>

@@ -202,7 +202,11 @@ public class RecordAdapterEdit extends BaseAdapter{
 					if (TextUtils.isEmpty(gender))
 						gender = genders[1];
 					holder.tv_gender.setText(gender);
-					member.setSex(gender);
+					if("女".equals(gender)){
+						member.setSex("0");
+					}else{
+						member.setSex("1");
+					}
 					gender = "";
 				}
 				dialog.dismiss();

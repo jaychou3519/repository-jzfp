@@ -137,7 +137,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/x20"
-                android:text="较弱"
+                android:text="残疾"
                 android:textSize="@dimen/fontx14" />
         </LinearLayout>
 
