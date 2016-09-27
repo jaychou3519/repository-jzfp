@@ -212,6 +212,7 @@ public class ArchivesEditActivity extends BaseActivity implements WebServiceCall
 			case 101:
 				try {
 					Tools.i("selectByCountryman", reulst.toString());
+					countryMan = null;
 					countryMan = JSON.parseObject(reulst, TdataCountryman.class);
 	    			handler.sendEmptyMessage(204);
 				} catch (Exception e) {
@@ -229,6 +230,7 @@ public class ArchivesEditActivity extends BaseActivity implements WebServiceCall
 			case 103:
 				try {
 					Tools.i("selectByResult", reulst.toString());
+					tresult = null;
 					tresult = JSON.parseObject(reulst, TdataResult.class);
 				} catch (Exception e) {
 					e.printStackTrace();
