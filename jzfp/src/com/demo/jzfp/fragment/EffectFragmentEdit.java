@@ -99,7 +99,7 @@ public class EffectFragmentEdit extends Fragment implements OnClickListener {
 	public void onClick(View v) {
 		switch (v.getId()) {
 		case R.id.tv_date:
-			Calendar c = Calendar.getInstance();
+			/*Calendar c = Calendar.getInstance();
 			// 最后一个false表示不显示日期，如果要显示日期，最后参数可以是true或者不用输入
 			new DoubleDatePickerDialog(getActivity(), 0, new DoubleDatePickerDialog.OnDateSetListener() {
 				@Override
@@ -108,10 +108,10 @@ public class EffectFragmentEdit extends Fragment implements OnClickListener {
 					String textString = startYear + "-" + (startMonthOfYear + 1) + "-"+startMonthOfYear;
 					tv_date.setText(textString);
 				}
-			}, c.get(Calendar.YEAR), c.get(Calendar.MONTH), c.get(Calendar.DATE), false).show();
+			}, c.get(Calendar.YEAR), c.get(Calendar.MONTH), c.get(Calendar.DATE), false).show();*/
 			break;
 		case R.id.tv_poverty:
-			showWheelView("是否符合脱贫条件", conditions, 0);
+			//showWheelView("是否符合脱贫条件", conditions, 0);
 			break;
 		case R.id.txt_sure:
 			if (TextUtils.isEmpty(condition))

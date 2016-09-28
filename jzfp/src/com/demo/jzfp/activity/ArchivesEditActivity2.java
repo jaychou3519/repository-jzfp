@@ -261,8 +261,19 @@ public class ArchivesEditActivity2 extends BaseActivity implements WebServiceCal
 		}
 		countryMan.setTdataActions(tactions);
 		countryMan.setTdataResult(tresult);
-		if(countrys.getTdataHelper()!=null)
+		if(countrys.getTdataHelper()!=null){
 			countryMan.setTdataHelper(countrys.getTdataHelper());
+		}else{
+			countryMan.setTdataHelper(new TdataHelper());
+		}
+		
+		for (int i = 0; i < countryMan.getTdataFamilys().size(); i++) {
+			if(countryMan.getTdataFamilys().get(i).getSex().equals("女")){
+				countryMan.getTdataFamilys().get(i).setSex("0");
+			}else if(countryMan.getTdataFamilys().get(i).getSex().equals("男")){
+				countryMan.getTdataFamilys().get(i).setSex("1");
+			}
+		}
 		String data = JSON.toJSONString(countryMan);
 		LinkedHashMap<String, String> map = new LinkedHashMap<String, String>();
 		map.put("arg0", data);
