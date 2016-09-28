@@ -67,7 +67,6 @@ public class ArchivesPoorAdapter extends BaseAdapter{
 		para.height = (p.x) / 4;
 		para.width = (p.x - 40) / 4;
 		holder.iv_photo.setLayoutParams(para);
-		Tools.i("ArchivesPoorAdapter", countrys.get(position).getPkhimg());
 		if(countrys.get(position).getPkhimg()!=null)
 			ImageLoader.getInstance().displayImage(countrys.get(position).getPkhimg(), holder.iv_photo); 
 		holder.ll_linear.setOnClickListener(new OnClickListener() {
@@ -75,7 +74,7 @@ public class ArchivesPoorAdapter extends BaseAdapter{
 			public void onClick(View v) {
 				Bundle bundle = new Bundle();
 				bundle.putString("countrymanId", countrys.get(position).getCountrymanId()+"");
-				bundle.putString("toForm", toForm);
+				bundle.putSerializable("countrys", countrys.get(position));
 				Tools.setOpenActivityBundle(context, ArchivesDetailsActivity.class, bundle);
 			}
 		});

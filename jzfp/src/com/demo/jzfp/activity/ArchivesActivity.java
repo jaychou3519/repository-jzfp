@@ -37,8 +37,7 @@ public class ArchivesActivity extends BaseActivity implements WebServiceCallback
 	protected void setView() {
 		View view = View.inflate(ArchivesActivity.this, R.layout.activity_archives, null);
 		setContentView(view);
-		activityList = (MyApplication) getApplicationContext();
-		activityList.addActivity(this);
+		MyApplication.addActivity(this);
 		intent = getIntent();
 		ViewUtils.inject(this,view);
 		setTitleText("基本信息");
