@@ -2,7 +2,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
+    android:orientation="vertical" 
+     android:background="@color/bai">
 
     <LinearLayout
         android:id="@+id/tv"
@@ -21,20 +22,22 @@
             android:textSize="@dimen/x13" />
     </LinearLayout>
 
-    <ImageView
+    
+    <LinearLayout
         android:id="@+id/top"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:src="@drawable/login_top" />
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/login_top" >
+    </LinearLayout>
+    
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@id/tv"
-        android:layout_below="@id/top"
         android:background="@color/bai"
-        android:layout_gravity="center_vertical"
+        android:layout_centerInParent="true"
         android:orientation="vertical" >
 
         <TextView
