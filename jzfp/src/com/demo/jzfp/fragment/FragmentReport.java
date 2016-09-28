@@ -490,6 +490,8 @@ public class FragmentReport extends Fragment implements OnClickListener, WebServ
 				tv_effect.setText("");
 				et_countryId.setText("");
 				Constant.poor = new TdataCountryman();
+			}else if("2".equals(result)){
+				Tools.showNewToast(getActivity(), "身份证不可重复！");
 			} else {
 				Tools.showNewToast(getActivity(), "提交失败！");
 			}
