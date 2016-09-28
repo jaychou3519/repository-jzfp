@@ -7,6 +7,7 @@ import com.demo.jzfp.R;
 import com.demo.jzfp.entity.CountryMans;
 import com.demo.jzfp.entity.TdataAction;
 import com.demo.jzfp.entity.TdataCountryman;
+import com.demo.jzfp.entity.TdataHelper;
 import com.demo.jzfp.entity.TdataResult;
 import com.demo.jzfp.fragment.EffectFragmentEdit;
 import com.demo.jzfp.fragment.MeasureFragmentEdit;
@@ -29,7 +30,6 @@ import android.widget.TextView;
 
 public class ArchivesEditActivity extends BaseActivity implements WebServiceCallback{
 	private String TAG  = "ArchivesEditActivity";
-	private MyApplication activityList;
 
 	@ViewInject(R.id.fl_framelayout)
 	private FrameLayout fl_framelayout;
@@ -57,8 +57,7 @@ public class ArchivesEditActivity extends BaseActivity implements WebServiceCall
 	protected void setView() {
 		View view = View.inflate(this, R.layout.activity_archives_edit, null);
 		setContentView(view);
-		activityList = (MyApplication) getApplicationContext();
-		activityList.addActivity(this);
+		MyApplication.addActivity(this);
 		ViewUtils.inject(this, view);
 	}
 
@@ -262,7 +261,8 @@ public class ArchivesEditActivity extends BaseActivity implements WebServiceCall
 		}
 		countryMan.setTdataActions(tactions);
 		countryMan.setTdataResult(tresult);
-		countryMan.setTdataHelper(countrys.getTdataHelper());
+		if(countrys.getTdataHelper()!=null)
+			countryMan.setTdataHelper(countrys.getTdataHelper());
 		String data = JSON.toJSONString(countryMan);
 		LinkedHashMap<String, String> map = new LinkedHashMap<String, String>();
 		map.put("arg0", data);

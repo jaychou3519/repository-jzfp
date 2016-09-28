@@ -1,6 +1,5 @@
 package com.demo.jzfp.activity;
 
-import java.io.Serializable;
 import java.util.LinkedHashMap;
 import java.util.List;
 import com.alibaba.fastjson.JSON;
@@ -20,7 +19,6 @@ import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
 import android.app.FragmentTransaction;
-import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.os.Handler;
@@ -29,8 +27,6 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 
 public class ArchivesDetailsActivity extends BaseActivity implements WebServiceCallback{
-	private MyApplication activityList;
-
 	@ViewInject(R.id.fl_framelayout)
 	private FrameLayout fl_framelayout;
 	@ViewInject(R.id.tv_record)
@@ -50,19 +46,19 @@ public class ArchivesDetailsActivity extends BaseActivity implements WebServiceC
 	private TdataResult tresult;
 	private List<TdataAction> tactions;
 	private LinkedHashMap<String, String> linkedHashMap;
-
+	private CountryMans countrys;
 	@Override
 	protected void setView() {
 		View view = View.inflate(this, R.layout.activity_archives_details, null);
 		setContentView(view);
-		activityList = (MyApplication) getApplicationContext();
-		activityList.addActivity(this);
+		MyApplication.addActivity(this);
 		ViewUtils.inject(this, view);
 	}
 
 	@Override
 	protected void initView() {
 		Tools.i("JJY", getIntent().getExtras().getString("countrymanId"));
+		countrys = (CountryMans) getIntent().getExtras().getSerializable("countrys");
 		linkedHashMap = new LinkedHashMap<String, String>();
 		linkedHashMap.put("arg0", getIntent().getExtras().getString("countrymanId"));
 		RequestWebService.send(methodName, linkedHashMap, this, 101);
@@ -101,6 +97,7 @@ public class ArchivesDetailsActivity extends BaseActivity implements WebServiceC
 			Tools.setOpenActivityBundle(this, ArchivesEditActivity.class, bundle);*/
 			Bundle bundle = new Bundle();
 			bundle.putString("countrymanId", linkedHashMap.get("arg0"));
+			bundle.putSerializable("countrys", countrys);
 			Tools.setOpenActivityBundle(this, ArchivesEditActivity.class,bundle);
 			break;
 

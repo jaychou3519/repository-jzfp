@@ -49,8 +49,7 @@ public class FragmentOptions extends Fragment implements OnClickListener{
 				Tools.setOpenActivity(getActivity(), EditPwdActivity.class);
 				break;
 			case R.id.btn_loginout:
-				MyApplication activityList = (MyApplication) getActivity().getApplicationContext();
-				activityList.finishAll();
+				MyApplication.finishAll();
 				break;
 		}
 	}

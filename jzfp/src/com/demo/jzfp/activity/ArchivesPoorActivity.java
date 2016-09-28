@@ -15,9 +15,7 @@ import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import android.content.Intent;
 import android.os.Handler;
-import android.text.TextUtils;
 import android.view.View;
-import android.widget.ListView;
 
 public class ArchivesPoorActivity extends BaseActivity implements WebServiceCallback{
 
@@ -32,6 +30,7 @@ public class ArchivesPoorActivity extends BaseActivity implements WebServiceCall
 		View view = View.inflate(this, R.layout.activity_poor, null);
 		setContentView(view);
 		intent = getIntent();
+		MyApplication.addActivity(this);
 		ViewUtils.inject(this,view);
 		setTitleText("基本信息");
 		setOnback(this);
