@@ -78,6 +78,14 @@
         </activity>
         <activity android:name="com.demo.jzfp.activity.VillagesTextActivity2" >
         </activity>
+        <activity android:name="com.demo.jzfp.activity.ArchivesActivity2" >
+        </activity>
+        <activity android:name="com.demo.jzfp.activity.ArchivesDetailsActivity2" >
+        </activity>
+        <activity android:name="com.demo.jzfp.activity.ArchivesEditActivity2" >
+        </activity>
+        <activity android:name="com.demo.jzfp.activity.ArchivesPoorActivity2" >
+        </activity>
     </application>
 
 </manifest>
