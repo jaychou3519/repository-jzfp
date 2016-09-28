@@ -25,20 +25,16 @@ import android.widget.ListView;
 public class ArchivesActivity extends BaseActivity implements WebServiceCallback{
 	
 	private String TAG = "ArchivesActivity";
-	private MyApplication activityList;
 	private ArchivesAdapter adapter;
 	private String methodName = "selectToFiles";
 	private List<ToFiles> toFiles;
 	@ViewInject(R.id.lv_listview)
 	private ListView lv_listview;
-	private Intent intent = null;
-	private String toForm = null;
 	@Override
 	protected void setView() {
 		View view = View.inflate(ArchivesActivity.this, R.layout.activity_archives, null);
 		setContentView(view);
 		MyApplication.addActivity(this);
-		intent = getIntent();
 		ViewUtils.inject(this,view);
 		setTitleText("基本信息");
 		setOnback(this);
@@ -80,7 +76,7 @@ public class ArchivesActivity extends BaseActivity implements WebServiceCallback
 		public void handleMessage(android.os.Message msg) {
 			switch (msg.what) {
 			case 201:
-				adapter = new ArchivesAdapter(ArchivesActivity.this,toFiles,toForm);
+				adapter = new ArchivesAdapter(ArchivesActivity.this,toFiles);
 				lv_listview.setAdapter(adapter);
 				break;
 
@@ -123,7 +119,6 @@ public class ArchivesActivity extends BaseActivity implements WebServiceCallback
 			Tools.showNewToast(getApplication(), "链接服务器失败");
 		}else{
     		try {
-    			toForm = intent.getStringExtra("toForm");
 				toFiles = JSON.parseArray(reulst, ToFiles.class);
 				handler.sendEmptyMessage(201);
 			} catch (Exception e) {

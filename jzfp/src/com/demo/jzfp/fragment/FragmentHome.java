@@ -251,7 +251,6 @@ public class FragmentHome extends BaseFragment implements AsynceHttpInterface,
 			Tools.setOpenActivity(getActivity(), BasicActivity.class);
 			break;
 		}
-		
 	}
 
 	private static class ImageHandler extends Handler {

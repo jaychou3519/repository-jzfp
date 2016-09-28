@@ -63,11 +63,13 @@ public class EffectFragmentEdit extends Fragment implements OnClickListener {
 		ed_medical.setText(Tools.parseEmpty(tResult.getJbshbzYl()) + "");
 		ed_education.setText(Tools.parseEmpty(tResult.getJbshbzYwjy()) + "");
 		String poverty = "是";
+		if(tResult.getJffhtptj()!=null){
 		if(tResult.getJffhtptj().equals("1")){
 			poverty = "是";
 		}
 		if(tResult.getJffhtptj().equals("2")){
 			poverty = "否";
+		}
 		}
 		tv_poverty.setText(Tools.parseEmpty(poverty) + "");
 	}

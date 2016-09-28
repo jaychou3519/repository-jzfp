@@ -81,11 +81,13 @@ public class EffectFragment extends Fragment {
 					effect.setContent(tResult.getJbshbzYwjy() + "");
 					break;
 				case 3:
-					if(tResult.getJffhtptj().equals("1")){
-						effect.setContent("是");
-					}
-					if(tResult.getJffhtptj().equals("2")){
-						effect.setContent("否");
+					if (tResult.getJffhtptj() != null) {
+						if (tResult.getJffhtptj().equals("1")) {
+							effect.setContent("是");
+						}
+						if (tResult.getJffhtptj().equals("2")) {
+							effect.setContent("否");
+						}
 					}
 					break;
 				}
@@ -97,7 +99,8 @@ public class EffectFragment extends Fragment {
 			lv_listview = (ListView) view.findViewById(R.id.lv_listview);
 		}
 		lv_listview.setAdapter(adapter);
-		if(tResult==null) return;
+		if (tResult == null)
+			return;
 		tv_date.setText(Tools.parseEmpty(tResult.getTpDate()) + "");
 		tv_person_money.setText(Tools.parseEmpty(tResult.getJtsrRjsr()) + "");
 		tv_all_money.setText(Tools.parseEmpty(tResult.getJtsrZsr()) + "");

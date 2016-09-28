@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.demo.jzfp.R;
 import com.demo.jzfp.activity.ArchivesDetailsActivity;
+import com.demo.jzfp.activity.ArchivesDetailsActivity2;
 import com.demo.jzfp.activity.ArchivesPoorActivity;
 import com.demo.jzfp.entity.CountryMans;
 import com.demo.jzfp.utils.Tools;
@@ -22,12 +23,12 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-public class ArchivesPoorAdapter extends BaseAdapter{
+public class ArchivesPoorAdapter2 extends BaseAdapter{
 
 	private Context context;
 	private List<CountryMans> countrys;
 	
-	public ArchivesPoorAdapter(Context context,List<CountryMans> countrys) {
+	public ArchivesPoorAdapter2(Context context,List<CountryMans> countrys) {
 		this.context = context;
 		this.countrys = countrys;
 	}
@@ -73,7 +74,7 @@ public class ArchivesPoorAdapter extends BaseAdapter{
 				Bundle bundle = new Bundle();
 				bundle.putString("countrymanId", countrys.get(position).getCountrymanId()+"");
 				bundle.putSerializable("countrys", countrys.get(position));
-				Tools.setOpenActivityBundle(context, ArchivesDetailsActivity.class, bundle);
+				Tools.setOpenActivityBundle(context, ArchivesDetailsActivity2.class, bundle);
 			}
 		});
 		return convertView;
