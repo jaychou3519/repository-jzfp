@@ -262,7 +262,9 @@ public class ArchivesEditActivity extends BaseActivity implements WebServiceCall
 		countryMan.setTdataActions(tactions);
 		countryMan.setTdataResult(tresult);
 		if(countrys.getTdataHelper()!=null)
-			countryMan.setTdataHelper(countrys.getTdataHelper());
+		countryMan.setTdataHelper(countrys.getTdataHelper());
+		
+		
 		String data = JSON.toJSONString(countryMan);
 		LinkedHashMap<String, String> map = new LinkedHashMap<String, String>();
 		map.put("arg0", data);
