@@ -34,6 +34,7 @@ import android.widget.TextView;
 import com.alibaba.fastjson.JSON;
 import com.demo.jzfp.R;
 import com.demo.jzfp.activity.ArchivesActivity;
+import com.demo.jzfp.activity.ArchivesActivity2;
 import com.demo.jzfp.activity.ArchivesPoorActivity;
 import com.demo.jzfp.activity.BasicActivity;
 import com.demo.jzfp.activity.SupportActivity;
@@ -244,7 +245,7 @@ public class FragmentHome extends BaseFragment implements AsynceHttpInterface,
 			Tools.setOpenActivity(getActivity(), SupportActivity.class);
 			break;
 		case R.id.rl_info:
-			Tools.setOpenActivity(getActivity(), BasicActivity.class);
+			Tools.setOpenActivity(getActivity(), ArchivesActivity2.class);
 			break;
 		case R.id.rl_chengx:
 			Tools.setOpenActivity(getActivity(), BasicActivity.class);
