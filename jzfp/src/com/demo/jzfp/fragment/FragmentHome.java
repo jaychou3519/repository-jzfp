@@ -36,12 +36,10 @@ import com.demo.jzfp.R;
 import com.demo.jzfp.activity.ArchivesActivity;
 import com.demo.jzfp.activity.ArchivesActivity2;
 import com.demo.jzfp.activity.ArchivesPoorActivity;
-import com.demo.jzfp.activity.BasicActivity;
 import com.demo.jzfp.activity.SupportActivity;
-import com.demo.jzfp.activity.VillagesActivity;
+import com.demo.jzfp.activity.VillagesActivity2;
 import com.demo.jzfp.activity.VillagesTextActivity2;
 import com.demo.jzfp.apdater.ImageAdapter;
-import com.demo.jzfp.apdater.VillagesAdapter;
 import com.demo.jzfp.dao.AreaDataDao;
 import com.demo.jzfp.dao.impl.AreaDataDaoImpl;
 import com.demo.jzfp.database.DatabaseHelper;
@@ -245,10 +243,11 @@ public class FragmentHome extends BaseFragment implements AsynceHttpInterface,
 			Tools.setOpenActivity(getActivity(), SupportActivity.class);
 			break;
 		case R.id.rl_info:
-			Tools.setOpenActivity(getActivity(), ArchivesActivity2.class);
+			Tools.setOpenActivity(getActivity(), VillagesActivity2.class);
 			break;
 		case R.id.rl_chengx:
-			Tools.setOpenActivity(getActivity(), BasicActivity.class);
+//			Tools.setOpenActivity(getActivity(), BasicActivity.class);
+			Tools.setOpenActivity(getActivity(), ArchivesActivity2.class);
 			break;
 		}
 	}

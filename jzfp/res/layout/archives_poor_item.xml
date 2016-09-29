@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:scaleType="centerInside"
         android:layout_gravity="center"
-        android:src="@drawable/headpicture.png"
+        android:src="@drawable/headpicture"
         />
 
     <TextView 

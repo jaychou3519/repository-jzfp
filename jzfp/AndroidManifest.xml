@@ -44,6 +44,8 @@
         </activity>
         <activity android:name="com.demo.jzfp.activity.VillagesActivity" >
         </activity>
+        <activity android:name="com.demo.jzfp.activity.VillagesActivity2" >
+        </activity>
         <activity android:name="com.demo.jzfp.activity.EditPwdActivity" >
         </activity>
         <activity android:name="com.demo.jzfp.activity.ChooseAreaActivity" >
@@ -68,7 +70,11 @@
         </activity>
         <activity android:name="com.demo.jzfp.activity.ArchivesPoorActivity" >
         </activity>
+        <activity android:name="com.demo.jzfp.activity.ArchivesPoorActivity3" >
+        </activity>
         <activity android:name="com.demo.jzfp.activity.MeasuresActivity" >
+        </activity>
+        <activity android:name="com.demo.jzfp.activity.MeasuresActivity2" >
         </activity>
         <activity android:name="com.demo.jzfp.activity.EffectActivity" >
         </activity>

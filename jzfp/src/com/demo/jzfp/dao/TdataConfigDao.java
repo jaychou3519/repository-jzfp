@@ -11,5 +11,6 @@ public interface TdataConfigDao {
 	public void deleteTdataConfig(SQLiteDatabase db)throws SQLException;
 	public boolean insertTdataConfig(Map map,SQLiteDatabase db) throws Exception;
 	public List<String> queryActionDl(SQLiteDatabase db);
+	public List<String> queryActionDlCode(SQLiteDatabase db);
 	public String queryActionXlByActionDl(SQLiteDatabase db,String actionDl);
 }
