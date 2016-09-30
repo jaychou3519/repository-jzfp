@@ -214,18 +214,12 @@
     <LinearLayout
         android:id="@+id/linearCenter"
         android:layout_width="fill_parent"
-        android:layout_height="@dimen/x100"
+        android:layout_height="@dimen/x200"
         android:layout_below="@id/ll_weather_info"
         android:layout_marginTop="@dimen/x10"
         android:background="@color/white"
         android:baselineAligned="false"
         android:orientation="horizontal" >
-
-        <!--
-	        android:layout_marginLeft="@dimen/x10"
-	        android:layout_marginRight="@dimen/x10"
-	        android:orientation="vertical"
-        -->
 
         <RelativeLayout
             android:id="@+id/rl_archives"
@@ -233,18 +227,15 @@
             android:layout_height="fill_parent"
             android:layout_weight="1" >
 
-            <!-- android:background="@color/green_3fd07a" -->
-
             <ImageView
                 android:id="@+id/imgView_fpda"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:layout_marginBottom="@dimen/x10"
-                android:layout_marginTop="@dimen/x10"
-                android:src="@drawable/record_1" />
-            <!-- android:layout_marginLeft="@dimen/x10" -->
-
+                android:layout_marginTop="@dimen/x40"
+                android:src="@drawable/record_11" />
+           
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -252,14 +243,8 @@
                 android:layout_centerHorizontal="true"
                 android:text="基本信息"
                 android:textColor="@color/hei"
-                android:textSize="@dimen/fontx15" />
-
-            <!--
-                android:layout_alignParentBottom="true"
-                android:layout_alignParentRight="true"
-                android:layout_marginBottom="@dimen/x10"
-                android:layout_marginRight="@dimen/x10"
-            -->
+                android:textSize="@dimen/fontx18" />
+           
         </RelativeLayout>
 
         <RelativeLayout
@@ -268,19 +253,14 @@
             android:layout_height="fill_parent"
             android:layout_weight="1" >
 
-            <!--
-            android:layout_marginLeft="@dimen/x10"
-            android:background="@color/red_e1548a"
-            -->
-
             <ImageView
                 android:id="@+id/imgView_bfcs"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:layout_marginBottom="@dimen/x10"
-                android:layout_marginTop="@dimen/x10"
-                android:src="@drawable/basis_1" />
+                android:layout_marginTop="@dimen/x40"
+                android:src="@drawable/basis_11" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -289,7 +269,7 @@
                 android:layout_centerHorizontal="true"
                 android:text="帮扶措施"
                 android:textColor="@color/hei"
-                android:textSize="@dimen/fontx15" />
+                android:textSize="@dimen/fontx18" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -298,19 +278,14 @@
             android:layout_height="fill_parent"
             android:layout_weight="1" >
 
-            <!--
-            android:layout_marginLeft="@dimen/x10"
-            android:background="@color/red_e1548a"
-            -->
-
             <ImageView
                 android:id="@+id/imgView_bfcx"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:layout_marginBottom="@dimen/x10"
-                android:layout_marginTop="@dimen/x10"
-                android:src="@drawable/chengx_1" />
+                android:layout_marginTop="@dimen/x40"
+                android:src="@drawable/chengx_11" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -319,7 +294,7 @@
                 android:layout_centerHorizontal="true"
                 android:text="帮扶成效"
                 android:textColor="@color/hei"
-                android:textSize="@dimen/fontx15" />
+                android:textSize="@dimen/fontx18" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -328,19 +303,14 @@
             android:layout_height="fill_parent"
             android:layout_weight="1" >
 
-            <!--
-            android:layout_marginLeft="@dimen/x10" 
-            android:background="@color/blue_30b7b9"
-            -->
-
             <ImageView
                 android:id="@+id/imgView_bfzc"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:layout_marginBottom="@dimen/x10"
-                android:layout_marginTop="@dimen/x10"
-                android:src="@drawable/policy_1" />
+                android:layout_marginTop="@dimen/x40"
+                android:src="@drawable/policy_11" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -349,7 +319,7 @@
                 android:layout_centerHorizontal="true"
                 android:text="帮扶政策"
                 android:textColor="@color/hei"
-                android:textSize="@dimen/fontx15" />
+                android:textSize="@dimen/fontx18" />
         </RelativeLayout>
     </LinearLayout>
 
@@ -360,7 +330,7 @@
         android:layout_below="@+id/linearCenter"
         android:background="#FFFFFF"
         android:padding="10dp" >
-    </com.demo.jzfp.view.FlowLayout>
+   </com.demo.jzfp.view.FlowLayout>
 
     <LinearLayout
         android:layout_width="fill_parent"

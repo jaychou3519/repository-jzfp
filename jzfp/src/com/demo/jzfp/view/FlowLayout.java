@@ -126,7 +126,7 @@ public class FlowLayout extends ViewGroup
             MarginLayoutParams lp = (MarginLayoutParams) child.getLayoutParams();
 
             int childWidth = child.getMeasuredWidth() -5;
-            int childHeight = child.getMeasuredHeight();
+            int childHeight = child.getMeasuredHeight() -5;
 
             // 如果需要换行
             if (childWidth + lineWidth + lp.leftMargin + lp.rightMargin > width - getPaddingLeft() - getPaddingRight())
