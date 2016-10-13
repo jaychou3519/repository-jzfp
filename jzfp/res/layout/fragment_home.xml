@@ -212,9 +212,9 @@
     -->
 
     <LinearLayout
-        android:id="@+id/linearCenter"
+        android:id="@+id/linearCenter1"
         android:layout_width="fill_parent"
-        android:layout_height="@dimen/x200"
+        android:layout_height="@dimen/x160"
         android:layout_below="@id/ll_weather_info"
         android:layout_marginTop="@dimen/x10"
         android:background="@color/white"
@@ -233,9 +233,9 @@
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:layout_marginBottom="@dimen/x10"
-                android:layout_marginTop="@dimen/x40"
+                android:layout_marginTop="@dimen/x20"
                 android:src="@drawable/record_11" />
-           
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -244,8 +244,43 @@
                 android:text="基本信息"
                 android:textColor="@color/hei"
                 android:textSize="@dimen/fontx18" />
-           
         </RelativeLayout>
+        
+        <RelativeLayout
+            android:id="@+id/rl_policy"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1" >
+
+            <ImageView
+                android:id="@+id/imgView_bfzc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="@dimen/x10"
+                android:layout_marginTop="@dimen/x20"
+                android:src="@drawable/policy_11" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/imgView_bfzc"
+                android:layout_centerHorizontal="true"
+                android:text="帮扶政策"
+                android:textColor="@color/hei"
+                android:textSize="@dimen/fontx18" />
+        </RelativeLayout>
+     </LinearLayout>
+    
+    <LinearLayout
+        android:id="@+id/linearCenter"
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/x160"
+        android:layout_below="@id/linearCenter1"
+        android:layout_marginTop="@dimen/x10"
+        android:background="@color/white"
+        android:baselineAligned="false"
+        android:orientation="horizontal" >
 
         <RelativeLayout
             android:id="@+id/rl_info"
@@ -259,7 +294,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:layout_marginBottom="@dimen/x10"
-                android:layout_marginTop="@dimen/x40"
+                android:layout_marginTop="@dimen/x20"
                 android:src="@drawable/basis_11" />
 
             <TextView
@@ -284,7 +319,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:layout_marginBottom="@dimen/x10"
-                android:layout_marginTop="@dimen/x40"
+                android:layout_marginTop="@dimen/x20"
                 android:src="@drawable/chengx_11" />
 
             <TextView
@@ -293,31 +328,6 @@
                 android:layout_below="@id/imgView_bfcx"
                 android:layout_centerHorizontal="true"
                 android:text="帮扶成效"
-                android:textColor="@color/hei"
-                android:textSize="@dimen/fontx18" />
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:id="@+id/rl_policy"
-            android:layout_width="0dp"
-            android:layout_height="fill_parent"
-            android:layout_weight="1" >
-
-            <ImageView
-                android:id="@+id/imgView_bfzc"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_marginBottom="@dimen/x10"
-                android:layout_marginTop="@dimen/x40"
-                android:src="@drawable/policy_11" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/imgView_bfzc"
-                android:layout_centerHorizontal="true"
-                android:text="帮扶政策"
                 android:textColor="@color/hei"
                 android:textSize="@dimen/fontx18" />
         </RelativeLayout>

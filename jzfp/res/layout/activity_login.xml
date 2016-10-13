@@ -3,57 +3,60 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" 
-     android:background="@color/bai">
+     android:background="@drawable/logo_interface">
 
     <LinearLayout
         android:id="@+id/tv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:background="@drawable/login_bottom" >
+        android:layout_alignParentBottom="true">
 
+        <!-- android:background="@drawable/login_bottom"  -->
+        
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/y45"
+            android:layout_marginBottom="@dimen/y29"
             android:gravity="center"
             android:text="炎陵县版权所有@2016"
-            android:textColor="#000"
+            android:textColor="#ff0000"
             android:textSize="@dimen/x13" />
     </LinearLayout>
 
     
-    <LinearLayout
+    <!-- <LinearLayout
         android:id="@+id/top"
         android:layout_alignParentTop="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:background="@drawable/login_top" >
-    </LinearLayout>
+    </LinearLayout> -->
     
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/bai"
         android:layout_centerInParent="true"
         android:orientation="vertical" >
+        
+       <!--  android:background="@color/bai" -->
+        
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="炎陵县精准扶贫"
-            android:textColor="#000"
-            android:textSize="@dimen/x20" />
+            android:textColor="#000000"
+            android:textSize="@dimen/x34" />
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/y30"
-            android:layout_marginLeft="@dimen/x25"
-            android:layout_marginRight="@dimen/x25"
-            android:layout_marginTop="@dimen/x18"
+            android:layout_height="@dimen/y34"
+            android:layout_marginLeft="@dimen/x38"
+            android:layout_marginRight="@dimen/x38"
+            android:layout_marginTop="@dimen/x22"
             android:background="@drawable/et_bg"
             android:orientation="horizontal" >
 
@@ -90,10 +93,10 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/y30"
-            android:layout_marginLeft="@dimen/x25"
-            android:layout_marginRight="@dimen/x25"
-            android:layout_marginTop="@dimen/x10"
+            android:layout_height="@dimen/y34"
+            android:layout_marginLeft="@dimen/x38"
+            android:layout_marginRight="@dimen/x38"
+            android:layout_marginTop="@dimen/x22"
             android:background="@drawable/et_bg"
             android:orientation="horizontal" >
 
@@ -134,9 +137,9 @@
             android:id="@+id/btn_login"
             android:layout_width="match_parent"
             android:layout_height="@dimen/y40"
-            android:layout_marginLeft="@dimen/x35"
-            android:layout_marginRight="@dimen/x35"
-            android:layout_marginTop="@dimen/x15"
+            android:layout_marginLeft="@dimen/x44"
+            android:layout_marginRight="@dimen/x44"
+            android:layout_marginTop="@dimen/x22"
             android:background="@drawable/btn_bg"
             android:text="登录"
             android:textColor="#fff" />
@@ -144,8 +147,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/x35"
-            android:layout_marginRight="@dimen/x35"
+            android:layout_marginLeft="@dimen/x44"
+            android:layout_marginRight="@dimen/x44"
             android:layout_marginTop="@dimen/x3"
             android:gravity="center"
             android:orientation="horizontal" >
