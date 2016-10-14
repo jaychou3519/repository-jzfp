@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical" >
-
-    <LinearLayout
+	    android:layout_width="match_parent"
+	    android:layout_height="match_parent"
+	    android:orientation="vertical" >
+	
+   	 <LinearLayout
         android:id="@+id/ll_top"
         android:layout_width="match_parent"
         android:layout_height="@dimen/x45"
@@ -60,11 +60,25 @@
             android:textSize="@dimen/fontx17" />
     </LinearLayout>
 
+   	<ScrollView
+   	    android:id="@+id/huadong"
+        android:layout_below="@+id/ll_top"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fillViewport="true"
+        android:layout_marginBottom="@dimen/x10"
+        android:scrollbars="none" >
+   	 
+    <LinearLayout
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:orientation="vertical" >
+   	    
     <FrameLayout
         android:id="@+id/fl_lunbo_tp"
         android:layout_width="match_parent"
         android:layout_height="@dimen/x160"
-        android:layout_below="@id/ll_top" >
+        android:layout_below="@id/huadong" >
 
         <android.support.v4.view.ViewPager
             android:id="@+id/vp_lunbo_tp"
@@ -214,7 +228,7 @@
     <LinearLayout
         android:id="@+id/linearCenter1"
         android:layout_width="fill_parent"
-        android:layout_height="@dimen/x160"
+        android:layout_height="@dimen/x110"
         android:layout_below="@id/ll_weather_info"
         android:layout_marginTop="@dimen/x10"
         android:background="@color/white"
@@ -231,9 +245,9 @@
                 android:id="@+id/imgView_fpda"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
                 android:layout_marginBottom="@dimen/x10"
                 android:layout_marginTop="@dimen/x20"
+                android:layout_centerHorizontal="true"
                 android:src="@drawable/record_11" />
 
             <TextView
@@ -256,11 +270,11 @@
                 android:id="@+id/imgView_bfzc"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
                 android:layout_marginBottom="@dimen/x10"
                 android:layout_marginTop="@dimen/x20"
+                android:layout_centerHorizontal="true"
                 android:src="@drawable/policy_11" />
-
+            
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -275,7 +289,7 @@
     <LinearLayout
         android:id="@+id/linearCenter"
         android:layout_width="fill_parent"
-        android:layout_height="@dimen/x160"
+        android:layout_height="@dimen/x110"
         android:layout_below="@id/linearCenter1"
         android:layout_marginTop="@dimen/x10"
         android:background="@color/white"
@@ -332,22 +346,61 @@
                 android:textSize="@dimen/fontx18" />
         </RelativeLayout>
     </LinearLayout>
+    
+    <!--   	<LinearLayout
+          	android:id="@+id/linear2"
+	        android:layout_width="fill_parent"
+	        android:layout_height="@dimen/x10"
+	        android:layout_below="@+id/linearCenter"
+	        android:layout_marginTop="@dimen/x15"
+	        android:background="#EDEDED" >
+	    </LinearLayout> -->
 
-    <com.demo.jzfp.view.FlowLayout
-        android:id="@+id/id_flowlayout"
+	<LinearLayout
+        android:id="@+id/linearCenter2"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/linearCenter"
-        android:background="#FFFFFF"
-        android:padding="10dp" >
-   </com.demo.jzfp.view.FlowLayout>
+        android:layout_height="@dimen/x20"
+        android:layout_below="@id/linearCenter"
+        android:layout_marginTop="@dimen/x10"
+        android:background="@color/white"
+        android:baselineAligned="false"
+        android:orientation="horizontal" >
 
-    <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="@dimen/x10"
-        android:layout_above="@+id/id_flowlayout"
-        android:layout_marginTop="@dimen/x15"
-        android:background="#EDEDED" >
+        <RelativeLayout
+            android:id="@+id/rl123"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/x5"
+                android:layout_centerHorizontal="true"
+                android:text="乡镇介绍"
+                android:textColor="@color/hei"
+                android:textSize="@dimen/fontx13" />
+        </RelativeLayout>
     </LinearLayout>
- 
+    
+	    <com.demo.jzfp.view.FlowLayout
+	        android:id="@+id/id_flowlayout"
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:layout_below="@+id/linearCenter2"
+	        android:layout_marginLeft="@dimen/x20"
+	        android:background="#FFFFFF"
+	        android:padding="10dp" >
+	   </com.demo.jzfp.view.FlowLayout>
+	<!-- 
+	   <LinearLayout
+	        android:layout_width="fill_parent"
+	        android:layout_height="@dimen/x10"
+	        android:layout_above="@+id/id_flowlayout"
+	        android:layout_marginTop="@dimen/x15"
+	        android:background="#EDEDED" >
+	    </LinearLayout>
+	   -->
+	   </LinearLayout>
+ 	</ScrollView>
 </RelativeLayout>
