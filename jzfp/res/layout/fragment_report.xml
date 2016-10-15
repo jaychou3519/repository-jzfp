@@ -128,7 +128,7 @@
                     android:layout_centerVertical="true"
                     android:layout_toLeftOf="@id/iv_into_name"
                     android:background="@null"
-                    android:hint="请输入帮扶户户主姓名"
+                    android:hint="请输入户主姓名"
                     android:maxLength="18"
                     android:singleLine="true"
                     android:textColor="#000"
@@ -191,13 +191,13 @@
                     android:textColorHint="#d6d6d6"
                     android:textSize="@dimen/x15" />
             </RelativeLayout>
-
+<!-- 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/x1"
                 android:background="#c9c9c9" />
-            
-            <RelativeLayout
+             -->
+            <!-- <RelativeLayout
                 android:id="@+id/rl_poorCard"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/y35"
@@ -243,7 +243,7 @@
                     android:textColorHint="#d6d6d6"
                     android:textColor="#000"
                     android:textSize="@dimen/x15" />
-            </RelativeLayout>
+            </RelativeLayout> -->
             
             <View
                 android:layout_width="match_parent"
@@ -292,7 +292,7 @@
                     android:layout_centerVertical="true"
                     android:layout_toLeftOf="@id/iv_into_state"
                     android:singleLine="true"
-                    android:hint="请选择帮扶户贫困状态"
+                    android:hint="请选择户主贫困状态"
                     android:textColorHint="#d6d6d6"
                     android:textColor="#000"
                     android:textSize="@dimen/x15" />
@@ -439,7 +439,7 @@
                     android:layout_centerVertical="true"
                     android:layout_toLeftOf="@id/iv_into_age"
                     android:background="@null"
-                    android:hint="请填写帮扶户户主年龄"
+                    android:hint="请填写户主年龄"
                     android:maxLength="3"
                      android:digits="0123456789"
                     android:singleLine="true"
@@ -495,7 +495,7 @@
                     android:layout_centerVertical="true"
                     android:layout_toLeftOf="@id/iv_into_identity"
                     android:background="@null"
-                    android:hint="请填写帮扶户身份证号"
+                    android:hint="请填写户主身份证号"
                     android:digits="0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
                     android:maxLength="18"
                     android:singleLine="true"
@@ -551,7 +551,7 @@
                     android:layout_centerVertical="true"
                     android:layout_toLeftOf="@id/iv_into_tel"
                     android:background="@null"
-                    android:hint="请填写帮扶户联系电话"
+                    android:hint="请填写户主联系电话"
                     android:phoneNumber="true"
                     android:maxLength="15"
                     android:singleLine="true"
@@ -607,7 +607,7 @@
                     android:layout_centerVertical="true"
                     android:layout_toLeftOf="@id/iv_into_education"
                     android:singleLine="true"
-                    android:hint="请选择帮扶户文化程度"
+                    android:hint="请选择户主文化程度"
                     android:textColorHint="#d6d6d6"
                     android:textColor="#000"
                     android:textSize="@dimen/x15" />
@@ -661,7 +661,7 @@
                     android:layout_centerVertical="true"
                     android:layout_toLeftOf="@id/iv_into_health"
                     android:singleLine="true"
-                    android:hint="请选择帮扶户健康状态"
+                    android:hint="请选择户主健康状态"
                     android:textColorHint="#d6d6d6"
                     android:textColor="#000"
                     android:textSize="@dimen/x15" />
@@ -712,7 +712,7 @@
                     android:layout_centerVertical="true"
                     android:layout_toLeftOf="@id/iv_into_economy"
                     android:singleLine="true"
-                    android:hint="请填写帮扶户家庭经济"
+                    android:hint="请填写户主家庭经济"
                     android:textColorHint="#d6d6d6"
                     android:textColor="#000"
                     android:textSize="@dimen/x15" />
@@ -763,7 +763,7 @@
                     android:layout_centerVertical="true"
                     android:layout_toLeftOf="@id/iv_into_member"
                     android:singleLine="true"
-                    android:hint="请填写帮扶户家庭成员"
+                    android:hint="请填写户主家庭成员"
                     android:textColorHint="#d6d6d6"
                     android:textColor="#000"
                     android:textSize="@dimen/x15" />
@@ -814,7 +814,7 @@
                     android:layout_centerVertical="true"
                     android:layout_toLeftOf="@id/iv_into_reason"
                     android:singleLine="true"
-                    android:hint="请填写帮扶户致贫原因"
+                    android:hint="请填写户主致贫原因"
                     android:textColorHint="#d6d6d6"
                     android:textColor="#000"
                     android:textSize="@dimen/x15" />

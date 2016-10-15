@@ -13,7 +13,7 @@ import com.demo.jzfp.utils.Tools;
 public class DatabaseHelper extends SQLiteOpenHelper {
 	private String TAG = "DatabaseHelper";
 	private static final String DATABASE_NAME = "jzfp.db"; //数据库名称
-	private static final int DATABASE_VERSION = 9; //数据库版本
+	private static final int DATABASE_VERSION = 10; //数据库版本
 	
 	private Context context;
 	public DatabaseHelper(Context context) {

@@ -22,7 +22,7 @@
                 android:id="@+id/tv_name1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="帮扶户户主姓名"
+                android:text="户主户主姓名"
                 android:textColor="@color/gray"
                 android:textSize="@dimen/fontx14" />
 

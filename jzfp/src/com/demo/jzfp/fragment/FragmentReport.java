@@ -110,8 +110,8 @@ public class FragmentReport extends Fragment implements OnClickListener, WebServ
 		RelativeLayout rl_education = (RelativeLayout) v.findViewById(R.id.rl_education);
 		tv_education = (TextView) v.findViewById(R.id.tv_education);
 
-		RelativeLayout rl_poorCard = (RelativeLayout) v.findViewById(R.id.rl_poorCard);
-		tv_poorCard = (TextView) v.findViewById(R.id.tv_poorCard);
+		/*RelativeLayout rl_poorCard = (RelativeLayout) v.findViewById(R.id.rl_poorCard);
+		tv_poorCard = (TextView) v.findViewById(R.id.tv_poorCard);*/
 
 		RelativeLayout rl_economy = (RelativeLayout) v.findViewById(R.id.rl_economy);
 		tv_economy = (TextView) v.findViewById(R.id.tv_economy);
@@ -144,7 +144,7 @@ public class FragmentReport extends Fragment implements OnClickListener, WebServ
 		ll_women.setOnClickListener(this);
 		ll_man.setOnClickListener(this);
 		rl_education.setOnClickListener(this);
-		rl_poorCard.setOnClickListener(this);
+		/*rl_poorCard.setOnClickListener(this);*/
 		rl_economy.setOnClickListener(this);
 		rl_member.setOnClickListener(this);
 		rl_reason.setOnClickListener(this);
@@ -160,8 +160,7 @@ public class FragmentReport extends Fragment implements OnClickListener, WebServ
 		db = (new DatabaseHelper(getActivity())).getWritableDatabase();
 		pu = new PermissionsUtils(getActivity());
 		states = dictDataDao.queryDictValueByType(db, "poorState");
-		poorCards = dictDataDao.queryDictValueByType(db, "poorCard");
-
+		/*poorCards = dictDataDao.queryDictValueByType(db, "poorCard");*/
 	}
 
 	@Override
@@ -198,11 +197,11 @@ public class FragmentReport extends Fragment implements OnClickListener, WebServ
 			Intent intent = new Intent(getActivity(), AducationActivity.class);
 			startActivityForResult(intent, 300);
 			break;
-		case R.id.rl_poorCard:
+		/*case R.id.rl_poorCard:
 			String title1 = "请选择贫困户属性";
 			table = 2;
 			showWheelView(title1, (String[]) poorCards.toArray(new String[poorCards.size()]), table);
-			break;
+			break;*/
 		case R.id.rl_economy:
 			Intent intent1 = new Intent(getActivity(), EconomyActivity.class);
 			startActivity(intent1);
@@ -235,12 +234,18 @@ public class FragmentReport extends Fragment implements OnClickListener, WebServ
 					state = states.get(1);
 				tv_state.setText(state);
 				state = "";
-			} else if (table == 2) {
+			}else if (table == 2) {
+				if (TextUtils.isEmpty(state))
+					state = states.get(1);
+				tv_state.setText(state);
+				state = "";				
+			}
+			/*else if (table == 2) {
 				if (TextUtils.isEmpty(poorCard))
 					poorCard = poorCards.get(1);
 				tv_poorCard.setText(poorCard);
 				poorCard = "";
-			}
+			}*/
 			dialog.dismiss();
 			break;
 		case R.id.txt_cancel:
@@ -268,10 +273,12 @@ public class FragmentReport extends Fragment implements OnClickListener, WebServ
 			} else if (TextUtils.isEmpty(tv_education.getText().toString())) {
 				Tools.showNewToast(getActivity(), "请选择文化程度");
 				return;
-			} else if (TextUtils.isEmpty(tv_poorCard.getText().toString())) {
+			} 
+			/*else if (TextUtils.isEmpty(tv_poorCard.getText().toString())) {
 				Tools.showNewToast(getActivity(), "请选择贫困户属性");
 				return;
-			} else if (TextUtils.isEmpty(tv_economy.getText().toString())) {
+			} */
+			else if (TextUtils.isEmpty(tv_economy.getText().toString())) {
 				Tools.showNewToast(getActivity(), "请填写家庭经济信息");
 				return;
 			} else if (TextUtils.isEmpty(tv_member.getText().toString())) {
@@ -377,7 +384,8 @@ public class FragmentReport extends Fragment implements OnClickListener, WebServ
 				if (table == 1) {
 					state = item;
 				} else if (table == 2) {
-					poorCard = item;
+					state = item;
+					/*poorCard = item;*/
 				}
 			}
 		});
@@ -461,8 +469,8 @@ public class FragmentReport extends Fragment implements OnClickListener, WebServ
 				Constant.poor.setCountryId(sp.getString("orgId", ""));
 			}
 		}
-		String poorCard = dictDataDao.queryDictCodeByValue(db, tv_poorCard.getText().toString().trim() + "","poorCard");
-		Constant.poor.setPoorCard(poorCard);
+		/*String poorCard = dictDataDao.queryDictCodeByValue(db, tv_poorCard.getText().toString().trim() + "","poorCard");
+		Constant.poor.setPoorCard(poorCard);*/
 	}
 
 	@Override
@@ -482,7 +490,7 @@ public class FragmentReport extends Fragment implements OnClickListener, WebServ
 				et_identity.setText("");
 				et_tel.setText("");
 				tv_education.setText("");
-				tv_poorCard.setText("");
+				/*tv_poorCard.setText("");*/
 				tv_economy.setText("");
 				tv_member.setText("");
 				tv_reason.setText("");

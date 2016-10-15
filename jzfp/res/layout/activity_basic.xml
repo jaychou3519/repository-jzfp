@@ -59,7 +59,7 @@
         android:drawableLeft="@drawable/user"
         android:drawablePadding="@dimen/x10"
         android:gravity="center"
-        android:text="帮扶户所在地"
+        android:text="户主所在地"
         android:textColor="@color/gray"
         android:textSize="@dimen/x14" />
 

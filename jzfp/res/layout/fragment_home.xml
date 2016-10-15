@@ -45,7 +45,7 @@
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="@dimen/x5"
                 android:background="@null"
-                android:hint="可模糊搜索帮扶户主姓名等"
+                android:hint="可模糊搜索户主主姓名"
                 android:textSize="@dimen/fontx14" />
         </LinearLayout>
 
@@ -248,7 +248,7 @@
                 android:layout_marginBottom="@dimen/x10"
                 android:layout_marginTop="@dimen/x20"
                 android:layout_centerHorizontal="true"
-                android:src="@drawable/record_11" />
+                android:src="@drawable/record_12" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -257,45 +257,9 @@
                 android:layout_centerHorizontal="true"
                 android:text="基本信息"
                 android:textColor="@color/hei"
-                android:textSize="@dimen/fontx18" />
+                android:textSize="@dimen/fontx16" />
         </RelativeLayout>
         
-        <RelativeLayout
-            android:id="@+id/rl_policy"
-            android:layout_width="0dp"
-            android:layout_height="fill_parent"
-            android:layout_weight="1" >
-
-            <ImageView
-                android:id="@+id/imgView_bfzc"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/x10"
-                android:layout_marginTop="@dimen/x20"
-                android:layout_centerHorizontal="true"
-                android:src="@drawable/policy_11" />
-            
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/imgView_bfzc"
-                android:layout_centerHorizontal="true"
-                android:text="帮扶政策"
-                android:textColor="@color/hei"
-                android:textSize="@dimen/fontx18" />
-        </RelativeLayout>
-     </LinearLayout>
-    
-    <LinearLayout
-        android:id="@+id/linearCenter"
-        android:layout_width="fill_parent"
-        android:layout_height="@dimen/x110"
-        android:layout_below="@id/linearCenter1"
-        android:layout_marginTop="@dimen/x10"
-        android:background="@color/white"
-        android:baselineAligned="false"
-        android:orientation="horizontal" >
-
         <RelativeLayout
             android:id="@+id/rl_info"
             android:layout_width="0dp"
@@ -309,7 +273,7 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginBottom="@dimen/x10"
                 android:layout_marginTop="@dimen/x20"
-                android:src="@drawable/basis_11" />
+                android:src="@drawable/basis_112" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -318,7 +282,7 @@
                 android:layout_centerHorizontal="true"
                 android:text="帮扶措施"
                 android:textColor="@color/hei"
-                android:textSize="@dimen/fontx18" />
+                android:textSize="@dimen/fontx16" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -334,7 +298,7 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginBottom="@dimen/x10"
                 android:layout_marginTop="@dimen/x20"
-                android:src="@drawable/chengx_11" />
+                android:src="@drawable/chengx_12" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -343,7 +307,68 @@
                 android:layout_centerHorizontal="true"
                 android:text="帮扶成效"
                 android:textColor="@color/hei"
-                android:textSize="@dimen/fontx18" />
+                android:textSize="@dimen/fontx16" />
+        </RelativeLayout>
+    </LinearLayout>
+    
+    <LinearLayout
+        android:id="@+id/linearCenter"
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/x110"
+        android:layout_below="@id/linearCenter1"
+        android:layout_marginTop="@dimen/x10"
+        android:background="@color/white"
+        android:baselineAligned="false"
+        android:orientation="horizontal" >
+
+        <RelativeLayout
+            android:id="@+id/rl_sjcj"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1" >
+
+            <ImageView
+                android:id="@+id/imgView_sjcj"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/x10"
+                android:layout_marginTop="@dimen/x20"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/sjcj_12" />
+            
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/imgView_sjcj"
+                android:layout_centerHorizontal="true"
+                android:text="数据采集"
+                android:textColor="@color/hei"
+                android:textSize="@dimen/fontx16" />
+        </RelativeLayout>
+        
+        <RelativeLayout
+            android:id="@+id/rl_policy"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1" >
+
+            <ImageView
+                android:id="@+id/imgView_bfzc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/x10"
+                android:layout_marginTop="@dimen/x20"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/policy_12" />
+            
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/imgView_bfzc"
+                android:layout_centerHorizontal="true"
+                android:text="帮扶政策"
+                android:textColor="@color/hei"
+                android:textSize="@dimen/fontx16" />
         </RelativeLayout>
     </LinearLayout>
     
@@ -379,11 +404,28 @@
                 android:layout_centerHorizontal="true"
                 android:text="乡镇介绍"
                 android:textColor="@color/hei"
-                android:textSize="@dimen/fontx13" />
+                android:textSize="@dimen/fontx14" />
         </RelativeLayout>
     </LinearLayout>
     
-	    <com.demo.jzfp.view.FlowLayout
+	<FrameLayout
+        android:id="@+id/id_flowlayout1"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x160"
+        android:background="#FFFFFF"
+        android:layout_below="@+id/linearCenter2" >
+
+        <com.demo.jzfp.view.FlowLayout
+            android:id="@+id/id_flowlayout"
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
+            android:layout_marginLeft="@dimen/x20"
+            android:padding="10dp" >
+        </com.demo.jzfp.view.FlowLayout>
+    </FrameLayout>
+	
+	
+<!-- 	    <com.demo.jzfp.view.FlowLayout
 	        android:id="@+id/id_flowlayout"
 	        android:layout_width="fill_parent"
 	        android:layout_height="wrap_content"
@@ -391,7 +433,7 @@
 	        android:layout_marginLeft="@dimen/x20"
 	        android:background="#FFFFFF"
 	        android:padding="10dp" >
-	   </com.demo.jzfp.view.FlowLayout>
+	   </com.demo.jzfp.view.FlowLayout> -->
 	<!-- 
 	   <LinearLayout
 	        android:layout_width="fill_parent"
