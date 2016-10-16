@@ -384,9 +384,9 @@
 	<LinearLayout
         android:id="@+id/linearCenter2"
         android:layout_width="fill_parent"
-        android:layout_height="@dimen/x20"
+        android:layout_height="@dimen/x30"
         android:layout_below="@id/linearCenter"
-        android:layout_marginTop="@dimen/x10"
+        android:layout_marginTop="@dimen/x8"
         android:background="@color/white"
         android:baselineAligned="false"
         android:orientation="horizontal" >

@@ -11,6 +11,8 @@ public class TdataResult{
 	private String jbshbzYl;//医疗
 	private String jbshbzYwjy;//义务教育
 	private String jffhtptj;//是否符合脱贫条件
+	private String zcgjddz;//驻村工作队队长
+	private String cfzr;//村负责人
 	
 	public java.lang.String getResultId() {
 		return resultId;
@@ -54,6 +56,18 @@ public class TdataResult{
 	public void setJbshbzYwjy(String jbshbzYwjy) {
 		this.jbshbzYwjy = jbshbzYwjy;
 	}
+	public String getzcgjddz() {
+		return zcgjddz;
+	}
+	public void setzcgjddz(String zcgjddz) {
+		this.zcgjddz = zcgjddz;
+	}
+	public String getcfzr() {
+		return cfzr;
+	}
+	public void setcfzr(String cfzr) {
+		this.cfzr = cfzr;
+	}
 	public String getJffhtptj() {
 		return jffhtptj;
 	}
@@ -63,7 +77,7 @@ public class TdataResult{
 	@Override
 	public String toString() {
 		return "TdataResult [tpDate=" + tpDate + ", jtsrRjsr=" + jtsrRjsr + ", jtsrZsr=" + jtsrZsr + ", addressSafe="
-				+ addressSafe + ", jbshbzYl=" + jbshbzYl + ", jbshbzYwjy=" + jbshbzYwjy + ", jffhtptj=" + jffhtptj
+				+ addressSafe + ", jbshbzYl=" + jbshbzYl + ", jbshbzYwjy=" + jbshbzYwjy + ", zcgjddz=" + zcgjddz + ", cfzr=" + cfzr + ", jffhtptj=" + jffhtptj
 				+ "]";
 	}
 	

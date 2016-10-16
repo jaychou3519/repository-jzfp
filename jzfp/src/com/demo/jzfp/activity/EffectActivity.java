@@ -30,7 +30,7 @@ public class EffectActivity extends BaseActivity implements OnClickListener {
 	private String[] conditions;
 	private String condition;
 	private TextView tv_time, tv_condition;
-	private EditText et_income, et_allIncome, et_houseSafe, et_medical, et_education, et_organization, et_name, et_tel, et_helpMan;
+	private EditText et_income, et_allIncome, et_houseSafe, et_medical, et_education, et_organization, et_name, et_tel, et_helpMan, et_Captain, et_Village;
 	private EditText et_dwsjName,et_dwsjPhone, et_zzName, et_zzPhone, et_csjName, et_csjPhone, et_czrName, et_czrPhone;
 	private SQLiteDatabase db = null;
 	private DictDataInfoDao dictDataDao = new DictDataInfoDaoImpl();
@@ -55,7 +55,9 @@ public class EffectActivity extends BaseActivity implements OnClickListener {
 		et_houseSafe = (EditText) findViewById(R.id.et_houseSafe);
 		et_medical = (EditText) findViewById(R.id.et_medical);
 		et_education = (EditText) findViewById(R.id.et_education);
-
+		et_Captain = (EditText) findViewById(R.id.et_Captain);
+		et_Village = (EditText) findViewById(R.id.et_Village);
+		
 		RelativeLayout rl_condition = (RelativeLayout) findViewById(R.id.rl_condition);
 		tv_condition = (TextView) findViewById(R.id.tv_condition);
 
@@ -95,6 +97,10 @@ public class EffectActivity extends BaseActivity implements OnClickListener {
 				et_medical.setText(Constant.poor.getTdataResult().getJbshbzYl());
 			if (!TextUtils.isEmpty(Constant.poor.getTdataResult().getJbshbzYwjy()))
 				et_education.setText(Constant.poor.getTdataResult().getJbshbzYwjy());
+			if (!TextUtils.isEmpty(Constant.poor.getTdataResult().getzcgjddz()))
+				et_Captain.setText(Constant.poor.getTdataResult().getzcgjddz());
+			if (!TextUtils.isEmpty(Constant.poor.getTdataResult().getcfzr()))
+				et_Village.setText(Constant.poor.getTdataResult().getcfzr());
 			if (!TextUtils.isEmpty(Constant.poor.getTdataResult().getJffhtptj()))
 				tv_condition.setText(Constant.poor.getTdataResult().getJffhtptj());
 		}
