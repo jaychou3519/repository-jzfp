@@ -134,12 +134,12 @@ public class MemberAdapter extends BaseAdapter {
 			holder.tv_relation.setText("");
 		}
 
-		if ("女".equals(member.getSex())) {
+		if ("2".equals(member.getSex())) {
 			holder.iv_sex_women.setImageResource(R.drawable.woman_yes);
 			holder.tv_sex_women.setTextColor(Color.rgb(155, 89, 182));
 			holder.iv_sex_man.setImageResource(R.drawable.man_no);
 			holder.tv_sex_man.setTextColor(Color.rgb(220, 220, 200));
-		} else if ("男".equals(member.getSex())) {
+		} else if ("1".equals(member.getSex())) {
 			holder.iv_sex_women.setImageResource(R.drawable.woman_no);
 			holder.tv_sex_women.setTextColor(Color.rgb(220, 220, 220));
 			holder.iv_sex_man.setImageResource(R.drawable.man_yes);
