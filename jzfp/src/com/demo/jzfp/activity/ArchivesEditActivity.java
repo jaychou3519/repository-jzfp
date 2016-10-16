@@ -268,9 +268,11 @@ public class ArchivesEditActivity extends BaseActivity implements WebServiceCall
 		}
 		
 		for (int i = 0; i < countryMan.getTdataFamilys().size(); i++) {
-			if(countryMan.getTdataFamilys().get(i).getSex().equals("女")){
+			String sex = countryMan.getTdataFamilys().get(i).getSex();
+			if(null != sex && sex.equals("女")){
 				countryMan.getTdataFamilys().get(i).setSex("0");
-			}else if(countryMan.getTdataFamilys().get(i).getSex().equals("男")){
+			} 
+			if(null != sex && sex.equals("男")){
 				countryMan.getTdataFamilys().get(i).setSex("1");
 			}
 		}
