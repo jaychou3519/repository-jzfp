@@ -377,6 +377,7 @@
             android:background="@color/hei" />
 
         <TextView
+            android:id="@+id/jtcy"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/x10"
@@ -384,7 +385,6 @@
             android:drawableLeft="@drawable/member"
             android:drawablePadding="@dimen/x10"
             android:gravity="center"
-            android:text="家庭成员"
             android:textColor="@color/gray"
             android:textSize="@dimen/x14" />
 

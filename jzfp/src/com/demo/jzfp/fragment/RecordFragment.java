@@ -30,7 +30,7 @@ public class RecordFragment extends Fragment{
 	private DictDataInfoDao dictDataDao = new DictDataInfoDaoImpl();
 	private TextView tv_name,tv_state,tv_gender,tv_idcard,tv_age,tv_phone,tv_educational
 					,tv_home_flat,tv_home_area,tv_plough_area,tv_mountains_area
-					,tv_year_money,tv_reason,tv_explain;
+					,tv_year_money,tv_reason,tv_explain,jtcy;
 	private ImageView iv_photo;
 	private TdataCountryman countryman;
 	@Override
@@ -64,6 +64,7 @@ public class RecordFragment extends Fragment{
 		tv_reason = 	(TextView) view.findViewById(R.id.tv_reason);
 		tv_explain = 	(TextView) view.findViewById(R.id.tv_explain);
 		iv_photo = 	(ImageView) view.findViewById(R.id.iv_photo);
+		jtcy = (TextView) view.findViewById(R.id.jtcy);
 		sv_scroll.smoothScrollTo(0, 20);
 		sv_scroll.setFocusable(true);
 	}
@@ -86,6 +87,7 @@ public class RecordFragment extends Fragment{
 		tv_year_money.setText(Tools.parseEmpty(countryman.getRjsrqk()));
 		tv_reason.setText(Tools.parseEmpty(countryman.getPoorReason()));
 		tv_explain.setText(Tools.parseEmpty(countryman.getRemark()));
+		jtcy.setText("家庭成员(" + countryman.getTdataFamilys().size() + ")");
 		
 		if(!TextUtils.isEmpty(countryman.getPkhimg()))
 			ImageLoader.getInstance().displayImage(countryman.getPkhimg(), iv_photo);
