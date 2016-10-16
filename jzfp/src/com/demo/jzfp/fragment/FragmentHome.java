@@ -51,6 +51,7 @@ import com.demo.jzfp.utils.Asynce_NetWork.AsynceHttpInterface;
 import com.demo.jzfp.utils.Constant;
 import com.demo.jzfp.utils.MyApplication;
 import com.demo.jzfp.utils.RequestWebService;
+import com.demo.jzfp.utils.StringUtil;
 import com.demo.jzfp.utils.RequestWebService.WebServiceCallback;
 import com.demo.jzfp.utils.Tools;
 import com.demo.jzfp.view.FlowLayout;
@@ -401,7 +402,9 @@ public class FragmentHome extends BaseFragment implements AsynceHttpInterface,
 		db = (new DatabaseHelper(getMainActivity())).getWritableDatabase();
 		maps = areaDataDao.queryAreaData(db);
 		for (int i = 0; i < maps.size(); i++) {
-			if (!maps.get(i).get("name").toString().contains("村")) {
+			String name = StringUtil.toString(maps.get(i).get("name"));
+			String endChar = name.substring(name.length()-1, name.length());
+			if (endChar.equals("乡") || endChar.equals("镇")) {
 				LinkedHashMap<String, String> linkedHashMap = new LinkedHashMap<String, String>();
 				linkedHashMap.put("arg0", maps.get(i).get("id") + "");
 				RequestWebService.send("selectorgRemark", linkedHashMap, this,102);

@@ -20,6 +20,7 @@ import com.demo.jzfp.database.DatabaseHelper;
 import com.demo.jzfp.entity.Villages;
 import com.demo.jzfp.utils.MyApplication;
 import com.demo.jzfp.utils.RequestWebService;
+import com.demo.jzfp.utils.StringUtil;
 import com.demo.jzfp.utils.RequestWebService.WebServiceCallback;
 import com.demo.jzfp.utils.Tools;
 import com.lidroid.xutils.ViewUtils;
@@ -58,7 +59,9 @@ public class VillagesActivity2 extends BaseActivity implements WebServiceCallbac
 		maps = areaDataDao.queryAreaData(db);
 		number = 0;
 		for (int i = 0; i < maps.size(); i++) {
-			if(!maps.get(i).get("name").toString().contains("村")){
+			String name = StringUtil.toString(maps.get(i).get("name"));
+			String endChar = name.substring(name.length()-1, name.length());
+			if (endChar.equals("乡") || endChar.equals("镇")) {
 				LinkedHashMap<String, String> linkedHashMap = new LinkedHashMap<String, String>();
 				linkedHashMap.put("arg0", maps.get(i).get("id")+"");
 				RequestWebService.send("selectorgRemark", linkedHashMap, this, 101);
