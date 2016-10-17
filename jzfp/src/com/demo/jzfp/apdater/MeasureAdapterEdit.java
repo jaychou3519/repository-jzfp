@@ -46,6 +46,7 @@ public class MeasureAdapterEdit extends BaseAdapter{
 			convertView = View.inflate(context, R.layout.measure_item_edit, null);
 			holder.tv_measure = (TextView) convertView.findViewById(R.id.tv_measure);
 			holder.ed_monery = (EditText) convertView.findViewById(R.id.ed_monery);
+			convertView.setTag(holder);
 		}else{
 			holder = (ViewHolder) convertView.getTag();
 		}
