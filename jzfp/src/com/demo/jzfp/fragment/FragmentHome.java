@@ -234,7 +234,7 @@ public class FragmentHome extends BaseFragment implements AsynceHttpInterface,
 
 	}
 
-	@OnClick({ R.id.rl_archives, R.id.rl_policy, R.id.rl_info,R.id.rl_chengx })
+	@OnClick({ R.id.rl_archives, R.id.rl_policy, R.id.rl_info,R.id.rl_chengx, R.id.rl_sjcj })
 	public void mClick(View view) {
 		switch (view.getId()) {
 		case R.id.rl_archives:
@@ -249,6 +249,10 @@ public class FragmentHome extends BaseFragment implements AsynceHttpInterface,
 		case R.id.rl_chengx:
 //			Tools.setOpenActivity(getActivity(), BasicActivity.class);
 			Tools.setOpenActivity(getActivity(), ArchivesActivity2.class);
+			break;
+		case R.id.rl_sjcj:
+			HomePage hp = (HomePage) getActivity();
+			hp.toFragment();
 			break;
 		}
 	}
@@ -410,5 +414,14 @@ public class FragmentHome extends BaseFragment implements AsynceHttpInterface,
 				RequestWebService.send("selectorgRemark", linkedHashMap, this,102);
 			}
 		}
+	}
+	
+	/**
+	 * 与MainActivity通信
+	 * @author Administrator
+	 *
+	 */
+	public interface HomePage{
+		public void toFragment();
 	}
 }

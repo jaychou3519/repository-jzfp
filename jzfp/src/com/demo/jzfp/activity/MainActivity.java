@@ -14,6 +14,7 @@ import android.widget.LinearLayout;
 import com.demo.jzfp.R;
 import com.demo.jzfp.database.DatabaseHelper;
 import com.demo.jzfp.fragment.FragmentHome;
+import com.demo.jzfp.fragment.FragmentHome.HomePage;
 import com.demo.jzfp.fragment.FragmentOptions;
 import com.demo.jzfp.fragment.FragmentReport;
 import com.demo.jzfp.service.IAppService;
@@ -21,7 +22,7 @@ import com.demo.jzfp.utils.MyApplication;
 import com.demo.jzfp.utils.Tools;
 import com.google.gson.JsonObject;
 
-public class MainActivity extends BaseActivity implements OnClickListener {
+public class MainActivity extends BaseActivity implements OnClickListener, HomePage {
 	private long time;
 	private List<LinearLayout> lls;
 	private FragmentTransaction transaction;
@@ -160,4 +161,11 @@ public class MainActivity extends BaseActivity implements OnClickListener {
 			startService(new Intent(this, IAppService.class));
 		}
 	}
+
+	@Override
+	public void toFragment() {
+		setTabSelection(1);
+	}
+	
+	
 }
