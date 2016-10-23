@@ -21,7 +21,7 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_marginLeft="@dimen/x10"
-            android:text="大学"
+            android:text="A"
             android:textColor="#000"
             android:textSize="@dimen/x15" />
 
@@ -52,7 +52,7 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_marginLeft="@dimen/x10"
-            android:text="高中"
+            android:text="B"
             android:textColor="#000"
             android:textSize="@dimen/x15" />
 
@@ -83,7 +83,7 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_marginLeft="@dimen/x10"
-            android:text="初中"
+            android:text="C"
             android:textColor="#000"
             android:textSize="@dimen/x15" />
 
@@ -114,7 +114,7 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_marginLeft="@dimen/x10"
-            android:text="小学"
+            android:text="D"
             android:textColor="#000"
             android:textSize="@dimen/x15" />
 
@@ -145,7 +145,7 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_marginLeft="@dimen/x10"
-            android:text="文盲"
+            android:text="无房"
             android:textColor="#000"
             android:textSize="@dimen/x15" />
 

@@ -88,7 +88,7 @@ public class FragmentHome extends BaseFragment implements AsynceHttpInterface,
 			Bundle savedInstanceState) {
 		View v = inflater.inflate(R.layout.fragment_home, null);
 		this.inf = inflater;
-		mFlowLayout = (FlowLayout) v.findViewById(R.id.id_flowlayout);
+		/*mFlowLayout = (FlowLayout) v.findViewById(R.id.id_flowlayout);*/
 		initView(v, inflater);
 		initData();
 
@@ -117,11 +117,16 @@ public class FragmentHome extends BaseFragment implements AsynceHttpInterface,
 		ImageView view2 = new ImageView(getActivity());
 		view2.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT,
 				LayoutParams.WRAP_CONTENT));
-		view1.setBackgroundResource(R.drawable.lunbo1);
-		view2.setBackgroundResource(R.drawable.lunbo2);
+		ImageView view3 = new ImageView(getActivity());
+		view1.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT,
+				LayoutParams.WRAP_CONTENT));
+		view1.setBackgroundResource(R.drawable.lunbo11);
+		view2.setBackgroundResource(R.drawable.lunbo21);
+		view3.setBackgroundResource(R.drawable.lunbo31);
 		ArrayList<ImageView> views = new ArrayList<ImageView>();
 		views.add(view1);
 		views.add(view2);
+		views.add(view3);
 		viewPager.setAdapter(new ImageAdapter(views, getActivity()));
 		viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
 			// 配合Adapter的currentItem字段进行设置。
@@ -234,7 +239,8 @@ public class FragmentHome extends BaseFragment implements AsynceHttpInterface,
 
 	}
 
-	@OnClick({ R.id.rl_archives, R.id.rl_policy, R.id.rl_info,R.id.rl_chengx, R.id.rl_sjcj })
+	/*@OnClick({ R.id.rl_archives, R.id.rl_policy, R.id.rl_info,R.id.rl_chengx, R.id.rl_sjcj })*/
+	@OnClick({ R.id.rl_archives, R.id.rl_policy, R.id.rl_info,R.id.rl_chengx})
 	public void mClick(View view) {
 		switch (view.getId()) {
 		case R.id.rl_archives:
@@ -250,10 +256,10 @@ public class FragmentHome extends BaseFragment implements AsynceHttpInterface,
 //			Tools.setOpenActivity(getActivity(), BasicActivity.class);
 			Tools.setOpenActivity(getActivity(), ArchivesActivity2.class);
 			break;
-		case R.id.rl_sjcj:
+		/*case R.id.rl_sjcj:
 			HomePage hp = (HomePage) getActivity();
 			hp.toFragment();
-			break;
+			break;*/
 		}
 	}
 

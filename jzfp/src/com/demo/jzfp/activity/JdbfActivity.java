@@ -25,7 +25,7 @@ import com.demo.jzfp.utils.MyApplication;
 import com.demo.jzfp.view.DoubleDatePickerDialog;
 import com.demo.jzfp.view.WheelView;
 
-public class EffectActivity extends BaseActivity implements OnClickListener {
+public class JdbfActivity extends BaseActivity implements OnClickListener {
 	private AlertDialog dialog;
 	private String[] conditions;
 	private String condition;
@@ -37,9 +37,9 @@ public class EffectActivity extends BaseActivity implements OnClickListener {
 
 	@Override
 	protected void setView() {
-		setContentView(R.layout.activity_effect);
-		MyApplication.addActivity(EffectActivity.this);
-		setTitleText("帮扶成效");
+		setContentView(R.layout.activity_jdbf);
+		MyApplication.addActivity(JdbfActivity.this);
+		setTitleText("结对帮扶");
 		setOnback(this);
 	}
 

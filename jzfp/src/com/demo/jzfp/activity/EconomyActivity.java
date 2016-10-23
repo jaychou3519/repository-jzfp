@@ -23,7 +23,7 @@ public class EconomyActivity extends BaseActivity implements OnClickListener {
 	private String construction;
 	private TextView tv_construction;
 	private String[] constructions;
-	private EditText et_area, et_land, et_hill, et_dominate;
+	private EditText et_area, et_land, et_hill, et_houseSafe;         /* , et_dominate*/
 
 	@Override
 	protected void setView() {
@@ -41,7 +41,8 @@ public class EconomyActivity extends BaseActivity implements OnClickListener {
 		et_area = (EditText) findViewById(R.id.et_area);
 		et_land = (EditText) findViewById(R.id.et_land);
 		et_hill = (EditText) findViewById(R.id.et_hill);
-		et_dominate = (EditText) findViewById(R.id.et_dominate);
+		et_houseSafe = (EditText) findViewById(R.id.et_houseSafe);
+		/*et_dominate = (EditText) findViewById(R.id.et_dominate);*/
 
 		tv_save.setOnClickListener(this);
 		rl_construction.setOnClickListener(this);
@@ -58,8 +59,10 @@ public class EconomyActivity extends BaseActivity implements OnClickListener {
 			et_land.setText(Constant.poor.getGdArea());
 		if (!TextUtils.isEmpty(Constant.poor.getSlArea()))
 			et_hill.setText(Constant.poor.getSlArea());
-		if (!TextUtils.isEmpty(Constant.poor.getRjsrqk()))
-			et_dominate.setText(Constant.poor.getRjsrqk());
+		if (!TextUtils.isEmpty(Constant.poor.getTdataResult().getAddressSafe()))
+			et_houseSafe.setText(Constant.poor.getTdataResult().getAddressSafe());
+		/*if (!TextUtils.isEmpty(Constant.poor.getRjsrqk()))
+			et_dominate.setText(Constant.poor.getRjsrqk());*/
 
 	}
 
@@ -79,15 +82,19 @@ public class EconomyActivity extends BaseActivity implements OnClickListener {
 			} else if (TextUtils.isEmpty(et_hill.getText().toString())) {
 				Tools.showNewToast(this, "请填写山林面积");
 				return;
-			} else if (TextUtils.isEmpty(et_dominate.getText().toString())) {
+			}else if (TextUtils.isEmpty(et_houseSafe.getText().toString())) {
+				Tools.showNewToast(this, "请填写房屋安全");
+				return;
+			}  
+			/*else if (TextUtils.isEmpty(et_dominate.getText().toString())) {
 				Tools.showNewToast(this, "请填写可支配收入");
 				return;
-			}
+			}*/
 			Constant.poor.setZfjg(tv_construction.getText().toString().trim()+"");
 			Constant.poor.setZzArea(et_area.getText().toString().trim()+"");
 			Constant.poor.setGdArea(et_land.getText().toString().trim()+"");
 			Constant.poor.setSlArea(et_hill.getText().toString().trim()+"");
-			Constant.poor.setRjsrqk(et_dominate.getText().toString().trim()+"");
+			/*Constant.poor.setRjsrqk(et_dominate.getText().toString().trim()+"");*/
 			finish();
 			break;
 		case R.id.rl_construction:

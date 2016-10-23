@@ -272,7 +272,7 @@
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="@dimen/x5"
                     android:layout_toRightOf="@id/tv_xin_state"
-                    android:text="贫困户状态"
+                    android:text="脱贫状态"
                     android:textColor="#000"
                     android:textSize="@dimen/x15" />
 
@@ -292,7 +292,7 @@
                     android:layout_centerVertical="true"
                     android:layout_toLeftOf="@id/iv_into_state"
                     android:singleLine="true"
-                    android:hint="请选择户主贫困状态"
+                    android:hint="请选择脱贫状态"
                     android:textColorHint="#d6d6d6"
                     android:textColor="#000"
                     android:textSize="@dimen/x15" />
@@ -613,7 +613,7 @@
                     android:textSize="@dimen/x15" />
             </RelativeLayout>
 
-            <View
+            <!-- <View
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/x1"
                 android:background="#c9c9c9" />
@@ -665,9 +665,232 @@
                     android:textColorHint="#d6d6d6"
                     android:textColor="#000"
                     android:textSize="@dimen/x15" />
-            </RelativeLayout>
-
+            </RelativeLayout> -->
+            
             <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/x1"
+                android:background="#c9c9c9" />
+
+            <RelativeLayout
+                android:id="@+id/rl_security"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/y35"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:id="@+id/tv_xin_security"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/x10"
+                    android:text="*"
+                    android:textColor="#f00"
+                    android:textSize="@dimen/x20" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/x5"
+                    android:layout_toRightOf="@id/tv_xin_security"
+                    android:text="住房结构"
+                    android:textColor="#000"
+                    android:textSize="@dimen/x15" />
+
+                <ImageView
+                    android:id="@+id/iv_into_security"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_margin="@dimen/x10"
+                    android:src="@drawable/into" />
+
+                <TextView
+                    android:id="@+id/tv_security"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toLeftOf="@id/iv_into_security"
+                    android:singleLine="true"
+                    android:hint="请选择住房结构"
+                    android:textColorHint="#d6d6d6"
+                    android:textColor="#000"
+                    android:textSize="@dimen/x15" />
+            </RelativeLayout>
+            
+		   <View
+		        android:layout_width="match_parent"
+		        android:layout_height="@dimen/x1"
+		        android:background="#c9c9c9" />
+
+			    <RelativeLayout
+			        android:layout_width="match_parent"
+			        android:layout_height="@dimen/y30"
+			        android:orientation="horizontal" >
+			                
+		        <TextView
+                    android:id="@+id/tv_name_xin1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/x10"
+                    android:text="*"
+                    android:textColor="#f00"
+                    android:textSize="@dimen/x20" />
+        
+		        <TextView
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:layout_centerVertical="true"
+		            android:layout_marginLeft="@dimen/x5"
+		            android:layout_toRightOf="@id/tv_name_xin1"
+		            android:text="耕地面积(亩)"
+		            android:textColor="#000"
+		            android:textSize="@dimen/x15" />
+
+		        <ImageView
+		            android:id="@+id/iv_into_land"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:layout_alignParentRight="true"
+		            android:layout_centerVertical="true"
+		            android:layout_margin="@dimen/x10"
+		            android:src="@drawable/into"
+		            android:visibility="invisible" />
+
+		        <EditText
+		            android:id="@+id/et_land"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:layout_centerVertical="true"
+		            android:layout_toLeftOf="@id/iv_into_land"
+		            android:background="@null"
+		            android:numeric="decimal"
+		            android:hint="请输入耕地面积"
+		            android:maxLength="10"
+		            android:singleLine="true"
+		            android:textColor="#000"
+		            android:textColorHint="#d6d6d6"
+		            android:textSize="@dimen/x15" />
+		    </RelativeLayout>
+
+		    <View
+		        android:layout_width="match_parent"
+		        android:layout_height="@dimen/x1"
+		        android:background="#c9c9c9" />
+		
+		    <RelativeLayout
+		        android:layout_width="match_parent"
+		        android:layout_height="@dimen/y30"
+		        android:orientation="horizontal" >
+        
+ 		       <TextView
+                    android:id="@+id/tv_name_xin2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/x10"
+                    android:text="*"
+                    android:textColor="#f00"
+                    android:textSize="@dimen/x20" />
+
+		        <TextView
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:layout_centerVertical="true"
+		            android:layout_marginLeft="@dimen/x5"
+		            android:layout_toRightOf="@id/tv_name_xin2"
+		            android:text="林地面积(亩)"
+		            android:textColor="#000"
+		            android:textSize="@dimen/x15" />
+
+		        <ImageView
+		            android:id="@+id/iv_into_hill"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:layout_alignParentRight="true"
+		            android:layout_centerVertical="true"
+		            android:layout_margin="@dimen/x10"
+		            android:src="@drawable/into"
+		            android:visibility="invisible" />
+		
+		        <EditText
+		            android:id="@+id/et_hill"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:layout_centerVertical="true"
+		            android:layout_toLeftOf="@id/iv_into_hill"
+		            android:background="@null"
+		            android:numeric="decimal"
+		            android:hint="请输入户主林地面积"
+		            android:maxLength="10"
+		            android:singleLine="true"
+		            android:textColor="#000"
+		            android:textColorHint="#d6d6d6"
+		            android:textSize="@dimen/x15" />
+		    </RelativeLayout>
+    
+		    <View
+		        android:layout_width="match_parent"
+		        android:layout_height="@dimen/x1"
+		        android:background="#c9c9c9" />
+
+		    <RelativeLayout
+		        android:layout_width="match_parent"
+		        android:layout_height="@dimen/y30"
+		        android:orientation="horizontal" >
+		        
+		        <TextView
+                    android:id="@+id/tv_name_xin3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/x10"
+                    android:text="*"
+                    android:textColor="#f00"
+                    android:textSize="@dimen/x20" />
+
+		        <TextView
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:layout_centerVertical="true"
+		            android:layout_marginLeft="@dimen/x5"
+		            android:layout_toRightOf="@id/tv_name_xin3"
+		            android:text="住房面积(平米)"
+		            android:textColor="#000"
+		            android:textSize="@dimen/x15" />
+		
+		        <ImageView
+		            android:id="@+id/iv_into_area"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:layout_alignParentRight="true"
+		            android:layout_centerVertical="true"
+		            android:layout_margin="@dimen/x10"
+		            android:src="@drawable/into"
+		            android:visibility="invisible" />
+		
+		        <EditText
+		            android:id="@+id/et_area"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:layout_centerVertical="true"
+		            android:layout_toLeftOf="@id/iv_into_area"
+		            android:background="@null"
+		            android:numeric="decimal"
+		            android:hint="请输入住房面积"
+		            android:maxLength="10"
+		            android:singleLine="true"
+		            android:textColor="#000"
+		            android:textColorHint="#d6d6d6"
+		            android:textSize="@dimen/x15" />
+		    </RelativeLayout>
+    
+		    
+
+            <!-- <View
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/x1"
                 android:background="#c9c9c9" />
@@ -712,62 +935,11 @@
                     android:layout_centerVertical="true"
                     android:layout_toLeftOf="@id/iv_into_economy"
                     android:singleLine="true"
-                    android:hint="请填写户主家庭经济"
+                    android:hint="请填写家庭经济情况"
                     android:textColorHint="#d6d6d6"
                     android:textColor="#000"
                     android:textSize="@dimen/x15" />
-            </RelativeLayout>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/x1"
-                android:background="#c9c9c9" />
-
-            <RelativeLayout
-                android:id="@+id/rl_member"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/y35"
-                android:orientation="horizontal" >
-
-                <ImageView
-                    android:id="@+id/iv_member"
-                    android:layout_width="@dimen/x18"
-                    android:layout_height="@dimen/x18"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="@dimen/x5"
-                    android:src="@drawable/member" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="@dimen/x2"
-                    android:layout_toRightOf="@id/iv_member"
-                    android:text="家庭成员"
-                    android:textColor="#000"
-                    android:textSize="@dimen/x15" />
-
-                <ImageView
-                    android:id="@+id/iv_into_member"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:layout_margin="@dimen/x10"
-                    android:src="@drawable/into" />
-
-                <TextView
-                    android:id="@+id/tv_member"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_toLeftOf="@id/iv_into_member"
-                    android:singleLine="true"
-                    android:hint="请填写户主家庭成员"
-                    android:textColorHint="#d6d6d6"
-                    android:textColor="#000"
-                    android:textSize="@dimen/x15" />
-            </RelativeLayout>
+            </RelativeLayout> -->
 
             <View
                 android:layout_width="match_parent"
@@ -814,7 +986,109 @@
                     android:layout_centerVertical="true"
                     android:layout_toLeftOf="@id/iv_into_reason"
                     android:singleLine="true"
-                    android:hint="请填写户主致贫原因"
+                    android:hint="请填写致贫原因"
+                    android:textColorHint="#d6d6d6"
+                    android:textColor="#000"
+                    android:textSize="@dimen/x15" />
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/x1"
+                android:background="#c9c9c9" />
+            
+            <RelativeLayout
+                android:id="@+id/rl_member"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/y35"
+                android:orientation="horizontal" >
+
+                <ImageView
+                    android:id="@+id/iv_member"
+                    android:layout_width="@dimen/x18"
+                    android:layout_height="@dimen/x18"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/x5"
+                    android:src="@drawable/member" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/x2"
+                    android:layout_toRightOf="@id/iv_member"
+                    android:text="家庭成员"
+                    android:textColor="#000"
+                    android:textSize="@dimen/x15" />
+
+                <ImageView
+                    android:id="@+id/iv_into_member"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_margin="@dimen/x10"
+                    android:src="@drawable/into" />
+
+                <TextView
+                    android:id="@+id/tv_member"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toLeftOf="@id/iv_into_member"
+                    android:singleLine="true"
+                    android:hint="请填写户主家庭成员"
+                    android:textColorHint="#d6d6d6"
+                    android:textColor="#000"
+                    android:textSize="@dimen/x15" />
+            </RelativeLayout>
+            
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/x1"
+                android:background="#c9c9c9" />
+
+            <RelativeLayout
+                android:id="@+id/rl_jdbf"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/y35"
+                android:orientation="horizontal" >
+
+                <ImageView
+                    android:id="@+id/iv_jdbf"
+                    android:layout_width="@dimen/x18"
+                    android:layout_height="@dimen/x18"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/x5"
+                    android:src="@drawable/effect1" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/x2"
+                    android:layout_toRightOf="@id/iv_jdbf"
+                    android:text="结对帮扶"
+                    android:textColor="#000"
+                    android:textSize="@dimen/x15" />
+
+                <ImageView
+                    android:id="@+id/iv_into_jdbf"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_margin="@dimen/x10"
+                    android:src="@drawable/into" />
+
+                <TextView
+                    android:id="@+id/tv_jdbf"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toLeftOf="@id/iv_into_jdbf"
+                    android:singleLine="true"
+                    android:hint="请填写结对帮扶"
                     android:textColorHint="#d6d6d6"
                     android:textColor="#000"
                     android:textSize="@dimen/x15" />
@@ -921,6 +1195,7 @@
                     android:textColor="#000"
                     android:textSize="@dimen/x15" />
             </RelativeLayout>
+            
              <View
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/x1"

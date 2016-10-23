@@ -60,7 +60,8 @@ public class RecordAdapterEdit extends BaseAdapter{
 			holder.ed_name = (EditText) convertView.findViewById(R.id.ed_name);
 			holder.tv_relation = (TextView) convertView.findViewById(R.id.tv_relation);
 			holder.tv_gender = (TextView) convertView.findViewById(R.id.tv_gender);
-			holder.tv_YearM = (TextView) convertView.findViewById(R.id.tv_YearM);
+			holder.card = (EditText) convertView.findViewById(R.id.card);
+			/*holder.tv_YearM = (TextView) convertView.findViewById(R.id.tv_YearM);*/
 			holder.tv_health = (TextView) convertView.findViewById(R.id.tv_health);
 			holder.ed_other = (EditText) convertView.findViewById(R.id.ed_other);
 			holder.vw_lines = convertView.findViewById(R.id.vw_lines);
@@ -71,7 +72,8 @@ public class RecordAdapterEdit extends BaseAdapter{
 		holder.ed_name.setText(Tools.parseEmpty(families.get(position).getFamilyName()));
 		holder.tv_relation.setText(Tools.parseEmpty(families.get(position).getYhzgx()+""));
 		holder.tv_gender.setText(Tools.parseEmpty(families.get(position).getSex()+""));
-		holder.tv_YearM.setText(Tools.parseEmpty(families.get(position).getBirthday()+""));
+		holder.card.setText(Tools.parseEmpty(families.get(position).getCard()+""));
+		/*holder.tv_YearM.setText(Tools.parseEmpty(families.get(position).getBirthday()+""));*/
 		holder.tv_health.setText(Tools.parseEmpty(families.get(position).getJkzk()+""));
 		holder.ed_other.setText(Tools.parseEmpty(families.get(position).getWorkDesc()+""));
 		if(getCount()==(position+1)){
@@ -93,7 +95,7 @@ public class RecordAdapterEdit extends BaseAdapter{
 				showWheelView(holder, "请选择与户主的关系", relations, 1, families.get(position));
 			}
 		});
-		holder.tv_YearM.setOnClickListener(new OnClickListener() {
+		/*holder.tv_YearM.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				Calendar c = Calendar.getInstance();
@@ -107,7 +109,7 @@ public class RecordAdapterEdit extends BaseAdapter{
 					}
 				}, c.get(Calendar.YEAR), c.get(Calendar.MONTH), c.get(Calendar.DATE), false).show();
 			}
-		});
+		});*/
 		holder.tv_gender.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -225,7 +227,8 @@ public class RecordAdapterEdit extends BaseAdapter{
 		TextView ed_name;
 		TextView tv_relation;
 		TextView tv_gender;
-		TextView tv_YearM;
+		TextView card;
+		/*TextView tv_YearM;*/
 		TextView tv_health;
 		EditText ed_other;
 		View vw_lines;

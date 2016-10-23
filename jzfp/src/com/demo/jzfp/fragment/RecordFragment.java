@@ -30,7 +30,7 @@ public class RecordFragment extends Fragment{
 	private DictDataInfoDao dictDataDao = new DictDataInfoDaoImpl();
 	private TextView tv_name,tv_state,tv_gender,tv_idcard,tv_age,tv_phone,tv_educational
 					,tv_home_flat,tv_home_area,tv_plough_area,tv_mountains_area
-					,tv_year_money,tv_reason,tv_explain,jtcy;
+					,tv_reason,tv_explain,jtcy;  /*tv_year_money,*/
 	private ImageView iv_photo;
 	private TdataCountryman countryman;
 	@Override
@@ -60,7 +60,7 @@ public class RecordFragment extends Fragment{
 		tv_home_area = 	(TextView) view.findViewById(R.id.tv_home_area);
 		tv_plough_area = 	(TextView) view.findViewById(R.id.tv_plough_area);
 		tv_mountains_area = 	(TextView) view.findViewById(R.id.tv_mountains_area);
-		tv_year_money = 	(TextView) view.findViewById(R.id.tv_year_money);
+		/*tv_year_money = 	(TextView) view.findViewById(R.id.tv_year_money);*/
 		tv_reason = 	(TextView) view.findViewById(R.id.tv_reason);
 		tv_explain = 	(TextView) view.findViewById(R.id.tv_explain);
 		iv_photo = 	(ImageView) view.findViewById(R.id.iv_photo);
@@ -84,7 +84,7 @@ public class RecordFragment extends Fragment{
 		tv_home_area.setText(Tools.parseEmpty(countryman.getZzArea()));
 		tv_plough_area.setText(Tools.parseEmpty(countryman.getGdArea()));
 		tv_mountains_area.setText(Tools.parseEmpty(countryman.getSlArea()));
-		tv_year_money.setText(Tools.parseEmpty(countryman.getRjsrqk()));
+		/*tv_year_money.setText(Tools.parseEmpty(countryman.getRjsrqk()));*/
 		tv_reason.setText(Tools.parseEmpty(countryman.getPoorReason()));
 		tv_explain.setText(Tools.parseEmpty(countryman.getRemark()));
 		jtcy.setText("家庭成员(" + countryman.getTdataFamilys().size() + ")");

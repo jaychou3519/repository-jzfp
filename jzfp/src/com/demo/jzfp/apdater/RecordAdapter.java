@@ -45,7 +45,8 @@ public class RecordAdapter extends BaseAdapter{
 			holder.tv_name = (TextView) convertView.findViewById(R.id.tv_name);
 			holder.tv_relation = (TextView) convertView.findViewById(R.id.tv_relation);
 			holder.tv_gender = (TextView) convertView.findViewById(R.id.tv_gender);
-			holder.tv_YearM = (TextView) convertView.findViewById(R.id.tv_YearM);
+			holder.card = (TextView) convertView.findViewById(R.id.card);
+			/*holder.tv_YearM = (TextView) convertView.findViewById(R.id.tv_YearM);*/
 			holder.tv_health = (TextView) convertView.findViewById(R.id.tv_health);
 			holder.tv_other = (TextView) convertView.findViewById(R.id.tv_other);
 			holder.vw_lines = convertView.findViewById(R.id.vw_lines);
@@ -56,7 +57,8 @@ public class RecordAdapter extends BaseAdapter{
 		holder.tv_name.setText(Tools.parseEmpty(families.get(position).getFamilyName()));
 		holder.tv_relation.setText(Tools.parseEmpty(families.get(position).getYhzgx()+""));
 		holder.tv_gender.setText(Tools.parseEmpty(families.get(position).getSex()+""));
-		holder.tv_YearM.setText(Tools.parseEmpty(families.get(position).getBirthday()+""));
+		holder.card.setText(Tools.parseEmpty(families.get(position).getCard()+""));
+		/*holder.tv_YearM.setText(Tools.parseEmpty(families.get(position).getBirthday()+""));*/
 		holder.tv_health.setText(Tools.parseEmpty(families.get(position).getJkzk()+""));
 		holder.tv_other.setText(Tools.parseEmpty(families.get(position).getWorkDesc()+""));
 		if(getCount()==(position+1)){
@@ -70,7 +72,8 @@ public class RecordAdapter extends BaseAdapter{
 		TextView tv_name;
 		TextView tv_relation;
 		TextView tv_gender;
-		TextView tv_YearM;
+		TextView card;
+		/*TextView tv_YearM;*/
 		TextView tv_health;
 		TextView tv_other;
 		View vw_lines;

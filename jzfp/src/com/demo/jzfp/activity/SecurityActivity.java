@@ -13,26 +13,24 @@ import android.widget.RelativeLayout;
 import com.demo.jzfp.R;
 import com.demo.jzfp.utils.MyApplication;
 
-public class AducationActivity extends BaseActivity implements OnClickListener{
+public class SecurityActivity extends BaseActivity implements OnClickListener{
 	private List<RelativeLayout> rls = new ArrayList<RelativeLayout>();
 	private List<ImageView> ivs = new ArrayList<ImageView>();
-	private String[] aducations = {"大学", "高中", "初中", "小学", "文盲"};
-	private String aducation = "";
+	private String[] securitys = {"A", "B", "C", "D", "无房"};
+	private String security = "";
 	private Intent intent;
  	
 	@Override
 	protected void setView() {
-		setContentView(R.layout.activity_aducation);
-		MyApplication.addActivity(AducationActivity.this);
-		setTitleText("文化程度");
+		setContentView(R.layout.activity_security);
+		MyApplication.addActivity(SecurityActivity.this);
+		setTitleText("住房安全");
 		setOnback(this);
 	}
 
 	@Override
 	protected void initView() {
-		/*rls.add((RelativeLayout) findViewById(R.id.rl_yjs));*/
 		rls.add((RelativeLayout) findViewById(R.id.rl_bkzk));
-		/*rls.add((RelativeLayout) findViewById(R.id.rl_zy));*/
 		rls.add((RelativeLayout) findViewById(R.id.rl_gz));
 		rls.add((RelativeLayout) findViewById(R.id.rl_cz));
 		rls.add((RelativeLayout) findViewById(R.id.rl_xx));
@@ -42,9 +40,7 @@ public class AducationActivity extends BaseActivity implements OnClickListener{
 			rl.setOnClickListener(this);
 		}
 		
-		/*ivs.add((ImageView) findViewById(R.id.iv_checked_yjs));*/
 		ivs.add((ImageView) findViewById(R.id.iv_checked_bkzk));
-		/*ivs.add((ImageView) findViewById(R.id.iv_checked_zy));*/
 		ivs.add((ImageView) findViewById(R.id.iv_checked_gz));
 		ivs.add((ImageView) findViewById(R.id.iv_checked_cz));
 		ivs.add((ImageView) findViewById(R.id.iv_checked_xx));
@@ -62,37 +58,29 @@ public class AducationActivity extends BaseActivity implements OnClickListener{
 			iv.setVisibility(View.INVISIBLE);
 		}
 		switch(v.getId()){
-		/*case R.id.rl_yjs:
-			ivs.get(0).setVisibility(View.VISIBLE);
-			aducation = aducations[0];
-			break;*/
 		case R.id.rl_bkzk:
 			ivs.get(0).setVisibility(View.VISIBLE);
-			aducation = aducations[0];
+			security = securitys[0];
 			break;
-		/*case R.id.rl_zy:
-			ivs.get(2).setVisibility(View.VISIBLE);
-			aducation = aducations[2];
-			break;*/
 		case R.id.rl_gz:
 			ivs.get(1).setVisibility(View.VISIBLE);
-			aducation = aducations[1];
+			security = securitys[1];
 			break;
 		case R.id.rl_cz:
 			ivs.get(2).setVisibility(View.VISIBLE);
-			aducation = aducations[2];
+			security = securitys[2];
 			break;
 		case R.id.rl_xx:
 			ivs.get(3).setVisibility(View.VISIBLE);
-			aducation = aducations[3];
+			security = securitys[3];
 			break;
 		case R.id.rl_other:
 			ivs.get(4).setVisibility(View.VISIBLE);
-			aducation = aducations[4];
+			security = securitys[4];
 			break;
 		}
-		Log.i("JJY", aducation);
-		intent.putExtra("education", aducation);
+		Log.i("JJY", security);
+		intent.putExtra("security", security);
 		setResult(300, intent);
 	}
 

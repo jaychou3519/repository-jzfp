@@ -8,6 +8,7 @@ public class TdataFamily {
 	private String birthday;//成员出生日期
 	private String jkzk;//成员健康
 	private String workDesc;//其它
+	private String Card;//成员身份证号
 	
 	public java.lang.String getMemberId() {
 		return memberId;
@@ -33,12 +34,18 @@ public class TdataFamily {
 	public void setSex(String sex) {
 		this.sex = sex;
 	}
-	public String getBirthday() {
+	public String getCard() {
+		return Card;
+	}
+	public void setCard(String Card) {
+		this.Card = Card;
+	}	
+	/*public String getBirthday() {
 		return birthday;
 	}
 	public void setBirthday(String birthday) {
 		this.birthday = birthday;
-	}
+	}*/
 	public String getJkzk() {
 		return jkzk;
 	}
@@ -53,7 +60,7 @@ public class TdataFamily {
 	}
 	@Override
 	public String toString() {
-		return "TdataFamily [familyName=" + familyName + ", yhzgx=" + yhzgx + ", sex=" + sex + ", birthday=" + birthday
+		return "TdataFamily [familyName=" + familyName + ", yhzgx=" + yhzgx + ", sex=" + sex + ", Card=" + Card
 				+ ", jkzk=" + jkzk + ", workDesc=" + workDesc + "]";
 	}
 	

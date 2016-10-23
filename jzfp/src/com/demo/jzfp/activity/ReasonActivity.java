@@ -36,7 +36,7 @@ public class ReasonActivity extends BaseActivity implements OnClickListener {
 
 	@Override
 	protected void initData() {
-		reasons = new String[] { "因学", "因灾", "缺资源、耕地", "因交通、电力等条件", "缺资金", "缺技术", "因病", "其 他", "缺劳动力" };
+		reasons = new String[] { "因学", "因灾", "缺资源", "因交通、电力等条件", "缺资金", "缺技术", "因病", "其 他", "缺劳动力" };
 		if (!TextUtils.isEmpty(Constant.poor.getRemark()))
 			et_illustrate.setText(Constant.poor.getRemark());
 

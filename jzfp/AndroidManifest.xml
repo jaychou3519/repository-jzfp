@@ -58,6 +58,8 @@
         </activity>
         <activity android:name="com.demo.jzfp.activity.AducationActivity" >
         </activity>
+        <activity android:name="com.demo.jzfp.activity.SecurityActivity" >
+        </activity>
         <activity android:name="com.demo.jzfp.activity.EconomyActivity" >
         </activity>
         <activity android:name="com.demo.jzfp.activity.ReasonActivity" >
@@ -77,6 +79,8 @@
         <activity android:name="com.demo.jzfp.activity.MeasuresActivity2" >
         </activity>
         <activity android:name="com.demo.jzfp.activity.EffectActivity" >
+        </activity>
+        <activity android:name="com.demo.jzfp.activity.JdbfActivity" >
         </activity>
         <activity android:name="com.demo.jzfp.activity.MeasureDetailActivity" >
         </activity>

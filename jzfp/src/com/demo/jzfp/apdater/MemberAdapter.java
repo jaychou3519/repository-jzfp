@@ -81,8 +81,10 @@ public class MemberAdapter extends BaseAdapter {
 			holder.iv_sex_man = (ImageView) convertView.findViewById(R.id.iv_sex_man);
 			holder.tv_sex_man = (TextView) convertView.findViewById(R.id.tv_sex_man);
 
-			holder.rl_birthday = (RelativeLayout) convertView.findViewById(R.id.rl_birthday);
-			holder.tv_birthday = (TextView) convertView.findViewById(R.id.tv_birthday);
+			holder.card = (EditText) convertView.findViewById(R.id.card);
+			
+			/*holder.rl_birthday = (RelativeLayout) convertView.findViewById(R.id.rl_birthday);
+			holder.tv_birthday = (TextView) convertView.findViewById(R.id.tv_birthday);*/
 
 			holder.rl_health = (RelativeLayout) convertView.findViewById(R.id.rl_health);
 			holder.tv_health = (TextView) convertView.findViewById(R.id.tv_health);
@@ -93,6 +95,7 @@ public class MemberAdapter extends BaseAdapter {
 			holder = (Holder) convertView.getTag();
 		}
 		holder.et_name.setTag(members.get(position));
+		holder.card.setTag(members.get(position));
 		holder.et_work.setTag(members.get(position));
 		if(position==members.size()-1)
 			setListener(holder, position);
@@ -113,8 +116,9 @@ public class MemberAdapter extends BaseAdapter {
 		LinearLayout ll_man;
 		ImageView iv_sex_man;
 		TextView tv_sex_man;
-		RelativeLayout rl_birthday;
-		TextView tv_birthday;
+		EditText card;
+		/*RelativeLayout rl_birthday;
+		TextView tv_birthday;*/
 		RelativeLayout rl_health;
 		TextView tv_health;
 		EditText et_work;
@@ -150,11 +154,11 @@ public class MemberAdapter extends BaseAdapter {
 			holder.iv_sex_man.setImageResource(R.drawable.man_no);
 			holder.tv_sex_man.setTextColor(Color.rgb(220, 220, 200));
 		}
-		if (!TextUtils.isEmpty(member.getBirthday())) {
+		/*if (!TextUtils.isEmpty(member.getBirthday())) {
 			holder.tv_birthday.setText(member.getBirthday());
 		} else {
 			holder.tv_birthday.setText("");
-		}
+		}*/
 		if (!TextUtils.isEmpty(member.getJkzk())) {
 			if("jkzkhydb".equals(member.getJkzk())){
 				holder.tv_health.setText("患有大病");
@@ -172,6 +176,11 @@ public class MemberAdapter extends BaseAdapter {
 			holder.et_work.setText(member.getWorkDesc());
 		} else {
 			holder.et_work.setText("");
+		}
+		if (!TextUtils.isEmpty(member.getCard())) {
+			holder.card.setText(member.getCard());
+		} else {
+			holder.card.setText("");
 		}
 	}
 
@@ -228,7 +237,7 @@ public class MemberAdapter extends BaseAdapter {
 			}
 		});
 
-		holder.rl_birthday.setOnClickListener(new OnClickListener() {
+		/*holder.rl_birthday.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				Calendar c = Calendar.getInstance();
@@ -243,7 +252,7 @@ public class MemberAdapter extends BaseAdapter {
 				}, c.get(Calendar.YEAR), c.get(Calendar.MONTH), c.get(Calendar.DATE), false).show();
 
 			}
-		});
+		});*/
 
 		holder.rl_health.setOnClickListener(new OnClickListener() {
 			@Override

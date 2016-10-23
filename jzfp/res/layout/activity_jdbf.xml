@@ -35,7 +35,6 @@
             android:orientation="vertical" >
 
             <RelativeLayout
-                android:id="@+id/rl_time"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/y25"
                 android:orientation="horizontal" >
@@ -45,425 +44,7 @@
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="@dimen/x20"
-                    android:text="脱贫时间"
-                    android:textColor="#000"
-                    android:textSize="@dimen/x15" />
-
-                <ImageView
-                    android:id="@+id/iv_into_time"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:layout_margin="@dimen/x10"
-                    android:src="@drawable/into" />
-
-                <TextView
-                    android:id="@+id/tv_time"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_toLeftOf="@id/iv_into_time"
-                    android:hint="请选择脱贫时间"
-                    android:singleLine="true"
-                    android:textColor="#000"
-                    android:textColorHint="#d6d6d6"
-                    android:textSize="@dimen/x15" />
-            </RelativeLayout>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/x1"
-                android:background="#dcdcdc" />
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/y25"
-                android:orientation="horizontal" >
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="@dimen/x20"
-                    android:text="家庭可支配收入(元)"
-                    android:textColor="#000"
-                    android:textSize="@dimen/x15" />
-
-                <ImageView
-                    android:id="@+id/iv_into_income"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:layout_margin="@dimen/x10"
-                    android:src="@drawable/into"
-                    android:visibility="invisible" />
-
-                <EditText
-                    android:id="@+id/et_income"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_toLeftOf="@id/iv_into_income"
-                    android:background="@null"
-                    android:hint="请输入家庭可支配收入"
-                    android:maxLength="10"
-                    android:numeric="decimal"
-                    android:singleLine="true"
-                    android:textColor="#000"
-                    android:textColorHint="#d6d6d6"
-                    android:textSize="@dimen/x15" />
-            </RelativeLayout>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/x1"
-                android:background="#dcdcdc" />
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/y25"
-                android:orientation="horizontal" >
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="@dimen/x20"
-                    android:text="人均可支配收入(元)"
-                    android:textColor="#000"
-                    android:textSize="@dimen/x15" />
-
-                <ImageView
-                    android:id="@+id/iv_into_allIncome"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:layout_margin="@dimen/x10"
-                    android:src="@drawable/into"
-                    android:visibility="invisible" />
-
-                <EditText
-                    android:id="@+id/et_allIncome"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_toLeftOf="@id/iv_into_allIncome"
-                    android:background="@null"
-                    android:hint="请输入人均可支配收入"
-                    android:numeric="decimal"
-                    android:maxLength="10"
-                    android:singleLine="true"
-                    android:textColor="#000"
-                    android:textColorHint="#d6d6d6"
-                    android:textSize="@dimen/x15" />
-            </RelativeLayout>
-
-           <View
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/x1"
-                android:background="#dcdcdc" />
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/y25"
-                android:orientation="horizontal" >
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="@dimen/x20"
-                    android:text="住房安全"
-                    android:textColor="#000"
-                    android:textSize="@dimen/x15" />
-
-                <ImageView
-                    android:id="@+id/iv_into_houseSafe"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:layout_margin="@dimen/x10"
-                    android:src="@drawable/into"
-                    android:visibility="invisible" />
-
-                <EditText
-                    android:id="@+id/et_houseSafe"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_toLeftOf="@id/iv_into_houseSafe"
-                    android:hint="请选择"
-                    android:singleLine="true"
-                    android:textColor="#000"
-                    android:textColorHint="#d6d6d6"
-                    android:textSize="@dimen/x15" />
-            </RelativeLayout>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/x1"
-                android:background="#dcdcdc" />
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/y25"
-                android:orientation="horizontal" >
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="@dimen/x20"
-                    android:text="基本医疗"
-                    android:textColor="#000"
-                    android:textSize="@dimen/x15" />
-
-                <ImageView
-                    android:id="@+id/iv_into_medical"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:layout_margin="@dimen/x10"
-                    android:src="@drawable/into"
-                    android:visibility="invisible" />
-
-                <EditText
-                    android:id="@+id/et_medical"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_toLeftOf="@id/iv_into_medical"
-                    android:hint="请选择"
-                    android:singleLine="true"
-                    android:textColor="#000"
-                    android:textColorHint="#d6d6d6"
-                    android:textSize="@dimen/x15" />
-            </RelativeLayout>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/x1"
-                android:background="#dcdcdc" />
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/y25"
-                android:orientation="horizontal" >
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="@dimen/x20"
-                    android:text="义务教育"
-                    android:textColor="#000"
-                    android:textSize="@dimen/x15" />
-
-                <ImageView
-                    android:id="@+id/iv_into_education"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:layout_margin="@dimen/x10"
-                    android:src="@drawable/into"
-                    android:visibility="invisible" />
-
-                <EditText
-                    android:id="@+id/et_education"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_toLeftOf="@id/iv_into_education"
-                    android:hint="请选择"
-                    android:singleLine="true"
-                    android:textColor="#000"
-                    android:textColorHint="#d6d6d6"
-                    android:textSize="@dimen/x15" />
-                
-            </RelativeLayout>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/x1"
-                android:background="#dcdcdc" />
-
-            <RelativeLayout
-                android:id="@+id/rl_condition"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/y25"
-                android:orientation="horizontal" >
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="@dimen/x20"
-                    android:text="是否符合脱贫条件"
-                    android:textColor="#000"
-                    android:textSize="@dimen/x15" />
-
-                <ImageView
-                    android:id="@+id/iv_into_condition"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:layout_margin="@dimen/x10"
-                    android:src="@drawable/into" />
-
-                <TextView
-                    android:id="@+id/tv_condition"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_toLeftOf="@id/iv_into_condition"
-                    android:hint="请选择"
-                    android:singleLine="true"
-                    android:textColor="#000"
-                    android:textColorHint="#d6d6d6"
-                    android:textSize="@dimen/x15" />
-            </RelativeLayout>
-            
-             <View
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/x1"
-                android:background="#dcdcdc" />
-
-            <!-- <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/y25"
-                android:orientation="horizontal" >
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="@dimen/x20"
-                    android:text="驻村工作队队长"
-                    android:textColor="#000"
-                    android:textSize="@dimen/x15" />
-
-                <ImageView
-                    android:id="@+id/iv_into_Captain"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:layout_margin="@dimen/x10"
-                    android:src="@drawable/into"
-                    android:visibility="invisible" />
-
-                <EditText
-                    android:id="@+id/et_Captain"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_toLeftOf="@id/iv_into_Captain"
-                    android:background="@null"
-                    android:hint="请填写驻村工作队队长信息"
-                    android:maxLength="18"
-                    android:singleLine="true"
-                    android:textColor="#000"
-                    android:textColorHint="#d6d6d6"
-                    android:textSize="@dimen/x15" />
-            </RelativeLayout>
-            
-             <View
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/x1"
-                android:background="#dcdcdc" />
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/y25"
-                android:orientation="horizontal" >
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="@dimen/x20"
-                    android:text="村负责人"
-                    android:textColor="#000"
-                    android:textSize="@dimen/x15" />
-
-                <ImageView
-                    android:id="@+id/iv_into_Village"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:layout_margin="@dimen/x10"
-                    android:src="@drawable/into"
-                    android:visibility="invisible" />
-
-                <EditText
-                    android:id="@+id/et_Village"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_toLeftOf="@id/iv_into_Village"
-                    android:background="@null"
-                    android:hint="请填写村负责人信息"
-                    android:maxLength="18"
-                    android:singleLine="true"
-                    android:textColor="#000"
-                    android:textColorHint="#d6d6d6"
-                    android:textSize="@dimen/x15" />
-            </RelativeLayout> -->
-
-            <!-- <View
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/x1"
-                android:layout_marginBottom="@dimen/x10"
-                android:background="#dcdcdc" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/x10"
-                android:background="#eee" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/y15"
-                android:layout_marginBottom="@dimen/x5"
-                android:layout_marginTop="@dimen/x5"
-                android:gravity="center_vertical"
-                android:orientation="horizontal" >
-
-                <ImageView
-                    android:layout_width="@dimen/y12"
-                    android:layout_height="@dimen/y12"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="@dimen/x20"
-                    android:src="@drawable/member" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/x10"
-                    android:text="结对帮扶"
-                    android:textColor="#d6d6d6"
-                    android:textSize="@dimen/x13" />
-            </LinearLayout>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/y25"
-                android:orientation="horizontal" >
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="@dimen/x20"
-                    android:text="责任单位"
+                    android:text="帮扶单位"
                     android:textColor="#000"
                     android:textSize="@dimen/x15" />
 
@@ -484,7 +65,7 @@
                     android:layout_centerVertical="true"
                     android:layout_toLeftOf="@id/iv_into_organization"
                     android:background="@null"
-                    android:hint="请填写结对帮扶责任单位"
+                    android:hint="请填写结对帮扶单位"
                     android:maxLength="18"
                     android:singleLine="true"
                     android:textColor="#000"
@@ -507,7 +88,7 @@
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="@dimen/x20"
-                    android:text="负责人"
+                    android:text="帮扶责任人"
                     android:textColor="#000"
                     android:textSize="@dimen/x15" />
 
@@ -528,7 +109,7 @@
                     android:layout_centerVertical="true"
                     android:layout_toLeftOf="@id/iv_into_name"
                     android:background="@null"
-                    android:hint="请填写单位负责人"
+                    android:hint="请填写帮扶责任人"
                     android:maxLength="18"
                     android:singleLine="true"
                     android:textColor="#000"
@@ -536,6 +117,50 @@
                     android:textSize="@dimen/x15" />
             </RelativeLayout>
 
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/x1"
+                android:background="#dcdcdc" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/y25"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/x20"
+                    android:text="帮扶责任人职务"
+                    android:textColor="#000"
+                    android:textSize="@dimen/x15" />
+
+                <ImageView
+                    android:id="@+id/iv_into_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_margin="@dimen/x10"
+                    android:src="@drawable/into"
+                    android:visibility="invisible" />
+
+                <EditText
+                    android:id="@+id/et_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toLeftOf="@id/iv_into_name"
+                    android:background="@null"
+                    android:hint="请填写帮扶责任人职务"
+                    android:maxLength="18"
+                    android:singleLine="true"
+                    android:textColor="#000"
+                    android:textColorHint="#d6d6d6"
+                    android:textSize="@dimen/x15" />
+            </RelativeLayout>
+            
             <View
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/x1"
@@ -581,7 +206,7 @@
                     android:textSize="@dimen/x15" />
             </RelativeLayout>
 
-            <View
+            <!-- <View
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/x1"
                 android:background="#dcdcdc" />
@@ -618,6 +243,94 @@
                     android:layout_toLeftOf="@id/iv_into_helpMan"
                     android:background="@null"
                     android:hint="请填写结对帮扶责任人"
+                    android:maxLength="18"
+                    android:singleLine="true"
+                    android:textColor="#000"
+                    android:textColorHint="#d6d6d6"
+                    android:textSize="@dimen/x15" />
+            </RelativeLayout> -->
+            
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/x1"
+                android:background="#dcdcdc" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/y25"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/x20"
+                    android:text="驻村帮扶工作队队长"
+                    android:textColor="#000"
+                    android:textSize="@dimen/x15" />
+
+                <ImageView
+                    android:id="@+id/iv_into_Captain"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_margin="@dimen/x10"
+                    android:src="@drawable/into"
+                    android:visibility="invisible" />
+
+                <EditText
+                    android:id="@+id/et_Captain"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toLeftOf="@id/iv_into_Captain"
+                    android:background="@null"
+                    android:hint="请填写驻村队长信息"
+                    android:maxLength="18"
+                    android:singleLine="true"
+                    android:textColor="#000"
+                    android:textColorHint="#d6d6d6"
+                    android:textSize="@dimen/x15" />
+            </RelativeLayout>
+            
+             <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/x1"
+                android:background="#dcdcdc" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/y25"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/x20"
+                    android:text="队长联系电话"
+                    android:textColor="#000"
+                    android:textSize="@dimen/x15" />
+
+                <ImageView
+                    android:id="@+id/iv_into_Village"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_margin="@dimen/x10"
+                    android:src="@drawable/into"
+                    android:visibility="invisible" />
+
+                <EditText
+                    android:id="@+id/et_Village"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toLeftOf="@id/iv_into_Village"
+                    android:background="@null"
+                    android:hint="请填写队长联系电话"
                     android:maxLength="18"
                     android:singleLine="true"
                     android:textColor="#000"
@@ -979,7 +692,7 @@
                     android:textColor="#000"
                     android:textColorHint="#d6d6d6"
                     android:textSize="@dimen/x15" />
-            </RelativeLayout> -->
+            </RelativeLayout>
 
             <View
                 android:layout_width="match_parent"

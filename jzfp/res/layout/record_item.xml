@@ -98,6 +98,30 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="right"
+                android:text="身份证号"
+                android:textColor="@color/gray"
+                android:textSize="@dimen/x14" />
+
+            <TextView
+                android:id="@+id/card"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/x5"
+                android:layout_marginRight="@dimen/x5"
+                android:singleLine="true"
+                android:text="430123456789123456" />
+        </LinearLayout>
+        
+        <!-- <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="right"
                 android:text="出生年月"
                 android:textColor="@color/gray"
                 android:textSize="@dimen/x14" />
@@ -109,7 +133,7 @@
                 android:layout_marginLeft="@dimen/x5"
                 android:layout_marginRight="@dimen/x5"
                 android:text="19850129" />
-        </LinearLayout>
+        </LinearLayout> -->
     </LinearLayout>
 
     <LinearLayout
@@ -152,7 +176,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="right"
-                android:text="工作及其他情况"
+                android:text="就业情况"
                 android:textColor="@color/gray"
                 android:textSize="@dimen/x14" />
 

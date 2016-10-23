@@ -32,7 +32,9 @@ import android.widget.TextView;
 import com.alibaba.fastjson.JSON;
 import com.demo.jzfp.R;
 import com.demo.jzfp.activity.AducationActivity;
+import com.demo.jzfp.activity.SecurityActivity;
 import com.demo.jzfp.activity.ChooseAreaActivity;
+import com.demo.jzfp.activity.JdbfActivity;
 import com.demo.jzfp.activity.EconomyActivity;
 import com.demo.jzfp.activity.EffectActivity;
 import com.demo.jzfp.activity.MeasuresActivity;
@@ -60,13 +62,14 @@ public class FragmentReport extends Fragment implements OnClickListener, WebServ
 	private ImageView iv_sex_man;
 	private TextView tv_sex_man;
 	private TextView tv_education;
+	private TextView tv_security;
 	private PermissionsUtils pu;
 	private AlertDialog dialog;
 	private List<String> poorCards,states;
 	private String state, poorCard, filePath;
 	private int table;// 1:贫因状态 2:健康状态
-	private TextView tv_state, tv_poorCard, tv_economy, tv_member, tv_reason, tv_measures, tv_effect, et_countryId;
-	private EditText et_name, et_age, et_identity, et_tel;
+	private TextView tv_state, tv_poorCard, tv_economy, tv_member, tv_reason, tv_jdbf, tv_measures, tv_effect, et_countryId;
+	private EditText et_name, et_age, et_identity, et_tel, et_area, et_land, et_hill;
 	private PhotoUtils photoUtils;
 	private SQLiteDatabase db = null;
 	private DictDataInfoDao dictDataDao = new DictDataInfoDaoImpl();
@@ -106,21 +109,31 @@ public class FragmentReport extends Fragment implements OnClickListener, WebServ
 		et_age = (EditText) v.findViewById(R.id.et_age);
 		et_identity = (EditText) v.findViewById(R.id.et_identity);
 		et_tel = (EditText) v.findViewById(R.id.et_tel);
+		
+		et_area = (EditText) v.findViewById(R.id.et_area);
+		et_land = (EditText) v.findViewById(R.id.et_land);
+		et_hill = (EditText) v.findViewById(R.id.et_hill);
 
 		RelativeLayout rl_education = (RelativeLayout) v.findViewById(R.id.rl_education);
 		tv_education = (TextView) v.findViewById(R.id.tv_education);
+		
+		RelativeLayout rl_security = (RelativeLayout) v.findViewById(R.id.rl_security);
+		tv_security = (TextView) v.findViewById(R.id.tv_security);
 
 		/*RelativeLayout rl_poorCard = (RelativeLayout) v.findViewById(R.id.rl_poorCard);
 		tv_poorCard = (TextView) v.findViewById(R.id.tv_poorCard);*/
 
-		RelativeLayout rl_economy = (RelativeLayout) v.findViewById(R.id.rl_economy);
-		tv_economy = (TextView) v.findViewById(R.id.tv_economy);
+		/*RelativeLayout rl_economy = (RelativeLayout) v.findViewById(R.id.rl_economy);
+		tv_economy = (TextView) v.findViewById(R.id.tv_economy);*/
 
 		RelativeLayout rl_member = (RelativeLayout) v.findViewById(R.id.rl_member);
 		tv_member = (TextView) v.findViewById(R.id.tv_member);
 
 		RelativeLayout rl_reason = (RelativeLayout) v.findViewById(R.id.rl_reason);
 		tv_reason = (TextView) v.findViewById(R.id.tv_reason);
+		
+		RelativeLayout rl_jdbf = (RelativeLayout) v.findViewById(R.id.rl_jdbf);
+		tv_jdbf = (TextView) v.findViewById(R.id.tv_jdbf);
 
 		RelativeLayout rl_measures = (RelativeLayout) v.findViewById(R.id.rl_measures);
 		tv_measures = (TextView) v.findViewById(R.id.tv_measures);
@@ -144,10 +157,12 @@ public class FragmentReport extends Fragment implements OnClickListener, WebServ
 		ll_women.setOnClickListener(this);
 		ll_man.setOnClickListener(this);
 		rl_education.setOnClickListener(this);
+		rl_security.setOnClickListener(this);
 		/*rl_poorCard.setOnClickListener(this);*/
-		rl_economy.setOnClickListener(this);
+		/*rl_economy.setOnClickListener(this);*/
 		rl_member.setOnClickListener(this);
 		rl_reason.setOnClickListener(this);
+		rl_jdbf.setOnClickListener(this);
 		rl_measures.setOnClickListener(this);
 		rl_effect.setOnClickListener(this);
 		rl_countryId.setOnClickListener(this);
@@ -197,15 +212,19 @@ public class FragmentReport extends Fragment implements OnClickListener, WebServ
 			Intent intent = new Intent(getActivity(), AducationActivity.class);
 			startActivityForResult(intent, 300);
 			break;
+		case R.id.rl_security:
+			Intent intent1 = new Intent(getActivity(), SecurityActivity.class);
+			startActivityForResult(intent1, 301);
+			break;
 		/*case R.id.rl_poorCard:
 			String title1 = "请选择贫困户属性";
 			table = 2;
 			showWheelView(title1, (String[]) poorCards.toArray(new String[poorCards.size()]), table);
 			break;*/
-		case R.id.rl_economy:
+		/*case R.id.rl_economy:
 			Intent intent1 = new Intent(getActivity(), EconomyActivity.class);
 			startActivity(intent1);
-			break;
+			break;*/
 		case R.id.rl_member:
 			Intent intent2 = new Intent(getActivity(), MemberActivity.class);
 			startActivity(intent2);
@@ -213,6 +232,10 @@ public class FragmentReport extends Fragment implements OnClickListener, WebServ
 		case R.id.rl_reason:
 			Intent intent3 = new Intent(getActivity(), ReasonActivity.class);
 			startActivity(intent3);
+			break;
+		case R.id.rl_jdbf:
+			Intent intent7 = new Intent(getActivity(), JdbfActivity.class);
+			startActivity(intent7);
 			break;
 		case R.id.rl_measures:
 			Intent intent4 = new Intent(getActivity(), MeasuresActivity.class);
@@ -273,21 +296,35 @@ public class FragmentReport extends Fragment implements OnClickListener, WebServ
 			} else if (TextUtils.isEmpty(tv_education.getText().toString())) {
 				Tools.showNewToast(getActivity(), "请选择文化程度");
 				return;
+			} else if (TextUtils.isEmpty(tv_security.getText().toString())) {
+				Tools.showNewToast(getActivity(), "请选择住房安全");
+				return;
 			} 
 			/*else if (TextUtils.isEmpty(tv_poorCard.getText().toString())) {
 				Tools.showNewToast(getActivity(), "请选择贫困户属性");
 				return;
 			} */
-			else if (TextUtils.isEmpty(tv_economy.getText().toString())) {
+			/*else if (TextUtils.isEmpty(tv_economy.getText().toString())) {
 				Tools.showNewToast(getActivity(), "请填写家庭经济信息");
 				return;
-			} else if (TextUtils.isEmpty(tv_member.getText().toString())) {
+			}*/ 
+			else if (TextUtils.isEmpty(et_land.getText().toString())) {
+				Tools.showNewToast(getActivity(), "请填写耕地面积信息");
+				return;
+			} else if (TextUtils.isEmpty(et_hill.getText().toString())) {
+				Tools.showNewToast(getActivity(), "请填写林地面积信息");
+				return;
+			} else if (TextUtils.isEmpty(et_area.getText().toString())) {
+				Tools.showNewToast(getActivity(), "请填写住房面积信息");
+				return;
+			} /*else if (TextUtils.isEmpty(tv_member.getText().toString())) {
 				Tools.showNewToast(getActivity(), "请填写家庭成员信息");
 				return;
-			} else if (TextUtils.isEmpty(tv_reason.getText().toString())) {
+			} */
+			else if (TextUtils.isEmpty(tv_reason.getText().toString())) {
 				Tools.showNewToast(getActivity(), "请填写致贫原因信息");
 				return;
-			} else if (TextUtils.isEmpty(tv_economy.getText().toString())) {
+			}else if (TextUtils.isEmpty(tv_measures.getText().toString())) {
 				Tools.showNewToast(getActivity(), "请填写帮扶措施信息");
 				return;
 			} else if (TextUtils.isEmpty(tv_effect.getText().toString()) || Constant.poor.getTdataHelper() == null || Constant.poor.getTdataResult() == null) {
@@ -311,6 +348,10 @@ public class FragmentReport extends Fragment implements OnClickListener, WebServ
 		case 300:
 			if (data != null && !TextUtils.isEmpty(data.getStringExtra("education")))
 				tv_education.setText(data.getStringExtra("education"));
+			break;
+		case 301:
+			if (data != null && !TextUtils.isEmpty(data.getStringExtra("security")))
+				tv_security.setText(data.getStringExtra("security"));
 			break;
 		case 102:
 			if(data==null) break;
@@ -400,12 +441,12 @@ public class FragmentReport extends Fragment implements OnClickListener, WebServ
 	@Override
 	public void onStart() {
 		super.onStart();
-		if (TextUtils.isEmpty(Constant.poor.getZfjg()) && TextUtils.isEmpty(Constant.poor.getZzArea()) && TextUtils.isEmpty(Constant.poor.getGdArea()) && TextUtils.isEmpty(Constant.poor.getSlArea())
+		/*if (TextUtils.isEmpty(Constant.poor.getZfjg()) && TextUtils.isEmpty(Constant.poor.getZzArea()) && TextUtils.isEmpty(Constant.poor.getGdArea()) && TextUtils.isEmpty(Constant.poor.getSlArea())
 				&& TextUtils.isEmpty(Constant.poor.getRjsrqk())) {
 			tv_economy.setText("");
 		} else {
 			tv_economy.setText("修改");
-		}
+		}*/
 
 		if (Constant.poor.getTdataFamilys() == null || Constant.poor.getTdataFamilys().isEmpty()) {
 			tv_member.setText("");
@@ -449,12 +490,22 @@ public class FragmentReport extends Fragment implements OnClickListener, WebServ
 		Constant.poor.setAge(et_age.getText().toString().trim() + "");
 		Constant.poor.setCard(et_identity.getText().toString().trim() + "");
 		Constant.poor.setTelphone(et_tel.getText().toString().trim() + "");
+		Constant.poor.setTelphone(et_area.getText().toString().trim() + "");
+		Constant.poor.setTelphone(et_land.getText().toString().trim() + "");
+		Constant.poor.setTelphone(et_hill.getText().toString().trim() + "");
 		Constant.poor.setCountrymanId(UUID.randomUUID().toString().replace("-", ""));
-
+		/*et_area, et_land, et_hill*/
+		
 		if (!TextUtils.isEmpty(tv_education.getText().toString().trim())) {
 			String whcd = dictDataDao.queryDictCodeByValue(db, tv_education.getText().toString().trim(),"whcd");
 			Constant.poor.setWhcd(whcd);
 		}
+		/*待确定*/
+		/*if (!TextUtils.isEmpty(tv_security.getText().toString().trim())) {
+			String zfaq = dictDataDao.queryDictCodeByValue(db, tv_security.getText().toString().trim(),"zfaq");
+			Constant.poor.setZfaq(zfaq);
+		}*/
+		
 		if(MyApplication.login!=null){
 			if(MyApplication.login.getLoginName().equals("admin")){
 				Constant.poor.setCountryId(areacode);
@@ -491,9 +542,13 @@ public class FragmentReport extends Fragment implements OnClickListener, WebServ
 				et_tel.setText("");
 				tv_education.setText("");
 				/*tv_poorCard.setText("");*/
-				tv_economy.setText("");
+				/*tv_economy.setText("");*/
+				et_area.setText("");
+				et_land.setText("");
+				et_hill.setText("");
 				tv_member.setText("");
 				tv_reason.setText("");
+				tv_jdbf.setText("");
 				tv_measures.setText("");
 				tv_effect.setText("");
 				et_countryId.setText("");
