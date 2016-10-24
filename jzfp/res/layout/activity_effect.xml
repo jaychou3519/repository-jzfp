@@ -167,6 +167,7 @@
                 android:background="#dcdcdc" />
 
             <RelativeLayout
+                android:id="@+id/rl_houseSafe"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/y25"
                 android:orientation="horizontal" >
@@ -190,8 +191,8 @@
                     android:src="@drawable/into"
                     android:visibility="invisible" />
 
-                <EditText
-                    android:id="@+id/et_houseSafe"
+                <TextView
+                    android:id="@+id/tv_houseSafe"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
@@ -209,6 +210,7 @@
                 android:background="#dcdcdc" />
 
             <RelativeLayout
+                android:id="@+id/rl_medical"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/y25"
                 android:orientation="horizontal" >
@@ -232,8 +234,8 @@
                     android:src="@drawable/into"
                     android:visibility="invisible" />
 
-                <EditText
-                    android:id="@+id/et_medical"
+                <TextView
+                    android:id="@+id/tv_medical"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
@@ -251,6 +253,7 @@
                 android:background="#dcdcdc" />
 
             <RelativeLayout
+                android:id="@+id/rl_into_education"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/y25"
                 android:orientation="horizontal" >
@@ -274,8 +277,8 @@
                     android:src="@drawable/into"
                     android:visibility="invisible" />
 
-                <EditText
-                    android:id="@+id/et_education"
+                <TextView
+                    android:id="@+id/tv_education"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"

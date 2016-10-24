@@ -137,7 +137,7 @@
                     android:textSize="@dimen/x15" />
 
                 <ImageView
-                    android:id="@+id/iv_into_name"
+                    android:id="@+id/iv_into_name_job"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
@@ -147,11 +147,11 @@
                     android:visibility="invisible" />
 
                 <EditText
-                    android:id="@+id/et_name"
+                    android:id="@+id/et_name_job"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:layout_toLeftOf="@id/iv_into_name"
+                    android:layout_toLeftOf="@id/iv_into_name_job"
                     android:background="@null"
                     android:hint="请填写帮扶责任人职务"
                     android:maxLength="18"

@@ -46,19 +46,16 @@ public class MemberAdapter extends BaseAdapter {
 
 	@Override
 	public int getCount() {
-		// TODO Auto-generated method stub
 		return members == null ? 0 : members.size();
 	}
 
 	@Override
 	public Object getItem(int position) {
-		// TODO Auto-generated method stub
 		return members.get(position);
 	}
 
 	@Override
 	public long getItemId(int position) {
-		// TODO Auto-generated method stub
 		return position;
 	}
 
@@ -132,6 +129,11 @@ public class MemberAdapter extends BaseAdapter {
 		} else {
 			holder.et_name.setText("");
 		}
+		if (!TextUtils.isEmpty(member.getCard())) {
+			holder.card.setText(member.getCard());
+		} else {
+			holder.card.setText("");
+		}
 		if (!TextUtils.isEmpty(member.getYhzgx())) {
 			holder.tv_relation.setText(member.getYhzgx());
 		} else {
@@ -190,17 +192,33 @@ public class MemberAdapter extends BaseAdapter {
 	 */
 	private void setListener(final Holder holder, int position) {
 		final TdataFamily member = members.get(position);
-		holder.et_name.addTextChangedListener(new TextWatcher() {
+		holder.card.addTextChangedListener(new TextWatcher() {
 			@Override
 			public void onTextChanged(CharSequence s, int start, int before, int count) {
-				TdataFamily mb = (TdataFamily) holder.et_name.getTag();
-				mb.setFamilyName(s.toString().trim());
+				TdataFamily mb = (TdataFamily)holder.card.getTag();
+				mb.setCard(s.toString().trim());
 			}
 
 			@Override
 			public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 			}
 
+			@Override
+			public void afterTextChanged(Editable s) {
+				
+			}
+		});
+		holder.et_name.addTextChangedListener(new TextWatcher() {
+			@Override
+			public void onTextChanged(CharSequence s, int start, int before, int count) {
+				TdataFamily mb = (TdataFamily) holder.et_name.getTag();
+				mb.setFamilyName(s.toString().trim());
+			}
+			
+			@Override
+			public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+			}
+			
 			@Override
 			public void afterTextChanged(Editable s) {
 				

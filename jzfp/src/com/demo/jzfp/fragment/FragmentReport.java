@@ -460,6 +460,12 @@ public class FragmentReport extends Fragment implements OnClickListener, WebServ
 			tv_reason.setText("修改");
 		}
 
+		if (Constant.poor.getTdataHelper() == null) {
+			tv_jdbf.setText("");
+		} else {
+			tv_jdbf.setText("修改");
+		}
+		
 		if (Constant.poor.getTdataActions() == null || Constant.poor.getTdataActions().isEmpty()) {
 			tv_measures.setText("");
 		} else {
@@ -552,6 +558,7 @@ public class FragmentReport extends Fragment implements OnClickListener, WebServ
 				tv_measures.setText("");
 				tv_effect.setText("");
 				et_countryId.setText("");
+				tv_security.setText("");
 				Constant.poor = new TdataCountryman();
 			}else if("2".equals(result)){
 				Tools.showNewToast(getActivity(), "身份证不可重复！");

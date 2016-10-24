@@ -27,13 +27,8 @@ import com.demo.jzfp.view.WheelView;
 
 public class JdbfActivity extends BaseActivity implements OnClickListener {
 	private AlertDialog dialog;
-	private String[] conditions;
-	private String condition;
-	private TextView tv_time, tv_condition;
-	private EditText et_income, et_allIncome, et_medical, et_education, et_organization, et_name, et_tel, et_helpMan;  /*, et_houseSafe, et_Captain, et_Village*/
-	private EditText et_dwsjName,et_dwsjPhone, et_zzName, et_zzPhone, et_csjName, et_csjPhone, et_czrName, et_czrPhone;
-	private SQLiteDatabase db = null;
-	private DictDataInfoDao dictDataDao = new DictDataInfoDaoImpl();
+	private EditText  et_organization, et_name, et_tel;  /*, et_houseSafe, , */
+	private EditText et_dwsjName,et_dwsjPhone, et_zzName, et_zzPhone, et_csjName, et_csjPhone, et_czrName, et_czrPhone,et_name_job,et_Captain,et_Village;
 
 	@Override
 	protected void setView() {
@@ -46,74 +41,34 @@ public class JdbfActivity extends BaseActivity implements OnClickListener {
 	@Override
 	protected void initView() {
 		TextView tv_save = (TextView) findViewById(R.id.tv_save);
-
-		RelativeLayout rl_time = (RelativeLayout) findViewById(R.id.rl_time);
-		tv_time = (TextView) findViewById(R.id.tv_time);
-
-		et_income = (EditText) findViewById(R.id.et_income);
-		et_allIncome = (EditText) findViewById(R.id.et_allIncome);
-		/*et_houseSafe = (EditText) findViewById(R.id.et_houseSafe);*/
-		et_medical = (EditText) findViewById(R.id.et_medical);
-		et_education = (EditText) findViewById(R.id.et_education);
-		/*et_Captain = (EditText) findViewById(R.id.et_Captain);
-		et_Village = (EditText) findViewById(R.id.et_Village);*/
-		
-		RelativeLayout rl_condition = (RelativeLayout) findViewById(R.id.rl_condition);
-		tv_condition = (TextView) findViewById(R.id.tv_condition);
-
-		et_organization = (EditText) findViewById(R.id.et_organization);
-		et_name = (EditText) findViewById(R.id.et_name);
-		et_tel = (EditText) findViewById(R.id.et_tel);
-		/*et_helpMan = (EditText) findViewById(R.id.et_helpMan);*/
+		tv_save.setOnClickListener(this);
+		et_organization = (EditText) findViewById(R.id.et_organization);//请填写结对帮扶单位
+		et_name = (EditText) findViewById(R.id.et_name); //请填写帮扶责任人
+		et_name_job = (EditText) findViewById(R.id.et_name_job); //请填写帮扶责任人职务
+		et_tel = (EditText) findViewById(R.id.et_tel);//请填写联系电话
+		et_Captain = (EditText) findViewById(R.id.et_Captain);//请填写驻村队长信息
+		et_Village = (EditText) findViewById(R.id.et_Village);//请填写队长联系电话
 		et_dwsjName = (EditText) findViewById(R.id.et_dwsjName);
 		et_dwsjPhone = (EditText) findViewById(R.id.et_dwsjPhone);
-		et_zzName = (EditText) findViewById(R.id.et_zzName);
-		et_zzPhone = (EditText) findViewById(R.id.et_zzPhone);
-		et_csjName = (EditText) findViewById(R.id.et_csjName);
-		et_csjPhone = (EditText) findViewById(R.id.et_csjPhone);
-		et_czrName = (EditText) findViewById(R.id.et_czrName);
-		et_czrPhone = (EditText) findViewById(R.id.et_czrPhone);
-
-		tv_save.setOnClickListener(this);
-		rl_time.setOnClickListener(this);
-		rl_condition.setOnClickListener(this);
-
+		et_zzName = (EditText) findViewById(R.id.et_zzName);//请填写乡（镇）长姓名
+		et_zzPhone = (EditText) findViewById(R.id.et_zzPhone);//请填写乡（镇）长电话
+		et_csjName = (EditText) findViewById(R.id.et_csjName);//请填写村书记姓名
+		et_csjPhone = (EditText) findViewById(R.id.et_csjPhone);//请填写村书记电话
+		et_czrName = (EditText) findViewById(R.id.et_czrName);//请填写村主任姓名
+		et_czrPhone = (EditText) findViewById(R.id.et_czrPhone);//请填写村主任电话
 	}
 
 	@Override
 	protected void initData() {
-		db = (new DatabaseHelper(this)).getWritableDatabase();
-		conditions = new String[] { "是", "否" };
-		if (Constant.poor.getTdataResult() != null) {
-			if (!TextUtils.isEmpty(Constant.poor.getTdataResult().getTpDate()))
-				tv_time.setText(Constant.poor.getTdataResult().getTpDate());
-			if (!TextUtils.isEmpty(Constant.poor.getTdataResult().getJtsrRjsr()))
-				et_income.setText(Constant.poor.getTdataResult().getJtsrRjsr());
-			if (!TextUtils.isEmpty(Constant.poor.getTdataResult().getJtsrZsr()))
-				et_allIncome.setText(Constant.poor.getTdataResult().getJtsrZsr());
-			/*if (!TextUtils.isEmpty(Constant.poor.getTdataResult().getAddressSafe()))
-				et_houseSafe.setText(Constant.poor.getTdataResult().getAddressSafe());*/
-			if (!TextUtils.isEmpty(Constant.poor.getTdataResult().getJbshbzYl()))
-				et_medical.setText(Constant.poor.getTdataResult().getJbshbzYl());
-			if (!TextUtils.isEmpty(Constant.poor.getTdataResult().getJbshbzYwjy()))
-				et_education.setText(Constant.poor.getTdataResult().getJbshbzYwjy());
-			/*if (!TextUtils.isEmpty(Constant.poor.getTdataResult().getzcgjddz()))
-				et_Captain.setText(Constant.poor.getTdataResult().getzcgjddz());
-			if (!TextUtils.isEmpty(Constant.poor.getTdataResult().getcfzr()))
-				et_Village.setText(Constant.poor.getTdataResult().getcfzr());*/
-			if (!TextUtils.isEmpty(Constant.poor.getTdataResult().getJffhtptj()))
-				tv_condition.setText(Constant.poor.getTdataResult().getJffhtptj());
-		}
-
 		if (Constant.poor.getTdataHelper() != null) {
 			if (!TextUtils.isEmpty(Constant.poor.getTdataHelper().getJdbfzrOrgname()))
 				et_organization.setText(Constant.poor.getTdataHelper().getJdbfzrOrgname());
 			if (!TextUtils.isEmpty(Constant.poor.getTdataHelper().getJdbfzrOrger()))
 				et_name.setText(Constant.poor.getTdataHelper().getJdbfzrOrger());
+			if (!TextUtils.isEmpty(Constant.poor.getTdataHelper().getJdbfzrOrgname()))
+				et_name_job.setText(Constant.poor.getTdataHelper().getJdbfzrOrgname());
 			if (!TextUtils.isEmpty(Constant.poor.getTdataHelper().getBfzrrPhone()))
 				et_tel.setText(Constant.poor.getTdataHelper().getBfzrrPhone());
-			if (!TextUtils.isEmpty(Constant.poor.getTdataHelper().getJdbfzrr()))
-				et_helpMan.setText(Constant.poor.getTdataHelper().getJdbfzrr());
 			if (!TextUtils.isEmpty(Constant.poor.getTdataHelper().getDwsjName()))
 				et_dwsjName.setText(Constant.poor.getTdataHelper().getDwsjName());
 			if (!TextUtils.isEmpty(Constant.poor.getTdataHelper().getDwsjPhone()))
@@ -141,27 +96,6 @@ public class JdbfActivity extends BaseActivity implements OnClickListener {
 			setData();
 			finish();
 			break;
-		case R.id.rl_time:
-			Calendar c = Calendar.getInstance();
-			// 最后一个false表示不显示日期，如果要显示日期，最后参数可以是true或者不用输入
-			new DoubleDatePickerDialog(this, 0, new DoubleDatePickerDialog.OnDateSetListener() {
-				@Override
-				public void onDateSet(DatePicker startDatePicker, int startYear, int startMonthOfYear, int startDayOfMonth) {
-					String textString = startYear + "-" + (startMonthOfYear + 1) + "-" + startDayOfMonth;
-					tv_time.setText(textString);
-				}
-			}, c.get(Calendar.YEAR), c.get(Calendar.MONTH), c.get(Calendar.DATE), false).show();
-			break;
-		case R.id.rl_condition:
-			showWheelView("是否符合脱贫条件", conditions, 0);
-			break;
-		case R.id.txt_sure:
-			if (TextUtils.isEmpty(condition))
-				condition = conditions[1];
-			tv_condition.setText(condition);
-			condition = "";
-			dialog.dismiss();
-			break;
 		case R.id.txt_cancel:
 			dialog.dismiss();
 			break;
@@ -188,7 +122,6 @@ public class JdbfActivity extends BaseActivity implements OnClickListener {
 		wv.setOnWheelViewListener(new WheelView.OnWheelViewListener() {
 			@Override
 			public void onSelected(int selectedIndex, String item) {
-				condition = item;
 			}
 		});
 		dialog = new AlertDialog.Builder(this).setTitle(title).setView(outerView).show();
@@ -203,24 +136,18 @@ public class JdbfActivity extends BaseActivity implements OnClickListener {
 	 * 保存帮扶成效信息
 	 */
 	private void setData() {
-		TdataResult result = new TdataResult();
-		result.setTpDate(tv_time.getText().toString().trim() + "");
-		result.setJtsrRjsr(et_income.getText().toString().trim() + "");
-		result.setJtsrZsr(et_allIncome.getText().toString().trim() + "");
-		/*result.setAddressSafe(et_houseSafe.getText().toString().trim() + "");*/
-		result.setJbshbzYl(et_medical.getText().toString().trim() + "");
-		result.setJbshbzYwjy(et_education.getText().toString().trim() + "");
-		if (!TextUtils.isEmpty(tv_condition.getText().toString().trim())) {
-			String jffhtptj = dictDataDao.queryDictCodeByValue(db, tv_condition.getText().toString().trim(),"sf");
-			result.setJffhtptj(jffhtptj);
+		TdataResult result = Constant.poor.getTdataResult();
+		if(result==null){
+			result = new TdataResult();
 		}
+		result.setzcgjddz(et_Captain.getText().toString().trim()+"");
+		//result.setzcgjddz(et_Village.getText().toString().trim()+"");
 		Constant.poor.setTdataResult(result);
-
+		
 		TdataHelper helper = new TdataHelper();
 		helper.setJdbfzrOrgname(et_organization.getText().toString().trim() + "");
 		helper.setJdbfzrOrger(et_name.getText().toString().trim() + "");
 		helper.setBfzrrPhone(et_tel.getText().toString().trim() + "");
-		helper.setJdbfzrr(et_helpMan.getText().toString().trim() + "");
 		helper.setDwsjName(et_dwsjName.getText().toString().trim()+"");
 		helper.setDwsjPhone(et_dwsjPhone.getText().toString().trim()+"");
 		helper.setZzName(et_zzName.getText().toString().trim()+"");

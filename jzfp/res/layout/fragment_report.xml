@@ -689,6 +689,7 @@
                     android:textSize="@dimen/x20" />
 
                 <TextView
+                    android:id="@+id/textView1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
@@ -711,12 +712,13 @@
                     android:id="@+id/tv_security"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_toLeftOf="@id/iv_into_security"
-                    android:singleLine="true"
+                    android:layout_alignBaseline="@+id/textView1"
+                    android:layout_alignBottom="@+id/textView1"
+                    android:layout_toLeftOf="@+id/iv_into_security"
                     android:hint="请选择住房结构"
-                    android:textColorHint="#d6d6d6"
+                    android:singleLine="true"
                     android:textColor="#000"
+                    android:textColorHint="#d6d6d6"
                     android:textSize="@dimen/x15" />
             </RelativeLayout>
             
