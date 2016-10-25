@@ -7,7 +7,8 @@ public class TdataAction{
 	private java.lang.String actionId;
 	private java.lang.String actionType;//政策措施分类:1七个一批；2、其他
 	private java.lang.String actionDl;//大类
-	private java.lang.String actionXl;//小类
+	/*private java.lang.String actionDlCode;//大类code
+*/	private java.lang.String actionXl;//小类
 	private String actionMoney;//增收获益
 	private String remark;//说明
 	public java.lang.String getActionId() {
@@ -40,13 +41,19 @@ public class TdataAction{
 	public void setActionDl(java.lang.String actionDl) {
 		this.actionDl = actionDl;
 	}
+	/*public java.lang.String getActionDlCode() {
+		return actionDlCode;
+	}
+	public void setActionDlCode(java.lang.String actionDlCode) {
+		this.actionDlCode = actionDlCode;
+	}*/
 	public java.lang.String getActionXl() {
 		return actionXl;
 	}
 	public void setActionXl(java.lang.String actionXl) {
 		this.actionXl = actionXl;
 	}
-	@Override
+	@Override     /*", actionDlCode=" + actionDlCode + */
 	public String toString() {
 		return "TdataAction [actionType=" + actionType + ", actionDl=" + actionDl + ", actionXl=" + actionXl
 				+ ", actionMoney=" + actionMoney + ", remark=" + remark + "]";

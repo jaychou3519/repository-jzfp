@@ -695,7 +695,7 @@
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="@dimen/x5"
                     android:layout_toRightOf="@id/tv_xin_security"
-                    android:text="住房结构"
+                    android:text="住房安全"
                     android:textColor="#000"
                     android:textSize="@dimen/x15" />
 
@@ -715,7 +715,7 @@
                     android:layout_alignBaseline="@+id/textView1"
                     android:layout_alignBottom="@+id/textView1"
                     android:layout_toLeftOf="@+id/iv_into_security"
-                    android:hint="请选择住房结构"
+                    android:hint="请选择住房安全"
                     android:singleLine="true"
                     android:textColor="#000"
                     android:textColorHint="#d6d6d6"

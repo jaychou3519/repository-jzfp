@@ -231,7 +231,7 @@ public class RecordFragmentEdit extends Fragment implements OnClickListener{
 			showWheelView(title, reasons, table);
 			break;
 		case R.id.tv_home_flat:
-			title = "请选择住房结构";
+			title = "请选择住房安全";
 			table = 4;
 			showWheelView(title, constructions, table);
 			break;

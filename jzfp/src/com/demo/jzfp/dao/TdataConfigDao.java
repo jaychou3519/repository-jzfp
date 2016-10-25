@@ -13,4 +13,5 @@ public interface TdataConfigDao {
 	public List<String> queryActionDl(SQLiteDatabase db);
 	public List<String> queryActionDlCode(SQLiteDatabase db);
 	public String queryActionXlByActionDl(SQLiteDatabase db,String actionDl);
+	public String queryActionDlCodeByActionDl(SQLiteDatabase db,String actionDl);
 }

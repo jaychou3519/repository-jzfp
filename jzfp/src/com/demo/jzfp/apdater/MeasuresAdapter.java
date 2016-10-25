@@ -72,5 +72,4 @@ public class MeasuresAdapter extends BaseAdapter {
 	class Holder{
 		TextView tv_measures;
 	}
-
 }

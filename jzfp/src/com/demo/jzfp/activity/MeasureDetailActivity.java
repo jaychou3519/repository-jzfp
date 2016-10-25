@@ -2,6 +2,7 @@ package com.demo.jzfp.activity;
 
 
 import java.util.ArrayList;
+
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -11,6 +12,7 @@ import android.view.View.OnClickListener;
 import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.TextView;
+
 import com.demo.jzfp.R;
 import com.demo.jzfp.apdater.MeasureDetailAdapter;
 import com.demo.jzfp.dao.TdataConfigDao;
@@ -108,7 +110,10 @@ public class MeasureDetailActivity extends BaseActivity implements OnClickListen
 		}
 		action.setActionXl(sb.toString());
 		Log.i("haha", "sb---"+sb.toString());
-		action.setActionDl(title);
+		String actionDlCode = tdataConfigDao.queryActionDlCodeByActionDl(db, title);
+		action.setActionDl(actionDlCode);
+		//action.setActionDl(title);
+		/*action.setActionDlCode(actionDlCode);*/
 		action.setActionMoney(et_income.getText().toString().trim()+"");
 		action.setRemark(et_illustrate.getText().toString().trim()+"");
 		if(Constant.poor.getTdataActions() != null){

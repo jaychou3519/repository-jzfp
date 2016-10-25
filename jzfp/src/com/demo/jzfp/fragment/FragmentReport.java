@@ -297,7 +297,7 @@ public class FragmentReport extends Fragment implements OnClickListener, WebServ
 				Tools.showNewToast(getActivity(), "请选择文化程度");
 				return;
 			} else if (TextUtils.isEmpty(tv_security.getText().toString())) {
-				Tools.showNewToast(getActivity(), "请选择住房安全");
+				Tools.showNewToast(getActivity(), "请选择住房结构");
 				return;
 			} 
 			/*else if (TextUtils.isEmpty(tv_poorCard.getText().toString())) {
@@ -496,9 +496,9 @@ public class FragmentReport extends Fragment implements OnClickListener, WebServ
 		Constant.poor.setAge(et_age.getText().toString().trim() + "");
 		Constant.poor.setCard(et_identity.getText().toString().trim() + "");
 		Constant.poor.setTelphone(et_tel.getText().toString().trim() + "");
-		Constant.poor.setTelphone(et_area.getText().toString().trim() + "");
-		Constant.poor.setTelphone(et_land.getText().toString().trim() + "");
-		Constant.poor.setTelphone(et_hill.getText().toString().trim() + "");
+		Constant.poor.setZzArea(et_area.getText().toString().trim() + "");
+		Constant.poor.setGdArea(et_land.getText().toString().trim() + "");
+		Constant.poor.setSlArea(et_hill.getText().toString().trim() + "");
 		Constant.poor.setCountrymanId(UUID.randomUUID().toString().replace("-", ""));
 		/*et_area, et_land, et_hill*/
 		
@@ -506,11 +506,11 @@ public class FragmentReport extends Fragment implements OnClickListener, WebServ
 			String whcd = dictDataDao.queryDictCodeByValue(db, tv_education.getText().toString().trim(),"whcd");
 			Constant.poor.setWhcd(whcd);
 		}
-		/*待确定*/
-		/*if (!TextUtils.isEmpty(tv_security.getText().toString().trim())) {
-			String zfaq = dictDataDao.queryDictCodeByValue(db, tv_security.getText().toString().trim(),"zfaq");
-			Constant.poor.setZfaq(zfaq);
-		}*/
+		
+		if (!TextUtils.isEmpty(tv_security.getText().toString().trim())) {
+			String zfjg = dictDataDao.queryDictCodeByValue(db, tv_security.getText().toString().trim(),"zfjg");
+			Constant.poor.setZfjg(zfjg);
+		}
 		
 		if(MyApplication.login!=null){
 			if(MyApplication.login.getLoginName().equals("admin")){
@@ -549,6 +549,7 @@ public class FragmentReport extends Fragment implements OnClickListener, WebServ
 				tv_education.setText("");
 				/*tv_poorCard.setText("");*/
 				/*tv_economy.setText("");*/
+				tv_security.setText("");
 				et_area.setText("");
 				et_land.setText("");
 				et_hill.setText("");
@@ -558,7 +559,7 @@ public class FragmentReport extends Fragment implements OnClickListener, WebServ
 				tv_measures.setText("");
 				tv_effect.setText("");
 				et_countryId.setText("");
-				tv_security.setText("");
+				
 				Constant.poor = new TdataCountryman();
 			}else if("2".equals(result)){
 				Tools.showNewToast(getActivity(), "身份证不可重复！");

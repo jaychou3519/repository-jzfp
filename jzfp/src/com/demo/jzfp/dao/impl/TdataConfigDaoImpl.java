@@ -89,5 +89,20 @@ public class TdataConfigDaoImpl implements TdataConfigDao{
 		cursor.close();
 		return actionXl;
 	}
+	
+	
+	@Override
+	public String queryActionDlCodeByActionDl(SQLiteDatabase db,String actionDl){
+		String actionDlCode = null; 
+		StringBuffer sql = new StringBuffer();
+		sql.append("select cc.actionDlCode from tdata_config cc where cc.actionDl=?");
+		Cursor cursor = db.rawQuery(sql.toString(), new String[] {actionDl});
+		while (cursor.moveToNext()) {
+			actionDlCode = cursor.getString(cursor.getColumnIndex("actionDlCode"));
+		}
+		cursor.close();
+		return actionDlCode;
+	}
+
 
 }

@@ -19,6 +19,7 @@ public class TdataCountryman {
 	private java.lang.String poorCard;//贫困户属性
 	
 	///////////家庭经济
+	private String zfaq;//住房安全
 	private String zfjg;//住房结构
 	private String zzArea;//住房面积
 	private String gdArea;//耕地面积
@@ -138,7 +139,14 @@ public class TdataCountryman {
 		this.health = health;
 	}*/
 
+	public String getZfaq() {
+		return zfaq;
+	}
 
+	public void setZfaq(String zfaq) {
+		this.zfaq = zfaq;
+	}
+	
 	public String getZfjg() {
 		return zfjg;
 	}
@@ -283,7 +291,7 @@ public class TdataCountryman {
 		return "TdataCountryman [countrymanId=" + countrymanId + ", countryman=" + countryman + ", countryId="
 				+ countryId + ", poorState=" + poorState + ", sex=" + sex + ", age=" + age + ", card=" + card
 				+ ", telphone=" + telphone + ", whcd=" + whcd + ", jkzk=" + jkzk + ", poorCard=" + poorCard + ", zfjg="
-				+ zfjg + ", zzArea=" + zzArea + ", gdArea=" + gdArea + ", slArea=" + slArea + ", rjsrqk=" + rjsrqk
+				+ zfjg + ", zfaq=" + zfaq + ", zzArea=" + zzArea + ", gdArea=" + gdArea + ", slArea=" + slArea + ", rjsrqk=" + rjsrqk
 				+ ", poorReason=" + poorReason + ", remark=" + remark + ", tdataFamilys=" + tdataFamilys
 				+ ", tdataActions=" + tdataActions + ", tdataHelper=" + tdataHelper + ", tdataResult=" + tdataResult
 				+ ", pkhimg=" + pkhimg + "]";
