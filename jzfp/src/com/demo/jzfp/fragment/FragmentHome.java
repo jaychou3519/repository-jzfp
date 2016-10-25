@@ -29,6 +29,7 @@ import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.alibaba.fastjson.JSON;
@@ -40,10 +41,12 @@ import com.demo.jzfp.activity.SupportActivity;
 import com.demo.jzfp.activity.VillagesActivity2;
 import com.demo.jzfp.activity.VillagesTextActivity2;
 import com.demo.jzfp.apdater.ImageAdapter;
+import com.demo.jzfp.apdater.VillagesAdapter;
 import com.demo.jzfp.dao.AreaDataDao;
 import com.demo.jzfp.dao.impl.AreaDataDaoImpl;
 import com.demo.jzfp.database.DatabaseHelper;
 import com.demo.jzfp.entity.CountryMans;
+import com.demo.jzfp.entity.Policy;
 import com.demo.jzfp.entity.Root;
 import com.demo.jzfp.entity.Villages;
 import com.demo.jzfp.utils.Asynce_NetWork;
@@ -68,6 +71,8 @@ public class FragmentHome extends BaseFragment implements AsynceHttpInterface,
 			tv_temperature_range, tv_search;
 	private EditText ed_search;
 	private List<CountryMans> countrys;
+	private List<Policy> policies;
+	private ListView lv_listview;
 
 	//
 	private SQLiteDatabase db = null;
@@ -110,6 +115,8 @@ public class FragmentHome extends BaseFragment implements AsynceHttpInterface,
 
 		ed_search.addTextChangedListener(new MyTextWatcher());
 		tv_search.setOnClickListener(this);
+		
+		lv_listview = (ListView) v.findViewById(R.id.lv_listview);
 
 		ImageView view1 = new ImageView(getActivity());
 		view1.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT,
@@ -162,6 +169,11 @@ public class FragmentHome extends BaseFragment implements AsynceHttpInterface,
 		// 开始轮播效果
 		handler.sendEmptyMessageDelayed(ImageHandler.MSG_UPDATE_IMAGE,
 				ImageHandler.MSG_DELAY);
+		
+		
+		LinkedHashMap<String, String> linkedHashMap = new LinkedHashMap<String, String>();
+		//linkedHashMap.put("itemId", "1");
+		RequestWebService.send("selectNewsList", linkedHashMap, this, 103);
 	}
 
 	private void GetWeather() {
@@ -403,6 +415,13 @@ public class FragmentHome extends BaseFragment implements AsynceHttpInterface,
 				} catch (Exception e) {
 					// TODO: handle exception
 				}
+			} else if (requestCode == 103) {
+				if (reulst == null) {
+					return;
+				}
+				policies = JSON.parseArray(reulst, Policy.class);
+				VillagesAdapter adapter = new VillagesAdapter(getMainActivity(), policies, VillagesAdapter.SUPPORT);
+				lv_listview.setAdapter(adapter);
 			}
 
 		}
