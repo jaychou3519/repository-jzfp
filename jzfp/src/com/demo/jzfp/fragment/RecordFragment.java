@@ -1,15 +1,22 @@
 package com.demo.jzfp.fragment;
 
+import java.util.LinkedHashMap;
+
+import com.alibaba.fastjson.JSON;
 import com.demo.jzfp.R;
 import com.demo.jzfp.apdater.RecordAdapter;
 import com.demo.jzfp.dao.DictDataInfoDao;
 import com.demo.jzfp.dao.impl.DictDataInfoDaoImpl;
 import com.demo.jzfp.database.DatabaseHelper;
+import com.demo.jzfp.entity.TdataAction;
 import com.demo.jzfp.entity.TdataCountryman;
 import com.demo.jzfp.entity.TdataHelper;
 import com.demo.jzfp.entity.TdataResult;
 import com.demo.jzfp.utils.Constant;
+import com.demo.jzfp.utils.RequestWebService;
 import com.demo.jzfp.utils.Tools;
+import com.demo.jzfp.utils.Asynce_NetWork.AsynceHttpInterface;
+import com.demo.jzfp.utils.RequestWebService.WebServiceCallback;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
 import android.app.Fragment;
@@ -19,12 +26,14 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.View.OnClickListener;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
-public class RecordFragment extends Fragment{
+public class RecordFragment extends Fragment implements AsynceHttpInterface,
+OnClickListener, WebServiceCallback {
 
 	private ScrollView sv_scroll;
 	private ListView lv_listview;
@@ -37,7 +46,7 @@ public class RecordFragment extends Fragment{
 					,tv_reason,tv_explain,jtcy;  /*tv_year_money,*/
 	private ImageView iv_photo;
 	private TdataCountryman countryman;
-	private TdataHelper THelper;
+	private TdataHelper tHelper;
 	private TdataResult Tresult;
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -92,46 +101,35 @@ public class RecordFragment extends Fragment{
 	private void initData(){
 		db = (new DatabaseHelper(getActivity())).getWritableDatabase();
 		if(countryman!=null) {
-		tv_name.setText(Tools.parseEmpty(countryman.getCountryman()));
-		tv_state.setText(dictDataDao.queryValueByDictCode(db,countryman.getPoorState(),"poorState"));
-		tv_gender.setText(Tools.parseEmpty(countryman.getSex()));
-		tv_idcard.setText(Tools.parseEmpty(countryman.getCard()));
-		tv_age.setText(Tools.parseEmpty(countryman.getAge()));
-		tv_phone.setText(Tools.parseEmpty(countryman.getTelphone()));
-		String whcd = dictDataDao.queryValueByDictCode(db,countryman.getWhcd(),"whcd");
-		tv_educational.setText(whcd);
-		tv_home_flat.setText(Tools.parseEmpty(countryman.getZfjg()));
-		tv_home_area.setText(Tools.parseEmpty(countryman.getZzArea()));
-		tv_plough_area.setText(Tools.parseEmpty(countryman.getGdArea()));
-		tv_mountains_area.setText(Tools.parseEmpty(countryman.getSlArea()));
-		/*tv_year_money.setText(Tools.parseEmpty(countryman.getRjsrqk()));*/
-		tv_reason.setText(Tools.parseEmpty(countryman.getPoorReason()));
-		tv_explain.setText(Tools.parseEmpty(countryman.getRemark()));
-		jtcy.setText("家庭成员(" + countryman.getTdataFamilys().size() + ")");
-		
-		if(!TextUtils.isEmpty(countryman.getPkhimg()))
-			ImageLoader.getInstance().displayImage(countryman.getPkhimg(), iv_photo);
-		adapter = new RecordAdapter(getActivity(),countryman.getTdataFamilys());
-		lv_listview.setAdapter(adapter);
-		Tools.setListViewHeight(lv_listview);
-		sv_scroll.smoothScrollTo(0, 20);
-		sv_scroll.setFocusable(true);
-		
-		}else{
- 		et_organization.setText("sssssss");
-		et_name.setText(Tools.parseEmpty(THelper.getJdbfzrOrger()));
-		et_name_job.setText(Tools.parseEmpty(THelper.getJdbfzrOrgname()));
-		et_tel.setText(Tools.parseEmpty(THelper.getBfzrrPhone()));
-		/*et_Village.setText(Tools.parseEmpty(THelper.getZzArea()));*/
-		et_dwsjName.setText(Tools.parseEmpty(THelper.getDwsjName()));
-		et_dwsjPhone.setText(Tools.parseEmpty(THelper.getDwsjPhone()));
-		et_zzName.setText(Tools.parseEmpty(THelper.getZzName()));
-		et_zzPhone.setText(Tools.parseEmpty(THelper.getZzPhone()));
-		et_csjName.setText(Tools.parseEmpty(THelper.getCsjName()));
-		et_csjPhone.setText(Tools.parseEmpty(THelper.getCxjPhone()));
-		et_czrName.setText(Tools.parseEmpty(THelper.getCzrName()));
-		et_czrPhone.setText(Tools.parseEmpty(THelper.getCzrPhone()));
+			tv_name.setText(Tools.parseEmpty(countryman.getCountryman()));
+			tv_state.setText(dictDataDao.queryValueByDictCode(db,countryman.getPoorState(),"poorState"));
+			tv_gender.setText(Tools.parseEmpty(countryman.getSex()));
+			tv_idcard.setText(Tools.parseEmpty(countryman.getCard()));
+			tv_age.setText(Tools.parseEmpty(countryman.getAge()));
+			tv_phone.setText(Tools.parseEmpty(countryman.getTelphone()));
+			String whcd = dictDataDao.queryValueByDictCode(db,countryman.getWhcd(),"whcd");
+			tv_educational.setText(whcd);
+			tv_home_flat.setText(Tools.parseEmpty(countryman.getZfjg()));
+			tv_home_area.setText(Tools.parseEmpty(countryman.getZzArea()));
+			tv_plough_area.setText(Tools.parseEmpty(countryman.getGdArea()));
+			tv_mountains_area.setText(Tools.parseEmpty(countryman.getSlArea()));
+			/*tv_year_money.setText(Tools.parseEmpty(countryman.getRjsrqk()));*/
+			tv_reason.setText(Tools.parseEmpty(countryman.getPoorReason()));
+			tv_explain.setText(Tools.parseEmpty(countryman.getRemark()));
+			jtcy.setText("家庭成员(" + countryman.getTdataFamilys().size() + ")");
+			
+			if(!TextUtils.isEmpty(countryman.getPkhimg()))
+				ImageLoader.getInstance().displayImage(countryman.getPkhimg(), iv_photo);
+			adapter = new RecordAdapter(getActivity(),countryman.getTdataFamilys());
+			lv_listview.setAdapter(adapter);
+			Tools.setListViewHeight(lv_listview);
+			sv_scroll.smoothScrollTo(0, 20);
+			sv_scroll.setFocusable(true);
 		}
+		
+		LinkedHashMap<String, String> linkedHashMap = new LinkedHashMap<String, String>();
+		linkedHashMap.put("arg0", countryman.getCountrymanId());
+		RequestWebService.send("selectByHelper", linkedHashMap, this, 101);
 		
 		/*if(Tresult==null) return;
 		et_Captain.setText(Tools.parseEmpty(Tresult.getzcgjddz()));*/
@@ -144,5 +142,53 @@ public class RecordFragment extends Fragment{
 	public TdataCountryman getCountryMan(){
 		TdataCountryman tdataCountryman = new TdataCountryman();
 		return null;
+	}
+
+	@Override
+	public void result(String reulst, int requestCode) {
+		if(reulst == null){
+			Tools.showNewToast(getActivity(), "链接服务器失败");
+		}else{
+    		switch (requestCode) {
+			case 101:
+				try {
+					Tools.i("selectByHelper", reulst.toString());
+					tHelper = JSON.parseObject(reulst, TdataHelper.class);
+					et_organization.setText(Tools.parseEmpty(tHelper.getJdbfzrOrgname()));
+					et_name.setText(Tools.parseEmpty(tHelper.getJdbfzrOrger()));
+					et_name_job.setText(Tools.parseEmpty(tHelper.getJdbfzrOrgname()));
+					et_tel.setText(Tools.parseEmpty(tHelper.getBfzrrPhone()));
+					//et_Village.setText(Tools.parseEmpty(tHelper.getZzArea()));
+					et_dwsjName.setText(Tools.parseEmpty(tHelper.getDwsjName()));
+					et_dwsjPhone.setText(Tools.parseEmpty(tHelper.getDwsjPhone()));
+					et_zzName.setText(Tools.parseEmpty(tHelper.getZzName()));
+					et_zzPhone.setText(Tools.parseEmpty(tHelper.getZzPhone()));
+					et_csjName.setText(Tools.parseEmpty(tHelper.getCsjName()));
+					et_csjPhone.setText(Tools.parseEmpty(tHelper.getCxjPhone()));
+					et_czrName.setText(Tools.parseEmpty(tHelper.getCzrName()));
+					et_czrPhone.setText(Tools.parseEmpty(tHelper.getCzrPhone()));
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+				break;
+			default:
+				break;
+			}
+    	}
+	}
+
+	@Override
+	public void onClick(View v) {
+		
+	}
+
+	@Override
+	public void getNetData(int requestCode, String data) {
+		
+	}
+
+	@Override
+	public void requestDefeated(int requestCode, String data) {
+		
 	}
 }

@@ -2,11 +2,13 @@ package com.demo.jzfp.activity;
 
 import java.util.LinkedHashMap;
 import java.util.List;
+
 import com.alibaba.fastjson.JSON;
 import com.demo.jzfp.R;
 import com.demo.jzfp.entity.CountryMans;
 import com.demo.jzfp.entity.TdataAction;
 import com.demo.jzfp.entity.TdataCountryman;
+import com.demo.jzfp.entity.TdataHelper;
 import com.demo.jzfp.entity.TdataResult;
 import com.demo.jzfp.fragment.EffectFragment;
 import com.demo.jzfp.fragment.MeasureFragment;
@@ -18,6 +20,7 @@ import com.demo.jzfp.utils.RequestWebService.WebServiceCallback;
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
+
 import android.app.FragmentTransaction;
 import android.content.res.Resources;
 import android.os.Bundle;
@@ -47,6 +50,7 @@ public class ArchivesDetailsActivity extends BaseActivity implements WebServiceC
 	private List<TdataAction> tactions;
 	private LinkedHashMap<String, String> linkedHashMap;
 	private CountryMans countrys;
+	
 	@Override
 	protected void setView() {
 		View view = View.inflate(this, R.layout.activity_archives_details, null);
@@ -62,7 +66,6 @@ public class ArchivesDetailsActivity extends BaseActivity implements WebServiceC
 		linkedHashMap = new LinkedHashMap<String, String>();
 		linkedHashMap.put("arg0", getIntent().getExtras().getString("countrymanId"));
 		RequestWebService.send(methodName, linkedHashMap, this, 101);
-
 	}
 
 	@Override

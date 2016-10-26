@@ -207,7 +207,7 @@ public class FragmentHome extends BaseFragment implements AsynceHttpInterface,
 				Root results = new Root();
 				results = Tools.GG().fromJson(json.toString(), Root.class);
 				if (results == null) {
-					Tools.showNewToast(getActivity(), "获取天气失败！");
+					Tools.showNewToast(getActivity(), "获取天气 失败！");
 					return;
 				}
 				tv_year_mday.setText(results.getDate());
