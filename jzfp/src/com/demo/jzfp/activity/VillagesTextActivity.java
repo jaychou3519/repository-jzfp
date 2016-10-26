@@ -22,7 +22,7 @@ public class VillagesTextActivity extends BaseActivity{
 		setOnback(this);
 		int state  = getIntent().getExtras().getInt("villages");
 		if(state==VillagesAdapter.SUPPORT){
-			setTitleText("帮扶政策");
+			setTitleText("政策与公告");
 		}else{
 			setTitleText("乡镇介绍");
 		}
