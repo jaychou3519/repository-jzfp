@@ -211,12 +211,6 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="@dimen/x1"
-            android:layout_marginTop="@dimen/x20"
-            android:background="@color/hei" />
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/x1"
             android:layout_marginTop="@dimen/x10"
             android:background="@color/hei" />
 
@@ -367,12 +361,6 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="@dimen/x1"
-            android:layout_marginTop="@dimen/x20"
-            android:background="@color/hei" />
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/x1"
             android:layout_marginTop="@dimen/x10"
             android:background="@color/hei" />
 
@@ -394,12 +382,6 @@
             android:layout_height="wrap_content"
             android:divider="@null"
             android:scrollbars="@null" />
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/x1"
-            android:layout_marginTop="@dimen/x20"
-            android:background="@color/hei" />
 
         <View
             android:layout_width="match_parent"
@@ -466,6 +448,425 @@
                 android:layout_marginLeft="@dimen/x20"
                 android:text="" />
         </LinearLayout>
-    </LinearLayout>
+        
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/x1"
+            android:layout_marginTop="@dimen/x20"
+            android:background="@color/hei" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/x10"
+            android:layout_marginTop="@dimen/x5"
+            android:orientation="horizontal" >
+         		<ImageView
+                    android:id="@+id/iv_jdbf"
+                    android:layout_width="@dimen/x20"
+                    android:layout_height="@dimen/x20"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/x5"
+                    android:src="@drawable/effect1" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/x10"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@id/iv_jdbf"
+                    android:text="结对帮扶"
+                    android:textColor="@color/gray"
+                    android:textSize="@dimen/x14" />
+             </LinearLayout>
+        
+		<!-- <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/x10"
+            android:layout_marginTop="@dimen/x5"
+            android:drawableLeft="@drawable/effect1"
+            android:drawablePadding="@dimen/x10"
+            android:gravity="center"
+            android:text="结对帮扶"
+            android:textColor="@color/gray"
+            android:textSize="@dimen/x14" /> -->
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/x10"
+            android:layout_marginTop="@dimen/x5"
+            android:orientation="horizontal" >
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="horizontal" >
+            
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="帮扶单位"
+                android:textColor="@color/gray"
+                android:textSize="@dimen/x14" />
+
+            <TextView
+                android:id="@+id/et_organization"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/x20"
+                android:text="财政局"
+                android:textSize="@dimen/x14" />
+            </LinearLayout>
+
+             <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="horizontal" >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:text="帮扶责任人"
+                android:textColor="@color/gray"
+                android:textSize="@dimen/x14" />
+           
+            <TextView
+                android:id="@+id/et_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/x5"
+                android:layout_marginRight="@dimen/x5"
+                android:text="" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/x10"
+            android:layout_marginTop="@dimen/x5"
+            android:baselineAligned="false"
+            android:orientation="horizontal" >
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="帮扶责任人职务"
+                    android:textColor="@color/gray"
+                    android:textSize="@dimen/x14" />
+
+                <TextView
+                    android:id="@+id/et_name_job"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/x20"
+                    android:text="科长"
+                    android:textSize="@dimen/x14" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="right"
+                    android:text="联系电话"
+                    android:textColor="@color/gray"
+                    android:textSize="@dimen/x14" />
+
+                <TextView
+                    android:id="@+id/et_tel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/x5"
+                    android:layout_marginRight="@dimen/x5"
+                    android:text="18390318456" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/x10"
+            android:layout_marginTop="@dimen/x5"
+            android:baselineAligned="false"
+            android:orientation="horizontal" >
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="驻村工作队队长"
+                    android:textColor="@color/gray"
+                    android:textSize="@dimen/x14" />
+
+                <TextView
+                    android:id="@+id/et_Captain"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/x20"
+                    android:text=""
+                    android:textSize="@dimen/x14" />
+            </LinearLayout>
+            
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="right"
+                    android:text="队长联系电话"
+                    android:textColor="@color/gray"
+                    android:textSize="@dimen/x14" />
+
+                <TextView
+                    android:id="@+id/et_Village"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/x5"
+                    android:layout_marginRight="@dimen/x5"
+                    android:text="" />
+            </LinearLayout>
+        </LinearLayout>
+        
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/x10"
+            android:layout_marginTop="@dimen/x5"
+            android:baselineAligned="false"
+            android:orientation="horizontal" >
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="乡镇书记姓名"
+                    android:textColor="@color/gray"
+                    android:textSize="@dimen/x14" />
+
+                <TextView
+                    android:id="@+id/et_dwsjName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/x20"
+                    android:text="李四"
+                    android:textSize="@dimen/x14" />
+            </LinearLayout>
+            
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="right"
+                    android:text="乡镇书记电话"
+                    android:textColor="@color/gray"
+                    android:textSize="@dimen/x14" />
+
+                <TextView
+                    android:id="@+id/et_dwsjPhone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/x5"
+                    android:layout_marginRight="@dimen/x5"
+                    android:text="18390318456" />
+            </LinearLayout>
+        </LinearLayout>
+        
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/x10"
+            android:layout_marginTop="@dimen/x5"
+            android:baselineAligned="false"
+            android:orientation="horizontal" >
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="乡(镇)长姓名"
+                    android:textColor="@color/gray"
+                    android:textSize="@dimen/x14" />
+
+                <TextView
+                    android:id="@+id/et_zzName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/x20"
+                    android:text="王五"
+                    android:textSize="@dimen/x14" />
+            </LinearLayout>
+            
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="right"
+                    android:text="乡(镇)长电话"
+                    android:textColor="@color/gray"
+                    android:textSize="@dimen/x14" />
+
+                <TextView
+                    android:id="@+id/et_zzPhone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/x5"
+                    android:layout_marginRight="@dimen/x5"
+                    android:text="18390318456" />
+            </LinearLayout>
+        </LinearLayout>
+        
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/x10"
+            android:layout_marginTop="@dimen/x5"
+            android:baselineAligned="false"
+            android:orientation="horizontal" >
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="村书记姓名"
+                    android:textColor="@color/gray"
+                    android:textSize="@dimen/x14" />
+
+                <TextView
+                    android:id="@+id/et_csjName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/x20"
+                    android:text="赵六"
+                    android:textSize="@dimen/x14" />
+            </LinearLayout>
+            
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="right"
+                    android:text="村书记电话"
+                    android:textColor="@color/gray"
+                    android:textSize="@dimen/x14" />
+
+                <TextView
+                    android:id="@+id/et_csjPhone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/x5"
+                    android:layout_marginRight="@dimen/x5"
+                    android:text="18390318456" />
+            </LinearLayout>
+        </LinearLayout>
+        
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/x10"
+            android:layout_marginTop="@dimen/x5"
+            android:baselineAligned="false"
+            android:orientation="horizontal" >
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="村主任姓名"
+                    android:textColor="@color/gray"
+                    android:textSize="@dimen/x14" />
+
+                <TextView
+                    android:id="@+id/et_czrName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/x20"
+                    android:text="黄七"
+                    android:textSize="@dimen/x14" />
+            </LinearLayout>
+            
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="right"
+                    android:text="村主任电话"
+                    android:textColor="@color/gray"
+                    android:textSize="@dimen/x14" />
+
+                <TextView
+                    android:id="@+id/et_czrPhone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/x5"
+                    android:layout_marginRight="@dimen/x5"
+                    android:text="18390318456" />
+            </LinearLayout>
+        </LinearLayout>
+     </LinearLayout>
 
 </ScrollView>

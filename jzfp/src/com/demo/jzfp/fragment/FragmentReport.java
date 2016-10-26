@@ -453,14 +453,14 @@ public class FragmentReport extends Fragment implements OnClickListener, WebServ
 		} else {
 			tv_member.setText("修改");
 		}
-
+		
 		if (TextUtils.isEmpty(Constant.poor.getPoorReason()) && TextUtils.isEmpty(Constant.poor.getRemark())) {
 			tv_reason.setText("");
 		} else {
 			tv_reason.setText("修改");
 		}
 
-		if (Constant.poor.getTdataHelper() == null) {
+		if (Constant.poor.getTdataHelper() == null && Constant.poor.getTdataHelper() == null) {
 			tv_jdbf.setText("");
 		} else {
 			tv_jdbf.setText("修改");
@@ -472,7 +472,7 @@ public class FragmentReport extends Fragment implements OnClickListener, WebServ
 			tv_measures.setText("修改");
 		}
 
-		if (Constant.poor.getTdataHelper() == null && Constant.poor.getTdataResult() == null) {
+		if (Constant.poor.getTdataResult() == null && Constant.poor.getTdataResult() == null) {
 			tv_effect.setText("");
 		} else {
 			tv_effect.setText("修改");

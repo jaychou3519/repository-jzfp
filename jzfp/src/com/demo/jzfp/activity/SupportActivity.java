@@ -34,7 +34,7 @@ public class SupportActivity extends BaseActivity implements WebServiceCallback 
 	@Override
 	protected void initView() {
 		LinkedHashMap<String, String> linkedHashMap = new LinkedHashMap<String, String>();
-		//linkedHashMap.put("itemId", "0");
+		linkedHashMap.put("arg0", "1");
 		RequestWebService.send("selectNewsList", linkedHashMap, this, 101);
 	}
 

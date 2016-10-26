@@ -15,7 +15,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="计划脱贫时间"
+            android:text="脱贫时间"
             android:textColor="@color/gray"
             android:textSize="@dimen/x14" />
 
@@ -44,7 +44,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="家庭人均收入"
+                android:text="家庭可支配收入"
                 android:textColor="@color/gray"
                 android:textSize="@dimen/x14" />
 
@@ -66,7 +66,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="right"
-                android:text="家庭总收入"
+                android:text="人均可支配收入"
                 android:textColor="@color/gray"
                 android:textSize="@dimen/x14" />
 

@@ -430,8 +430,6 @@
                 android:text="通知公告"
                 android:textColor="@color/hei"
                 android:textSize="@dimen/fontx14" />
-            
-            	    
         </RelativeLayout>
         
        <RelativeLayout

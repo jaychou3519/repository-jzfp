@@ -6,6 +6,9 @@ import com.demo.jzfp.dao.DictDataInfoDao;
 import com.demo.jzfp.dao.impl.DictDataInfoDaoImpl;
 import com.demo.jzfp.database.DatabaseHelper;
 import com.demo.jzfp.entity.TdataCountryman;
+import com.demo.jzfp.entity.TdataHelper;
+import com.demo.jzfp.entity.TdataResult;
+import com.demo.jzfp.utils.Constant;
 import com.demo.jzfp.utils.Tools;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
@@ -29,10 +32,13 @@ public class RecordFragment extends Fragment{
 	private SQLiteDatabase db = null;
 	private DictDataInfoDao dictDataDao = new DictDataInfoDaoImpl();
 	private TextView tv_name,tv_state,tv_gender,tv_idcard,tv_age,tv_phone,tv_educational
-					,tv_home_flat,tv_home_area,tv_plough_area,tv_mountains_area
+					,tv_home_flat,tv_home_area,tv_plough_area,tv_mountains_area,et_organization,et_name,et_name_job,et_tel,et_Captain
+					,et_Village,et_dwsjName,et_dwsjPhone,et_zzName,et_zzPhone,et_csjName,et_csjPhone,et_czrName,et_czrPhone
 					,tv_reason,tv_explain,jtcy;  /*tv_year_money,*/
 	private ImageView iv_photo;
 	private TdataCountryman countryman;
+	private TdataHelper THelper;
+	private TdataResult Tresult;
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -65,13 +71,27 @@ public class RecordFragment extends Fragment{
 		tv_explain = 	(TextView) view.findViewById(R.id.tv_explain);
 		iv_photo = 	(ImageView) view.findViewById(R.id.iv_photo);
 		jtcy = (TextView) view.findViewById(R.id.jtcy);
+		et_organization = 	(TextView) view.findViewById(R.id.et_organization);//结对帮扶单位
+		et_name = 	(TextView) view.findViewById(R.id.et_name); //帮扶责任人
+		et_name_job = 	(TextView) view.findViewById(R.id.et_name_job); //帮扶责任人职务
+		et_tel = 	(TextView) view.findViewById(R.id.et_tel);//联系电话
+		et_Captain = 	(TextView) view.findViewById(R.id.et_Captain);//驻村队长信息
+		et_Village = 	(TextView) view.findViewById(R.id.et_Village);//队长联系电话
+		et_dwsjName = 	(TextView) view.findViewById(R.id.et_dwsjName);
+		et_dwsjPhone = 	(TextView) view.findViewById(R.id.et_dwsjPhone);
+		et_zzName = 	(TextView) view.findViewById(R.id.et_zzName);//乡（镇）长姓名
+		et_zzPhone = 	(TextView) view.findViewById(R.id.et_zzPhone);//乡（镇）长电话
+		et_csjName = 	(TextView) view.findViewById(R.id.et_csjName);//村书记姓名
+		et_csjPhone = 	(TextView) view.findViewById(R.id.et_csjPhone);//村书记电话
+		et_czrName = 	(TextView) view.findViewById(R.id.et_czrName);//村主任姓名
+		et_czrPhone = 	(TextView) view.findViewById(R.id.et_czrPhone);//村主任电话
 		sv_scroll.smoothScrollTo(0, 20);
 		sv_scroll.setFocusable(true);
 	}
 	
 	private void initData(){
 		db = (new DatabaseHelper(getActivity())).getWritableDatabase();
-		if(countryman==null) return;
+		if(countryman!=null) {
 		tv_name.setText(Tools.parseEmpty(countryman.getCountryman()));
 		tv_state.setText(dictDataDao.queryValueByDictCode(db,countryman.getPoorState(),"poorState"));
 		tv_gender.setText(Tools.parseEmpty(countryman.getSex()));
@@ -96,6 +116,25 @@ public class RecordFragment extends Fragment{
 		Tools.setListViewHeight(lv_listview);
 		sv_scroll.smoothScrollTo(0, 20);
 		sv_scroll.setFocusable(true);
+		
+		}else{
+ 		et_organization.setText("sssssss");
+		et_name.setText(Tools.parseEmpty(THelper.getJdbfzrOrger()));
+		et_name_job.setText(Tools.parseEmpty(THelper.getJdbfzrOrgname()));
+		et_tel.setText(Tools.parseEmpty(THelper.getBfzrrPhone()));
+		/*et_Village.setText(Tools.parseEmpty(THelper.getZzArea()));*/
+		et_dwsjName.setText(Tools.parseEmpty(THelper.getDwsjName()));
+		et_dwsjPhone.setText(Tools.parseEmpty(THelper.getDwsjPhone()));
+		et_zzName.setText(Tools.parseEmpty(THelper.getZzName()));
+		et_zzPhone.setText(Tools.parseEmpty(THelper.getZzPhone()));
+		et_csjName.setText(Tools.parseEmpty(THelper.getCsjName()));
+		et_csjPhone.setText(Tools.parseEmpty(THelper.getCxjPhone()));
+		et_czrName.setText(Tools.parseEmpty(THelper.getCzrName()));
+		et_czrPhone.setText(Tools.parseEmpty(THelper.getCzrPhone()));
+		}
+		
+		/*if(Tresult==null) return;
+		et_Captain.setText(Tools.parseEmpty(Tresult.getzcgjddz()));*/
 	}
 	public void setCountryMan(TdataCountryman countryMan){
 		this.countryman = countryMan;

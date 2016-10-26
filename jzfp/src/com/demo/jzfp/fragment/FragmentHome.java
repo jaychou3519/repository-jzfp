@@ -172,7 +172,7 @@ public class FragmentHome extends BaseFragment implements AsynceHttpInterface,
 		
 		
 		LinkedHashMap<String, String> linkedHashMap = new LinkedHashMap<String, String>();
-		//linkedHashMap.put("itemId", "1");
+		linkedHashMap.put("arg0", "0");
 		RequestWebService.send("selectNewsList", linkedHashMap, this, 103);
 	}
 
