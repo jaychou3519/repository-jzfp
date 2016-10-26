@@ -422,6 +422,7 @@ public class FragmentHome extends BaseFragment implements AsynceHttpInterface,
 				policies = JSON.parseArray(reulst, Policy.class);
 				VillagesAdapter adapter = new VillagesAdapter(getMainActivity(), policies, VillagesAdapter.SUPPORT);
 				lv_listview.setAdapter(adapter);
+				Tools.setListViewHeight(lv_listview);
 			}
 
 		}
